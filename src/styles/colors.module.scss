@@ -1,0 +1,51 @@
+$primary: #4b49ac;
+$secondary: #98bdff;
+
+// dark
+$dark-primary: #191c24;
+
+// text colors
+$text-primary-light: #292929;
+$text-primary-dark: #aaabae;
+
+// background colors
+$bg-light: #eceffd;
+$bg-dark: $dark-primary;
+
+// header
+$header-bg-light: white;
+$header-bg-dark: $dark-primary;
+$header-title-light: $primary;
+$header-title-dark: white;
+
+// sidebar colors
+$sidebar-bg-light: white;
+$sidebar-bg-dark: $dark-primary;
+
+$sidebar-link-light: $text-primary-light;
+$sidebar-link-dark: $text-primary-dark;
+
+$selected-sidebar-bg-light: $primary;
+$selected-sidebar-bg-dark: #25476a;
+
+$selected-sidebar-link-light: white;
+$selected-sidebar-link-dark: white;
+
+// footer
+$footer-bg-light: #7978e9;
+$footer-bg-dark: $dark-primary;
+
+// main container
+$main-container-bg-light: $bg-light;
+$main-container-bg-dark: black;
+$main-container-paper-bg-light: white;
+$main-container-paper-bg-dark: $dark-primary;
+
+// table
+$table-head-color: #e1f5fe;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+  tableHeadColor: $table-head-color;
+}

@@ -1,0 +1,155 @@
+@import "./colors.module.scss";
+
+.sidebar-container {
+  background-color: $sidebar-bg-light;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  transition: width 200ms;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "logo-box"
+    "link-box"
+    "actions-box";
+
+  .logo-box {
+    grid-area: logo-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+    .logo-heading {
+      overflow: hidden;
+      color: white;
+    }
+  }
+
+  .links-box {
+    overflow-y: auto;
+    grid-area: link-box;
+    background-color: $sidebar-bg-light;
+
+    padding: 0 1rem 0 0;
+  }
+
+  // scrollbar
+  .links-box::-webkit-scrollbar {
+    width: 4px;
+  }
+  .links-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .links-box::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    &:hover {
+      background-color: #555;
+    }
+  }
+
+  .navLink {
+    text-decoration: none;
+
+    .list-item.Mui-selected {
+      background-color: $selected-sidebar-bg-light;
+      border-top-right-radius: 9999px;
+      border-bottom-right-radius: 9999px;
+
+      & .MuiListItemIcon-root svg {
+        fill: $selected-sidebar-link-light;
+      }
+
+      .MuiListItemText-root {
+        .MuiTypography-root {
+          color: $selected-sidebar-link-light;
+        }
+      }
+    }
+
+    .list-item {
+      display: flex;
+      border-top-right-radius: 9999px;
+      border-bottom-right-radius: 9999px;
+
+      & .MuiListItemIcon-root svg {
+        fill: $sidebar-link-light;
+      }
+
+      & .MuiListItemText-root {
+        .MuiTypography-root {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-size: 14px;
+          color: $sidebar-link-light;
+          font-weight: 500;
+        }
+      }
+      .MuiListItemText-secondary {
+        font-style: italic;
+      }
+    }
+  }
+
+  // sidebar footer buttons
+  .drawer-footer-actions {
+    grid-area: actions-box;
+
+    .drawer-toggle-btn {
+      & > button {
+        border-top: 1px white solid;
+        display: flex;
+        justify-content: flex-end;
+        border-radius: 0px;
+        font-size: 17px;
+        padding: 13px 10px 13px 0px;
+        background-color: transparent;
+
+        & > svg {
+          opacity: 0.8;
+          transition: opacity 200ms;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar-container.dark {
+  background-color: $sidebar-bg-dark;
+
+  .links-box {
+    background-color: $sidebar-bg-dark;
+  }
+
+  .navLink {
+    .list-item.Mui-selected {
+      background-color: $selected-sidebar-bg-dark;
+
+      & .MuiListItemIcon-root svg {
+        fill: $selected-sidebar-link-dark;
+      }
+
+      .MuiListItemText-root {
+        .MuiTypography-root {
+          color: $selected-sidebar-link-dark;
+        }
+      }
+    }
+
+    .list-item {
+      & .MuiListItemIcon-root svg {
+        fill: $sidebar-link-dark;
+      }
+
+      & .MuiListItemText-root {
+        .MuiTypography-root {
+          color: $sidebar-link-dark;
+        }
+      }
+    }
+  }
+}

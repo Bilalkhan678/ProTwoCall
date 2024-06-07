@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/routes/*": ["routes/*"],
+      "@/redux/*": ["redux/*"],
+      "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"],
+      "@/services/*": ["services/*"],
+      "@/theme/*": ["theme/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}
