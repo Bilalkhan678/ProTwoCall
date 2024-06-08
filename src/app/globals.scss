@@ -9,12 +9,12 @@
   transition: color 400ms, background-color 400ms, box-shadow 400ms;
 }
 
-html,
-body {
-  padding: 0;
+html, body, #__next {
+  height: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
 }
-
 a {
   color: inherit;
   text-decoration: none;
@@ -26,11 +26,12 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%; /* Ensure main-container spans full width */
 
     .content-container {
       flex-grow: 1;
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
@@ -38,6 +39,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px 0px;
+    padding: 0px;
   }
 }
 

@@ -1,26 +1,14 @@
-import Link from "next/link";
+
+"use client"
+import dynamic from 'next/dynamic';
+// import styles from "./ .scss";
+
+const Map = dynamic(() => import('../../components/map/map'), { ssr: false });
 
 const Home = () => {
   return (
-    <div>
-      <h2>Home</h2>
-      <ul>
-        <li>
-          <Link href="/users" className="text-blue-400">
-            Users
-          </Link>
-        </li>
-        <li>
-          <Link href="/about-us" className="text-blue-400">
-            About us
-          </Link>
-        </li>
-        <li>
-          <Link href="/dashboard" className="text-blue-400">
-            Dashboard
-          </Link>
-        </li>
-      </ul>
+    <div className="w-full h-screen overflow-hidden">
+      <Map />
     </div>
   );
 };

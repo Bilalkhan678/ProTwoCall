@@ -7,8 +7,8 @@ import Link from "next/link";
 import { useReduxUser } from "utils/hooks";
 import { useTheme } from "next-themes";
 import UserMenu from "./Menu/UserMenu";
-import { Home, Person, Security, ExitToApp, Menu,Close } from "@mui/icons-material";
-import { color } from "framer-motion";
+import { Home, Person, History, Policy, ContactMail, Call, ExitToApp, Menu, Close } from "@mui/icons-material";
+import { projectName } from "theme/theme-config";
 
 const UserHeader = ({ drawerWidth }) => {
   // theme
@@ -36,24 +36,20 @@ const UserHeader = ({ drawerWidth }) => {
   const menuItems = [
     { text: "Home", icon: <Home />, link: "/" },
     { text: "Profile", icon: <Person />, link: "/profile" },
-    { text: "Privacy", icon: <Security />, link: "/privacy" },
+    { text: "Service History", icon: <History />, link: "/service-history" },
+    { text: "Privacy Policy", icon: <Policy />, link: "/privacy-policy" },
+    { text: "Contact Us", icon: <Call />, link: "/contact-us" },
     { text: "Logout", icon: <ExitToApp />, link: "/logout" }
   ];
 
   return (
-    <Box
-      className={`${styles["header-container"]} ${styles[theme]} shadow-md shadow-secondary/40 dark:shadow-primary-light/40 backdrop-blur-sm`}
-    >
-      <Box className={styles["header-title-btn"]}>
-      <IconButton onClick={handleSidebarDrawerOpen} sx={{ color: 'white' }}>
-          <Menu sx={{ color: 'white' }} />
-        </IconButton>
-        <Link href="/">
-          <p className={`${styles["header-title"]} text-lg font-semibold `}>
-            {/* {projectName} */}
-          </p>
-        </Link>
-      </Box>
+    <Box className={`${styles["header-container"]} ${styles[theme]} shadow-md shadow-secondary/40 dark:shadow-primary-light/40 backdrop-blur-sm`}>
+      <IconButton onClick={handleSidebarDrawerOpen} sx={{ color: 'white', position: 'absolute', left: 20 }}>
+        <Menu sx={{ color: 'white' }} />
+      </IconButton>
+      <Link href="/" className={styles["header-title"]}>
+        {projectName}
+      </Link>
       {userRedux && (
         <div className="flex items-center gap-3">
           <div className="items-center justify-center hidden md:flex">
@@ -63,10 +59,7 @@ const UserHeader = ({ drawerWidth }) => {
           </div>
         </div>
       )}
-      {/* menu */}
       <UserMenu anchorEl={anchorEl} toggle={setAnchorEl} />
-
-      {/* dialog */}
       <Drawer
         open={sidebarMenu}
         variant="temporary"
@@ -83,12 +76,12 @@ const UserHeader = ({ drawerWidth }) => {
               display: 'flex',
               justifyContent: 'flex-start',
               padding: '8px',
-              backgroundColor: '#2081c3',  // Use camelCase for CSS properties
-             
+              backgroundColor: '#2081c3',
+              height: '73px',
             }}
           >
             <IconButton onClick={handleSidebarDrawerClose} sx={{ color: 'white' }}>
-              <Menu sx={{ color: 'white' }}/>
+              <Menu sx={{ color: 'white' }} />
             </IconButton>
           </Box>
           <List>

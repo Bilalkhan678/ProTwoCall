@@ -1,38 +1,104 @@
+// @import "../../styles/colors.module.scss";
+
+// .header-container {
+//   // background-color: rgba($color: $header-bg-light, $alpha: 1);
+//   // background-color: #2081c3;
+//   // display: flex;
+//   // justify-content: space-between;
+//   // align-items: center;
+//   // width: 100%;
+//   // border: 1px solid red;
+//   // justify-content: flex-start;
+
+//   height: 60px;
+//   width: 100%;  
+//   position: sticky;
+//   top: 0;
+//   left: 0;
+//   padding: 0px 20px;
+
+//   .header-title-btn {
+//     display: flex;
+//     align-items: center;
+//   }
+
+//   .header-sidebar-btn {
+//     color: $primary;
+//   }
+
+//   .date-span {
+//     font-size: 13px;
+//     margin-right: 0.6rem;
+//   }
+
+//   .header-title {
+//     text-transform: uppercase;
+//     color: #ffffff;
+//     text-align: center;
+//     // color: #2081c3;
+//     // border: 2px solid red;
+//     // letter-spacing: 2px;
+//   }
+
+//   .header-avatar {
+//     margin-left: auto;
+//     cursor: pointer;
+//   }
+
+//   .link-box {
+//     display: flex;
+//     align-items: center;
+//     gap: 1.5rem;
+
+//     .link {
+//       color: $text-primary-light;
+//       cursor: pointer;
+//     }
+//   }
+// }
+
+// .header-container.dark {
+//   background-color: rgba($color: $header-bg-dark, $alpha: 1);
+
+//   .header-title {
+//     color: $header-title-dark;
+//   }
+
+//   .link-box {
+//     .link {
+//       color: $text-primary-dark;
+//     }
+//   }
+// }
 @import "../../styles/colors.module.scss";
 
 .header-container {
-  // background-color: rgba($color: $header-bg-light, $alpha: 1);
-  background-color: #2081c3;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  // justify-content: space-between;
-
-  min-height: 60px;
+  height: 60px;
   width: 100%;  
   position: sticky;
   top: 0;
+  left: 0;
   padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2081c2;
+    // Centering the children
 
   .header-title-btn {
     display: flex;
     align-items: center;
-  }
-
-  .header-sidebar-btn {
-    color: $primary;
-  }
-
-  .date-span {
-    font-size: 13px;
-    margin-right: 0.6rem;
+    position: absolute;
+    left: 20px;
   }
 
   .header-title {
     text-transform: uppercase;
     color: #ffffff;
-    // border: 2px solid red;
-    // letter-spacing: 2px;
+    text-align: center;
+    font-size: 1.125rem;
+    flex-grow: 1;
+    font-weight: 600;
   }
 
   .header-avatar {
