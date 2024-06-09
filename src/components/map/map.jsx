@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 
 const mapContainerStyle = {
   width: "100%",
-  height: "600px", // Ensure it takes up full viewport height
+  height: "100vh", // Ensure it takes up full viewport height
   position: 'relative',
   padding: '10px' // Add padding if necessary to ensure controls are not cut off
 
@@ -36,9 +36,21 @@ const center = {
 // const options = {
 //     fullscreenControl: false,  // Disable the fullscreen control if you don't need it
 //     zoomControlOptions: {
-//       position: window.google.maps.ControlPosition.RIGHT_CENTER, // Position the zoom control on the right
+//       position: window.google.maps.ControlPosition.CENTER, // Position the zoom control on the right
 //     },
 //   };
+
+// const options = useMemo(() => {
+//     if (typeof window !== 'undefined' && window.google) {
+//       return {
+//         fullscreenControl: false,
+//         zoomControlOptions: {
+//           position: window.google.maps.ControlPosition.CENTER,
+//         },
+//       };
+//     }
+//     return {};
+//   }, []);
 
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
@@ -52,7 +64,7 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
       center={center}
-      zoom={12}
+      zoom={8}
     //   options={options}
     >
       <Marker position={center} />
