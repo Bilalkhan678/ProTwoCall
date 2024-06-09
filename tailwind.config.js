@@ -34,6 +34,9 @@ module.exports = {
   theme: {
     extend: {},
   },
+  variants: {
+    extend: {},
+  },
   plugins: [],
   darkMode: "class",
 };

@@ -14,7 +14,7 @@ const WebLayout = ({ children }) => {
   const [drawerWidth] = useState(DRAWER_WIDTH);
 
   return (
-    <div className="main-container" maxheight={false}>
+    <div className="main-container" >
       <UserHeader drawerWidth={drawerWidth} />
       <Container className="content-container" maxWidth={false} disableGutters>
         <ErrorBoundary FallbackComponent={ErrorFallback}>

@@ -3,9 +3,17 @@
     height: 100vh;
     overflow: hidden; /* Prevent page scroll */
   }
-  
   .mapContainer {
     width: 100%;
     height: 100%;
     position: relative;
+    padding: 0; /* Ensure there's no padding around the container */
+
+  }
+  
+  .mapControls {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    z-index: 1;
   }
