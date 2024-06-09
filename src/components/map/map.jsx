@@ -9,6 +9,11 @@ const mapContainerStyle = {
   height: "600px", // Ensure it takes up full viewport height
   position: 'relative',
   padding: '10px' // Add padding if necessary to ensure controls are not cut off
+
+// display: 'flex',
+// justifyContent: "center",
+// alignItems: "center",
+
 };
 
 // const center = useMemo(() => ({ lat: 44.9778, lng: -93.2650 }), []);
@@ -47,7 +52,7 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
       center={center}
-      zoom={8}
+      zoom={12}
     //   options={options}
     >
       <Marker position={center} />
