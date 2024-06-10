@@ -12,6 +12,7 @@ const Home = () => {
     <div className="flex flex-col w-full h-full overflow-hidden">
 
       <Map />
+      {/* <GoogleMaps/> */}
     </div>
   );
 };
