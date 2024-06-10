@@ -174,6 +174,8 @@
 
 // export default Map;
 // src/components/map/Map.jsx
+
+
 import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import styles from './styles.module.scss';
@@ -201,8 +203,15 @@ const Map = () => {
   const [mapType, setMapType] = useState("roadmap");
   const [showDropdown, setShowDropdown] = useState(false);
   const [labelsEnabled, setLabelsEnabled] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState(null);
   const searchBoxRef = useRef(null);
+  const mapRef = useRef(null);
 
+
+  const onLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -234,6 +243,27 @@ const Map = () => {
     setMapType(event.target.checked ? 'hybrid' : 'satellite');
   };
 
+
+
+  const handleCurrentLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const newCenter = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setCenter(newCenter);
+          setCurrentLocation(newCenter);
+          mapRef.current.panTo(newCenter);
+        },
+        () => {
+          console.error("Error getting user location");
+        }
+      );
+    }
+  };
+
 //   const handlePlacesChanged = () => {
 //     const places = searchBoxRef.current.getPlaces();
 //     if (places.length > 0) {
@@ -245,15 +275,29 @@ const Map = () => {
 //     }
 //   };
 
+// const handlePlacesChanged = () => {
+//     const places = searchBoxRef.current.getPlaces();
+//     console.log('Places:', places); // Check this log
+//     if (places.length > 0) {
+//       const place = places[0];
+//       console.log('Selected Place:', place); // Check this log
+//       setCenter({
+//         lat: place.geometry.location.lat(),
+//         lng: place.geometry.location.lng()
+//       });
+//     }
+//   };
+
 const handlePlacesChanged = () => {
-    const places = searchBoxRef.current.getPlaces();
-    console.log('Places:', places); // Check this log
-    if (places.length > 0) {
-      const place = places[0];
-      console.log('Selected Place:', place); // Check this log
+    const place = searchBoxRef.current.getPlace();
+    if (place.geometry) {
       setCenter({
         lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
+        lng: place.geometry.location.lng(),
+      });
+      mapRef.current.panTo({
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
       });
     }
   };
@@ -264,17 +308,27 @@ const handlePlacesChanged = () => {
 
   return (
     <div className={styles.mapContainer}>
-      <GoogleMap
+     <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
         zoom={8}
         mapTypeId={mapType}
+        onLoad={onLoad}
         options={{
           minZoom: 6, // Set the minimum zoom level
           maxZoom: 15, // Set the maximum zoom level
         }}
       >
         <Marker position={center} />
+        {currentLocation && (
+          <Marker
+            position={currentLocation}
+            icon={{
+              url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', // Custom icon for current location
+              scaledSize: new window.google.maps.Size(40, 40)
+            }}
+          />
+        )}
       </GoogleMap>
 
       <div className={styles.mapControls}>
@@ -317,7 +371,22 @@ const handlePlacesChanged = () => {
             placeholder="Search location"
             className={styles.searchBoxInput}
           />
+          
         </StandaloneSearchBox>
+        
+        <div>
+        <button
+          className={styles.currentLocationButton}
+          onClick={handleCurrentLocationClick}
+        >
+          Current Location
+        </button>
+      </div>
+
+
+
+
+
       </div>
     </div>
   );
