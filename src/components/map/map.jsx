@@ -129,8 +129,9 @@
 
 // // export default Map;
 
+
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from './styles.module.scss';
 
 const mapContainerStyle = {
@@ -139,7 +140,7 @@ const mapContainerStyle = {
   position: 'relative'
 };
 
-const center = {
+const defaultCenter = {
   lat: 44.9778,
   lng: -93.2650,
 };
@@ -149,9 +150,26 @@ const Map = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
 
+  const [center, setCenter] = useState(defaultCenter);
   const [mapType, setMapType] = useState("roadmap");
   const [showDropdown, setShowDropdown] = useState(false);
   const [labelsEnabled, setLabelsEnabled] = useState(false);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCenter({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        () => {
+          console.error("Error getting user location");
+        }
+      );
+    }
+  }, []);
 
   const handleMapTypeChange = useCallback((type) => {
     setMapType(type);
@@ -178,6 +196,10 @@ const Map = () => {
         center={center}
         zoom={8}
         mapTypeId={mapType}
+        options={{
+            minZoom: 5, // Set the minimum zoom level
+            maxZoom: 15, // Set the maximum zoom level
+          }}
       >
         <Marker position={center} />
       </GoogleMap>
