@@ -130,8 +130,52 @@
 // // export default Map;
 
 
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { useState, useEffect, useCallback } from "react";
+// import React, { useState, useEffect } from 'react';
+
+// const Map = () => {
+//   const [position, setPosition] = useState({ lat: 0, lng: 0 });
+
+//   useEffect(() => {
+//     const getLocation = () => {
+//       if (navigator.geolocation) {
+//         navigator.geolocation.watchPosition(
+//           (position) => {
+//             setPosition({
+//               lat: position.coords.latitude,
+//               lng: position.coords.longitude,
+//             });
+//           },
+//           (error) => {
+//             console.error('Error getting location:', error);
+//           }
+//         );
+//       } else {
+//         console.error('Geolocation is not supported by this browser.');
+//       }
+//     };
+
+//     getLocation();
+//   }, []);
+
+//   return (
+//     <div style={{ height: '400px', width: '100%' }}>
+//       <iframe
+//         width="100%"
+//         height="100%"
+//         frameBorder="0"
+//         scrolling="no"
+//         marginHeight="0"
+//         marginWidth="0"
+//         src={`https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=${position.lat},${position.lng}&zoom=15`}
+//       />
+//     </div>
+//   );
+// };
+
+// export default Map;
+// src/components/map/Map.jsx
+import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox } from "@react-google-maps/api";
+import { useState, useEffect, useCallback, useRef } from "react";
 import styles from './styles.module.scss';
 
 const mapContainerStyle = {
@@ -145,15 +189,19 @@ const defaultCenter = {
   lng: -93.2650,
 };
 
+const libraries = ['places'];
+
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    libraries,
   });
 
   const [center, setCenter] = useState(defaultCenter);
   const [mapType, setMapType] = useState("roadmap");
   const [showDropdown, setShowDropdown] = useState(false);
   const [labelsEnabled, setLabelsEnabled] = useState(false);
+  const searchBoxRef = useRef(null);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -186,6 +234,31 @@ const Map = () => {
     setMapType(event.target.checked ? 'hybrid' : 'satellite');
   };
 
+//   const handlePlacesChanged = () => {
+//     const places = searchBoxRef.current.getPlaces();
+//     if (places.length > 0) {
+//       const place = places[0];
+//       setCenter({
+//         lat: place.geometry.location.lat(),
+//         lng: place.geometry.location.lng()
+//       });
+//     }
+//   };
+
+const handlePlacesChanged = () => {
+    const places = searchBoxRef.current.getPlaces();
+    console.log('Places:', places); // Check this log
+    if (places.length > 0) {
+      const place = places[0];
+      console.log('Selected Place:', place); // Check this log
+      setCenter({
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      });
+    }
+  };
+  
+
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -197,9 +270,9 @@ const Map = () => {
         zoom={8}
         mapTypeId={mapType}
         options={{
-            minZoom: 5, // Set the minimum zoom level
-            maxZoom: 15, // Set the maximum zoom level
-          }}
+          minZoom: 6, // Set the minimum zoom level
+          maxZoom: 15, // Set the maximum zoom level
+        }}
       >
         <Marker position={center} />
       </GoogleMap>
@@ -231,6 +304,20 @@ const Map = () => {
             </div>
           )}
         </div>
+      </div>
+
+      <div className={styles.searchBoxContainer}>
+        <h3>Pickup Location</h3>
+        <StandaloneSearchBox
+          onLoad={ref => (searchBoxRef.current = ref)}
+          onPlacesChanged={handlePlacesChanged}
+        >
+          <input
+            type="text"
+            placeholder="Search location"
+            className={styles.searchBoxInput}
+          />
+        </StandaloneSearchBox>
       </div>
     </div>
   );

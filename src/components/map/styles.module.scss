@@ -41,45 +41,77 @@
 /* styles.module.scss */
 
 .mapContainer {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
-  
-  .mapControls {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.mapControls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row; /* Align buttons in a row */
+  gap: 5px;
+}
+
+.mapTypeButton {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+}
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.searchBoxContainer {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
-    display: flex;
-    flex-direction: row; /* Align buttons in a row */
-    gap: 5px;
-  }
-  
-  .mapTypeButton {
+    top: 134px;
+    left: 80px;
+    z-index: 1000;
+    background-color: white;
     padding: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    width: 100px;
-    text-align: center;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
-  
-  .dropdownContainer {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdownContent {
+  .searchBoxContainer h3{   
+    // border: 1px solid red;
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-top: 5px;
-    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 300px;
+    color: white;
+    background-color: #2081c2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   
+  .searchBoxInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
