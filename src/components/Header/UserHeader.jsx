@@ -35,8 +35,8 @@ const UserHeader = ({ drawerWidth }) => {
 
   const menuItems = [
     { text: "Home", icon: <Home />, link: "/" },
-    { text: "Profile", icon: <Person />, link: "/profile" },
-    { text: "Service History", icon: <History />, link: "/service-history" },
+    { text: "Profile", icon: <Person />, link: "/users" },
+    { text: "Service History", icon: <History />, link: "/about-us" },
     { text: "Privacy Policy", icon: <Policy />, link: "/privacy-policy" },
     { text: "Contact Us", icon: <Call />, link: "/contact-us" },
     { text: "Logout", icon: <ExitToApp />, link: "/logout" }
@@ -81,7 +81,7 @@ const UserHeader = ({ drawerWidth }) => {
             }}
           >
             <IconButton onClick={handleSidebarDrawerClose} sx={{ color: 'white' }}>
-              <Menu sx={{ color: 'white' }} />
+              <Menu  sx={{ color: 'white' }} />
             </IconButton>
           </Box>
           <List>

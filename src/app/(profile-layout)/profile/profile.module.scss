@@ -1,0 +1,181 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // justify-content: space-between;
+    // border: 1px solid red;
+    width: 100%;
+    // max-width: 900px;   
+    // height: 90vh;
+}
+
+.heading {
+    margin-bottom: 20px;
+}
+
+// .subcontainer {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     border: 1px solid red;
+//     width: 90%;
+//     height: 100vh;
+//     // max-width: 950px;
+//     background-color: #ffffff;
+//     // margin-left: auto;
+//     // margin-right: auto;
+// }
+
+.subcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start to allow growth */
+    // border: 1px solid red;
+    width: 90%;
+    height: 90vh;
+    background-color: #ffffff;
+    flex-grow: 1; /* Allow the container to grow */
+    overflow-y: auto; /* Allow scrolling within subcontainer */
+
+}
+
+.left_side {
+    flex: 1.5;
+    display: flex;
+    padding: 31px 20px;
+    // border: 5px solid red;
+    max-width: 275px;
+    // margin: 10px 10px;
+    // height: 90vh;
+    // margin-left: -100px;
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+
+}
+
+.button_left {
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto;
+}
+.button {
+    display: flex;
+    align-items: center;
+    background-color: transparent; /* Make button transparent */
+    color: #0070f3; /* Change text color */
+    border: 2px solid #0070f3; /* Add border */
+    padding: 9px 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add color transition */
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: #0070f3; /* Change background color on hover */
+    color: white; /* Change text color on hover */
+}
+
+.button.active {
+    background-color: #005bb5; /* Active background color */
+    color: white; /* Active text color */
+}
+
+
+.icon {
+    margin-right: 14px;
+    height: 20px;
+}
+
+.right_side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow:     0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 25px 0 rgba(0, 0, 0, 0.19);
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    margin: 105px 50px;
+    // border: 1px solid red ;
+    // height: 90vh;
+    
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.details {
+    display: flex;
+    flex-direction: row; /* Change to row direction */
+    justify-content: space-between; /* Add space between inputs */
+    width: 100%; /* Ensure it takes full width */
+}
+
+.inputContainer {
+    position: relative;
+    margin-bottom: 20px;
+    flex: 1; /* Allow inputs to take equal space */
+    margin-right: 10px; /* Add margin between input fields */
+}
+
+.inputContainer:last-child {
+    margin-right: 0; /* Remove margin for the last input */
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: 0;
+    left: 10px;
+    font-size: 12px;
+    color: #0070f3;
+}
+
+.submitButton {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.submitButton:hover {
+    background-color: #005bb5;
+}

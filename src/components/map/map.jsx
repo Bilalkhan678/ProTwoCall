@@ -176,8 +176,10 @@
 // src/components/map/Map.jsx
 
 
-import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox , Autocomplete  } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationArrow, faChevronDown  } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
 
 const mapContainerStyle = {
@@ -195,6 +197,7 @@ const libraries = ['places'];
 
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
+    id:"320c3cf314c6a3f1",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
@@ -204,7 +207,8 @@ const Map = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [labelsEnabled, setLabelsEnabled] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(null);
-  const searchBoxRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+  const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
 
@@ -216,10 +220,13 @@ const Map = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setCenter({
+          const newCenter = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
+          };
+          setCenter(newCenter);
+          setCurrentLocation(newCenter);
+          mapRef.current.panTo(newCenter);
         },
         () => {
           console.error("Error getting user location");
@@ -264,8 +271,8 @@ const Map = () => {
     }
   };
 
-//   const handlePlacesChanged = () => {
-//     const places = searchBoxRef.current.getPlaces();
+//   const handlePlaceChanged  = () => {
+//     const places = autocompleteRef.current.getPlaces();
 //     if (places.length > 0) {
 //       const place = places[0];
 //       setCenter({
@@ -275,8 +282,8 @@ const Map = () => {
 //     }
 //   };
 
-// const handlePlacesChanged = () => {
-//     const places = searchBoxRef.current.getPlaces();
+// const handlePlaceChanged  = () => {
+//     const places = autocompleteRef.current.getPlaces();
 //     console.log('Places:', places); // Check this log
 //     if (places.length > 0) {
 //       const place = places[0];
@@ -288,35 +295,43 @@ const Map = () => {
 //     }
 //   };
 
-const handlePlacesChanged = () => {
-    const place = searchBoxRef.current.getPlace();
-    if (place.geometry) {
-      setCenter({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
-      });
-      mapRef.current.panTo({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
-      });
+const handlePlaceChanged = () => {
+    if (autocompleteRef.current) {
+      const place = autocompleteRef.current.getPlace();
+      if (place.geometry) {
+        const newCenter = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        };
+        setCenter(newCenter);
+        mapRef.current.panTo(newCenter);
+      } else {
+        console.error("No geometry data available for the selected place.");
+      }
+    } else {
+      console.error("Autocomplete ref is not set.");
     }
   };
   
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
 
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading...</div>;
 
-  return (
+ return (
     <div className={styles.mapContainer}>
-     <GoogleMap
+      <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
         zoom={8}
         mapTypeId={mapType}
         onLoad={onLoad}
         options={{
-          minZoom: 6, // Set the minimum zoom level
-          maxZoom: 15, // Set the maximum zoom level
+          minZoom: 5, // Set the minimum zoom level
+          maxZoom: 17, // Set the maximum zoom level
         }}
       >
         <Marker position={center} />
@@ -358,35 +373,34 @@ const handlePlacesChanged = () => {
             </div>
           )}
         </div>
+        
       </div>
 
       <div className={styles.searchBoxContainer}>
         <h3>Pickup Location</h3>
-        <StandaloneSearchBox
-          onLoad={ref => (searchBoxRef.current = ref)}
-          onPlacesChanged={handlePlacesChanged}
+        <Autocomplete
+          onLoad={ref => (autocompleteRef.current = ref)}
+          onPlaceChanged={handlePlaceChanged }
+          fields={["geometry", "name"]}
         >
-          <input
-            type="text"
-            placeholder="Search location"
-            className={styles.searchBoxInput}
-          />
-          
-        </StandaloneSearchBox>
-        
-        <div>
-        <button
+          <div className={styles.searchBox}>
+            <input
+              type="text"
+              placeholder="Search location"
+              className={styles.searchBoxInput}
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+            <button
           className={styles.currentLocationButton}
           onClick={handleCurrentLocationClick}
         >
+          <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
           Current Location
         </button>
-      </div>
-
-
-
-
-
+          </div>
+        </Autocomplete>
       </div>
     </div>
   );

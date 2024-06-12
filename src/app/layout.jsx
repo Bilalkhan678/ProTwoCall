@@ -22,6 +22,10 @@ const RootLayout = ({ children }) => {
         <title>{projectName}</title>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="description" content="NextJs web app" />
+        <script
+  defer
+  src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+></script>
       </head>
       <body suppressHydrationWarning>
         <Providers>{children}</Providers>
