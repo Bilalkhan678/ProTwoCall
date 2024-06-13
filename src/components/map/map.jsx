@@ -240,15 +240,9 @@ const Map = () => {
     setShowDropdown(false); // Hide the dropdown when a map type is selected
   }, []);
 
-  const handleSatelliteClick = () => {
-    setMapType('satellite');
-    setShowDropdown(!showDropdown);
-  };
+ 
 
-  const handleLabelChange = (event) => {
-    setLabelsEnabled(event.target.checked);
-    setMapType(event.target.checked ? 'hybrid' : 'satellite');
-  };
+ 
 
 
 
@@ -346,7 +340,7 @@ const handlePlaceChanged = () => {
         )}
       </GoogleMap>
 
-      <div className={styles.mapControls}>
+      {/* <div className={styles.mapControls}>
         <button
           className={styles.mapTypeButton}
           onClick={() => handleMapTypeChange('roadmap')}
@@ -374,7 +368,7 @@ const handlePlaceChanged = () => {
           )}
         </div>
         
-      </div>
+      </div> */}
 
       <div className={styles.searchBoxContainer}>
         <h3>Pickup Location</h3>
