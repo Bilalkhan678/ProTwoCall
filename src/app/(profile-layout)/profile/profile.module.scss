@@ -1,87 +1,73 @@
+// html, body {
+//     height: 100%;
+//     margin: 0;
+//     padding: 0;
+//     overflow: auto; /* Allow scrolling */
+// }
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // justify-content: space-between;
-    // border: 1px solid red;
     width: 100%;
-    // max-width: 900px;   
-    // height: 90vh;
+    height: 100%;
 }
 
 .heading {
     margin-bottom: 20px;
 }
 
-// .subcontainer {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     border: 1px solid red;
-//     width: 90%;
-//     height: 100vh;
-//     // max-width: 950px;
-//     background-color: #ffffff;
-//     // margin-left: auto;
-//     // margin-right: auto;
-// }
-
 .subcontainer {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start; /* Align items at the start to allow growth */
-    // border: 1px solid red;
+    align-items: flex-start;
     width: 90%;
-    height: 90vh;
+    min-height: 90vh;
     background-color: #ffffff;
-    flex-grow: 1; /* Allow the container to grow */
-    overflow-y: auto; /* Allow scrolling within subcontainer */
-
+    flex-wrap: wrap;
 }
 
 .left_side {
     flex: 1.5;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 31px 20px;
-    // border: 5px solid red;
     max-width: 275px;
-    // margin: 10px 10px;
-    // height: 90vh;
-    // margin-left: -100px;
-    overflow-y: auto; /* Allow scrolling if content exceeds height */
-
 }
 
 .button_left {
     display: flex;
     flex-direction: column;
-    margin: 100px auto;
+    margin-top: 50px;
 }
+
 .button {
     display: flex;
     align-items: center;
-    background-color: transparent; /* Make button transparent */
-    color: #0070f3; /* Change text color */
-    border: 2px solid #0070f3; /* Add border */
-    padding: 9px 35px;
+    background-color: transparent;
+    color: #0070f3;
+    border: 1px solid gray;
+    padding: 8px 13px;
     margin-bottom: 12px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add color transition */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-size: 14px;
+    font-weight: 700;
 }
 
 .button:hover {
-    background-color: #0070f3; /* Change background color on hover */
-    color: white; /* Change text color on hover */
+    background-color: #0070f3;
+    color: white;
 }
 
 .button.active {
-    background-color: #005bb5; /* Active background color */
-    color: white; /* Active text color */
+    background-color: #005bb5;
+    color: white;
 }
-
 
 .icon {
     margin-right: 14px;
@@ -94,13 +80,8 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    box-shadow:     0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 25px 0 rgba(0, 0, 0, 0.19);
-    overflow-y: auto; /* Allow scrolling if content exceeds height */
-    margin: 105px 50px;
-    // border: 1px solid red ;
-    // height: 90vh;
-    
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2), 0 6px 25px 0 rgba(0, 0, 0, 0.19);
+    margin: 51px 35px ; 
 }
 
 .profile {
@@ -116,22 +97,24 @@
     object-fit: cover;
     margin-bottom: 20px;
 }
+
 .details {
     display: flex;
-    flex-direction: row; /* Change to row direction */
-    justify-content: space-between; /* Add space between inputs */
-    width: 100%; /* Ensure it takes full width */
+    flex-direction: row; 
+    justify-content: space-between; 
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .inputContainer {
     position: relative;
     margin-bottom: 20px;
-    flex: 1; /* Allow inputs to take equal space */
-    margin-right: 10px; /* Add margin between input fields */
+    flex: 1; 
+    margin-right: 10px; 
 }
 
 .inputContainer:last-child {
-    margin-right: 0; /* Remove margin for the last input */
+    margin-right: 0;
 }
 
 .input {
@@ -178,4 +161,53 @@
 
 .submitButton:hover {
     background-color: #005bb5;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .left_side, .right_side {
+        // margin: 30px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .subcontainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left_side, .right_side {
+        max-width: 100%;
+        margin: 20px 0;
+        padding: 10px;
+    }
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    .icon {
+        height: 24px;
+    }
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+    .inputContainer {
+        margin-right: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .button {
+        padding: 12px 25px;
+        font-size: 18px;
+    }
+    .icon {
+        height: 26px;
+        margin-right: 12px;
+    }
+    .submitButton {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
 }

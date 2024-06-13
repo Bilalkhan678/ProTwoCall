@@ -69,6 +69,7 @@ const Profile = () => {
                 </div>
                 <div className={styles.right_side}>
                     <div className={styles.profile}>
+                        <h3>User Detail</h3>
                         <div className={styles.image}>
                             <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Profile" />
                         </div>

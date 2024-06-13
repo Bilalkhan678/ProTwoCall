@@ -13,7 +13,7 @@ html, body, #__next {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: auto; /* Prevent scrolling */
 }
 a {
   color: inherit;
@@ -52,6 +52,7 @@ body {
   }
 }
 
+
 .serachcontainer{
   border: 1px solid red;
 }
@@ -60,3 +61,5 @@ body {
 #nprogress .bar {
   z-index: 10000;
 }
+
+
