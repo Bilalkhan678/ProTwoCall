@@ -1,9 +1,27 @@
-.card {
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Space between cards */
+    justify-content: space-around;
+    margin: 20px auto;
+  }
+  
+  .card {
+    text-decoration: none; /* Remove default link underline */
+    color: inherit; /* Inherit text color */
     border: 1px solid #ccc;
     padding: 16px;
-    margin: 8px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: calc(33.333% - 16px); /* Adjust width to fit 3 cards per row with some gap */
+    box-sizing: border-box;
+    width: 400px;
+  }
+  
+  .card:hover {
+    background-color: #f9f9f9;
   }
   
   .cardTitle {
@@ -16,9 +34,15 @@
     margin-bottom: 4px;
   }
   
-  .cardLink {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+  @media (max-width: 768px) {
+    .card {
+      width: calc(50% - 16px); /* 2 cards per row */
+    }
   }
   
+  @media (max-width: 480px) {
+    .card {
+      width: 100%; /* 1 card per row */
+    }
+  }
+    

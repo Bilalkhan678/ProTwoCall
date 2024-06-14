@@ -1,24 +1,26 @@
 import Link from 'next/link';
-import services from '../../../data/service';
+import services from '../../../data/services';
 import styles from '../../service.module.scss';
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className={styles.card}>
-      <h2 className={styles.cardTitle}>{service.title}</h2>
-      <p className={styles.cardDetail}><strong>Service Name:</strong> {service.serviceName}</p>
-      <p className={styles.cardDetail}><strong>Insurance Name:</strong> {service.insuranceName}</p>
-      <p className={styles.cardDetail}><strong>Status:</strong> {service.status}</p>
-      <Link href={`/servicesH/${service.id}`} legacyBehavior>
+    <Link href={`/servicesH/${service.id}`} legacyBehavior>
+    <a className={styles.card}>
+      <h2 className={styles.cardTitle}></h2>
+      <p className={styles.cardDetail}><strong></strong> {service.serviceName}</p>
+      <p className={styles.cardDetail}><strong></strong> {service.insuranceName}</p>
+      <p className={styles.cardDetail}><strong></strong> {service.status}</p>
+      {/* <Link href={`/servicesH/${service.id}`} legacyBehavior>
         <a className={styles.cardLink}>More Details</a>
-      </Link>
-    </div>
+      </Link> */}
+    </a>
+    </Link>
   );
 };
 
 const ServiceHistory = () => {
   return (
-    <div>
+    <div className={styles.cardContainer}>
       {services.map(service => (
         <ServiceCard key={service.id} service={service} />
       ))}
