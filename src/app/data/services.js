@@ -33,7 +33,7 @@ const services = [
     },
     {
       id: 2,
-      title: "Service 1",
+      title: "Service 2",
       serviceName: "Oil Change",
       insuranceName: "Geico",
       status: "In panding",
@@ -65,7 +65,7 @@ const services = [
     },
     {
       id: 3,
-      title: "Service 1",
+      title: "Service 3",
       serviceName: "Oil Change",
       insuranceName: "Geico",
       status: "In panding",
@@ -97,7 +97,7 @@ const services = [
     },
     {
       id: 4,
-      title: "Service 1",
+      title: "Service 4",
       serviceName: "Oil Change",
       insuranceName: "Geico",
       status: "Inpadding",
