@@ -83,13 +83,14 @@
 
 .searchBoxContainer {
     position: absolute;
-    top: 134px;
+    top: 83px;
     left: 80px;
     z-index: 1000;
     background-color: white;
     padding: 10px;
     border-radius: 8px;
-    width: 300px;
+    width: 340px;
+    height: 400px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
   .searchBoxContainer h3{   
@@ -97,10 +98,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0px;
+    padding: 27px 0px;
     margin-top: -10px;
     margin-left: -10px;
-    width: 300px;
+    width: 340px;
+    
     color: white;
     background-color: #2081c2;
     border-top-left-radius: 8px;
@@ -108,8 +110,8 @@
   }
   .searchBoxIcon {
     position: absolute;
-    right: 24px;
-    top:95px;
+    right: 33px;
+    top:109px;
     color: #aaa;
   }
   
@@ -130,7 +132,7 @@
     background: #4285f4;
     color: white;
     border: none;
-    padding: 18px 76px;
+    padding: 16px 95px;
     border-radius: 3px;
     cursor: pointer;
   }
