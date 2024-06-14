@@ -1,7 +1,14 @@
+.heading{
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    color: rgba(30, 98, 207, 0.5);
+}
+
 .cardContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px; /* Space between cards */
+    gap: 8px; /* Space between cards */
     justify-content: space-around;
     margin: 20px auto;
   }
@@ -29,10 +36,35 @@
     margin-bottom: 8px;
   }
   
-  .cardDetail {
-    font-size: 1rem;
-    margin-bottom: 4px;
-  }
+//   .cardDetail {
+//     font-size: 1rem;
+//     margin-bottom: 4px;
+//     border: 1px solid red;
+//   }
+
+.serviceName{
+    // border: 1px solid red;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+.insuranceName{
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    margin-left: 214px;
+}
+.status{
+    
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    margin-left: 214px;
+}
+
+  
   
   @media (max-width: 768px) {
     .card {
