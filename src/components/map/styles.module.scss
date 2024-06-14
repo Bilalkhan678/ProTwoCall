@@ -56,30 +56,30 @@
   gap: 5px;
 }
 
-.mapTypeButton {
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  width: 100px;
-  text-align: center;
-}
+// .mapTypeButton {
+//   padding: 10px;
+//   background-color: white;
+//   border: 1px solid #ccc;
+//   cursor: pointer;
+//   width: 100px;
+//   text-align: center;
+// }
 
-.dropdownContainer {
-  position: relative;
-  display: inline-block;
-}
+// .dropdownContainer {
+//   position: relative;
+//   display: inline-block;
+// }
 
-.dropdownContent {
-    display: block;
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 3px;
-}
+// .dropdownContent {
+//     display: block;
+//     position: absolute;
+//     background: white;
+//     border: 1px solid #ccc;
+//     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+//     padding: 10px;
+//     margin-top: 5px;
+//     border-radius: 3px;
+// }
 
 .searchBoxContainer {
     position: absolute;
@@ -133,6 +133,17 @@
     padding: 18px 76px;
     border-radius: 3px;
     cursor: pointer;
+  }
+
+
+  .dropoffHeader {
+    display: flex;
+    align-items: center;
+  }
+  
+  .backIcon {
+    cursor: pointer;
+    margin-right: 10px;
   }
 
 
