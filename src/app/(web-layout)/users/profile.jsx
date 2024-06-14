@@ -80,11 +80,11 @@ const Profile = () => {
                         </div>
                         <div className={styles.details}>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="firstName" className={styles.input} required />
+                                <input type="text" id="firstName" placeholder="First Name" className={styles.input} required />
                                 <label htmlFor="firstName" className={styles.label}>First Name</label>
                             </div>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="lastName" className={styles.input} required />
+                                <input type="text" id="lastName" placeholder="Last Name" className={styles.input} required />
                                 <label htmlFor="lastName" className={styles.label}>Last Name</label>
                             </div>
                         </div>
@@ -96,15 +96,15 @@ const Profile = () => {
                     <div className={styles.changePassword}>
                         <h3>Change Password</h3>
                         <div className={styles.inputContainer}>
-                            <input type="password" id="currentPassword" className={styles.input} required />
+                            <input type="password" id="currentPassword"  placeholder="CurrentPassword" className={styles.input} required />
                             <label htmlFor="currentPassword" className={styles.label}>Current Password</label>
                         </div>
                         <div className={styles.inputContainer}>
-                            <input type="password" id="newPassword" className={styles.input} required />
+                            <input type="password" id="newPassword" placeholder="NewPassword" className={styles.input} required />
                             <label htmlFor="newPassword" className={styles.label}>New Password</label>
                         </div>
                         <div className={styles.inputContainer}>
-                            <input type="password" id="confirmPassword" className={styles.input} required />
+                            <input type="password" id="confirmPassword" placeholder="ConfirmPassword" className={styles.input} required />
                             <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
                         </div>
                         <button className={styles.submitButton}>Update Password</button>
