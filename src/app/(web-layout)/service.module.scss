@@ -6,11 +6,15 @@
 }
 
 .cardContainer {
+    // background-color: #f9f9f9;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Space between cards */
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10px; /* Space between cards */
+    justify-content: space-evenly;
     margin: 20px auto;
+    padding: 15px 19px;
+    // border: 1px solid red;
   }
   
   .card {
@@ -24,7 +28,7 @@
     transition: background-color 0.3s ease;
     width: calc(33.333% - 16px); /* Adjust width to fit 3 cards per row with some gap */
     box-sizing: border-box;
-    width: 400px;
+    width: 250px;
   }
   
   .card:hover {
@@ -54,14 +58,17 @@
     // border: 1px solid red;
     display: flex;
     justify-content: center;
-    margin-left: 214px;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    margin-bottom: -5px;
 }
 .status{
     
     // border: 1px solid red;
     display: flex;
     justify-content: center;
-    margin-left: 214px;
+    margin-left: 100px;
+    border-radius: 15px;
 }
 
   
@@ -77,4 +84,52 @@
       width: 100%; /* 1 card per row */
     }
   }
-    
+
+  .detailsContainer {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #ffffff;
+  }
+  
+  .detailsTitle {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .detailSection {
+    margin-bottom: 16px;
+    padding: 10px;
+    // border-bottom: 1px solid #ccc;
+  }
+  
+  .detailSection:last-child {
+    border-bottom: none;
+  }
+  
+  .detailSection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  
+  .detailSection p {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    padding-bottom: 8px; /* Padding for better spacing */
+    border-bottom: 1px solid #ccc; /* Only bottom border for each paragraph */
+  }
+  
+  .signatureImage {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+
+  .serviceCenter{
+    text-align: center;
+    color: red;
+  }
