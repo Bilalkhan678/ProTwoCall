@@ -103,6 +103,7 @@
   .detailSection {
     margin-bottom: 16px;
     padding: 10px;
+    // text-align: center;
     // border-bottom: 1px solid #ccc;
   }
   
@@ -129,7 +130,21 @@
     margin-top: 16px;
   }
 
-  .serviceCenter{
-    text-align: center;
-    color: red;
+//   .detailItem {
+//     margin-bottom: 8px;
+//     color: red;
+//      /* Adds space between each detail item */
+//     /* Additional styling for each detail item */
+//   }
+.detailItem span {
+    font-weight: 600;
+    text-align: center; /* Ensure text is centered horizontally */
+    display: block; /* Ensures each span takes full width and centers text */
+    margin: 0 auto; /* Centers the span within its container */
   }
+.detailItem .textcenter{
+    color:  red;
+}
+// .detailItem p {
+//     margin: 5px 0; /* Adjusts margin for each <p> tag inside .detailItem */
+//   }
