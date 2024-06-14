@@ -1,0 +1,45 @@
+/* privacy.module.scss */
+
+.wrapper {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.container {
+    background-color: #ffffff;
+    // height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevents scrolling */
+    // padding: 20px; 
+    width: 90%;
+    margin:  auto;
+    padding: 20px; /* Add padding to improve readability */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+  }
+  
+  .heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem; /* Adjust font size as needed */
+    margin-bottom: 20px; /* Add margin bottom for spacing */
+  }
+  
+  .content {
+    font-size: 1rem; /* Adjust font size for content */
+    line-height: 1.6; /* Adjust line height for readability */
+  }
+  
+  .content h2 {
+    margin-top: 1.5rem; /* Adjust top margin for heading */
+  }
+  
+  .content p {
+    margin-bottom: 1rem; /* Adjust bottom margin for paragraphs */
+  }
+  
+  .content a {
+    color: #007bff; /* Adjust link color */
+    text-decoration: underline; /* Add underline for links */
+  }
+  
