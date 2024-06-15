@@ -1,151 +1,273 @@
-// .home {
-//     width: 100%;
-//     height: 100vh;
-//     overflow: hidden; /* Prevent page scroll */
-//   }
-//   .mapContainer {
-//     width: 100%;
-//     height: 100vh; // Full viewport height
-//     position: relative;
+// // .home {
+// //     width: 100%;
+// //     height: 100vh;
+// //     overflow: hidden; /* Prevent page scroll */
+// //   }
+// //   .mapContainer {
+// //     width: 100%;
+// //     height: 100vh; // Full viewport height
+// //     position: relative;
   
-//     @media (max-width: 768px) {
-//       height: 50vh; // Adjust height for smaller screens
-//     }
+// //     @media (max-width: 768px) {
+// //       height: 50vh; // Adjust height for smaller screens
+// //     }
   
-//     @media (max-width: 480px) {
-//       height: 40vh; // Adjust height for very small screens
-//     }
-//   }
+// //     @media (max-width: 480px) {
+// //       height: 40vh; // Adjust height for very small screens
+// //     }
+// //   }
   
   
-//   .mapControls {
-//     position: absolute;
-//     top: 100px; /* Adjust as needed */
-//     right: 100px; /* Adjust as needed */
-//     z-index: 1;
-//   }
+// //   .mapControls {
+// //     position: absolute;
+// //     top: 100px; /* Adjust as needed */
+// //     right: 100px; /* Adjust as needed */
+// //     z-index: 1;
+// //   }
 
   
-//   .map-type-button {
-//     margin-right: 5px;
+// //   .map-type-button {
+// //     margin-right: 5px;
+// //     padding: 10px;
+// //     background-color: green;
+// //     border: 1px solid red;
+// //     cursor: pointer;
+// //   }
+
+// /* styles.module.scss */
+
+// /* styles.module.scss */
+// /* styles.module.scss */
+// /* styles.module.scss */
+
+// .mapContainer {
+//   position: relative;
+//   width: 100%;
+//   height: 100vh;
+// }
+
+// .mapControls {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   z-index: 1;
+//   display: flex;
+//   flex-direction: row; /* Align buttons in a row */
+//   gap: 5px;
+// }
+
+// // .mapTypeButton {
+// //   padding: 10px;
+// //   background-color: white;
+// //   border: 1px solid #ccc;
+// //   cursor: pointer;
+// //   width: 100px;
+// //   text-align: center;
+// // }
+
+// // .dropdownContainer {
+// //   position: relative;
+// //   display: inline-block;
+// // }
+
+// // .dropdownContent {
+// //     display: block;
+// //     position: absolute;
+// //     background: white;
+// //     border: 1px solid #ccc;
+// //     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+// //     padding: 10px;
+// //     margin-top: 5px;
+// //     border-radius: 3px;
+// // }
+
+// .searchBoxContainer {
+//     position: absolute;
+//     top: 83px;
+//     left: 80px;
+//     z-index: 1000;
+//     background-color: white;
 //     padding: 10px;
-//     background-color: green;
-//     border: 1px solid red;
+//     border-radius: 8px;
+//     width: 340px;
+//     height: 400px;
+//     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+//   }
+//   .searchBoxContainer h3{   
+//     // border: 1px solid red;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     padding: 27px 0px;
+//     margin-top: -10px;
+//     margin-left: -10px;
+//     width: 340px;
+    
+//     color: white;
+//     background-color: #2081c2;
+//     border-top-left-radius: 8px;
+//     border-top-right-radius: 8px;
+//   }
+//   .searchBoxIcon {
+//     position: absolute;
+//     right: 33px;
+//     top:109px;
+//     color: #aaa;
+//   }
+  
+//   .searchBoxInput {
+//     width: 100%;
+//   padding: 8px;
+//   border: 1px solid #ccc;
+//   border-radius: 3px;
+//   padding-right: 30px; // Make space for the icon
+//   }
+//   .currentLocationIcon {
+//     width: 20px;
+//     height: 20px;
+//     margin-right: 8px;
+//   }
+//   .currentLocationButton {
+//     margin-top: 10px;
+//     background: #4285f4;
+//     color: white;
+//     border: none;
+//     padding: 16px 95px;
+//     border-radius: 3px;
 //     cursor: pointer;
 //   }
 
-/* styles.module.scss */
 
-/* styles.module.scss */
-/* styles.module.scss */
-/* styles.module.scss */
+//   .dropoffHeader {
+//     display: flex;
+//     align-items: center;
+//   }
+  
+//   .backIcon {
+//     cursor: pointer;
+//     margin-right: 10px;
+//   }
 
-.mapContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-}
 
-.mapControls {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1;
-  display: flex;
-  flex-direction: row; /* Align buttons in a row */
-  gap: 5px;
-}
-
-// .mapTypeButton {
-//   padding: 10px;
-//   background-color: white;
-//   border: 1px solid #ccc;
-//   cursor: pointer;
-//   width: 100px;
-//   text-align: center;
-// }
-
-// .dropdownContainer {
-//   position: relative;
-//   display: inline-block;
-// }
-
-// .dropdownContent {
-//     display: block;
-//     position: absolute;
-//     background: white;
-//     border: 1px solid #ccc;
-//     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-//     padding: 10px;
-//     margin-top: 5px;
-//     border-radius: 3px;
-// }
 
 .searchBoxContainer {
-    position: absolute;
-    top: 83px;
-    left: 80px;
-    z-index: 1000;
-    background-color: white;
-    padding: 10px;
-    border-radius: 8px;
-    width: 340px;
-    height: 400px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  }
-  .searchBoxContainer h3{   
-    // border: 1px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 27px 0px;
-    margin-top: -10px;
-    margin-left: -10px;
-    width: 340px;
-    
-    color: white;
-    background-color: #2081c2;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  .searchBoxIcon {
-    position: absolute;
-    right: 33px;
-    top:109px;
-    color: #aaa;
-  }
-  
-  .searchBoxInput {
-    width: 100%;
+  position: absolute;
+  top: 160px;
+  left: 80px;
+  z-index: 1000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 340px;
+  height: 400px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.searchBoxContainer h3 {   
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 0px;
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 340px;
+  color: white;
+  background-color: #2081c2;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.searchBoxIcon {
+  position: absolute;
+  right: 33px;
+  top: 95px;
+  color: #aaa;
+}
+.searchBoxInput {
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
   padding-right: 30px; // Make space for the icon
-  }
-  .currentLocationIcon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-  }
-  .currentLocationButton {
-    margin-top: 10px;
-    background: #4285f4;
-    color: white;
-    border: none;
-    padding: 16px 95px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
+}
+.currentLocationIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+.currentLocationButton {
+  margin-top: 10px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 16px 95px;
+  border-radius: 3px;
+  cursor: pointer;
+}
 
-
-  .dropoffHeader {
-    display: flex;
-    align-items: center;
-  }
-  
-  .backIcon {
-    cursor: pointer;
-    margin-right: 10px;
-  }
-
-
+.dropoffContainer,
+.vehicleDetailsContainer {
+  position: absolute;
+  top: 160px;
+  left: 80px;
+  z-index: 1000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 340px;
+  height: 400px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.dropoffHeader,
+.vehicleDetailsHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 0px;
+  margin-top: -10px;
+  margin-left: -10px;
+  width: 340px;
+  color: white;
+  background-color: #2081c2;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.backIcon {
+  cursor: pointer;
+  position: absolute;
+  left: 10px;
+  top: 27px;
+}
+.searchBox {
+  margin-top: 20px;
+}
+.nextButton {
+  margin-top: 20px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.vinInputContainer {
+  margin-top: 20px;
+}
+.vinInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.checkDetailButton {
+  margin-top: 10px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+.checkDetailButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

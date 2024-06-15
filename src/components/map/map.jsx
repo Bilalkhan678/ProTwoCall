@@ -352,6 +352,9 @@
 // export default Map;
 
 
+
+
+
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -380,12 +383,11 @@ const Map = () => {
 
   const [center, setCenter] = useState(defaultCenter);
   const [mapType, setMapType] = useState("roadmap");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [labelsEnabled, setLabelsEnabled] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(null);
   const [pickupInputValue, setPickupInputValue] = useState("");
-  const [dropoffInputValue, setDropoffInputValue] = useState(""); // State for dropoff input value
-  const [state, setState] = useState("pickup"); // New state for managing form visibility
+  const [dropoffInputValue, setDropoffInputValue] = useState("");
+  const [vinInputValue, setVinInputValue] = useState("");
+  const [state, setState] = useState("pickup");
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
@@ -412,11 +414,6 @@ const Map = () => {
     }
   }, []);
 
-  const handleMapTypeChange = useCallback((type) => {
-    setMapType(type);
-    setShowDropdown(false); // Hide the dropdown when a map type is selected
-  }, []);
-
   const handleCurrentLocationClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -428,8 +425,8 @@ const Map = () => {
           setCenter(newCenter);
           setCurrentLocation(newCenter);
           mapRef.current.panTo(newCenter);
-          setState("dropoff"); // Change state to show dropoff location form
-          setDropoffInputValue(""); // Clear dropoff input value
+          setState("dropoff");
+          setDropoffInputValue("");
         },
         () => {
           console.error("Error getting user location");
@@ -448,8 +445,8 @@ const Map = () => {
         };
         setCenter(newCenter);
         mapRef.current.panTo(newCenter);
-        setState("dropoff"); // Change state to show dropoff location form
-        setDropoffInputValue(""); // Clear dropoff input value
+        setDropoffInputValue(place.name || "");
+        setState("vehicleDetails"); // Automatically change to vehicle details after dropoff location is selected
       } else {
         console.error("No geometry data available for the selected place.");
       }
@@ -466,18 +463,23 @@ const Map = () => {
     setDropoffInputValue(e.target.value);
   };
 
-  const handleMapClick = () => {
-    setState("dropoff"); // Change state to show dropoff location form
-    setDropoffInputValue(""); // Clear dropoff input value
-  };
-
-  const handleMarkerClick = () => {
-    setState("dropoff"); // Change state to show dropoff location form
-    setDropoffInputValue(""); // Clear dropoff input value
+  const handleVinInputChange = (e) => {
+    setVinInputValue(e.target.value);
   };
 
   const handleBackClick = () => {
-    setState("pickup"); // Change state to show pickup location form
+    if (state === "dropoff") {
+      setState("pickup");
+    } else if (state === "vehicleDetails") {
+      setState("dropoff");
+    }
+  };
+
+  const handleCheckDetail = () => {
+    if (vinInputValue.trim() !== "") {
+      console.log("Checking details for VIN:", vinInputValue);
+      // Implement your logic here
+    }
   };
 
   if (loadError) return <div>Error loading maps</div>;
@@ -491,87 +493,111 @@ const Map = () => {
         zoom={8}
         mapTypeId={mapType}
         onLoad={onLoad}
-        onClick={handleMapClick} // Add click event listener to the map
         options={{
-          minZoom: 5, // Set the minimum zoom level
-          maxZoom: 17, // Set the maximum zoom level
+          minZoom: 5,
+          maxZoom: 17,
         }}
       >
         <Marker
           position={center}
-          onClick={handleMarkerClick} // Add click event listener to the marker
         />
         {currentLocation && (
           <Marker
             position={currentLocation}
             icon={{
-              url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', // Custom icon for current location
+              url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
               scaledSize: new window.google.maps.Size(40, 40)
             }}
-            onClick={handleMarkerClick} // Add click event listener to the current location marker
           />
         )}
       </GoogleMap>
 
-      <div className={styles.searchBoxContainer}>
-        {state === "pickup" && (
-          <>
-            <h3>Pickup Location</h3>
-            <Autocomplete
-              onLoad={ref => (autocompleteRef.current = ref)}
-              onPlaceChanged={handlePlaceChanged}
-              fields={["geometry", "name"]}
-            >
-              <div className={styles.searchBox}>
-                <input
-                  type="text"
-                  placeholder="Search location"
-                  className={styles.searchBoxInput}
-                  value={pickupInputValue}
-                  onChange={handlePickupInputChange}
-                />
-                <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-                <button
-                  className={styles.currentLocationButton}
-                  onClick={handleCurrentLocationClick}
-                >
-                  <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-                  Current Location
-                </button>
-              </div>
-            </Autocomplete>
-          </>
-        )}
-
-        {state === "dropoff" && (
-          <>
-            <div className={styles.dropoffHeader}>
-              <FontAwesomeIcon 
-                icon={faArrowLeft} 
-                className={styles.backIcon} 
-                onClick={handleBackClick} 
+      {state === "pickup" && (
+        <div className={styles.searchBoxContainer}>
+          <h3>Pickup Location</h3>
+          <Autocomplete
+            onLoad={ref => (autocompleteRef.current = ref)}
+            onPlaceChanged={handlePlaceChanged}
+            fields={["geometry", "name"]}
+          >
+            <div className={styles.searchBox}>
+              <input
+                type="text"
+                placeholder="Search location"
+                className={styles.searchBoxInput}
+                value={pickupInputValue}
+                onChange={handlePickupInputChange}
               />
-              <h3>Dropoff Location</h3>
+              <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+              <button
+                className={styles.currentLocationButton}
+                onClick={handleCurrentLocationClick}
+              >
+                <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
+                Current Location
+              </button>
             </div>
-            <Autocomplete
-              onLoad={ref => (autocompleteRef.current = ref)}
-              onPlaceChanged={handlePlaceChanged}
-              fields={["geometry", "name"]}
+          </Autocomplete>
+        </div>
+      )}
+
+      {state === "dropoff" && (
+        <div className={styles.dropoffContainer}>
+          <div className={styles.dropoffHeader}>
+            <FontAwesomeIcon 
+              icon={faArrowLeft} 
+              className={styles.backIcon} 
+              onClick={handleBackClick} 
+            />
+            <h3>Dropoff Location</h3>
+          </div>
+          <Autocomplete
+            onLoad={ref => (autocompleteRef.current = ref)}
+            onPlaceChanged={handlePlaceChanged}
+            fields={["geometry", "name"]}
+          >
+            <div className={styles.searchBox}>
+              <input
+                type="text"
+                placeholder="Search location"
+                className={styles.searchBoxInput}
+                value={dropoffInputValue}
+                onChange={handleDropoffInputChange}
+              />
+              <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+            </div>
+          </Autocomplete>
+        </div>
+      )}
+
+      {state === "vehicleDetails" && (
+        <div className={styles.vehicleDetailsContainer}>
+          <div className={styles.vehicleDetailsHeader}>
+            <FontAwesomeIcon 
+              icon={faArrowLeft} 
+              className={styles.backIcon} 
+              onClick={handleBackClick} 
+            />
+            <h3>Vehicle Details</h3>
+          </div>
+          <div className={styles.vinInputContainer}>
+            <input
+              type="text"
+              placeholder="Enter VIN number"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
+            <button
+              className={styles.checkDetailButton}
+              onClick={handleCheckDetail}
+              disabled={vinInputValue.trim() === ""}
             >
-              <div className={styles.searchBox}>
-                <input
-                  type="text"
-                  placeholder="Search location"
-                  className={styles.searchBoxInput}
-                  value={dropoffInputValue}
-                  onChange={handleDropoffInputChange}
-                />
-                <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-              </div>
-            </Autocomplete>
-          </>
-        )}
-      </div>
+              Check Detail
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
