@@ -466,6 +466,8 @@ const Map = () => {
   const handleVinInputChange = (e) => {
     setVinInputValue(e.target.value);
   };
+  
+
 
   const handleBackClick = () => {
     if (state === "dropoff") {
@@ -595,6 +597,7 @@ const Map = () => {
             >
               Check Detail
             </button>
+            <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p>
           </div>
         </div>
       )}
@@ -603,3 +606,4 @@ const Map = () => {
 };
 
 export default Map;
+
