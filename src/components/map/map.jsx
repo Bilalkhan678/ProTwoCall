@@ -609,6 +609,11 @@
 // export default Map;
 
 
+
+
+
+// components/map/map.jsx
+
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -679,8 +684,14 @@ const Map = () => {
           setCenter(newCenter);
           setCurrentLocation(newCenter);
           mapRef.current.panTo(newCenter);
-          setState("dropoff");
-          setDropoffInputValue("");
+
+          if (state === "pickup") {
+            setPickupInputValue("Current Location");
+            setState("dropoff"); // Move to dropoff after setting pickup location
+          } else if (state === "dropoff") {
+            setDropoffInputValue("Current Location");
+            setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+          }
         },
         () => {
           console.error("Error getting user location");
@@ -699,15 +710,21 @@ const Map = () => {
         };
         setCenter(newCenter);
         mapRef.current.panTo(newCenter);
-        setDropoffInputValue(place.name || "");
-        setState("vehicleDetails"); // Automatically change to vehicle details after dropoff location is selected
+
+        if (state === "pickup") {
+          setPickupInputValue(place.name || "");
+          setState("dropoff"); // Move to dropoff after setting pickup location
+        } else if (state === "dropoff") {
+          setDropoffInputValue(place.name || "");
+          setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+        }
       } else {
         console.error("No geometry data available for the selected place.");
       }
     } else {
       console.error("Autocomplete ref is not set.");
-    }
-  };
+  }
+};
 
   const handlePickupInputChange = (e) => {
     setPickupInputValue(e.target.value);
@@ -842,6 +859,41 @@ const Map = () => {
               value={vinInputValue}
               onChange={handleVinInputChange}
             />
+            <input
+              type="text"
+              placeholder="Model"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
+            <input
+              type="text"
+              placeholder="Make"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
+            <input
+              type="text"
+              placeholder="Year"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
+            <input
+              type="text"
+              placeholder="Car Color"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
+            <input
+              type="text"
+              placeholder="License Plate Number"
+              className={styles.vinInput}
+              value={vinInputValue}
+              onChange={handleVinInputChange}
+            />
             <button
               className={styles.checkDetailButton}
               onClick={handleCheckDetail}
@@ -849,6 +901,8 @@ const Map = () => {
             >
               Check Detail
             </button>
+           {/* <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p> */}
+
           </div>
         </div>
       )}
