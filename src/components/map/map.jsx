@@ -863,36 +863,36 @@ const Map = () => {
               type="text"
               placeholder="Model"
               className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
+              // value={vinInputValue}
+              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Make"
               className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
+              // value={vinInputValue}
+              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Year"
               className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
+              // value={vinInputValue}
+              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Car Color"
               className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
+              // value={vinInputValue}
+              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="License Plate Number"
               className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
+              // value={vinInputValue}
+              // onChange={handleVinInputChange}
             />
             <button
               className={styles.checkDetailButton}
