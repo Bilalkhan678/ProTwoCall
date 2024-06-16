@@ -148,11 +148,74 @@
 //     margin-right: 10px;
 //   }
 
+// .mapContainer {
+//   position: relative;
+//   width: 100%; /* Full width */
+//   height: 100vh; /* Full viewport height */
+// }
+
+// @media (max-width: 768px) {
+//   .mapContainer {
+//     height: 50vh;
+//      /* Adjust height as needed for smaller screens */
+//   }
+// }
+
+// .mapContainer {
+//   width: 100%;
+//   height: 100vh;
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 1000; /* Ensure it appears above other content */
+//   transition: transform 0.3s ease; /* Smooth transition for scrolling animation */
+// }
+
+// .showMapButton {
+//   position: fixed;
+//   bottom: 20px;
+//   right: 20px;
+//   z-index: 1100; /* Ensure it appears above the map container */
+//   background-color: #4285f4;
+//   color: white;
+//   border: none;
+//   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
+//   font-size: 24px;
+//   cursor: pointer;
+//   display: none; /* Initially hide the button */
+// }
+
+// .showMapButton.active {
+//   display: block; /* Show the button when active (map is scrolled down) */
+// }
+
+.mapContainer {
+  width: 100%;
+  height: 90vh; /* Full viewport height */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it appears above other content */
+  transition: transform 0.3s ease; /* Smooth transition for scrolling animation */
+}
+
+// .mapControls {
+//   position: fixed;
+//   top: 20px;
+//   left: 20px;
+//   z-index: 1100; /* Ensure it appears above the map container */
+//   background-color: #fff;
+//   padding: 10px;
+//   border-radius: 4px;
+//   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+// }
 
 
 .searchBoxContainer {
   position: absolute;
-  top: 160px;
+  top: 100px;
   left: 80px;
   z-index: 1000;
   background-color: white;
@@ -206,7 +269,7 @@
 .dropoffContainer,
 .vehicleDetailsContainer {
   position: absolute;
-  top: 160px;
+  top: 100px;
   left: 80px;
   z-index: 1000;
   background-color: white;
@@ -320,7 +383,7 @@
 
 .vehicleDetailsContainer {
   position: absolute;
-  top: 160px;
+  top: 100px;
   left: 80px;
   background: white;
   padding: 20px;
@@ -339,6 +402,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 21px;
 }
 
 .vinInput {
@@ -360,4 +424,75 @@
 .checkDetailButton:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+
+
+
+
+
+.servicesList {
+  margin-top: 100px;
+}
+
+.servicesList label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.servicesList input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+
+.serviceContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.serviceContainer:hover {
+  background-color: #e0f7ff; /* Light blue background on hover */
+}
+
+
+.serviceImage {
+  width: 64px;
+  height: 56px;
+  margin: 7px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+  display: block;
+}
+
+.serviceImage.selected {
+  border: 2px solid #4285f4;
+}
+
+.serviceContainer {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.serviceName {
+  margin-left: 10px;
+  font-size: 14px;
+  // border: 1px solid red;
+  width: 100px;
+}
+
+.servicesList {
+  // border: 1px solid red;
+  // width: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 12px auto;
+  margin: 4px;
+  margin-right: 201px;
+  // justify-content: center;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 
 // // import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
@@ -614,6 +615,307 @@
 
 // components/map/map.jsx
 
+// import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
+// import { useState, useEffect, useCallback, useRef } from "react";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+// import styles from './styles.module.scss';
+
+// const mapContainerStyle = {
+//   width: "100%",
+//   height: "90vh",
+//   position: 'relative'
+// };
+
+// const defaultCenter = {
+//   lat: 44.9778,
+//   lng: -93.2650,
+// };
+
+// const libraries = ['places'];
+
+// const Map = () => {
+//   const { isLoaded, loadError } = useLoadScript({
+//     id: "320c3cf314c6a3f1",
+//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+//     libraries,
+//   });
+
+//   const [center, setCenter] = useState(defaultCenter);
+//   const [mapType, setMapType] = useState("roadmap");
+//   const [currentLocation, setCurrentLocation] = useState(null);
+//   const [pickupInputValue, setPickupInputValue] = useState("");
+//   const [dropoffInputValue, setDropoffInputValue] = useState("");
+//   const [vinInputValue, setVinInputValue] = useState("");
+//   const [state, setState] = useState("pickup");
+//   const autocompleteRef = useRef(null);
+//   const mapRef = useRef(null);
+
+//   const onLoad = useCallback((map) => {
+//     mapRef.current = map;
+//   }, []);
+
+//   useEffect(() => {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           const newCenter = {
+//             lat: position.coords.latitude,
+//             lng: position.coords.longitude,
+//           };
+//           setCenter(newCenter);
+//           setCurrentLocation(newCenter);
+//           mapRef.current.panTo(newCenter);
+//         },
+//         () => {
+//           console.error("Error getting user location");
+//         }
+//       );
+//     }
+//   }, []);
+
+//   const handleCurrentLocationClick = () => {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => {
+//           const newCenter = {
+//             lat: position.coords.latitude,
+//             lng: position.coords.longitude,
+//           };
+//           setCenter(newCenter);
+//           setCurrentLocation(newCenter);
+//           mapRef.current.panTo(newCenter);
+
+//           if (state === "pickup") {
+//             setPickupInputValue("Current Location");
+//             setState("dropoff"); // Move to dropoff after setting pickup location
+//           } else if (state === "dropoff") {
+//             setDropoffInputValue("Current Location");
+//             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+//           }
+//         },
+//         () => {
+//           console.error("Error getting user location");
+//         }
+//       );
+//     }
+//   };
+
+//   const handlePlaceChanged = () => {
+//     if (autocompleteRef.current) {
+//       const place = autocompleteRef.current.getPlace();
+//       if (place.geometry) {
+//         const newCenter = {
+//           lat: place.geometry.location.lat(),
+//           lng: place.geometry.location.lng(),
+//         };
+//         setCenter(newCenter);
+//         mapRef.current.panTo(newCenter);
+
+//         if (state === "pickup") {
+//           setPickupInputValue(place.name || "");
+//           setState("dropoff"); // Move to dropoff after setting pickup location
+//         } else if (state === "dropoff") {
+//           setDropoffInputValue(place.name || "");
+//           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+//         }
+//       } else {
+//         console.error("No geometry data available for the selected place.");
+//       }
+//     } else {
+//       console.error("Autocomplete ref is not set.");
+//   }
+// };
+
+//   const handlePickupInputChange = (e) => {
+//     setPickupInputValue(e.target.value);
+//   };
+
+//   const handleDropoffInputChange = (e) => {
+//     setDropoffInputValue(e.target.value);
+//   };
+
+//   const handleVinInputChange = (e) => {
+//     setVinInputValue(e.target.value);
+//   };
+
+//   const handleBackClick = () => {
+//     if (state === "dropoff") {
+//       setState("pickup");
+//     } else if (state === "vehicleDetails") {
+//       setState("dropoff");
+//     }
+//   };
+
+//   const handleCheckDetail = () => {
+//     if (vinInputValue.trim() !== "") {
+//       console.log("Checking details for VIN:", vinInputValue);
+//       // Implement your logic here
+//     }
+//   };
+
+//   if (loadError) return <div>Error loading maps</div>;
+//   if (!isLoaded) return <div>Loading...</div>;
+
+//   return (
+//     <div className={styles.mapContainer}>
+//       <GoogleMap
+//         mapContainerStyle={mapContainerStyle}
+//         center={center}
+//         zoom={8}
+//         mapTypeId={mapType}
+//         onLoad={onLoad}
+//         options={{
+//           minZoom: 5,
+//           maxZoom: 17,
+//         }}
+//       >
+//         <Marker
+//           position={center}
+//         />
+//         {currentLocation && (
+//           <Marker
+//             position={currentLocation}
+//             icon={{
+//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+//               scaledSize: new window.google.maps.Size(40, 40)
+//             }}
+//           />
+//         )}
+//       </GoogleMap>
+
+//       {state === "pickup" && (
+//         <div className={styles.searchBoxContainer}>
+//           <h3>Pickup Location</h3>
+//           <Autocomplete
+//             onLoad={ref => (autocompleteRef.current = ref)}
+//             onPlaceChanged={handlePlaceChanged}
+//             fields={["geometry", "name"]}
+//           >
+//             <div className={styles.searchBox}>
+//               <input
+//                 type="text"
+//                 placeholder="Search location"
+//                 className={styles.searchBoxInput}
+//                 value={pickupInputValue}
+//                 onChange={handlePickupInputChange}
+//               />
+//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+//               <button
+//                 className={styles.currentLocationButton}
+//                 onClick={handleCurrentLocationClick}
+//               >
+//                 <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
+//                 Current Location
+//               </button>
+//             </div>
+//           </Autocomplete>
+//         </div>
+//       )}
+
+//       {state === "dropoff" && (
+//         <div className={styles.dropoffContainer}>
+//           <div className={styles.dropoffHeader}>
+//             <FontAwesomeIcon 
+//               icon={faArrowLeft} 
+//               className={styles.backIcon} 
+//               onClick={handleBackClick} 
+//             />
+//             <h3>Dropoff Location</h3>
+//           </div>
+//           <Autocomplete
+//             onLoad={ref => (autocompleteRef.current = ref)}
+//             onPlaceChanged={handlePlaceChanged}
+//             fields={["geometry", "name"]}
+//           >
+//             <div className={styles.searchBox}>
+//               <input
+//                 type="text"
+//                 placeholder="Search location"
+//                 className={styles.searchBoxInput}
+//                 value={dropoffInputValue}
+//                 onChange={handleDropoffInputChange}
+//               />
+//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+//             </div>
+//           </Autocomplete>
+//         </div>
+//       )}
+
+//       {state === "vehicleDetails" && (
+//         <div className={styles.vehicleDetailsContainer}>
+//           <div className={styles.vehicleDetailsHeader}>
+//             <FontAwesomeIcon 
+//               icon={faArrowLeft} 
+//               className={styles.backIcon} 
+//               onClick={handleBackClick} 
+//             />
+//             <h3>Vehicle Details</h3>
+//           </div>
+//           <div className={styles.vinInputContainer}>
+//             <input
+//               type="text"
+//               placeholder="Enter VIN number"
+//               className={styles.vinInput}
+//               value={vinInputValue}
+//               onChange={handleVinInputChange}
+              
+//             />
+
+//             <input
+//               type="text"
+//               placeholder="Model"
+//               className={styles.vinInput}
+//               // value={vinInputValue}
+//               // onChange={handleVinInputChange}
+//             />
+//             <input
+//               type="text"
+//               placeholder="Make"
+//               className={styles.vinInput}
+//               // value={vinInputValue}
+//               // onChange={handleVinInputChange}
+//             />
+//             <input
+//               type="text"
+//               placeholder="Year"
+//               className={styles.vinInput}
+//               // value={vinInputValue}
+//               // onChange={handleVinInputChange}
+//             />
+//             <input
+//               type="text"
+//               placeholder="Car Color"
+//               className={styles.vinInput}
+//               // value={vinInputValue}
+//               // onChange={handleVinInputChange}
+//             />
+//             <input
+//               type="text"
+//               placeholder="License Plate Number"
+//               className={styles.vinInput}
+//               // value={vinInputValue}
+//               // onChange={handleVinInputChange}
+//             />
+//             <button
+//               className={styles.checkDetailButton}
+//               onClick={handleCheckDetail}
+//               disabled={vinInputValue.trim() === ""}
+//             >
+//               Add Detail
+//             </button>
+//            {/* <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p> */}
+
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Map;
+
+
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -647,6 +949,7 @@ const Map = () => {
   const [dropoffInputValue, setDropoffInputValue] = useState("");
   const [vinInputValue, setVinInputValue] = useState("");
   const [state, setState] = useState("pickup");
+  const [selectedServices, setSelectedServices] = useState([]);
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
@@ -723,8 +1026,8 @@ const Map = () => {
       }
     } else {
       console.error("Autocomplete ref is not set.");
-  }
-};
+    }
+  };
 
   const handlePickupInputChange = (e) => {
     setPickupInputValue(e.target.value);
@@ -743,15 +1046,32 @@ const Map = () => {
       setState("pickup");
     } else if (state === "vehicleDetails") {
       setState("dropoff");
+    } else if (state === "services") {
+      setState("vehicleDetails");
     }
   };
 
   const handleCheckDetail = () => {
     if (vinInputValue.trim() !== "") {
       console.log("Checking details for VIN:", vinInputValue);
-      // Implement your logic here
+      setState("services"); // Move to services after entering vehicle details
     }
   };
+
+  const handleServiceSelect = (service) => {
+    if (selectedServices.includes(service.id)) {
+      setSelectedServices(selectedServices.filter(item => item !== service.id));
+    } else {
+      setSelectedServices([...selectedServices, service.id]);
+    }
+  };
+
+  const serviceImages = [
+    { id: "ServiceA", src: "/images/logo.jpg", name: "Service A" },
+    { id: "ServiceB", src: "/images/logo.jpg", name: "Service B" },
+    { id: "ServiceB", src: "/images/logo.jpg", name: "Service C" },
+    // Add more services as needed
+  ];
 
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading...</div>;
@@ -769,9 +1089,7 @@ const Map = () => {
           maxZoom: 17,
         }}
       >
-        <Marker
-          position={center}
-        />
+        <Marker position={center} />
         {currentLocation && (
           <Marker
             position={currentLocation}
@@ -863,49 +1181,62 @@ const Map = () => {
               type="text"
               placeholder="Model"
               className={styles.vinInput}
-              // value={vinInputValue}
-              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Make"
               className={styles.vinInput}
-              // value={vinInputValue}
-              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Year"
               className={styles.vinInput}
-              // value={vinInputValue}
-              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="Car Color"
               className={styles.vinInput}
-              // value={vinInputValue}
-              // onChange={handleVinInputChange}
             />
             <input
               type="text"
               placeholder="License Plate Number"
               className={styles.vinInput}
-              // value={vinInputValue}
-              // onChange={handleVinInputChange}
             />
             <button
               className={styles.checkDetailButton}
               onClick={handleCheckDetail}
               disabled={vinInputValue.trim() === ""}
             >
-              Check Detail
+              Add Detail
             </button>
-           {/* <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p> */}
-
           </div>
         </div>
       )}
+
+{state === "services" && (
+  <div className={styles.vehicleDetailsContainer}>
+    <div className={styles.vehicleDetailsHeader}>
+      <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={handleBackClick} 
+      />
+      <h3>Select Services</h3>
+    </div>
+    <div className={styles.servicesList}>
+      {serviceImages.map(service => (
+        <div key={service.id} className={styles.serviceContainer} onClick={() => handleServiceSelect(service)}>
+          <img
+            src={service.src}
+            alt={service.name}
+            className={`${styles.serviceImage} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
+          />
+          <div className={styles.serviceName}>{service.name}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
     </div>
   );
 };
