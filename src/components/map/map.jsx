@@ -1223,6 +1223,7 @@ const Map = () => {
       />
       <h3>Select Services</h3>
     </div>
+    <div className={styles.servicesContent}>
     <div className={styles.servicesList}>
       {serviceImages.map(service => (
         <div key={service.id} className={styles.serviceContainer} onClick={() => handleServiceSelect(service)}>
@@ -1233,8 +1234,19 @@ const Map = () => {
           />
           <div className={styles.serviceName}>{service.name}</div>
         </div>
+        
       ))}
     </div>
+    {/* <div className={styles.buttonContainer}> */}
+      <button
+        className={styles.checkDetailButton}
+        onClick={handleCheckDetail}
+        disabled={vinInputValue.trim() === ""}
+      >
+        Confirm Service
+      </button>
+      </div>
+      {/* </div> */}
   </div>
 )}
     </div>
