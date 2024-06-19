@@ -955,7 +955,9 @@ const Map = () => {
   const [dropoffInputValue, setDropoffInputValue] = useState("");
   const [vinInputValue, setVinInputValue] = useState("");
   const [state, setState] = useState("pickup");
+  const [servicePreview, setServicePreview] = useState(false);
   const [selectedServices, setSelectedServices] = useState([]);
+  const [address, setAddress] = useState(""); // State to store address
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
@@ -1020,6 +1022,9 @@ const Map = () => {
         setCenter(newCenter);
         mapRef.current.panTo(newCenter);
 
+         // Set address state
+         setAddress(place.formatted_address);
+
         if (state === "pickup") {
           setPickupInputValue(place.name || "");
           setState("dropoff"); // Move to dropoff after setting pickup location
@@ -1048,12 +1053,15 @@ const Map = () => {
   };
 
   const handleBackClick = () => {
-    if (state === "dropoff") {
-      setState("pickup");
-    } else if (state === "vehicleDetails") {
-      setState("dropoff");
+    if (servicePreview) {
+      setServicePreview(false);
+      setState("services");
     } else if (state === "services") {
       setState("vehicleDetails");
+    } else if (state === "vehicleDetails") {
+      setState("dropoff");
+    } else if (state === "dropoff") {
+      setState("pickup");
     }
   };
 
@@ -1062,6 +1070,11 @@ const Map = () => {
       console.log("Checking details for VIN:", vinInputValue);
       setState("services"); // Move to services after entering vehicle details
     }
+  };
+
+
+  const handleConfirmService = () => {
+    setServicePreview(true); // Move to service preview state after confirming service
   };
 
   // const handleServiceSelect = (service) => {
@@ -1270,31 +1283,67 @@ const Map = () => {
       <h3>Select Services</h3>
     </div>
     <div className={styles.servicesContent}>
-    <div className={styles.servicesList}>
-      {serviceImages.map(service => (
-        <div key={service.id} className={styles.serviceContainer} onClick={() => handleServiceSelect(service)}>
-          <img
-            src={service.src}
-            alt={service.name}
-            className={`${styles.serviceImage} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
-          />
-          <div className={styles.serviceName}>{service.name}</div>
-        </div>
-        
-      ))}
-    </div>
-    {/* <div className={styles.buttonContainer}> */}
+      <div className={styles.servicesList}>
+        {serviceImages.map(service => (
+          <div key={service.id} className={styles.serviceContainer} onClick={() => handleServiceSelect(service)}>
+            <img
+              src={service.src}
+              alt={service.name}
+              className={`${styles.serviceImage} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
+            />
+            <div className={styles.serviceName}>{service.name}</div>
+          </div>
+        ))}
+      </div>
       <button
         className={styles.checkDetailButton}
-        onClick={handleCheckDetail}
-        disabled={vinInputValue.trim() === ""}
+        onClick={handleConfirmService} // Use the new handler here
+        disabled={selectedServices.length === 0} // Disable button if no service is selected
       >
         Confirm Service
       </button>
-      </div>
-      {/* </div> */}
+    </div>
   </div>
 )}
+
+
+{servicePreview && (
+  <div className={styles.vehicleDetailsContainer}>
+    <div className={styles.vehicleDetailsHeader}>
+      <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={handleBackClick} 
+      />
+      <h3>Service Preview</h3>
+    </div>
+    <div className={styles.servicesContent}>
+      {/* <h4>Selected Services:</h4> */}
+      <div className={styles.serviceList}>
+        {selectedServices.map(serviceId => {
+          const service = serviceImages.find(s => s.id === serviceId);
+          return (
+            <div key={serviceId} className={styles.servicePreviewItem}>
+              <img src={service.src} alt={service.name} className={styles.servicePreviewImage} />
+              <div>{service.name}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.locationDetails}>
+        <h4>Location:</h4>
+        <div className={styles.locationInfo}>
+          <h5>Address:</h5>
+          <p>{address}</p>
+          <h5>Coordinates (Lat, Lng):</h5>
+          {/* <p>Latitude: {coordinates.lat}</p>
+          <p>Longitude: {coordinates.lng}</p> */}
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+       
     </div>
   );
 };

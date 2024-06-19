@@ -509,3 +509,50 @@
   margin-right: 201px;
   // justify-content: center;
 }
+
+
+.servicePreviewImage {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+  text-decoration: none;
+  list-style: none;
+  // border: 1px solid red;
+}
+
+
+
+.serviceList {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  // border: 1px solid red;
+  margin-top: 20px;
+}
+
+.servicePreviewItem {
+  text-align: center;
+}
+
+.locationDetails {
+  margin-top: 20px;
+}
+
+.locationInfo {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.locationInfo h5 {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.locationInfo p {
+  margin-bottom: 5px;
+}
