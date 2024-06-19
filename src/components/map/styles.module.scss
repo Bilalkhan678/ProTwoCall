@@ -538,21 +538,136 @@
   text-align: center;
 }
 
-.locationDetails {
-  margin-top: 20px;
+// .locationDetails {
+//   margin-top: 40px;
+// }
+
+// .locationInfo , .locationDetails {
+//   text-align: left;
+//   // padding: 10px;
+//   // border: 1px solid #ccc;
+//   // background-color: #f9f9f9;
+// }
+
+// .locationInfo, .vehicalInfo h5 {
+//   margin-bottom: 5px;
+//   // font-weight: bold;
+// }
+
+
+// .locationInfo p{
+//   margin-bottom: 5px;
+//   font-size: 14px;
+// }
+
+
+
+// .vehicleDetails {
+//   border: 1px solid red;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center; // Center horizontally
+//   justify-content: center; // Center vertically
+//   text-align: center;
+// }
+
+// .locationDetails, .vehicleInfo {
+//   text-align: left;
+// }
+
+
+// .locationDetails {
+//   text-align: center; /* Center-align text */
+//   margin-top: 20px;
+// }
+
+
+.vehicleInfo {
+  text-align: left; /* Aligns text and headings to the left */
+  display: flex; /* Makes .vehicleInfo a flex container */
+  flex-direction: column; /* Stacks children vertically */
+  align-items: flex-start; /* Aligns children to the start (left) */
 }
 
-.locationInfo {
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+.vehicleInfo h4 {
+  margin-bottom: 10px; /* Adds some space below the Vehicle heading */
 }
 
-.locationInfo h5 {
-  margin-bottom: 5px;
-  font-weight: bold;
+.vehicleDetails {
+  display: flex; /* Makes .vehicleDetails a flex container */
+  justify-content: space-between; /* Distributes space between columns */
+  // color: red;
 }
 
-.locationInfo p {
-  margin-bottom: 5px;
+// .vehicleDetails {
+//   /* Styles for the container if needed */
+  
+//   p {
+//     color: red;
+//     /* Any other styles you want to apply to all <p> elements inside .vehicleDetails */
+//   }
+// }
+.vehicleDetails > div {
+  width: 40%; /* Adjust width as needed */
+  // color: red;
 }
+
+.centeredValues {
+  display: flex; /* Makes .centeredValues a flex container */
+  flex-direction: column; /* Stacks values vertically */
+  align-items: center; /* Centers items horizontally */
+}
+
+.centeredValues p {
+  margin-bottom: 10px; /* Adds space between values */
+  
+}
+// .centeredValues p:hover {
+//   background-color: #f0f0f0; /* Light gray background on hover */
+//   cursor: pointer; /* Change cursor to pointer on hover */
+// }
+
+// .vehicleInfo p {
+//   margin: 10px;
+//   border: 1px solid red;
+// }
+
+// .vehicleInfo p {
+//   margin: 10px;
+//   border: 1px solid red;
+//   // text-align: center;
+//   width: 100%;
+//   display: flex;
+//   align-items: flex-start;
+// }
+
+// .vehicleDetails {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center; // Center horizontally
+//   justify-content: center; // Center vertically
+//   text-align: center;
+// }
+
+// // .vehicleInfo .make{
+// //   border: 1px solid red;
+// //   display: flex;
+// //   justify-content: center;
+// //   margin-left: 120px;
+// // }
+
+// .vehicleInfo .make,
+// .vehicleInfo .model,
+// .vehicleInfo .year,
+// .vehicleInfo .vin,
+// .vehicleInfo .color,
+// .vehicleInfo .licensePlate {
+//   border: 1px solid red;
+//   display: flex;
+//   justify-content: center;
+//   margin-left: 120px;
+// }
+
+// .printInfo{
+//   border: 2px solid blue;
+// }

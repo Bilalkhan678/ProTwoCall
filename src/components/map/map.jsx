@@ -957,13 +957,23 @@ const Map = () => {
   const [state, setState] = useState("pickup");
   const [servicePreview, setServicePreview] = useState(false);
   const [selectedServices, setSelectedServices] = useState([]);
-  const [address, setAddress] = useState(""); // State to store address
+    const [address, setAddress] = useState(""); // State to store address
+
+    const [vin, setVin] = useState("");
+const [model, setModel] = useState("");
+const [make, setMake] = useState("");
+const [year, setYear] = useState("");
+const [color, setColor] = useState("");
+const [licensePlate, setLicensePlate] = useState("");
+
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -1022,9 +1032,6 @@ const Map = () => {
         setCenter(newCenter);
         mapRef.current.panTo(newCenter);
 
-         // Set address state
-         setAddress(place.formatted_address);
-
         if (state === "pickup") {
           setPickupInputValue(place.name || "");
           setState("dropoff"); // Move to dropoff after setting pickup location
@@ -1050,6 +1057,30 @@ const Map = () => {
 
   const handleVinInputChange = (e) => {
     setVinInputValue(e.target.value);
+  };
+
+  // const handleVinInputChange = (e) => {
+  //   setVin(e.target.value);
+  // };
+  
+  const handleModelInputChange = (e) => {
+    setModel(e.target.value);
+  };
+  
+  const handleMakeInputChange = (e) => {
+    setMake(e.target.value);
+  };
+  
+  const handleYearInputChange = (e) => {
+    setYear(e.target.value);
+  };
+  
+  const handleColorInputChange = (e) => {
+    setColor(e.target.value);
+  };
+  
+  const handleLicensePlateInputChange = (e) => {
+    setLicensePlate(e.target.value);
   };
 
   const handleBackClick = () => {
@@ -1237,30 +1268,40 @@ const Map = () => {
               onChange={handleVinInputChange}
             />
             <input
-              type="text"
-              placeholder="Model"
-              className={styles.vinInput}
-            />
-            <input
-              type="text"
-              placeholder="Make"
-              className={styles.vinInput}
-            />
-            <input
-              type="text"
-              placeholder="Year"
-              className={styles.vinInput}
-            />
-            <input
-              type="text"
-              placeholder="Car Color"
-              className={styles.vinInput}
-            />
-            <input
-              type="text"
-              placeholder="License Plate Number"
-              className={styles.vinInput}
-            />
+  type="text"
+  placeholder="Model"
+  className={styles.vinInput}
+  value={model}
+  onChange={handleModelInputChange}
+/>
+<input
+  type="text"
+  placeholder="Make"
+  className={styles.vinInput}
+  value={make}
+  onChange={handleMakeInputChange}
+/>
+<input
+  type="text"
+  placeholder="Year"
+  className={styles.vinInput}
+  value={year}
+  onChange={handleYearInputChange}
+/>
+<input
+  type="text"
+  placeholder="Car Color"
+  className={styles.vinInput}
+  value={color}
+  onChange={handleColorInputChange}
+/>
+<input
+  type="text"
+  placeholder="License Plate Number"
+  className={styles.vinInput}
+  value={licensePlate}
+  onChange={handleLicensePlateInputChange}
+/>
             <button
               className={styles.checkDetailButton}
               onClick={handleCheckDetail}
@@ -1339,6 +1380,44 @@ const Map = () => {
           {/* <p>Latitude: {coordinates.lat}</p>
           <p>Longitude: {coordinates.lng}</p> */}
         </div>
+        <div className={styles.vehicleInfo}>
+  <h4>Vehicle:</h4>
+  <div className={styles.vehicleDetails}>
+    <div>
+      <p>Make:</p>
+      <p>Model:</p>
+      <p>Year:</p>
+      <p>VIN:</p>
+      <p>Color:</p>
+      <p>License Plate Number:</p>
+    </div>
+    <div className={styles.centeredValues}>
+      <p>{make}</p>
+      <p>{model}</p>
+      <p>{year}</p>
+      <p>{vin}</p>
+      <p>{color}</p>
+      <p>{licensePlate}</p>
+    </div>
+  </div>
+  <h4>Price</h4>
+  <div className={styles.vehicleDetails}>
+    <div>
+      <p>Service charges:</p>
+      <p>tax</p>
+      <p>Additiocal charges</p>
+      <p>Transtion fees</p>
+      <p>Total</p>
+    </div>
+    <div className={styles.centeredValues}>
+      <p>20.00CD</p>
+      <p>20.00CD</p>
+      <p>20.00CD</p>
+      <p>20.00CD</p>
+      <p>20.00CD</p>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </div>
