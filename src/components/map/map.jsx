@@ -1548,23 +1548,19 @@ const [licensePlate, setLicensePlate] = useState("");
         <h4>Price Details:</h4>
         <div className={styles.priceContainer}>
           <div className={styles.priceItem}>
-            <p>Service charges:20:00CD</p>
+            <p><span className={styles.PriceLabel}>Service charges: </span> 20:00</p>
           </div>
           <div className={styles.priceItem}>
-            <p>Tax:</p>
-            <p>20.00CD</p>
+            <p><span className={styles.PriceLabel}>TAX: </span> 20:00</p>
           </div>
           <div className={styles.priceItem}>
-            <p>Additional charges:</p>
-            <p>20.00CD</p>
+            <p><span className={styles.PriceLabel}>Additional charges: </span> 20:00</p>
           </div>
           <div className={styles.priceItem}>
-            <p>Transaction fees:</p>
-            <p>20.00CD</p>
+            <p><span className={styles.PriceLabel}>Transaction fees: </span> 20:00</p>
           </div>
           <div className={styles.priceItem}>
-            <p>Total:</p>
-            <p>100.00CD</p>
+            <p><span className={styles.PriceLabel}>Total: </span> 20:00</p>
           </div>
         </div>
       </div>

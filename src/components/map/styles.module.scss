@@ -653,12 +653,26 @@
   font-size: 13.5px;
 }
 
-.addressItem,.detailsItem, .priceItem {
+.addressItem, .detailsItem  {
   // margin-bottom: 8px; /* Adjust margin as needed */
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
-  padding-bottom: 8px; /* Padding at the bottom of the address item */
+  // padding-bottom: 8px; /* Padding at the bottom of the address item */
   width:250px;
 }
+.priceItem p {
+  display: flex;
+  justify-content: space-between;
+}
+.priceItem{
+  margin-bottom: 8px; /* Adjust margin as needed */
+  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+  // padding-bottom: 8px; /* Padding at the bottom of the address item */
+  width:250px;
+}
+
+
+
+
 .locationInfo p{
   // color: #949090
 
