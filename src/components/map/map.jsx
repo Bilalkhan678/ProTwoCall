@@ -964,6 +964,9 @@ const Map = () => {
   const [address, setAddress] = useState(""); // State to store address
   const [pickupAddress, setPickupAddress] = useState(""); // New state variable
   const [dropoffAddress, setDropoffAddress] = useState(""); // New state variable
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [atmNumber, setAtmNumber] = useState('');
+  const [currentView, setCurrentView] = useState('servicePreview');
 
     const [vin, setVin] = useState("");
 const [model, setModel] = useState("");
@@ -1128,7 +1131,10 @@ const [licensePlate, setLicensePlate] = useState("");
   // };
 
   const handleBackClick = () => {
-    if (servicePreview) {
+    if (currentView === 'payment') {
+      setCurrentView('servicePreview');
+      setShowSidebar(false);
+    } else if (servicePreview) {
       setServicePreview(false);
       setState("services");
     } else if (state === "services") {
@@ -1137,6 +1143,8 @@ const [licensePlate, setLicensePlate] = useState("");
       setState("dropoff");
     } else if (state === "dropoff") {
       setState("pickup");
+    } else {
+      setShowSidebar(false);
     }
   };
 
@@ -1147,6 +1155,20 @@ const [licensePlate, setLicensePlate] = useState("");
     }
   };
 
+  const handlePayOrderClick = () => {
+    setShowSidebar(true);
+    setCurrentView('payment');
+  };
+
+  const handleAtmNumberChange = (e) => {
+    setAtmNumber(e.target.value);
+  };
+
+
+  const handlePaymentSubmit = () => {
+    // Handle payment submission logic here
+    alert(`ATM Number entered: ${atmNumber}`);
+  };
 
   const handleConfirmService = () => {
     setServicePreview(true); // Move to service preview state after confirming service
@@ -1476,17 +1498,39 @@ const [licensePlate, setLicensePlate] = useState("");
         sitekey="YOUR_SITE_KEY"
         onChange={handleRecaptchaChange}
       /> */}
-      <button 
-        // onClick={handleSubmit} 
-        // disabled={!isVerified}
-        className={styles.submitButton}
-      >
-        Pay Order
-      </button>
+
+
+
+       <div className={styles.orderContainer}>
+        <div className={styles.orderDetails}>
+          <h3>Order Details</h3>
+          {/* Display order details here */}
+          <button onClick={handlePayOrderClick} className={styles.submitButton}>
+            Pay Order
+          </button>
+        </div>
+      </div>
     </div>
-   
   </div>
 )}
+
+{showSidebar && (
+        <div className={styles.sidebar}>
+          <div className={styles.backButton} onClick={handleBackClick}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </div>
+          {currentView === 'payment' && (
+            <div className={styles.paymentContainer}>
+              <h3>Payment</h3>
+              <div className={styles.inputGroup}>
+                <label htmlFor="atmNumber">ATM Number</label>
+                <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} />
+              </div>
+              <button onClick={handlePaymentSubmit}>Submit Payment</button>
+            </div>
+          )}
+        </div>
+      )}
        
     </div>
   );
