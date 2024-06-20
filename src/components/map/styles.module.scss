@@ -191,20 +191,28 @@
 //   display: block; /* Show the button when active (map is scrolled down) */
 // }
 
-.map-container {
-  width: 100%;
-  max-width: 600px; /* Adjust this max-width as needed */
-  height: 100%;
-  display: flex;
-  justify-content: center; /* Center content inside map-container */
-  align-items: center;
-  margin: 0 auto;
-  background-color: #f0f0f0; /* Example background color */
-}
+// .map-container {
+//   width: 100%;
+//   max-width: 600px; /* Adjust this max-width as needed */
+//   height: 100%;
+//   display: flex;
+//   justify-content: center; /* Center content inside map-container */
+//   align-items: center;
+//   margin: 0 auto;
+//   background-color: #f0f0f0; /* Example background color */
+// }
+
+// .Container {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%;
+//   min-height: 100vh;
+// }
 
 @media (max-width: 768px) {
-  .map-container {
-    height: 80vh; /* Adjust height for mobile view */
+  .mapContainer {
+    height: calc(100vh - 50px); /* Adjust height for mobile view */
   }
 
   .sidebar {
@@ -217,11 +225,25 @@
   }
 }
 
+// .mapContainer {
+//   // border: 2px solid red;
+//   width: 100%;
+//   height: calc(100vh - 50px); /* Full viewport height minus header height */
+//   position: relative;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 1000;
+//   transition: transform 0.3s ease;
+//   margin-top: 0px; /* Offset for the fixed header height */
+// }
+
+
 .mapContainer {
+  border : 2px solid red;
   width: 100%;
   height: 90vh; /* Full viewport height */
-  position: fixed;
-  bottom: 0;
+  position: sticky;
+  bottom: 0px;
   left: 0;
   z-index: 1000; /* Ensure it appears above other content */
   transition: transform 0.3s ease; /* Smooth transition for scrolling animation */
@@ -237,7 +259,25 @@
 //   border-radius: 4px;
 //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 // }
+@media (max-width: 768px) {
+  .searchBoxContainer,.dropoffContainer,.vehicleDetailsContainer {
+    top: 50%; /* Center vertically */
+    left: 50%;
+    transform: translate(-20%, -5%  ); /* Center horizontally and vertically */
+    width: 95%; /* Adjust the width for smaller screens */
+    padding: 8px;
 
+  }
+
+  // .searchBoxInput {
+  //   margin-right: 5px;
+  //   padding: 8px;
+  // }
+
+  // .currentLocationButton {
+  //   padding: 8px;
+  // }
+}
 
 .searchBoxContainer {
   position: absolute;
