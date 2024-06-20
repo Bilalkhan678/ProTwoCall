@@ -589,6 +589,30 @@
   align-items: flex-start; /* Aligns children to the start (left) */
 }
 
+.addressLabel {
+  margin-right: 10px; /* Adjust the value as needed */
+  font-weight: bold; /* Optional: Make the label bold */
+  font-size: 12.5px;
+}
+
+.addressItem {
+  margin-bottom: 8px; /* Adjust margin as needed */
+  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+  padding-bottom: 8px; /* Padding at the bottom of the address item */
+}
+
+// .addressItemWithBorder {
+//   // width: 20px;
+//   margin-bottom: 8px; /* Adjust margin as needed */
+//   padding-bottom: 8px; /* Padding at the bottom of the address item */
+//   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+// }
+
+.addressItem:hover {
+  background-color: #f0f0f0; /* Light gray background color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
 .vehicleInfo h4 {
   margin-bottom: 10px; /* Adds some space below the Vehicle heading */
 }
@@ -597,6 +621,40 @@
   display: flex; /* Makes .vehicleDetails a flex container */
   justify-content: space-between; /* Distributes space between columns */
   // color: red;
+  font-size: 14px;
+}
+
+.vehicleDetails {
+  div {
+    p {
+      // color: red;
+      // border-bottom: 1px solid red;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+
+      // Additional hover effect
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+}
+
+.submitButton {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 80px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+
+.submitButton:hover {
+  background-color: #2081c2;
 }
 
 // .vehicleDetails {
@@ -619,8 +677,10 @@
 }
 
 .centeredValues p {
-  margin-bottom: 10px; /* Adds space between values */
-  
+  margin-bottom: 10px;
+  width: 100%; /* Ensure full width for alignment */
+  text-align: center; /* Center text */
+  // border-bottom: 1px solid red;
 }
 // .centeredValues p:hover {
 //   background-color: #f0f0f0; /* Light gray background on hover */
@@ -670,4 +730,32 @@
 
 // .printInfo{
 //   border: 2px solid blue;
+// }
+
+
+// .vehicleDetails {
+//   div {
+//     p {
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       border-bottom: 1px solid red;
+//       margin-bottom: 8px;
+//       padding-bottom: 4px;
+//       color: red;
+
+//       &:hover {
+//         background-color: lightgray;
+//       }
+
+//       span.label {
+//         text-align: left;
+//       }
+
+//       span.value {
+//         flex-grow: 1;
+//         text-align: center;
+//       }
+//     }
+//   }
 // }

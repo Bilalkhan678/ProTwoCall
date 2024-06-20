@@ -927,6 +927,9 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
+import ReCAPTCHA from 'react-google-recaptcha';
+import style from '../../app/(web-layout)/service.module.scss'
+
 
 const mapContainerStyle = {
   width: "100%",
@@ -957,7 +960,10 @@ const Map = () => {
   const [state, setState] = useState("pickup");
   const [servicePreview, setServicePreview] = useState(false);
   const [selectedServices, setSelectedServices] = useState([]);
-    const [address, setAddress] = useState(""); // State to store address
+  const [isVerified, setIsVerified] = useState(false);
+  const [address, setAddress] = useState(""); // State to store address
+  const [pickupAddress, setPickupAddress] = useState(""); // New state variable
+  const [dropoffAddress, setDropoffAddress] = useState(""); // New state variable
 
     const [vin, setVin] = useState("");
 const [model, setModel] = useState("");
@@ -1008,9 +1014,11 @@ const [licensePlate, setLicensePlate] = useState("");
 
           if (state === "pickup") {
             setPickupInputValue("Current Location");
+            setPickupAddress("Current Location"); // Update pickup address
             setState("dropoff"); // Move to dropoff after setting pickup location
           } else if (state === "dropoff") {
             setDropoffInputValue("Current Location");
+            setDropoffAddress("Current Location"); // Update dropoff address
             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
           }
         },
@@ -1034,9 +1042,11 @@ const [licensePlate, setLicensePlate] = useState("");
 
         if (state === "pickup") {
           setPickupInputValue(place.name || "");
+          setPickupAddress(place.name || ""); // Update pickup address
           setState("dropoff"); // Move to dropoff after setting pickup location
         } else if (state === "dropoff") {
           setDropoffInputValue(place.name || "");
+          setDropoffAddress(place.name || ""); // Update dropoff address
           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
         }
       } else {
@@ -1082,6 +1092,40 @@ const [licensePlate, setLicensePlate] = useState("");
   const handleLicensePlateInputChange = (e) => {
     setLicensePlate(e.target.value);
   };
+
+  // const handleRecaptchaChange = async (value) => {
+  //   try {
+  //     const response = await fetch('/verify-recaptcha', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ token: value }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (data.success) {
+  //       setIsVerified(true);
+  //     } else {
+  //       setIsVerified(false);
+  //       alert('reCAPTCHA verification failed. Please try again.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error verifying reCAPTCHA:', error);
+  //     setIsVerified(false);
+  //   }
+  // };
+
+
+  // const handleSubmit = () => {
+  //   if (isVerified) {
+  //     // Handle the submit action
+  //     console.log('Form submitted');
+  //   } else {
+  //     alert('Please verify you are not a robot.');
+  //   }
+  // };
 
   const handleBackClick = () => {
     if (servicePreview) {
@@ -1359,7 +1403,6 @@ const [licensePlate, setLicensePlate] = useState("");
       <h3>Service Preview</h3>
     </div>
     <div className={styles.servicesContent}>
-      {/* <h4>Selected Services:</h4> */}
       <div className={styles.serviceList}>
         {selectedServices.map(serviceId => {
           const service = serviceImages.find(s => s.id === serviceId);
@@ -1374,11 +1417,12 @@ const [licensePlate, setLicensePlate] = useState("");
       <div className={styles.locationDetails}>
         <h4>Location:</h4>
         <div className={styles.locationInfo}>
-          <h5>Address:</h5>
-          <p>{address}</p>
-          <h5>Coordinates (Lat, Lng):</h5>
-          {/* <p>Latitude: {coordinates.lat}</p>
-          <p>Longitude: {coordinates.lng}</p> */}
+          <p className={styles.addressItem}>
+            <span className={styles.addressLabel}>Pickup Address:</span> {pickupAddress}
+          </p>
+          <p className={styles.addressItem}>
+            <span className={styles.addressLabel}>Dropoff Address:</span> {dropoffAddress}
+          </p>
         </div>
         <div className={styles.vehicleInfo}>
   <h4>Vehicle:</h4>
@@ -1400,6 +1444,44 @@ const [licensePlate, setLicensePlate] = useState("");
       <p>{licensePlate}</p>
     </div>
   </div>
+  {/* <div className={style.detailSection}>
+              <h2>Vehicle Details</h2>
+              <div className={style.detailItem}>
+                 <p><strong>Make:</strong> <span className={style.primary}>{make}</span></p>
+                <p><strong>Model:</strong> <span className={style.primary}>{model}</span></p>
+                <p><strong>Year:</strong> <span className={style.primary}>{year}</span></p>
+                <p><strong>VIN:</strong> <span className={style.primary}>{vin}</span></p>
+                <p><strong>Mileage:</strong> <span className={style.primary}>{color}</span></p>
+                </div>
+            </div> */}
+ {/* <div className={styles.vehicleDetails}>
+      <div>
+        <p>
+          <span className="label">Make:</span>
+          <span className={styles.value}>{make}</span>
+        </p>
+        <p>
+          <span className="label">Model:</span>
+          <span className={styles.value}>{model}</span>
+        </p>
+        <p>
+          <span className="label">Year:</span>
+          <span className={styles.value}>{year}</span>
+        </p>
+        <p>
+          <span className="label">VIN:</span>
+          <span className={styles.value}>{vin}</span>
+        </p>
+        <p>
+          <span className="label">Color:</span>
+          <span className={styles.value}>{color}</span>
+        </p>
+        <p>
+          <span className="label">License Plate Number:</span>
+          <span className={styles.value}>{licensePlate}</span>
+        </p>
+      </div>
+    </div> */}
   <h4>Price</h4>
   <div className={styles.vehicleDetails}>
     <div>
@@ -1414,12 +1496,24 @@ const [licensePlate, setLicensePlate] = useState("");
       <p>20.00CD</p>
       <p>20.00CD</p>
       <p>20.00CD</p>
-      <p>20.00CD</p>
+      <p>100.00CD</p>
     </div>
   </div>
 </div>
       </div>
+       {/* <ReCAPTCHA
+        sitekey="YOUR_SITE_KEY"
+        onChange={handleRecaptchaChange}
+      /> */}
+      <button 
+        // onClick={handleSubmit} 
+        // disabled={!isVerified}
+        className={styles.submitButton}
+      >
+        Place Order
+      </button>
     </div>
+   
   </div>
 )}
        
