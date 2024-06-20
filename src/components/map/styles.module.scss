@@ -191,6 +191,32 @@
 //   display: block; /* Show the button when active (map is scrolled down) */
 // }
 
+.map-container {
+  width: 100%;
+  max-width: 600px; /* Adjust this max-width as needed */
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Center content inside map-container */
+  align-items: center;
+  margin: 0 auto;
+  background-color: #f0f0f0; /* Example background color */
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: 80vh; /* Adjust height for mobile view */
+  }
+
+  .sidebar {
+    width: 100%; /* Make sidebar full width on mobile */
+    right: -100%; /* Hide offscreen */
+  }
+
+  .sidebarOpen {
+    right: 0;
+  }
+}
+
 .mapContainer {
   width: 100%;
   height: 90vh; /* Full viewport height */
