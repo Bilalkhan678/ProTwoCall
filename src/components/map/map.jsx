@@ -971,6 +971,8 @@ const Map = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cvc, setCvc] = useState('');
   const [country, setCountry] = useState('');
+  const [errors, setErrors] = useState({});
+
 
     const [vin, setVin] = useState("");
 const [model, setModel] = useState("");
@@ -1161,6 +1163,11 @@ const [licensePlate, setLicensePlate] = useState("");
     }
   };
 
+
+  const handleCancelClick = () => {
+    setShowSidebar(false);
+  };
+
   const handlePayOrderClick = () => {
     setShowSidebar(true);
     setCurrentView('payment');
@@ -1189,6 +1196,19 @@ const [licensePlate, setLicensePlate] = useState("");
     }
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!atmNumber) newErrors.atmNumber = 'Required';
+    if (!expiryDate) newErrors.expiryDate = 'Required';
+    if (!cvc) newErrors.cvc = 'Required';
+    if (!country) newErrors.country = 'Required';
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleCvcChange = (e) => {
     setCvc(e.target.value);
   };
@@ -1198,10 +1218,11 @@ const [licensePlate, setLicensePlate] = useState("");
   };
 
   const handlePaymentSubmit = () => {
-    // Handle payment submission logic here
-    console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
+    if (validateForm()) {
+      // Handle payment submission logic here
+      console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
+    }
   };
-
   // const handleServiceSelect = (service) => {
   //   if (selectedServices.includes(service.id)) {
   //     setSelectedServices(selectedServices.filter(item => item !== service.id));
@@ -1344,69 +1365,93 @@ const [licensePlate, setLicensePlate] = useState("");
         </div>
       )}
 
-      {state === "vehicleDetails" && (
-        <div className={styles.vehicleDetailsContainer}>
-          <div className={styles.vehicleDetailsHeader}>
-            <FontAwesomeIcon 
-              icon={faArrowLeft} 
-              className={styles.backIcon} 
-              onClick={handleBackClick} 
-            />
-            <h3>Vehicle Details</h3>
-          </div>
-          <div className={styles.vinInputContainer}>
+{state === "vehicleDetails" && (
+      <div className={styles.vehicleDetailsContainer}>
+        <div className={styles.vehicleDetailsHeader}>
+          <FontAwesomeIcon 
+            icon={faArrowLeft} 
+            className={styles.backIcon} 
+            onClick={handleBackClick} 
+          />
+          <h3>Vehicle Details</h3>
+        </div>
+        <div className={styles.vinInputContainer}>
+          <div className={styles.floatingLabelContainer}>
             <input
               type="text"
-              placeholder="Enter VIN number"
+              id="vin"
               className={styles.vinInput}
               value={vinInputValue}
               onChange={handleVinInputChange}
+              placeholder=" " // Add placeholder with a space
             />
-            <input
-  type="text"
-  placeholder="Model"
-  className={styles.vinInput}
-  value={model}
-  onChange={handleModelInputChange}
-/>
-<input
-  type="text"
-  placeholder="Make"
-  className={styles.vinInput}
-  value={make}
-  onChange={handleMakeInputChange}
-/>
-<input
-  type="text"
-  placeholder="Year"
-  className={styles.vinInput}
-  value={year}
-  onChange={handleYearInputChange}
-/>
-<input
-  type="text"
-  placeholder="Car Color"
-  className={styles.vinInput}
-  value={color}
-  onChange={handleColorInputChange}
-/>
-<input
-  type="text"
-  placeholder="License Plate Number"
-  className={styles.vinInput}
-  value={licensePlate}
-  onChange={handleLicensePlateInputChange}
-/>
-            <button
-              className={styles.checkDetailButton}
-              onClick={handleCheckDetail}
-              disabled={vinInputValue.trim() === ""}
-            >
-              Add Detail
-            </button>
+            <label htmlFor="vin">Vin Number</label>
           </div>
+          <div className={styles.floatingLabelContainer}>
+            <input
+              type="text"
+              id="model"
+              className={styles.vinInput}
+              value={model}
+              onChange={handleModelInputChange}
+              placeholder=" "
+            />
+            <label htmlFor="model">Model</label>
+          </div>
+          <div className={styles.floatingLabelContainer}>
+            <input
+              type="text"
+              id="make"
+              className={styles.vinInput}
+              value={make}
+              onChange={handleMakeInputChange}
+              placeholder=" "
+            />
+            <label htmlFor="make">Make</label>
+          </div>
+          <div className={styles.floatingLabelContainer}>
+            <input
+              type="text"
+              id="year"
+              className={styles.vinInput}
+              value={year}
+              onChange={handleYearInputChange}
+              placeholder=" "
+            />
+            <label htmlFor="year">Year</label>
+          </div>
+          <div className={styles.floatingLabelContainer}>
+            <input
+              type="text"
+              id="color"
+              className={styles.vinInput}
+              value={color}
+              onChange={handleColorInputChange}
+              placeholder=" "
+            />
+            <label htmlFor="color">Car Color</label>
+          </div>
+          <div className={styles.floatingLabelContainer}>
+            <input
+              type="text"
+              id="licensePlate"
+              className={styles.vinInput}
+              value={licensePlate}
+              onChange={handleLicensePlateInputChange}
+              placeholder=" "
+            />
+            <label htmlFor="licensePlate">License Plate Number</label>
+          </div>
+          <button
+            className={styles.checkDetailButton}
+            onClick={handleCheckDetail}
+            disabled={vinInputValue.trim() === ""}
+          >
+            Add Detail
+          </button>
         </div>
-      )}
+      </div>
+    )}
 
 {state === "services" && (
   <div className={styles.vehicleDetailsContainer}>
@@ -1557,18 +1602,22 @@ const [licensePlate, setLicensePlate] = useState("");
                 <div className={styles.inputWithIcon}>
                   <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} placeholder="1234 1234 1234 1234" />
                   <FontAwesomeIcon icon={faCreditCard} className={styles.icon} />
+                  {errors.atmNumber && <span className={styles.errorMessage}>{errors.atmNumber}</span>}
                 </div>
               </div>
             <div className={styles.inputGroup}>
               <label htmlFor="expiryDate">Expiry Date</label>
               <input type="text" id="expiryDate" value={expiryDate} onChange={handleExpiryDateChange} placeholder="MM/YY" />
+              {errors.expiryDate && <span className={styles.errorMessage}>{errors.expiryDate}</span>}
             </div>
             <div className={styles.inputGroup}>
                 <label htmlFor="cvc">CVC</label>
                 <div className={styles.inputWithIcon}>
                   <input type="text" id="cvc" value={cvc} onChange={handleCvcChange} />
                   <FontAwesomeIcon icon={faKey} className={styles.icon} />
+                
                 </div>
+                {errors.cvc && <span className={styles.errorMessage}>{errors.cvc}</span>}
               </div>
             <div className={styles.inputGroup}>
               <label htmlFor="country">Country</label>
@@ -1579,8 +1628,16 @@ const [licensePlate, setLicensePlate] = useState("");
                 <option value="uk">United Kingdom</option>
                 {/* Add more country options as needed */}
               </select>
+              {errors.country && <span className={styles.errorMessage}>{errors.country}</span>}
             </div>
-            <button onClick={handlePaymentSubmit}>Submit Payment</button>
+            <p>By providing your card information, you allow Protowcall Inc. 
+              to charge your card for future payments in accordance with their terms.</p>
+              <div className={styles.buttonGroup}>
+              <button onClick={handlePaymentSubmit} className={styles.button}>Submit Payment</button>
+              <button onClick={handleCancelClick} className={styles.cancelButton}>Cancel</button>
+              </div>
+          
+
           </div>
         )}
         </div>

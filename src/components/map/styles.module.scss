@@ -523,6 +523,7 @@
 
 
 
+
 .serviceList {
   list-style-type: none; /* Remove default list styling */
   padding: 0; /* Remove default padding */
@@ -536,6 +537,42 @@
 
 .servicePreviewItem {
   text-align: center;
+}
+
+
+
+.floatingLabelContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.floatingLabelContainer input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.floatingLabelContainer label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+
+.floatingLabelContainer input:focus + label,
+.floatingLabelContainer input:not(:placeholder-shown) + label {
+  top: 0;
+  left: 10px;
+  font-size: 12px;
+  color: #333;
+  transform: translateY(-100%);
 }
 
 // .locationDetails {
@@ -795,7 +832,7 @@
   height: 100%;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transform: translateX(100%);
   z-index: 1000;
   // display: flex;
@@ -856,14 +893,17 @@
 //   box-sizing: border-box;
 // }
 
-// button {
-//   padding: 10px 20px;
-//   background: #007bff;
-//   color: white;
-//   border: none;
-//   cursor: pointer;
-// }
+.button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
+.paymentContainer p{
+  font-size: 9px;
+}
 
 
 .inputGroup {
@@ -879,6 +919,10 @@
     width: 100%;
     padding: 0.5rem;
     box-sizing: border-box;
+
+    &.error {
+      border-color: red;
+    }
   }
 
   .inputWithIcon {
@@ -891,9 +935,31 @@
     .icon {
       position: absolute;
       right: 0.5rem;
-      top: 50%;
+      top: 38%;
       transform: translateY(-50%);
       pointer-events: none; // Prevent icon from blocking input interaction
     }
   }
+
+  .errorMessage {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap:15px;
+}
+
+.cancelButton {
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+}
+
+.backButton {
+  // Your existing styles
 }
