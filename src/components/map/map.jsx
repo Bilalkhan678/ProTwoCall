@@ -1272,9 +1272,9 @@ const [licensePlate, setLicensePlate] = useState("");
   
 
   const serviceImages = [
-    { id: "ServiceA", src: "/images/logo.jpg", name: "Service A" },
-    { id: "ServiceB", src: "/images/logo.jpg", name: "Service B" },
-    { id: "ServiceC", src: "/images/logo.jpg", name: "Service C" },
+    { id: "ServiceA", src: "/images/tow.png", name: "Service A" },
+    { id: "ServiceB", src: "/images/tow.png", name: "Service B" },
+    { id: "ServiceC", src: "/images/tow.png", name: "Service C" },
     // Add more services as needed
   ];
 
