@@ -925,7 +925,7 @@
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow, faChevronDown, faArrowLeft, faCreditCard, faKey } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
 import ReCAPTCHA from 'react-google-recaptcha';
 import style from '../../app/(web-layout)/service.module.scss'
@@ -967,6 +967,10 @@ const Map = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [atmNumber, setAtmNumber] = useState('');
   const [currentView, setCurrentView] = useState('servicePreview');
+  const [blurBackground, setBlurBackground] = useState(false);
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [country, setCountry] = useState('');
 
     const [vin, setVin] = useState("");
 const [model, setModel] = useState("");
@@ -982,7 +986,9 @@ const [licensePlate, setLicensePlate] = useState("");
     mapRef.current = map;
   }, []);
 
-
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -1165,13 +1171,35 @@ const [licensePlate, setLicensePlate] = useState("");
   };
 
 
-  const handlePaymentSubmit = () => {
-    // Handle payment submission logic here
-    alert(`ATM Number entered: ${atmNumber}`);
-  };
+  // const handlePaymentSubmit = () => {
+  //   // Handle payment submission logic here
+  //   alert(`ATM Number entered: ${atmNumber}`);
+  // };
 
   const handleConfirmService = () => {
     setServicePreview(true); // Move to service preview state after confirming service
+  };
+
+
+  const handleExpiryDateChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    if (value.length <= 4) {
+      const formattedValue = value.length > 2 ? `${value.slice(0, 2)}/${value.slice(2)}` : value;
+      setExpiryDate(formattedValue);
+    }
+  };
+
+  const handleCvcChange = (e) => {
+    setCvc(e.target.value);
+  };
+
+  const handleCountryChange = (e) => {
+    setCountry(e.target.value);
+  };
+
+  const handlePaymentSubmit = () => {
+    // Handle payment submission logic here
+    console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
   };
 
   // const handleServiceSelect = (service) => {
@@ -1234,6 +1262,7 @@ const [licensePlate, setLicensePlate] = useState("");
 
   return (
     <div className={styles.mapContainer}>
+    <div className={`mapContainer ${showSidebar ? styles.blur : ""}`}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
@@ -1513,22 +1542,47 @@ const [licensePlate, setLicensePlate] = useState("");
     </div>
   </div>
 )}
+</div>
 
 {showSidebar && (
-        <div className={styles.sidebar}>
+      <div className={`${styles.sidebar} ${showSidebar ? styles.sidebarOpen : ''}`}>
           <div className={styles.backButton} onClick={handleBackClick}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </div>
           {currentView === 'payment' && (
             <div className={styles.paymentContainer}>
-              <h3>Payment</h3>
-              <div className={styles.inputGroup}>
+            <h3>Payment Details</h3>
+            <div className={styles.inputGroup}>
                 <label htmlFor="atmNumber">ATM Number</label>
-                <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} />
+                <div className={styles.inputWithIcon}>
+                  <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} placeholder="1234 1234 1234 1234" />
+                  <FontAwesomeIcon icon={faCreditCard} className={styles.icon} />
+                </div>
               </div>
-              <button onClick={handlePaymentSubmit}>Submit Payment</button>
+            <div className={styles.inputGroup}>
+              <label htmlFor="expiryDate">Expiry Date</label>
+              <input type="text" id="expiryDate" value={expiryDate} onChange={handleExpiryDateChange} placeholder="MM/YY" />
             </div>
-          )}
+            <div className={styles.inputGroup}>
+                <label htmlFor="cvc">CVC</label>
+                <div className={styles.inputWithIcon}>
+                  <input type="text" id="cvc" value={cvc} onChange={handleCvcChange} />
+                  <FontAwesomeIcon icon={faKey} className={styles.icon} />
+                </div>
+              </div>
+            <div className={styles.inputGroup}>
+              <label htmlFor="country">Country</label>
+              <select id="country" value={country} onChange={handleCountryChange}>
+                <option value="">Select Country</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+                {/* Add more country options as needed */}
+              </select>
+            </div>
+            <button onClick={handlePaymentSubmit}>Submit Payment</button>
+          </div>
+        )}
         </div>
       )}
        

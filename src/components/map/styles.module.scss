@@ -788,15 +788,18 @@
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 300px;
   height: 100%;
   background-color: #fff;
   box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.1s ease-in-out;
+  transform: translateX(100%);
+  z-index: 1000;
+  // display: flex;
+  // flex-direction: column;
   padding: 20px;
 }
 
@@ -816,7 +819,7 @@
   flex-direction: column;
 }
 .blur {
-  filter: blur(5px); /* Apply a blur effect */
+  filter: blur(1px); /* Apply a blur effect */
 }
 
 .inputField {
@@ -826,4 +829,71 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.sidebarOpen {
+  transform: translateX(0); /* End position */
+}
+
+
+
+// .paymentContainer {
+//   padding: 20px;
+// }
+
+// .inputGroup {
+//   margin-bottom: 15px;
+// }
+
+// .inputGroup label {
+//   display: block;
+//   margin-bottom: 5px;
+// }
+
+// .inputGroup input, .inputGroup select {
+//   width: 100%;
+//   padding: 8px;
+//   box-sizing: border-box;
+// }
+
+// button {
+//   padding: 10px 20px;
+//   background: #007bff;
+//   color: white;
+//   border: none;
+//   cursor: pointer;
+// }
+
+
+
+.inputGroup {
+  margin-bottom: 1rem;
+  position: relative;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .inputWithIcon {
+    position: relative;
+
+    input {
+      padding-right: 2rem; // Make space for the icon
+    }
+
+    .icon {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none; // Prevent icon from blocking input interaction
+    }
+  }
 }
