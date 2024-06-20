@@ -582,23 +582,49 @@
 // }
 
 
-.vehicleInfo {
+.vehicleInfo,.detailsContainer,.priceContainer {
   text-align: left; /* Aligns text and headings to the left */
   display: flex; /* Makes .vehicleInfo a flex container */
   flex-direction: column; /* Stacks children vertically */
   align-items: flex-start; /* Aligns children to the start (left) */
+  gap: 12px; /* Adds gap between flex items */
+
 }
 
 .addressLabel {
-  margin-right: 10px; /* Adjust the value as needed */
+  // display: flex;
+  // justify-content: center;
+  // justify-content: space-between;
+  margin-right: 20px; /* Adjust the value as needed */
   font-weight: bold; /* Optional: Make the label bold */
   font-size: 12.5px;
 }
+.detailsLabel {
+  // display: flex;
+  // justify-content: center;
+  // justify-content: space-between;
+  margin-right: 90px; /* Adjust the value as needed */
+  font-weight: bold; /* Optional: Make the label bold */
+  font-size: 14.5px;
+}
+.priceLabel {
+  // display: flex;
+  // justify-content: center;
+  // justify-content: space-between;
+  margin-right: 30px; /* Adjust the value as needed */
+  font-weight: bold; /* Optional: Make the label bold */
+  font-size: 13.5px;
+}
 
-.addressItem {
-  margin-bottom: 8px; /* Adjust margin as needed */
+.addressItem,.detailsItem, .priceItem {
+  // margin-bottom: 8px; /* Adjust margin as needed */
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   padding-bottom: 8px; /* Padding at the bottom of the address item */
+  width:250px;
+}
+.locationInfo p{
+  // color: #949090
+
 }
 
 // .addressItemWithBorder {
@@ -612,33 +638,21 @@
   background-color: #f0f0f0; /* Light gray background color */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
+.detailsItem:hover {
+  background-color: #f0f0f0; /* Light gray background color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+.priceItem:hover {
+  background-color: #f0f0f0; /* Light gray background color */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
 
 .vehicleInfo h4 {
   margin-bottom: 10px; /* Adds some space below the Vehicle heading */
 }
 
-.vehicleDetails {
-  display: flex; /* Makes .vehicleDetails a flex container */
-  justify-content: space-between; /* Distributes space between columns */
-  // color: red;
-  font-size: 14px;
-}
 
-.vehicleDetails {
-  div {
-    p {
-      // color: red;
-      // border-bottom: 1px solid red;
-      margin-bottom: 8px;
-      padding-bottom: 4px;
 
-      // Additional hover effect
-      &:hover {
-        background-color: lightgray;
-      }
-    }
-  }
-}
 
 .submitButton {
   display: block;

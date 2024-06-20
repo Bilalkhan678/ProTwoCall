@@ -1414,7 +1414,7 @@ const [licensePlate, setLicensePlate] = useState("");
           );
         })}
       </div>
-      <div className={styles.locationDetails}>
+    <div className={styles.locationDetails}>
         <h4>Location:</h4>
         <div className={styles.locationInfo}>
           <p className={styles.addressItem}>
@@ -1424,82 +1424,53 @@ const [licensePlate, setLicensePlate] = useState("");
             <span className={styles.addressLabel}>Dropoff Address:</span> {dropoffAddress}
           </p>
         </div>
-        <div className={styles.vehicleInfo}>
-  <h4>Vehicle:</h4>
-  <div className={styles.vehicleDetails}>
-    <div>
-      <p>Make:</p>
-      <p>Model:</p>
-      <p>Year:</p>
-      <p>VIN:</p>
-      <p>Color:</p>
-      <p>License Plate Number:</p>
-    </div>
-    <div className={styles.centeredValues}>
-      <p>{make}</p>
-      <p>{model}</p>
-      <p>{year}</p>
-      <p>{vin}</p>
-      <p>{color}</p>
-      <p>{licensePlate}</p>
-    </div>
-  </div>
-  {/* <div className={style.detailSection}>
-              <h2>Vehicle Details</h2>
-              <div className={style.detailItem}>
-                 <p><strong>Make:</strong> <span className={style.primary}>{make}</span></p>
-                <p><strong>Model:</strong> <span className={style.primary}>{model}</span></p>
-                <p><strong>Year:</strong> <span className={style.primary}>{year}</span></p>
-                <p><strong>VIN:</strong> <span className={style.primary}>{vin}</span></p>
-                <p><strong>Mileage:</strong> <span className={style.primary}>{color}</span></p>
-                </div>
-            </div> */}
- {/* <div className={styles.vehicleDetails}>
-      <div>
-        <p>
-          <span className="label">Make:</span>
-          <span className={styles.value}>{make}</span>
-        </p>
-        <p>
-          <span className="label">Model:</span>
-          <span className={styles.value}>{model}</span>
-        </p>
-        <p>
-          <span className="label">Year:</span>
-          <span className={styles.value}>{year}</span>
-        </p>
-        <p>
-          <span className="label">VIN:</span>
-          <span className={styles.value}>{vin}</span>
-        </p>
-        <p>
-          <span className="label">Color:</span>
-          <span className={styles.value}>{color}</span>
-        </p>
-        <p>
-          <span className="label">License Plate Number:</span>
-          <span className={styles.value}>{licensePlate}</span>
-        </p>
       </div>
-    </div> */}
-  <h4>Price</h4>
-  <div className={styles.vehicleDetails}>
-    <div>
-      <p>Service charges:</p>
-      <p>tax</p>
-      <p>Additiocal charges</p>
-      <p>Transtion fees</p>
-      <p>Total</p>
-    </div>
-    <div className={styles.centeredValues}>
-      <p>20.00CD</p>
-      <p>20.00CD</p>
-      <p>20.00CD</p>
-      <p>20.00CD</p>
-      <p>100.00CD</p>
-    </div>
-  </div>
-</div>
+      <div className={styles.vehicleDetails}>
+        <h4>Vehicle Details:</h4>
+        <div className={styles.detailsContainer}>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>Make:</span> {make}</p>
+          </div>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>Model:</span> {model}</p>
+          </div>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>Year:</span> {year}</p>
+          </div>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>VIN:</span> {vin}</p>
+          </div>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>Color:</span> {color}</p>
+          </div>
+          <div className={styles.detailsItem}>
+            <p><span className={styles.detailsLabel}>License Plate Number:</span> {licensePlate}</p>
+          </div>
+        </div>
+      </div>
+      <div className={styles.priceDetails}>
+        <h4>Price Details:</h4>
+        <div className={styles.priceContainer}>
+          <div className={styles.priceItem}>
+            <p>Service charges:20:00CD</p>
+          </div>
+          <div className={styles.priceItem}>
+            <p>Tax:</p>
+            <p>20.00CD</p>
+          </div>
+          <div className={styles.priceItem}>
+            <p>Additional charges:</p>
+            <p>20.00CD</p>
+          </div>
+          <div className={styles.priceItem}>
+            <p>Transaction fees:</p>
+            <p>20.00CD</p>
+          </div>
+          <div className={styles.priceItem}>
+            <p>Total:</p>
+            <p>100.00CD</p>
+          </div>
+        </div>
       </div>
        {/* <ReCAPTCHA
         sitekey="YOUR_SITE_KEY"
@@ -1510,7 +1481,7 @@ const [licensePlate, setLicensePlate] = useState("");
         // disabled={!isVerified}
         className={styles.submitButton}
       >
-        Place Order
+        Pay Order
       </button>
     </div>
    
