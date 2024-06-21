@@ -210,6 +210,9 @@
 //   min-height: 100vh;
 // }
 
+
+
+
 @media (max-width: 768px) {
   .mapContainer {
     height: calc(100vh - 50px); /* Adjust height for mobile view */
@@ -298,6 +301,12 @@
   align-items: center;
   justify-content: center;
 }
+
+
+// .expandIcon:hover {
+//   transform: translate3d(0, 10px, 0);
+// }
+
 
 .searchBoxContent {
   display: none;

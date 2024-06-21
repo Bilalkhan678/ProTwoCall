@@ -148,3 +148,81 @@
 // .detailItem p {
 //     margin: 5px 0; /* Adjusts margin for each <p> tag inside .detailItem */
 //   }
+
+
+
+.serviceBox {
+  border: 1px solid black !important;
+  position: fixed;
+  bottom: 2px;
+  right: 61px;
+  width: 253px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1001; /* Ensure it appears above the map */
+  transition: all 0.3s ease;
+  height: 50px;
+}
+
+.serviceBoxHeader {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 1px;
+  height: 60px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.serviceBoxContent {
+  padding: 10px;
+}
+
+.expandIconOngoing {
+  font-size: 1.2rem; /* Double arrow icon size */
+  transform: rotate(0deg); /* Initial rotation */
+  transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+.expanded .expandIconOngoing {
+  transform: rotate(180deg); /* Rotate the icon when expanded */
+}
+
+.closeIcon {
+  font-size: 1.5rem; /* Close icon size */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.expanded {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expanded .serviceBoxHeader {
+  border-bottom: none;
+  justify-content: flex-end;
+}
+
+.expanded .serviceBoxContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.expanded h2 {
+  font-size: 2rem;
+  margin: 0;
+}
