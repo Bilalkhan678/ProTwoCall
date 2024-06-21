@@ -1047,10 +1047,15 @@ const [licensePlate, setLicensePlate] = useState("");
             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
           }
         },
-        () => {
-          console.error("Error getting user location");
+        (error) => {
+          // Error callback
+          console.error("Error getting user location:", error);
+          // Handle error, possibly notify the user
         }
       );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      // Handle unsupported geolocation scenario
     }
   };
 
