@@ -925,7 +925,7 @@
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow, faChevronDown, faArrowLeft, faCreditCard, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow, faChevronDown, faArrowLeft, faCreditCard, faKey,faChevronUp  } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
 import ReCAPTCHA from 'react-google-recaptcha';
 import style from '../../app/(web-layout)/service.module.scss'
@@ -972,6 +972,8 @@ const Map = () => {
   const [cvc, setCvc] = useState('');
   const [country, setCountry] = useState('');
   const [errors, setErrors] = useState({});
+  const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
+  const [isMobile, setIsMobile] = useState(false);
 
 
     const [vin, setVin] = useState("");
@@ -991,6 +993,18 @@ const [licensePlate, setLicensePlate] = useState("");
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -1209,6 +1223,10 @@ const [licensePlate, setLicensePlate] = useState("");
     return Object.keys(newErrors).length === 0;
   };
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const handleCvcChange = (e) => {
     setCvc(e.target.value);
   };
@@ -1308,8 +1326,13 @@ const [licensePlate, setLicensePlate] = useState("");
       </GoogleMap>
 
       {state === "pickup" && (
-        <div className={styles.searchBoxContainer}>
-          <h3>Pickup Location</h3>
+       <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
+        <div className={styles.searchBoxHeader} onClick={toggleExpand}>
+        {isMobile && (
+            <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+          )}        
+        <h3>Pickup Location</h3>
+        </div>
           <Autocomplete
             onLoad={ref => (autocompleteRef.current = ref)}
             onPlaceChanged={handlePlaceChanged}
@@ -1337,15 +1360,18 @@ const [licensePlate, setLicensePlate] = useState("");
       )}
 
       {state === "dropoff" && (
-        <div className={styles.dropoffContainer}>
-          <div className={styles.dropoffHeader}>
-            <FontAwesomeIcon 
+         <div className={`${styles.dropoffContainer} ${isExpanded ? styles.expanded : ''}`}>
+         <div className={styles.dropoffHeader} onClick={toggleExpand}>
+         {isMobile && (
+             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+           )}     
+           <FontAwesomeIcon 
               icon={faArrowLeft} 
               className={styles.backIcon} 
               onClick={handleBackClick} 
             />
             <h3>Dropoff Location</h3>
-          </div>
+            </div>
           <Autocomplete
             onLoad={ref => (autocompleteRef.current = ref)}
             onPlaceChanged={handlePlaceChanged}
@@ -1366,15 +1392,19 @@ const [licensePlate, setLicensePlate] = useState("");
       )}
 
 {state === "vehicleDetails" && (
-      <div className={styles.vehicleDetailsContainer}>
-        <div className={styles.vehicleDetailsHeader}>
-          <FontAwesomeIcon 
-            icon={faArrowLeft} 
-            className={styles.backIcon} 
-            onClick={handleBackClick} 
-          />
+
+<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
+         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+         {isMobile && (
+             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+           )}     
+           <FontAwesomeIcon 
+              icon={faArrowLeft} 
+              className={styles.backIcon} 
+              onClick={handleBackClick} 
+            />
           <h3>Vehicle Details</h3>
-        </div>
+            </div>
         <div className={styles.vinInputContainer}>
           <div className={styles.floatingLabelContainer}>
             <input

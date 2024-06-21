@@ -239,7 +239,7 @@
 
 
 .mapContainer {
-  border : 2px solid red;
+  // border : 2px solid red;
   width: 100%;
   height: 90vh; /* Full viewport height */
   position: sticky;
@@ -259,15 +259,108 @@
 //   border-radius: 4px;
 //   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 // }
-@media (max-width: 768px) {
-  .searchBoxContainer,.dropoffContainer,.vehicleDetailsContainer {
-    top: 50%; /* Center vertically */
-    left: 50%;
-    transform: translate(-20%, -5%  ); /* Center horizontally and vertically */
-    width: 95%; /* Adjust the width for smaller screens */
-    padding: 8px;
 
+// @media (max-width: 768px) {
+//   .searchBoxContainer,.dropoffContainer,.vehicleDetailsContainer {
+//     top: 50%; /* Center vertically */
+//     left: 50%;
+//     transform: translate(-20%, -5%  ); /* Center horizontally and vertically */
+//     width: 95%; /* Adjust the width for smaller screens */
+//     padding: 8px;
+
+//   }
+//   // .expanded .searchBoxContainer {
+//   //   top: 10px;
+//   //   bottom: auto;
+//   // }
+
+//   // .searchBoxHeader {
+//   //   justify-content: center;
+//   // }
+
+
+  
+// }
+
+
+.expandIcon {
+  margin-right: 8px;
+}
+
+.searchBoxContent {
+  display: none;
+}
+
+.expanded .searchBoxContent {
+  display: block;
+  padding: 10px;
+}
+
+.collapsed {
+  top: auto;
+  bottom: 0;
+  width: 95%;
+}
+
+@media (max-width: 768px) {
+  .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
+    top: auto;
+    bottom: 0;
+    width: 95%; /* Adjust the width for smaller screens */
+    left: 50%;
+    transform: translate(-63px, 334px);
+    //  translateX(-50%);
   }
+
+  .expanded {
+    top: 10px;
+    bottom: auto;
+    width: 95%; /* Adjust the width for smaller screens */
+    left: 50%;
+    // transform: translateX(-50%);
+    transform: translate(-19%, 24%);
+  }
+
+  .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
+    justify-content: center;
+  }
+  
+.expandIcon {
+  background-color: #007bff;
+  color: white;
+  height: 29px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  position: relative;
+  bottom: 35px;
+  left: 85px;
+  font-size: 24px;
+}
+
+}
+
+
+
+  // .searchBoxHeader {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   cursor: pointer;
+  //   padding: 10px;
+  // }
+  
+  // .expandIcon {
+  //   margin-right: 8px;
+  // }
+  
+  // .searchBoxContent {
+  //   display: none;
+  // }
+  
+  // .expanded .searchBoxContent {
+  //   display: block;
+  //   padding: 10px;
+  // }
 
   // .searchBoxInput {
   //   margin-right: 5px;
@@ -277,9 +370,9 @@
   // .currentLocationButton {
   //   padding: 8px;
   // }
-}
 
-.searchBoxContainer {
+
+.searchBoxContainer,.dropoffContainer, .vehicleDetailsContainer {
   position: absolute;
   top: 100px;
   left: 80px;
@@ -289,25 +382,45 @@
   border-radius: 8px;
   width: 340px;
   height: 400px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-.searchBoxContainer h3 {   
+
+.searchBoxHeader, .dropoffHeader,.vehicleDetailsHeader {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 18px 0px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #2081c3;
+  border-bottom: 1px solid #ddd;
+    border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+    padding: 5px 0px;
   margin-top: -10px;
   margin-left: -10px;
   width: 340px;
   color: white;
-  background-color: #2081c2;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 }
+
+// .searchBoxContainer h3 {   
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 18px 0px;
+//   margin-top: -10px;
+//   margin-left: -10px;
+//   width: 340px;
+//   color: white;
+//   background-color: #2081c2;
+//   border-top-left-radius: 8px;
+//   border-top-right-radius: 8px;
+// }
+
 .searchBoxIcon {
   position: absolute;
   right: 33px;
-  top: 95px;
+  top: 104px;
   color: #aaa;
 }
 .searchBoxInput {
