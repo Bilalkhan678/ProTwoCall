@@ -151,6 +151,12 @@
 
 
 
+
+
+
+
+
+
 .serviceBox {
   border: 1px solid black !important;
   position: fixed;
@@ -225,4 +231,61 @@
 .expanded h2 {
   font-size: 2rem;
   margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+  .serviceBox {
+    right: 10px;
+    width: auto;
+  }
+
+  .serviceBoxHeader {
+    justify-content: flex-end;
+    gap: 5px;
+   
+
+  }
+
+  .serviceBoxTitle {
+    display: none;
+  }
+
+  .expanded {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .expanded .serviceBoxHeader {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .expanded .serviceBoxContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .expanded h2 {
+    font-size: 1.5rem;
+  }
+
+  .expandIconOngoing{
+    font-size: 1.5rem;
+    width: 100px;
+    
+  }
 }

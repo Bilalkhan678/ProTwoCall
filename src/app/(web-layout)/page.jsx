@@ -22,9 +22,9 @@ const Home = () => {
       <Map />
       <div className={`${styles.serviceBox} ${isServiceBoxExpanded ? styles.expanded : ''}`}>
         <div className={styles.serviceBoxHeader} onClick={toggleServiceBox}>
-        {!isServiceBoxExpanded && (
+          {!isServiceBoxExpanded && (
             <>
-              <h3>Ongoing Service</h3>
+              <h3 className={styles.serviceBoxTitle}>Ongoing Service</h3>
               <FontAwesomeIcon icon={faChevronUp} className={styles.expandIconOngoing} />
             </>
           )}
@@ -34,7 +34,7 @@ const Home = () => {
         </div>
         {isServiceBoxExpanded && (
           <div className={styles.serviceBoxContent}>
-            <h2>Welcome Service Page</h2>
+            <h2>Pending Service Page</h2>
           </div>
         )}
       </div>
