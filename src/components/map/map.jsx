@@ -1484,15 +1484,19 @@ const [licensePlate, setLicensePlate] = useState("");
     )}
 
 {state === "services" && (
-  <div className={styles.vehicleDetailsContainer}>
-    <div className={styles.vehicleDetailsHeader}>
-      <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={handleBackClick} 
-      />
+
+<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
+         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+         {isMobile && (
+             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+           )}     
+           <FontAwesomeIcon 
+              icon={faArrowLeft} 
+              className={styles.backIcon} 
+              onClick={handleBackClick} 
+            />
       <h3>Select Services</h3>
-    </div>
+      </div>
     <div className={styles.servicesContent}>
       <div className={styles.servicesList}>
         {serviceImages.map(service => (
@@ -1519,15 +1523,19 @@ const [licensePlate, setLicensePlate] = useState("");
 
 
 {servicePreview && (
-  <div className={styles.vehicleDetailsContainer}>
-    <div className={styles.vehicleDetailsHeader}>
-      <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={handleBackClick} 
-      />
+
+<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
+         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+         {isMobile && (
+             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+           )}     
+           <FontAwesomeIcon 
+              icon={faArrowLeft} 
+              className={styles.backIcon} 
+              onClick={handleBackClick} 
+            />
       <h3>Service Preview</h3>
-    </div>
+      </div>
     <div className={styles.servicesContent}>
       <div className={styles.serviceList}>
         {selectedServices.map(serviceId => {
