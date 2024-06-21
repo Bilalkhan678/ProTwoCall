@@ -282,9 +282,21 @@
   
 // }
 
-
 .expandIcon {
-  margin-right: 8px;
+  color: white; /* Icon color */
+  font-size: 1.2rem; /* Set icon size to default */
+  transition: transform 0.3s ease; /* Smooth transition for rotation */
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  border: 2px solid #ffffff; /* Increase border size */
+  position: relative;
+  bottom: 35px;
+  left: 85px;
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .searchBoxContent {
@@ -324,19 +336,28 @@
   .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
     justify-content: center;
   }
-  
-.expandIcon {
-  background-color: #007bff;
-  color: white;
-  height: 29px;
-  border-radius: 50%;
-  border: 1px solid #ffffff;
-  position: relative;
-  bottom: 35px;
-  left: 85px;
-  font-size: 24px;
+  .expandIcon {
+    display: block; /* Show the arrow icon on mobile */
+  }
+// .expandIcon {
+//   background-color: #007bff;
+//   color: white;
+//   height: 29px;
+//   border-radius: 50%;
+//   border: 1px solid #ffffff;
+//   position: relative;
+//   bottom: 35px;
+//   left: 85px;
+//   font-size: 24px;
+// }
+
 }
 
+
+@media (min-width: 769px) {
+  .expandIcon {
+    display: none; /* Hide the arrow icon on desktop */
+  }
 }
 
 
