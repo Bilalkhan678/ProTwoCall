@@ -1,9 +1,11 @@
 
 "use client"
+
+
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faChevronUp, faChevronDown, faArrowsAltH , faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faChevronUp, faChevronDown, faArrowsAltH , faTimes , faComment, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import styles from './service.module.scss';
 // import styles from "@/app/globals.scss";
 
@@ -22,6 +24,12 @@ const Home = () => {
 
   const toggleInnerBox = () => {
     setIsInnerBoxExpanded(!isInnerBoxExpanded);
+    
+  };
+
+  
+  const handleCancelClick = () => {
+    setIsInnerBoxExpanded(false)
   };
 
 
@@ -46,7 +54,7 @@ const Home = () => {
             <p>List of all ongoing services</p>
             <div className={`${styles.innerBox} ${isInnerBoxExpanded ? styles.innerBoxExpanded : ''}`}>
               <div className={styles.innerBoxHeader} onClick={toggleInnerBox}>
-                <h3 className={styles.serviceBoxTitle}>Two Required</h3>
+                <h3 className={styles.serviceBoxTitle}>Tow Required</h3>
                 <div className={styles.assignInfo}>
                   <span>Assign to: Name</span>
                   <div className={styles.phoneInfo}>
@@ -59,12 +67,32 @@ const Home = () => {
                   className={styles.expandIconInner}
                 />
               </div>
-              {isInnerBoxExpanded && (
-                <div className={styles.innerBoxContent}>
-                  <h3 className={styles.serviceBoxTitle}>Two Required</h3>
-                </div>
-              )}
             </div>
+            {isInnerBoxExpanded && (
+  <div className={`${styles.innerBoxContent} ${isInnerBoxExpanded ? styles.scrollable : ''}`}>
+    <h3 className={styles.innerBoxHeading}>Ongoing Service</h3>
+    <div className={styles.contentWrapper}>
+      <div className={styles.leftSide}>
+        <img src="/images/logo.jpg" alt="Service" className={styles.image} />
+        <h4 className={styles.imageTitle}>Image Title</h4>
+        <p className={styles.paragraph}>Service Status</p>
+         <p className={styles.paragraph}>Pending</p>
+        <button className={styles.cancelButton}>Cancel Order</button>
+      </div>
+      <div className={styles.rightSide}>
+        <div className={styles.buttonGroup}>
+          <button className={styles.chatButton}>
+            <FontAwesomeIcon icon={faComment} className={styles.icon} /> Chat
+          </button>
+          <button className={styles.callButton} onClick={handleCancelClick}>
+            <FontAwesomeIcon icon={faPhone} className={styles.icon} /> Call
+          </button>
+        </div>
+        {/* <Map /> */}
+      </div>
+    </div>
+  </div>
+)}
           </div>
         )}
       </div>

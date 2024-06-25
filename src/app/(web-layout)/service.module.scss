@@ -169,6 +169,8 @@
   z-index: 1001; /* Ensure it appears above the map */
   transition: all 0.3s ease;
   height: 50px;
+  // overflow-y: auto; /* Enable vertical scrolling */
+
 }
 
 .serviceBoxHeader {
@@ -191,6 +193,14 @@
   position: absolute;
   top: 10px; /* Adjust as necessary */
   left: 10px; /* Adjust as necessary */
+  width: 100%;
+  // aspect-ratio: 3/1;
+  // padding: 40px 0;
+  // margin: auto;
+  // border: solid black 2px;
+  // overflow-x: hidden;
+  overflow-y: hidden;
+  // scroll-snap-type: y mandatory;
 }
 
 .serviceBoxContent p{
@@ -233,6 +243,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+
 }
 
 .expanded .serviceBoxHeader {
@@ -305,6 +317,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden; /* Hide overflow by default */
+
 }
 
 .innerBoxHeader {
@@ -318,20 +332,269 @@
   align-items: flex-start;
 }
 
-.innerBoxExpanded .serviceBoxContent {
-  display: block;
+.innerBoxExpanded {
+  overflow: hidden; /* Ensure the parent doesn't scroll */
 }
 
+// .innerBoxExpanded .serviceBoxContent {
+//   display: block;
+// }
+
+
+// .innerBoxExpanded {
+//   overflow: auto; /* Enable scrolling when expanded */
+//   max-height: 80vh; /* Set a max height to trigger scrolling if content overflows */
+// }
+
+
+// .innerBoxContent {
+//   display: flex;
+//   justify-content: center; /* Center content horizontally */
+//   align-items: center; /* Center content vertically */
+//   margin-top: 10px;
+//   background-color: #007bff;
+//   width: 100%; /* Adjust width as needed */
+//   max-height: 200px; /* Adjust max-height as needed */
+//   overflow-y: auto; /* Add scrollbars if content overflows vertically */
+//   padding: 10px; /* Add padding for better visual appearance */
+
+// }
+
+
+
+// .innerBoxContent {
+//   display: flex;
+//   // justify-content: space-between;
+//   // flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 10px;
+//   margin: -15px -2px;
+//   // overflow-y: auto; /* Add scrollbars if content overflows vertically */
+//   width : 100%;
+//   border :1px solid red;
+//   background-color: #ffffff;
+// }
+
+// .innerBoxHeading {
+//   font-size: 24px;
+//   margin-bottom: 10px;
+//   margin-top: -9px;
+//   text-align: center;
+//   background-color: #007bff;
+//   color: white;
+//   padding: 10px;
+//   border-radius: 5px;
+//   width: 70%;
+// }
+
+// .contentWrapper {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   // align-items: flex-start;
+//   border: 1px solid red;
+//   width: 100vh;
+//   // height: 100%;
+//   margin-bottom: 20px;
+//   // margin-right: 200px;
+// }
+
+// .imageWrapper {
+//   flex: 0 0 auto; /* Prevents image from stretching */
+//   margin-right: 20px;
+// }
+
+
+// .productImage {
+//   width: 100px; /* Adjust size as needed */
+//   height: auto;
+//   border-radius: 8px;
+// }
+
+// .imageName {
+//   margin-top: 5px;
+//   text-align: center;
+// }
+
+// .detailsWrapper {
+//   flex: 1 1 auto; /* Allows details to expand */
+// }
+
+// .detailHeading {
+//   font-size: 18px;
+//   margin-bottom: 10px;
+// }
+
+// .detail {
+//   margin-bottom: 5px;
+// }
+
+// .buttonWrapper {
+//   margin-bottom: 20px;
+// }
+
+// .cancelButton {
+//   padding: 10px 20px;
+//   background-color: #dc3545;
+//   color: white;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
+
+// .actionButtons {
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+//   margin-bottom: 20px;
+// }
+
+// .contentWrapperR{
+//   border: 1px solid red;
+//   width: 101%;
+//   height: 227%;
+//   margin-top: -150px; 
+// }
+
+// .chatButton, .callButton {
+//   padding: 10px 20px;
+//   background-color: #007bff;
+//   color: white;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+// }
+
+// .buttonIcon {
+//   margin-right: 5px;
+// }
+
+// .mapWrapper {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .mapIcon {
+//   font-size: 24px;
+//   margin-right: 10px;
+// }
+
+// .map {
+//   width: 300px; /* Adjust map width as needed */
+//   height: 200px; /* Adjust map height as needed */
+//   border: 1px solid #ccc;
+//   border-radius: 8px;
+// }
 
 .innerBoxContent {
+  width: 100%; /* Ensure it takes full width */
+  // max-width: 1000px;
+  // height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 10px;
+  flex-direction: column; /* Stack vertically */
+  align-items: center; /* Center horizontally */
+  margin-top: -28px; /* Add space between header and content */
+  // border: 1px solid red;
+  max-height: 70vh !important; /* Set a max height to trigger scrolling if content overflows */
+  overflow-y: auto !important; /* Enable vertical scrolling */
+}
+
+
+.scrollable {
+  overflow-y: auto !important; /* Enable vertical scrolling */
+  max-height: 200vh !important; /* Set a max height to trigger scrolling if content overflows */
+}
+
+
+.innerBoxHeading{
+  // border: 1px solid red;
+  background-color: #007bff;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 18px;
+  color: white;
+}
+
+.contentWrapper {
+  // border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: space-between;
+  max-height: 100%;
+  overflow: hidden; /* Hide overflow by default */
 }
 
 
 
+
+
+.leftSide, .rightSide {
+  // width: 48%;
+}
+
+.leftSide {
+  // border: 1px solid #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+}
+
+.rightSide {
+  // border: 1px solid #ff0000;
+  width: 450px;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  // height: auto;
+  // margin-bottom: 5px;
+}
+
+.imageTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.paragraph {
+  // margin-bottom: 10px;
+}
+
+.cancelButton {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  width: 80%;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.chatButton, .callButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: 5px;
+}
 
 
 
@@ -344,13 +607,12 @@
   }
 
   .serviceBoxHeader {
+    display: flex;
     justify-content: flex-end;
     gap: 5px;
-   
-
   }
 
-  .serviceBoxTitle {
+  .assignInfo {
     display: none;
   }
 
@@ -365,6 +627,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto; /* Enable vertical scrolling */
   }
 
   .expanded .serviceBoxHeader {
@@ -385,9 +648,47 @@
     font-size: 1.5rem;
   }
 
-  .expandIconOngoing{
+  .expandIconOngoing {
     font-size: 1.5rem;
     width: 100px;
-    
+  }
+
+  .expandIconInner {
+    margin-top: 22px;
+  }
+
+  .innerBox {
+    display: flex;
+    justify-content: center;
+    margin-left: -7px;
+  }
+
+  .innerBoxHeading {
+    margin-left: -20px;
+    margin-top: -20px;
+  }
+
+  .innerBoxContent {
+    width: 100%;
+    max-height: 70vh; /* Set maximum height for inner box content */
+    overflow-y: auto; /* Enable scrolling for inner box content */
+    padding: 10px; /* Adjust padding as needed */
+    margin-top: 10px; /* Adjust margin as needed */
+  }
+
+  .contentWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -15px;
+    margin-top: -10px;
+  }
+
+  .rightSide{
+    margin-top: 15px;
+  }
+  .buttonGroup{
+    display: flex;
+    justify-content: space-around;
   }
 }

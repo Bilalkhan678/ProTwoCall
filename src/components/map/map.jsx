@@ -972,6 +972,7 @@ const Map = () => {
   const [cvc, setCvc] = useState('');
   const [country, setCountry] = useState('');
   const [errors, setErrors] = useState({});
+  const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
   const [isMobile, setIsMobile] = useState(false);
 
@@ -1194,7 +1195,56 @@ const [licensePlate, setLicensePlate] = useState("");
 
   const handleAtmNumberChange = (e) => {
     setAtmNumber(e.target.value);
+    if (errors.atmNumber) {
+      setErrors({ ...errors, atmNumber: '' });
+    }
   };
+
+//   const handlePaymentSubmit = () => {
+//   if (validateForm()) {
+//     // Simulate payment submission logic
+//     console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
+    
+//     // Assuming submission is successful, set state accordingly
+//     setTimeout(() => {
+//       setPaymentSubmitted(true);
+//       // Automatically close sidebar after payment submission
+//       setShowSidebar(false);
+//     }, 2000); // Simulating a 2 second delay
+//   }
+// };
+
+const handlePaymentSubmit = () => {
+  // Payment submission logic, validation, etc.
+  // Example validation:
+  if (!atmNumber.trim()) {
+    setErrors({ atmNumber: 'ATM Number is required' });
+    return;
+  }
+  if (!expiryDate.trim()) {
+    setErrors({ expiryDate: 'Expiry Date is required' });
+    return;
+  }
+  if (!cvc.trim()) {
+    setErrors({ cvc: 'CVC is required' });
+    return;
+  }
+  if (!country) {
+    setErrors({ country: 'Country is required' });
+    return;
+  }
+
+  // Simulate successful payment submission
+  setTimeout(() => {
+    setPaymentSubmitted(true);
+    setShowSidebar(false);
+    setAtmNumber('');
+    setExpiryDate('');
+    setCvc('');
+    setCountry('');
+    setErrors({});
+  }, 2000); // Simulating a 2 second delay for API response
+};
 
 
   // const handlePaymentSubmit = () => {
@@ -1232,20 +1282,22 @@ const [licensePlate, setLicensePlate] = useState("");
     setIsExpanded(!isExpanded);
   };
 
+  
   const handleCvcChange = (e) => {
     setCvc(e.target.value);
+    if (errors.cvc) {
+      setErrors({ ...errors, cvc: '' });
+    }
   };
 
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
-  };
-
-  const handlePaymentSubmit = () => {
-    if (validateForm()) {
-      // Handle payment submission logic here
-      console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
+    if (errors.country) {
+      setErrors({ ...errors, country: '' });
     }
   };
+
+  
   // const handleServiceSelect = (service) => {
   //   if (selectedServices.includes(service.id)) {
   //     setSelectedServices(selectedServices.filter(item => item !== service.id));
@@ -1672,13 +1724,21 @@ const [licensePlate, setLicensePlate] = useState("");
             <p>By providing your card information, you allow Protowcall Inc. 
               to charge your card for future payments in accordance with their terms.</p>
               <div className={styles.buttonGroup}>
-              <button onClick={handlePaymentSubmit} className={styles.button}>Submit Payment</button>
+              <button onClick={handlePaymentSubmit} className={styles.button}>
+                Submit Payment
+                </button>
               <button onClick={handleCancelClick} className={styles.cancelButton}>Cancel</button>
               </div>
           
 
           </div>
         )}
+        {paymentSubmitted && (
+        <div className={styles.successMessage}>
+          <p>Payment submitted successfully!</p>
+          {/* Add additional content or navigation options */}
+        </div>
+      )}
         </div>
       )}
        
