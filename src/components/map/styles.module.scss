@@ -323,16 +323,70 @@
   width: 95%;
 }
 
+
+@media (max-width: 768px) {
+  .searchBox {
+    width: 95%;
+    padding: 15px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .InputBox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchBoxInput {
+    width: 107%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .iconContainer {
+    position: static;
+    margin-top: 10px;
+  }
+
+  .separator {
+  }
+
+  .searchBoxIcon {
+    font-size: 1.2rem;
+  }
+
+  .currentLocationButton {
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .currentLocationIcon {
+    margin-right: 5px;
+  }
+
+  .currentLocationText {
+    align-items: center;
+  }
+
+  .locationName, .currentLocation {
+    font-size: 1rem;
+  }
+}
+
+
 @media (max-width: 768px) {
   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
     top: auto;
     bottom: 0;
     width: 95% ; /* Adjust the width for smaller screens */
     left: 50%;
-    transform: translate(-24px, 234px);
+    transform: translate(-21px, 216px);
     //  translateX(-50%);
   }
-
+  
+ 
   .expanded {
     top: 10px;
     bottom: auto;
@@ -343,7 +397,8 @@
   }
 
   .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
-    justify-content: center;
+    // justify-content: center;
+    // width: 10px !important;
   }
   .expandIcon {
     display: block; /* Show the arrow icon on mobile */
