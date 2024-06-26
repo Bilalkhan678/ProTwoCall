@@ -54,6 +54,8 @@
     padding: 0;
     text-transform: capitalize;
 }
+
+serviceBoxHeader
 .insuranceName{
     // border: 1px solid red;
     display: flex;
@@ -165,22 +167,41 @@
   width: 253px;
   background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  // border-radius: 8px;
+  // border-radius-top:20px ;
+  border-top-left-radius: 9px ;
+  border-top-right-radius: 9px ;
+
   z-index: 1001; /* Ensure it appears above the map */
   transition: all 0.3s ease;
-  height: 50px;
+  height: 48px;
   // overflow-y: auto; /* Enable vertical scrolling */
 
 }
 
 .serviceBoxHeader {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 50px;
   padding: 1px;
   height: 60px;
   cursor: pointer;
   border-bottom: 1px solid #ddd;
+}
+
+
+.cancelButtonTop{
+  position: absolute;
+  top: 12px;
+  right: 50px;
+  cursor: pointer;
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  font-weight: 600;
+  padding: 10px 10px;
+  cursor: pointer;
 }
 
 .serviceBoxContent {
@@ -225,8 +246,8 @@
   color : red;
   font-size: 1.5rem;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 18px;
+  right: 31px;
   cursor: pointer;
   z-index: 100; /* Ensure it's above other content */
   color: #333; /* Example color for the close icon */
@@ -247,11 +268,18 @@
 
 }
 
+
 .expanded .serviceBoxHeader {
   border-bottom: none;
   justify-content: flex-end;
   color: red;
 }
+
+.serviceBoxTitle{
+  font-size: 19px;
+  font-size: 500;
+}
+
 
 .expanded .serviceBoxContent {
   display: flex;
@@ -307,18 +335,18 @@
 }
 
 .innerBox {
-  width: 100%; /* Full width */
-  max-width: 1000px; /* Max width for responsiveness */
-  border: 1px solid black;
+  width: 97%; /* Full width */
+  // max-width: 1000px; /* Max width for responsiveness */
+  border: none;
   background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 5px;
+  // border-radius: 8px;
   margin: 20px auto; /* Center horizontally */
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden; /* Hide overflow by default */
-
+  border-bottom: 1px solid gray;
 }
 
 .innerBoxHeader {
@@ -328,8 +356,15 @@
 }
 
 .expandIconInner{
-  display: flex;
-  align-items: flex-start;
+  position: relative;
+  top: 17px;
+  right: 21px;
+}
+
+.serviceBoxTitle{
+  position: relative;
+  top: 0px;
+  left: 15px;
 }
 
 .innerBoxExpanded {
@@ -495,10 +530,11 @@
   display: flex;
   flex-direction: column; /* Stack vertically */
   align-items: center; /* Center horizontally */
-  margin-top: -28px; /* Add space between header and content */
+  margin-top: -37px; /* Add space between header and content */
   // border: 1px solid red;
   max-height: 70vh !important; /* Set a max height to trigger scrolling if content overflows */
   overflow-y: auto !important; /* Enable vertical scrolling */
+  // border:1px solid red;
 }
 
 
@@ -511,8 +547,8 @@
 .innerBoxHeading{
   // border: 1px solid red;
   background-color: #007bff;
-  width: 100%;
-  max-width: 1000px;
+  width: 94%;
+  // max-width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -612,6 +648,11 @@
     gap: 5px;
   }
 
+  .serviceBoxTitle{
+    display: none;
+  }
+
+
   .assignInfo {
     display: none;
   }
@@ -650,7 +691,8 @@
 
   .expandIconOngoing {
     font-size: 1.5rem;
-    width: 100px;
+    width: 80px;
+
   }
 
   .expandIconInner {

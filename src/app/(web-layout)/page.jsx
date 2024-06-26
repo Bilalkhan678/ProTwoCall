@@ -2,7 +2,7 @@
 "use client"
 
 
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import dynamic from 'next/dynamic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faChevronUp, faChevronDown, faArrowsAltH , faTimes , faComment, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
@@ -18,20 +18,27 @@ const Home = () => {
   const [isInnerBoxExpanded, setIsInnerBoxExpanded] = useState(false);
 
   const toggleServiceBox = () => {
+    console.log('toggleServiceBox called'); // Debugging log
     setIsServiceBoxExpanded(!isServiceBoxExpanded);
   };
 
-
   const toggleInnerBox = () => {
+    console.log('toggleInnerBox called'); // Debugging log
     setIsInnerBoxExpanded(!isInnerBoxExpanded);
-    
   };
 
-  
   const handleCancelClick = () => {
-    setIsInnerBoxExpanded(false)
+    console.log('handleCancelClick called'); // Debugging log
+    setIsInnerBoxExpanded(false);
+    setIsServiceBoxExpanded(false);
   };
 
+  useEffect(() => {
+    console.log('State changed: ', {
+      isServiceBoxExpanded,
+      isInnerBoxExpanded
+    });
+  }, [isServiceBoxExpanded, isInnerBoxExpanded]);
 
   return (
     <div className="flex flex-col w-full h-full overflow-hidden">
@@ -46,6 +53,8 @@ const Home = () => {
           )}
           {isServiceBoxExpanded && (
             <FontAwesomeIcon icon={faTimes} className={styles.closeIcon} onClick={toggleServiceBox} />
+            // <button onClick={toggleServiceBox} className={styles.cancelButtonTop}>CLOSE</button>
+            // <button onClick={handleCancelClick} className={styles.cancelButtonTop}>CLOSE</button>
           )}
         </div>
         {isServiceBoxExpanded && (

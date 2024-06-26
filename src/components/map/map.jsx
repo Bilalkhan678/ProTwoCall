@@ -925,7 +925,7 @@
 import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow, faChevronDown, faArrowLeft, faCreditCard, faKey,faChevronUp  } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow, faChevronDown,faCrosshairs, faArrowLeft, faCreditCard, faKey,faChevronUp  } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
 import ReCAPTCHA from 'react-google-recaptcha';
 import style from '../../app/(web-layout)/service.module.scss'
@@ -1193,12 +1193,23 @@ const [licensePlate, setLicensePlate] = useState("");
     setCurrentView('payment');
   };
 
-  const handleAtmNumberChange = (e) => {
-    setAtmNumber(e.target.value);
-    if (errors.atmNumber) {
-      setErrors({ ...errors, atmNumber: '' });
-    }
+  
+
+  const handleAtmNumberChange = (event) => {
+    // Remove non-digit characters and limit to 16 characters
+    const formattedValue = event.target.value
+      .replace(/[^\d]/g, '') // Remove any non-digit characters
+      .slice(0, 16); // Limit to 16 characters
+
+    // Insert space after every 4 digits
+    let formattedNumber = formattedValue.replace(/(\d{4})(?=\d)/g, '$1 ');
+
+    setAtmNumber(formattedNumber); 
+  if (errors.atmNumber) {
+    setErrors({ ...errors, atmNumber: '' });
+  }
   };
+
 
 //   const handlePaymentSubmit = () => {
 //   if (validateForm()) {
@@ -1347,9 +1358,9 @@ const handlePaymentSubmit = () => {
   
 
   const serviceImages = [
-    { id: "ServiceA", src: "/images/tow.png", name: "Service A" },
-    { id: "ServiceB", src: "/images/tow.png", name: "Service B" },
-    { id: "ServiceC", src: "/images/tow.png", name: "Service C" },
+    { id: "ServiceA", src: "/images/tow.png", name: "Tow Required" },
+    { id: "ServiceB", src: "/images/tow.png", name: "Trailer Transport" },
+    { id: "ServiceC", src: "/images/tow.png", name: "Vehical Transport" },
     // Add more services as needed
   ];
 
@@ -1388,31 +1399,38 @@ const handlePaymentSubmit = () => {
         {isMobile && (
             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
           )}        
-        <h3>Pickup Location</h3>
+        <h3>Pick Up Location</h3>
         </div>
+        <div className={styles.searchBox}>
           <Autocomplete
             onLoad={ref => (autocompleteRef.current = ref)}
             onPlaceChanged={handlePlaceChanged}
             fields={["geometry", "name"]}
           >
-            <div className={styles.searchBox}>
+            {/* <div className={styles.searchBox}> */}
+              <div className={styles.InputBox}>
               <input
                 type="text"
-                placeholder="Search location"
+                placeholder="Search Location"
                 className={styles.searchBoxInput}
                 value={pickupInputValue}
                 onChange={handlePickupInputChange}
               />
-              <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-              <button
-                className={styles.currentLocationButton}
-                onClick={handleCurrentLocationClick}
-              >
-                <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-                Current Location
-              </button>
+               <div className={styles.iconContainer}>
+        <div className={styles.separator}></div>
+        <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+      </div>
+              </div>
+              </Autocomplete>
+              <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
+      <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
+      <div className={styles.currentLocationText}>
+        <p className={styles.locationName}>Location Name</p>
+        <p className={styles.currentLocation}>Current Location</p>
+      </div>
+    </button>
             </div>
-          </Autocomplete>
+          {/* </Autocomplete> */}
         </div>
       )}
 
@@ -1421,7 +1439,7 @@ const handlePaymentSubmit = () => {
          <div className={styles.dropoffHeader} onClick={toggleExpand}>
          {isMobile && (
              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}     
+           )}
            <FontAwesomeIcon 
               icon={faArrowLeft} 
               className={styles.backIcon} 
@@ -1429,12 +1447,13 @@ const handlePaymentSubmit = () => {
             />
             <h3>Dropoff Location</h3>
             </div>
+        <div className={styles.searchBox}>
           <Autocomplete
             onLoad={ref => (autocompleteRef.current = ref)}
             onPlaceChanged={handlePlaceChanged}
             fields={["geometry", "name"]}
           >
-            <div className={styles.searchBox}>
+              <div className={styles.InputBox}>
               <input
                 type="text"
                 placeholder="Search location"
@@ -1442,9 +1461,13 @@ const handlePaymentSubmit = () => {
                 value={dropoffInputValue}
                 onChange={handleDropoffInputChange}
               />
-              <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+               <div className={styles.iconContainer}>
+        <div className={styles.separator}></div>
+        <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
+      </div>
             </div>
           </Autocomplete>
+        </div>
         </div>
       )}
 
@@ -1472,7 +1495,7 @@ const handlePaymentSubmit = () => {
               onChange={handleVinInputChange}
               placeholder=" " // Add placeholder with a space
             />
-            <label htmlFor="vin">Vin Number</label>
+            <label htmlFor="vin">Vin Number*</label>
           </div>
           <div className={styles.floatingLabelContainer}>
             <input
@@ -1483,7 +1506,7 @@ const handlePaymentSubmit = () => {
               onChange={handleModelInputChange}
               placeholder=" "
             />
-            <label htmlFor="model">Model</label>
+            <label htmlFor="model">Model*</label>
           </div>
           <div className={styles.floatingLabelContainer}>
             <input
@@ -1494,7 +1517,7 @@ const handlePaymentSubmit = () => {
               onChange={handleMakeInputChange}
               placeholder=" "
             />
-            <label htmlFor="make">Make</label>
+            <label htmlFor="make">Make*</label>
           </div>
           <div className={styles.floatingLabelContainer}>
             <input
@@ -1505,7 +1528,7 @@ const handlePaymentSubmit = () => {
               onChange={handleYearInputChange}
               placeholder=" "
             />
-            <label htmlFor="year">Year</label>
+            <label htmlFor="year">Year*</label>
           </div>
           <div className={styles.floatingLabelContainer}>
             <input
@@ -1516,7 +1539,7 @@ const handlePaymentSubmit = () => {
               onChange={handleColorInputChange}
               placeholder=" "
             />
-            <label htmlFor="color">Car Color</label>
+            <label htmlFor="color">Car Color*</label>
           </div>
           <div className={styles.floatingLabelContainer}>
             <input
@@ -1539,6 +1562,18 @@ const handlePaymentSubmit = () => {
         </div>
       </div>
     )}
+
+{/* const handleSubmit = (event) => {
+        event.preventDefault();
+        if (!color.trim()) {
+            setError('This field is required');
+        } else {
+            // Handle form submission
+            console.log('Form submitted with color:', color);
+        }
+    }; */}
+     {/* <label htmlFor="color">Car Color</label>
+     {error && <div className={styles.error}>{error}</div>} */}
 
 {state === "services" && (
 
@@ -1600,63 +1635,78 @@ const handlePaymentSubmit = () => {
           return (
             <div key={serviceId} className={styles.servicePreviewItem}>
               <img src={service.src} alt={service.name} className={styles.servicePreviewImage} />
-              <div>{service.name}</div>
+              <div className={styles.Previewservicename}>{service.name}</div>
             </div>
           );
         })}
       </div>
     <div className={styles.locationDetails}>
-        <h4>Location:</h4>
+    <h5 style={{ fontSize: '13px', marginLeft:'17px', fontWeight:'600' }}>Location:</h5>
         <div className={styles.locationInfo}>
           <p className={styles.addressItem}>
-            <span className={styles.addressLabel}>Pickup Address:</span> {pickupAddress}
+            <span className={styles.addressLabel}> Address:</span>
+            <span className={styles.servicedropoffAddress}>{dropoffAddress}</span>
           </p>
           <p className={styles.addressItem}>
-            <span className={styles.addressLabel}>Dropoff Address:</span> {dropoffAddress}
+            {/* <span className={styles.addressLabel}>Pickup Address:</span> {pickupAddress} */}
+            <span className={styles.addressLabel}>Lat, Lng</span>
+            <span className={styles.servicedropoffAddress}>    24.9167872, 67.0171136   </span>
           </p>
         </div>
       </div>
       <div className={styles.vehicleDetails}>
-        <h4>Vehicle Details:</h4>
+      <h5 style={{ fontSize: '13px', marginLeft:'17px', fontWeight:'600' }}>Vehicle Details:</h5>
+
         <div className={styles.detailsContainer}>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>Make:</span> {make}</p>
-          </div>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>Model:</span> {model}</p>
-          </div>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>Year:</span> {year}</p>
-          </div>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>VIN:</span> {vin}</p>
-          </div>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>Color:</span> {color}</p>
-          </div>
-          <div className={styles.detailsItem}>
-            <p><span className={styles.detailsLabel}>License Plate Number:</span> {licensePlate}</p>
-          </div>
+          
+            <p className={styles.detailsItem}>
+            <span className={styles.detailsLabel}>Make:</span>
+            <span className={styles.servicedropoffAddress}>{make}</span>
+            </p>
+            <p className={styles.detailsItem}>
+              <span className={styles.detailsLabel}>Model:</span> 
+              <span className={styles.servicedropoffAddress}>{model}</span>
+            </p>
+            <p className={styles.detailsItem}>
+              <span className={styles.detailsLabel}>Year:</span> 
+              <span className={styles.servicedropoffAddress}>{year}</span>
+              </p>
+            <p className={styles.detailsItem}>
+              <span className={styles.detailsLabel}>VIN:</span> 
+              <span className={styles.servicedropoffAddress}>{vin}</span>
+            </p>
+            <p className={styles.detailsItem}>
+              <span className={styles.detailsLabel}>Color:</span> 
+              <span className={styles.servicedropoffAddress}>{color}</span>
+            </p>
+            <p className={styles.detailsItem}>
+              <span className={styles.detailsLabel}>License Plate Number:</span>
+            <span className={styles.servicedropoffAddress}>{licensePlate}</span>
+              </p>
         </div>
       </div>
       <div className={styles.priceDetails}>
-        <h4>Price Details:</h4>
+      <h5 style={{ fontSize: '15px', marginLeft:'17px', fontWeight:'600' }}>Price Details:</h5>
         <div className={styles.priceContainer}>
-          <div className={styles.priceItem}>
-            <p><span className={styles.PriceLabel}>Service charges: </span> 20:00</p>
-          </div>
-          <div className={styles.priceItem}>
-            <p><span className={styles.PriceLabel}>TAX: </span> 20:00</p>
-          </div>
-          <div className={styles.priceItem}>
-            <p><span className={styles.PriceLabel}>Additional charges: </span> 20:00</p>
-          </div>
-          <div className={styles.priceItem}>
-            <p><span className={styles.PriceLabel}>Transaction fees: </span> 20:00</p>
-          </div>
-          <div className={styles.priceItem}>
-            <p><span className={styles.PriceLabel}>Total: </span> 20:00</p>
-          </div>
+            <p className={styles.priceItem}>
+              <span className={styles.PriceLabel}>Service charges: </span>
+              <span className={styles.servicedropoffAddress}>20.00</span>
+             </p>
+            <p className={styles.priceItem}>
+              <span className={styles.PriceLabel}>TAX: </span>
+            <span className={styles.servicedropoffAddress}>20.00</span>
+            </p>
+            <p className={styles.priceItem}>
+              <span className={styles.PriceLabel}>Additional charges: </span>
+            <span className={styles.servicedropoffAddress}>20.00</span>
+            </p>
+            <p className={styles.priceItem}><span className={styles.PriceLabel}>Transaction fees: </span> 
+            <span className={styles.servicedropoffAddress}>20.00</span>
+            </p>
+            <p className={styles.priceItem}>
+              <span className={styles.PriceLabel}>Total: </span> 
+            <span className={styles.servicedropoffAddress}>20.00</span>
+            </p>
         </div>
       </div>
        {/* <ReCAPTCHA
@@ -1668,7 +1718,7 @@ const handlePaymentSubmit = () => {
 
        <div className={styles.orderContainer}>
         <div className={styles.orderDetails}>
-          <h3>Order Details</h3>
+          {/* <h3>Order Details</h3> */}
           {/* Display order details here */}
           <button onClick={handlePayOrderClick} className={styles.submitButton}>
             Pay Order
@@ -1682,33 +1732,35 @@ const handlePaymentSubmit = () => {
 
 {showSidebar && (
       <div className={`${styles.sidebar} ${showSidebar ? styles.sidebarOpen : ''}`}>
-          <div className={styles.backButton} onClick={handleBackClick}>
+          {/* <div className={styles.backButton} onClick={handleBackClick}>
             <FontAwesomeIcon icon={faArrowLeft} />
-          </div>
+          </div> */}
           {currentView === 'payment' && (
             <div className={styles.paymentContainer}>
-            <h3>Payment Details</h3>
+            {/* <h3>Payment Details</h3> */}
             <div className={styles.inputGroup}>
                 <label htmlFor="atmNumber">ATM Number</label>
                 <div className={styles.inputWithIcon}>
-                  <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} placeholder="1234 1234 1234 1234" />
+                  <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} placeholder="1234 1234 1234 1234" className={styles.expiryDateInput} />
                   <FontAwesomeIcon icon={faCreditCard} className={styles.icon} />
                   {errors.atmNumber && <span className={styles.errorMessage}>{errors.atmNumber}</span>}
                 </div>
               </div>
-            <div className={styles.inputGroup}>
+              <div className={styles.yeardate}>
+            <div className={styles.inputGroups}>
               <label htmlFor="expiryDate">Expiry Date</label>
               <input type="text" id="expiryDate" value={expiryDate} onChange={handleExpiryDateChange} placeholder="MM/YY" />
               {errors.expiryDate && <span className={styles.errorMessage}>{errors.expiryDate}</span>}
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.inputGroups}>
                 <label htmlFor="cvc">CVC</label>
                 <div className={styles.inputWithIcon}>
-                  <input type="text" id="cvc" value={cvc} onChange={handleCvcChange} />
+                  <input type="text" id="cvc" value={cvc} onChange={handleCvcChange} placeholder="CVC"/>
                   <FontAwesomeIcon icon={faKey} className={styles.icon} />
                 
                 </div>
                 {errors.cvc && <span className={styles.errorMessage}>{errors.cvc}</span>}
+              </div>
               </div>
             <div className={styles.inputGroup}>
               <label htmlFor="country">Country</label>
@@ -1724,10 +1776,10 @@ const handlePaymentSubmit = () => {
             <p>By providing your card information, you allow Protowcall Inc. 
               to charge your card for future payments in accordance with their terms.</p>
               <div className={styles.buttonGroup}>
-              <button onClick={handlePaymentSubmit} className={styles.button}>
-                Submit Payment
+              <button onClick={handleCancelClick} className={styles.cancelButton}>CANCEL</button>
+              <button onClick={handlePaymentSubmit} className={styles.paybutton}>
+                PAY
                 </button>
-              <button onClick={handleCancelClick} className={styles.cancelButton}>Cancel</button>
               </div>
           
 

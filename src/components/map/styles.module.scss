@@ -327,7 +327,7 @@
   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
     top: auto;
     bottom: 0;
-    width: 95%; /* Adjust the width for smaller screens */
+    width: 95% ; /* Adjust the width for smaller screens */
     left: 50%;
     transform: translate(-67px, 295px);
     //  translateX(-50%);
@@ -402,18 +402,26 @@
   // }
 
 
-.searchBoxContainer,.dropoffContainer, .vehicleDetailsContainer {
+.searchBoxContainer, .dropoffContainer, .vehicleDetailsContainer {
   position: absolute;
-  top: 100px;
-  left: 80px;
+  // top: 100px;
+  // left: 80px;
+  left: 5.3%;
+  bottom: 10%;
   z-index: 1000;
   background-color: white;
   padding: 10px;
   border-radius: 8px;
-  width: 340px;
-  height: 400px;
+  width: 400px;
+  height: 70vh;
   transition: transform 0.3s ease, opacity 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    max-height: 70vh; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    // overflow-y: auto; /* Add this line to make the container scrollable */
+  
 }
 
 .searchBoxHeader, .dropoffHeader,.vehicleDetailsHeader {
@@ -422,14 +430,15 @@
   align-items: center;
   cursor: pointer;
   padding: 10px;
-  background-color: #2081c3;
+  // background-color: #2081c3;
+  background-color: rgba(32, 129, 195, 1) !important;
   border-bottom: 1px solid #ddd;
     border-top-left-radius: 8px;
   border-top-right-radius: 8px;
     padding: 5px 0px;
   margin-top: -10px;
   margin-left: -10px;
-  width: 340px;
+  width: 400px;
   color: white;
 }
 
@@ -446,80 +455,216 @@
 //   border-top-left-radius: 8px;
 //   border-top-right-radius: 8px;
 // }
-
-.searchBoxIcon {
-  position: absolute;
-  right: 33px;
-  top: 104px;
-  color: #aaa;
+.InputBox {
+  /* Your existing styles */
+  position: relative;
+  display: flex;
+  align-items: center;
+  // width: 100%;
+  // border: 1px solid red;
 }
+
+
 .searchBoxInput {
-  width: 100%;
+  flex-grow: 1;
+  // width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
+  outline: none;
+  font-size: 16.5px;
   border-radius: 3px;
+  box-sizing: border-box;
+  font-weight: 200;
   padding-right: 30px; // Make space for the icon
 }
-.currentLocationIcon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+
+.searchBoxInput:focus {
+  border-color: rgba(32, 129, 195, 1); /* Blue border on focus */
 }
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+  // background-color: #999;
+  color: #8a7f7f;
+}
+
+.separator {
+  height: 20px; /* Adjust height as needed */
+  width: 1px;
+  background-color: gray; /* Adjust color as needed */
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+
+
+
+
+
+
+// .currentLocationIcon {
+//   width: 20px;
+//   height: 20px;
+//   margin-right: 8px;
+//   display: flex;
+//   align-items: flex-start;
+// }
+// .currentLocationButton {
+//   border: 1px solid red;
+//   margin-top: 0.75em !important;
+//   margin-bottom: 0.75rem r!important;
+//   margin-left: 0.5rem !important ;
+//   margin-right:0.5rem !important ;
+//   // background: #4285f4;
+//   // background-color: #ffffff;
+//   color: white;
+//   border: none;
+//   padding: 16px 95px;
+//   border-radius: 0.375rem !important;
+//   cursor: pointer;
+//   color: black;
+//   font-size: 16px;
+//   font-weight: 600;
+//   display: flex;
+//   // flex-direction: column;
+//   align-items: center;
+// }
+
+// .currentLocationText {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
+
+// .currentLocationButton p {
+//   margin: 0;
+//   font-weight: 300;
+//   letter-spacing: 1px;
+//   gap:100px
+  
+// }
+
+// .currentLocationText span{
+//   color : black;
+//   font-weight: 600;
+//   margin-bottom: 10px;
+// }
+
 .currentLocationButton {
-  margin-top: 10px;
-  background: #4285f4;
-  color: white;
+  // border: 1px solid red;
+  display: flex;
+  align-items: center;
+  width: 96%;
+  height: 70px;
+  // margin: 2px 4px;
+    margin-top: 1.5em !important;
+  margin-bottom: 0.75rem !important;
+  margin-left: 0.5rem !important ;
+  margin-right:0.5rem !important ;
+  // padding: 10px; /* Adjust padding as needed */
   border: none;
-  padding: 16px 95px;
-  border-radius: 3px;
+  background-color: #fff; /* Adjust background color as needed */
   cursor: pointer;
 }
-
-.dropoffContainer,
-.vehicleDetailsContainer {
-  position: absolute;
-  top: 100px;
-  left: 80px;
-  z-index: 1000;
-  background-color: white;
-  padding: 10px;
+.currentLocationButton:hover{
+  // background-color: rgb(156, 156, 156);
+  background-color: rgb(214, 214, 214);
   border-radius: 8px;
-  width: 340px;
-  height: 400px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-.dropoffHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1px 0px;
-  margin-top: -10px;
-  margin-left: -10px;
-  width: 340px;
-  color: white;
-  background-color: #2081c2;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-.vehicleDetailsHeader{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1px 0px;
-  margin-top: -20px;
-  margin-left: -20px;
-  width: 340px;
-  color: white;
-  background-color: #2081c2;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
 
+.currentLocationIcon {
+  // border: 1px solid red;
+  font-size: 25px;
+  margin-right: -1px; /* Adjust spacing as needed */
 }
+
+.currentLocationText {
+  height: 80px;
+  width: 400px;
+  display: flex;
+  // justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start;
+  // border: 1px solid red;
+  margin-left: 13px;
+  // gap: -10px;
+}
+
+.locationName {
+  font-size: 1.25em;
+  color: #000; /* Adjust color as needed */
+  font-weight: 600; /* Optional: adjust font weight */
+  margin: 0; /* Remove default margin */
+  line-height: 2.9; /* Adjust line height if necessary */
+  margin-bottom: -5px;
+}
+
+.currentLocation {
+  // font-size: 1.9em;
+  // color: red;
+  color: #777; /* Adjust color as needed */
+  font-size: 16px; /* Optional: adjust font size */
+  margin: 0; /* Remove default margin */
+  line-height: 1.2; /* Adjust line height if necessary */
+}
+
+
+
+.currentbutton{
+  // display: flex;
+  // border: 1px solid red;
+}
+
+// .dropoffContainer,
+// .vehicleDetailsContainer {
+//   position: absolute;
+//   top: 100px;
+//   left: 80px;
+//   z-index: 1000;
+//   background-color: white;
+//   padding: 10px;
+//   border-radius: 8px;
+//   width: 340px;
+//   height: 400px;
+//   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+// }
+// .dropoffHeader {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 1px 0px;
+//   margin-top: -10px;
+//   margin-left: -10px;
+//   width: 340px;
+//   color: white;
+//   background-color: #2081c2;
+//   border-top-left-radius: 8px;
+//   border-top-right-radius: 8px;
+// }
+// .vehicleDetailsHeader{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 1px 0px;
+//   margin-top: -20px;
+//   margin-left: -20px;
+//   width: 340px;
+//   color: white;
+//   background-color: #2081c2;
+//   border-top-left-radius: 8px;
+//   border-top-right-radius: 8px;
+
+// }
 .backIcon {
   cursor: pointer;
   position: absolute;
-  left: 10px;
+  left: 15px;
   top: 27px;
+  font-size: 22px;
+  font-weight: 300;
 }
 .searchBox {
   margin-top: 20px;
@@ -590,24 +735,24 @@
 //   text-decoration: underline;
 // }
 
-.vehicleDetailsContainer {
-  position: absolute;
-  top: 100px;
-  left: 80px;
-  background: white;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 10;
-  max-height: 70vh; /* Adjust the height as needed */
-  display: flex;
-  flex-direction: column;
-  // overflow-y: auto; /* Add this line to make the container scrollable */
-
-}
+// .vehicleDetailsContainer {
+//   position: absolute;
+//   top: 100px;
+//   left: 80px;
+//   background: white;
+//   padding: 20px;
+//   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+//   border-radius: 8px;
+//   z-index: 10;
+//   max-height: 70vh; /* Adjust the height as needed */
+//   display: flex;
+//   flex-direction: column;
+//   overflow-y: auto; /* Add this line to make the container scrollable */
+// }
 
 
 .vinInputContainer {
+  width: 102%;
   flex: 1;
   overflow-y: auto;
   display: flex;
@@ -622,15 +767,69 @@
   border-radius: 4px;
 }
 
+.vinInput:focus {
+  border-color: #0070f3; /* Change border color to blue on focus */
+}
+
+.floatingLabelContainer {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.vinInput {
+  width: 96%;
+  padding: 9px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  background: white;
+}
+
+.floatingLabelContainer label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  background: white;
+  padding: 3p 2px;
+  font-size: 14px;
+  color: rgb(124, 120, 120);
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+}
+
+
+.vinInput:focus + label{
+  color: #0070f3;
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+}
+.vinInput:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  color: rgb(124, 120, 120);
+}
+
+
+
+
+
+
 .checkDetailButton {
-  margin: 8px 20px;
+  margin: 15px 70px;
   padding: 10px 63px;
   background-color: #007bff;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: 4px;
+  font-weight: 500;
   cursor: pointer;
-
 }
 
 .checkDetailButton:disabled {
@@ -661,8 +860,11 @@
   display: flex;
   align-items: center;
   // margin: 10px;
+  margin-top: 12px;
   padding: 6px;
-  width: 274px;
+  width: 56vh;
+  height: 70px;
+  overflow-y: hidden;
   transition: background-color 0.3s ease;
   cursor: pointer;
   // border: 1px solid red;
@@ -697,7 +899,8 @@
   margin-left: 10px;
   font-size: 14px;
   // border: 1px solid red;
-  width: 100px;
+  width: 160px;
+  font-weight: 500;
 }
 
 .servicesContent {
@@ -721,8 +924,8 @@
 
 
 .servicePreviewImage {
-  width: 50px;
-  height: 50px;
+  width: 67px;
+  height: 67px;
   margin-right: 10px;
   vertical-align: middle;
   text-decoration: none;
@@ -730,8 +933,23 @@
   // border: 1px solid red;
 }
 
+.locationInfo {
+  // border: 1px solid red;
+  // width: 358px;
+  // height: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+}
 
+.locationDetails{
+  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  width: 55vh;
+}
 
 .serviceList {
   list-style-type: none; /* Remove default list styling */
@@ -740,8 +958,16 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  // border-bottom: 1px solid red;
+  // line-height: 5px;
   // border: 1px solid red;
   margin-top: 20px;
+}
+
+.Previewservicename{
+  // color: red;
+  font-weight: 600;
+  margin-top: 15px;
 }
 
 .servicePreviewItem {
@@ -749,40 +975,6 @@
 }
 
 
-
-.floatingLabelContainer {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.floatingLabelContainer input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-}
-
-.floatingLabelContainer label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #999;
-  transition: all 0.2s;
-  pointer-events: none;
-}
-
-.floatingLabelContainer input:focus + label,
-.floatingLabelContainer input:not(:placeholder-shown) + label {
-  top: 0;
-  left: 10px;
-  font-size: 12px;
-  color: #333;
-  transform: translateY(-100%);
-}
 
 // .locationDetails {
 //   margin-top: 40px;
@@ -828,56 +1020,93 @@
 // }
 
 
-.vehicleInfo,.detailsContainer,.priceContainer {
-  text-align: left; /* Aligns text and headings to the left */
-  display: flex; /* Makes .vehicleInfo a flex container */
-  flex-direction: column; /* Stacks children vertically */
-  align-items: flex-start; /* Aligns children to the start (left) */
-  gap: 12px; /* Adds gap between flex items */
-
+.vehicleInfo,.priceContainer {
+  // text-align: left; /* Aligns text and headings to the left */
+  // display: flex; /* Makes .vehicleInfo a flex container */
+  // flex-direction: column; /* Stacks children vertically */
+  // align-items: flex-start; /* Aligns children to the start (left) */
+  // gap: 0px; /* Adds gap between flex items */
+  line-height: 20px;
+  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+  // border-top: 1px solid #ccc;
+  margin-top: 20px;
+  width: 57vh;
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  
 }
-
+servicePreviewImage
 .addressLabel {
   // display: flex;
   // justify-content: center;
+  // align-items: center;
   // justify-content: space-between;
-  margin-right: 20px; /* Adjust the value as needed */
-  font-weight: bold; /* Optional: Make the label bold */
+  // margin-right: 20px; /* Adjust the value as needed */
+  font-weight: 500; /* Optional: Make the label bold */
   font-size: 12.5px;
-}
-.detailsLabel {
-  // display: flex;
-  // justify-content: center;
-  // justify-content: space-between;
-  margin-right: 90px; /* Adjust the value as needed */
-  font-weight: bold; /* Optional: Make the label bold */
-  font-size: 14.5px;
-}
-.priceLabel {
-  // display: flex;
-  // justify-content: center;
-  // justify-content: space-between;
-  margin-right: 30px; /* Adjust the value as needed */
-  font-weight: bold; /* Optional: Make the label bold */
-  font-size: 13.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid red;
 }
 
-.addressItem, .detailsItem  {
+
+.detailsLabel,.PriceLabel {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid red;
+  // justify-content: space-between;
+  margin-right: 90px; /* Adjust the value as needed */
+  font-weight: 500; /* Optional: Make the label bold */
+  font-size: 14.5px;
+  min-width: 120px; /* Adjust label width as needed */
+  display: inline-block;
+}
+
+// .priceLabel {
+//   border: 1px solid red;
+//   // display: flex;
+//   // justify-content: center;
+//   // justify-content: space-between;
+//   margin-right: 30px; /* Adjust the value as needed */
+//   font-weight: bold; /* Optional: Make the label bold */
+//   font-size: 13.5px;
+// }
+
+.servicedropoffAddress{
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addressItem, .detailsItem , .priceItem {
+  // border: 1px solid red;
   // margin-bottom: 8px; /* Adjust margin as needed */
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   // padding-bottom: 8px; /* Padding at the bottom of the address item */
-  width:250px;
-}
-.priceItem p {
+  width:340px;
+  height: 35px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  justify-content: space-evenly;
+  gap: 2px;
 }
-.priceItem{
-  margin-bottom: 8px; /* Adjust margin as needed */
-  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
-  // padding-bottom: 8px; /* Padding at the bottom of the address item */
-  width:250px;
-}
+// .priceItem p {
+//   display: flex;
+//   justify-content: space-between;
+// }
+// .priceItem{
+//   margin-bottom: 8px; /* Adjust margin as needed */
+//   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+//   // padding-bottom: 8px; /* Padding at the bottom of the address item */
+//   width:250px;
+// }
 
 
 
@@ -1095,6 +1324,22 @@
   transform: translateX(0); /* End position */
 }
 
+.expiryDateInput{
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.yeardate{
+  // border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  // width: 300px;
+
+}
+
 
 
 // .paymentContainer {
@@ -1124,9 +1369,46 @@
   cursor: pointer;
 }
 
+.inputWithIcon .icon {
+  position: absolute;
+  top: 23%;
+  right: 31px;
+  transform: translateY(-50%);
+}
+
+.inputGroups input {
+  width: 92%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inputGroups input.error {
+  border-color: red;
+}
+.errorMessage {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 .paymentContainer p{
   font-size: 9px;
+  color: #7c7575;
 }
+buttonGroup
+.inputGroup input:focus {
+  border-color: blue; /* Change to the color you want for the focus state */
+  outline: none;
+}
+.inputGroups input:focus {
+  border-color: blue; /* Change to the color you want for the focus state */
+  outline: none;
+}
+
+
 
 
 .inputGroup {
@@ -1173,16 +1455,32 @@
 
 .buttonGroup {
   display: flex;
+  justify-content: center;
+  // border: 1px solid red;
   gap:15px;
+
 }
 
 .cancelButton {
   cursor: pointer;
-  background-color: red;
-  color: white;
-  border: 2px solid red;
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  font-weight: 600;
+  padding: 10px 10px;
 }
 
 .backButton {
   // Your existing styles
 }
+
+
+.paybutton{
+  cursor: pointer;
+  background-color: rgb(32, 129, 195);
+  border: rgb(32, 129, 195);
+  padding: 10px 14.5px;
+  color: white;
+  font-weight: 600;
+}
+
