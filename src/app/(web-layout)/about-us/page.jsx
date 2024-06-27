@@ -23,14 +23,14 @@ const AboutUs = () => {
       <div className={styles.containerServiceHistory}>
         <div className={styles.heading}> 
           Service History
-          <button
+        </div>
+        <button
             className={styles.exportButton}
             onClick={handleExportClick}
             disabled={isExporting}
           >
             {isExporting ? 'Exporting...' : 'EXPORT CSV'}
           </button>
-        </div>
         
         {/* Render ServiceHistory component */}
         <ServiceHistory />
