@@ -1,73 +1,18 @@
-
-// "use client"
-
-// import { useState } from 'react';
-// import styles from './profile.module.scss';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-
-// const Profile = () => {
-//     const [activeButton, setActiveButton] = useState('profileInfo');
-
-//     return (
-//         <div className={styles.container}>
-//             {/* <div className={styles.heading}>
-//                 <h1>Profile</h1>
-//             </div> */}
-//             <div className={styles.subcontainer}>
-//                 <div className={styles.left_side}>
-//                     <div className={styles.button_left}>
-//                         <button
-//                             className={`${styles.button} ${activeButton === 'profileInfo' ? styles.active : ''}`}
-//                             onClick={() => setActiveButton('profileInfo')}
-//                         >
-//                             <FontAwesomeIcon icon={faUser} className={styles.icon} />
-//                             Profile Info
-//                         </button>
-//                         <button
-//                             className={`${styles.button} ${activeButton === 'changePassword' ? styles.active : ''}`}
-//                             onClick={() => setActiveButton('changePassword')}
-//                         >
-//                             <FontAwesomeIcon icon={faLock} className={styles.icon} />
-//                             Change Password
-//                         </button>
-//                     </div>
-//                 </div>
-//                 <div className={styles.right_side}>
-//                     <div className={styles.profile}>
-//                         <h3>User Detail</h3>
-//                         <div className={styles.image}>
-//                             <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Profile" />
-//                         </div>
-//                         <div className={styles.details}>
-//                             <div className={styles.inputContainer}>
-//                                 <input type="text" id="firstName" className={styles.input} required />
-//                                 <label htmlFor="firstName" className={styles.label}>First Name</label>
-//                             </div>
-//                             <div className={styles.inputContainer}>
-//                                 <input type="text" id="lastName" className={styles.input} required />
-//                                 <label htmlFor="lastName" className={styles.label}>Last Name</label>
-//                             </div>
-//                         </div>
-//                         <button className={styles.submitButton}>Update Profile</button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Profile;
-
-
 "use client";
 
 import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import styles from './profile.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
     const [activePage, setActivePage] = useState('profileInfo');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
 
     const renderPage = () => {
         switch (activePage) {
@@ -80,11 +25,11 @@ const Profile = () => {
                         </div>
                         <div className={styles.details}>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="firstName" placeholder="First Name " className={styles.input} required />
+                                <input type="text" id="firstName" placeholder="First Name" className={styles.input} required />
                                 <label htmlFor="firstName" className={styles.label}>First Name</label>
                             </div>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="lastName" placeholder="Last Name " className={styles.input} required />
+                                <input type="text" id="lastName" placeholder="Last Name" className={styles.input} required />
                                 <label htmlFor="lastName" className={styles.label}>Last Name</label>
                             </div>
                         </div>
@@ -94,18 +39,45 @@ const Profile = () => {
             case 'changePassword':
                 return (
                     <div className={styles.changePassword}>
-                        <h3>Change Password</h3>
-                        <div className={styles.inputContainer}>
-                            <input type="password" id="currentPassword"  placeholder="CurrentPassword" className={styles.input} required />
-                            <label htmlFor="currentPassword" className={styles.label}>Current Password</label>
+                        {/* <h3>Change Password</h3> */}
+                        <div className={styles.inputContainerP}>
+                            <input
+                                type={passwordVisible ? "text" : "password"}
+                                id="currentPassword"
+                                placeholder="Current Password"
+                                className={styles.inputP}
+                                required
+                            />
+                            <label htmlFor="currentPassword" className={styles.labelP}>Current Password*</label>
+                            <span className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                                <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
+                            </span>
                         </div>
-                        <div className={styles.inputContainer}>
-                            <input type="password" id="newPassword" placeholder="NewPassword" className={styles.input} required />
-                            <label htmlFor="newPassword" className={styles.label}>New Password</label>
+                        <div className={styles.inputContainerP}>
+                            <input
+                                type={passwordVisible ? "text" : "password"}
+                                id="newPassword"
+                                placeholder="New Password"
+                                className={styles.inputP}
+                                required
+                            />
+                            <label htmlFor="newPassword" className={styles.labelP}>New Password*</label>
+                            <span className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                                <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
+                            </span>
                         </div>
-                        <div className={styles.inputContainer}>
-                            <input type="password" id="confirmPassword" placeholder="ConfirmPassword" className={styles.input} required />
-                            <label htmlFor="confirmPassword" className={styles.label}>Confirm Password</label>
+                        <div className={styles.inputContainerP}>
+                            <input
+                                type={passwordVisible ? "text" : "password"}
+                                id="confirmPassword"
+                                placeholder="Confirm Password"
+                                className={styles.inputP}
+                                required
+                            />
+                            <label htmlFor="confirmPassword" className={styles.labelP}>Confirm Password*</label>
+                            <span className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                                <FontAwesomeIcon icon={passwordVisible ? faEyeSlash : faEye} />
+                            </span>
                         </div>
                         <button className={styles.submitButton}>Update Password</button>
                     </div>
@@ -118,7 +90,7 @@ const Profile = () => {
     return (
         <div className={styles.container}>
             <div className={styles.subcontainer}>
-            <h3 className={styles.Heading}> Profile</h3>    
+                <h3 className={styles.Heading}>Profile</h3>
                 <div className={styles.left_side}>
                     <div className={styles.button_left}>
                         <button

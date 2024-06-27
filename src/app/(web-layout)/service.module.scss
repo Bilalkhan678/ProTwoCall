@@ -1,9 +1,108 @@
+
+
+
+.containerServiceHistory{
+  background-color: #ffffff;
+  // border: 1px solid red;
+  height: 100vh !important;
+  width: 95% !important;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+  // justify-content: center;
+  
+
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between icon and title */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.backIcon {
+  background-color: rgb(32 129 195/ 1);
+  border-radius: 50%;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  margin-right: 163px; /* Adjust spacing between icon and title */
+}
+
+.detailsTitle {
+  margin: 0; /* Reset default margin */
+  font-size: 24px; /* Adjust font size as needed */
+  text-align: center; /* Center align text */
+  flex-grow: 1; /* Allow title to take up remaining space */
+}
+
+.headerButtons {
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 400px;
+  gap: 10px; /* Adjust space between buttons */
+}
+
+.headerButton {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: #0056b3;
+  // background-color: transparent;
+  // background-color: #007bff; /* Example background color */
+  // color: #fff; /* Example text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.headerButton:hover {
+  background-color: #0056b3; /* Example hover background color */
+  color: white;
+}
+
+.buttonIcon {
+  margin-right: 8px; /* Adjust icon spacing */
+}
+
 .heading{
     // border: 1px solid red;
     display: flex;
+    // justify-content: ;
     justify-content: center;
-    color: rgba(30, 98, 207, 0.5);
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+    color: rgb(32 129 195/ 1) ;
 }
+
+.exportButton {
+  padding: 8px 16px;
+  background-color: #E5E4E2;
+  color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  position: relative;
+  top: 0;
+  left: 370px;
+}
+
+.exportButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 
 .cardContainer {
     // background-color: #f9f9f9;
@@ -55,7 +154,7 @@
     text-transform: capitalize;
 }
 
-serviceBoxHeader
+
 .insuranceName{
     // border: 1px solid red;
     display: flex;
@@ -92,17 +191,22 @@ serviceBoxHeader
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    margin: 80px 22px;
     background-color: #ffffff;
+
+    // border: 1px solid red;
   }
   
   .detailsTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 16px;
     text-align: center;
+    color:rgb(32 129 195/ 1) ;
+    font-weight: 600;
   }
   
   .detailSection {
+    // border: 1px solid blue;
     margin-bottom: 16px;
     padding: 10px;
     // text-align: center;
@@ -117,7 +221,7 @@ serviceBoxHeader
     font-size: 1.5rem;
     margin-bottom: 8px;
   }
-  
+
   .detailSection p {
     font-size: 1rem;
     margin-bottom: 4px;
@@ -138,21 +242,76 @@ serviceBoxHeader
 //      /* Adds space between each detail item */
 //     /* Additional styling for each detail item */
 //   }
-.detailItem span {
-    font-weight: 600;
-    text-align: center; /* Ensure text is centered horizontally */
-    display: block; /* Ensures each span takes full width and centers text */
-    margin: 0 auto; /* Centers the span within its container */
-  }
-.detailItem .textcenter{
-    color:  red;
-}
-// .detailItem p {
-//     margin: 5px 0; /* Adjusts margin for each <p> tag inside .detailItem */
+
+
+// .detailItem {
+//   border: 1px solid red;
+//   // display: flex;
+//   // flex-direction: column; 
+// }
+// .detailItem strong{
+//   border: 1px solid red;
+// }
+
+// .detailItem span {
+//     border: 1px solid red;
+//     // width: auto;
+//     font-weight: 600;
+//     text-align: center; /* Ensure text is centered horizontally */
+//     display: block; /* Ensures each span takes full width and centers text */
+//     margin: 0 auto; /* Centers the span within its container */
 //   }
 
+// .detailItem .textcenter{
+//     color:  red;
+// }
+// // .detailItem p {
+// //     margin: 5px 0; /* Adjusts margin for each <p> tag inside .detailItem */
+// //   }
+
+// // .detailItem p {
+// //   display: flex;
+// //   justify-content: space-between; /* Distribute space between label and value */
+// //   align-items: center;
+// //   margin: 0;
+// // }
+
+// // .primary {
+
+// // }
 
 
+.detaillabel {
+  margin-left: 10px;
+  font-weight: 500; /* Optional: Make the label bold */
+  font-size: 14.5px;
+  min-width: 120px; /* Adjust label width as needed */
+  display: inline-block;
+  margin-right: auto; /* Push the label to the left */
+  text-align: left; /* Align text to the left */
+}
+
+.primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* Allow the primary span to take up the remaining space */
+
+}
+
+.detailItem {
+  // border: 1px solid red;
+  border-bottom: 1px solid #ccc; /* Solid border at the bottom */
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  gap: 2px;
+}
+
+.detailItem:hover{
+  background-color: #F5F5F5;  
+}
 
 
 

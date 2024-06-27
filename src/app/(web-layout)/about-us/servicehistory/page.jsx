@@ -11,7 +11,7 @@ const ServiceCard = ({ service }) => {
     <a className={styles.card} >
       <h2 className={styles.cardTitle}></h2>
       <p className={styles.serviceName}><strong></strong> {service.serviceName}</p>
-      <p className={styles.insuranceName}><strong></strong> {service.insuranceName}</p>
+      {/* <p className={styles.insuranceName}><strong></strong> {service.insuranceName}</p> */}
       <p className={styles.status} style={{ backgroundColor: statusColor }}><strong></strong> {service.status}</p>
       {/* <Link href={`/servicesH/${service.id}`} legacyBehavior>
         <a className={styles.cardLink}>More Details</a>
