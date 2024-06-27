@@ -47,7 +47,7 @@ const Home = () => {
         <div className={styles.serviceBoxHeader} onClick={toggleServiceBox}>
           {!isServiceBoxExpanded && (
             <>
-              <h3 className={styles.serviceBoxTitle}>Ongoing Service</h3>
+              <h3 className={styles.MapserviceBoxTitle}>Ongoing Service</h3>
               <FontAwesomeIcon icon={faChevronUp} className={styles.expandIconOngoing} />
             </>
           )}
@@ -82,8 +82,8 @@ const Home = () => {
     <h3 className={styles.innerBoxHeading}>Ongoing Service</h3>
     <div className={styles.contentWrapper}>
       <div className={styles.leftSide}>
-        <img src="/images/logo.jpg" alt="Service" className={styles.image} />
-        <h4 className={styles.imageTitle}>Image Title</h4>
+        <img src="/images/tow.png" alt="Service" className={styles.image} />
+        <h4 className={styles.imageTitle}>TOW REQUIRED</h4>
         <p className={styles.paragraph}>Service Status</p>
          <p className={styles.paragraph}>Pending</p>
         <button className={styles.cancelButton}>Cancel Order</button>

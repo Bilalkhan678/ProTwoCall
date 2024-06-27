@@ -287,20 +287,22 @@
 
 .expandIcon {
   color: white; /* Icon color */
-  font-size: 1.2rem; /* Set icon size to default */
   transition: transform 0.3s ease; /* Smooth transition for rotation */
-  height: 2em;
-  width: 2em;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
-  border: 2px solid #ffffff; /* Increase border size */
+  border: 1px solid #ffffff; /* Increase border size */
   position: relative;
   bottom: 35px;
   left: 85px;
-  background-color: #007bff;
+  background-color: rgb(32, 129, 195);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2rem !important; /* Set icon size to default */
+  
 }
+
 
 
 // .expandIcon:hover {
