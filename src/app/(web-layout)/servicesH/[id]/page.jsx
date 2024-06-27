@@ -20,7 +20,6 @@ const ServiceDetail = ({ params }) => {
           <ArrowBack className={styles.backIcon} /> {/* Replace with your actual icon component */}
           <div className={styles.detailsHeader}>
             <h1 className={styles.detailsTitle}>Service History</h1>
-            
             </div>
             <div className={styles.headerButtons}>
                     <button className={styles.headerButton}>

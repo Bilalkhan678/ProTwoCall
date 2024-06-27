@@ -975,6 +975,7 @@ const Map = () => {
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
   const [isMobile, setIsMobile] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
 
 
     const [vin, setVin] = useState("");
@@ -1086,6 +1087,11 @@ const [licensePlate, setLicensePlate] = useState("");
     } else {
       console.error("Autocomplete ref is not set.");
     }
+  };
+
+  const handleDropdownToggle = () => {
+    // Toggle dropdown visibility on icon click
+    setShowDropdown(!showDropdown);
   };
 
   const handlePickupInputChange = (e) => {
@@ -1394,43 +1400,51 @@ const handlePaymentSubmit = () => {
       </GoogleMap>
 
       {state === "pickup" && (
-       <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
-        <div className={styles.searchBoxHeader} onClick={toggleExpand}>
-        {isMobile && (
-            <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-          )}        
-        <h3>Pick Up Location</h3>
-        </div>
-        <div className={styles.searchBox}>
-          <Autocomplete
-            onLoad={ref => (autocompleteRef.current = ref)}
-            onPlaceChanged={handlePlaceChanged}
-            fields={["geometry", "name"]}
-          >
-            {/* <div className={styles.searchBox}> */}
+        <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
+          <div className={styles.searchBoxHeader} onClick={toggleExpand}>
+            {isMobile && (
+              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
+            )}
+            <h3>Pick Up Location</h3>
+          </div>
+          <div className={styles.searchBox}>
+            <Autocomplete
+              onLoad={(ref) => (autocompleteRef.current = ref)}
+              onPlaceChanged={handlePlaceChanged}
+              fields={['geometry', 'name']}
+            >
               <div className={styles.InputBox}>
-              <input
-                type="text"
-                placeholder="Search Location"
-                className={styles.searchBoxInput}
-                value={pickupInputValue}
-                onChange={handlePickupInputChange}
-              />
-               <div className={styles.iconContainer}>
-        <div className={styles.separator}></div>
-        <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-      </div>
+                <input
+                  type="text"
+                  placeholder="Search Location"
+                  className={styles.searchBoxInput}
+                  value={pickupInputValue}
+                  onChange={handlePickupInputChange}
+                  onFocus={handleDropdownToggle} // Show dropdown on input focus
+                />
+                <div className={styles.iconContainer}>
+                  <div className={styles.separator}></div>
+                  <FontAwesomeIcon
+                    icon={showDropdown ? faChevronUp : faChevronDown}
+                    className={styles.searchBoxIcon}
+                    onClick={handleDropdownToggle} // Toggle dropdown on icon click
+                  />
+                </div>
               </div>
-              </Autocomplete>
-              <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
-      <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
-      <div className={styles.currentLocationText}>
-        <p className={styles.locationName}>Location Name</p>
-        <p className={styles.currentLocation}>Current Location</p>
-      </div>
-    </button>
-            </div>
-          {/* </Autocomplete> */}
+            </Autocomplete>
+            {showDropdown && (
+              <div className={styles.dropdown}>
+                <p>No options available</p> {/* Replace with actual dropdown options */}
+              </div>
+            )}
+            <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
+              <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
+              <div className={styles.currentLocationText}>
+                <p className={styles.locationName}>Location Name</p>
+                <p className={styles.currentLocation}>Current Location</p>
+              </div>
+            </button>
+          </div>
         </div>
       )}
 

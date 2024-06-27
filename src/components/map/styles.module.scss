@@ -373,6 +373,11 @@
   .locationName, .currentLocation {
     font-size: 1rem;
   }
+
+  .dropdown {
+    max-width: 89%; /* Adjust maximum width for smaller screens */
+    margin: 14px 2px;
+  }
 }
 
 
@@ -456,6 +461,22 @@
   //   padding: 8px;
   // }
 
+
+  .dropdown {
+    position: absolute;
+    top: calc(30% + 6px);
+    left: 11px;
+    width: 93%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .dropdown p{
+    text-align: center;
+    font-size: 13px;
+  }
 
 .searchBoxContainer, .dropoffContainer, .vehicleDetailsContainer {
   position: absolute;
