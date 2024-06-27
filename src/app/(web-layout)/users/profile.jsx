@@ -80,11 +80,11 @@ const Profile = () => {
                         </div>
                         <div className={styles.details}>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="firstName" placeholder="First Name" className={styles.input} required />
+                                <input type="text" id="firstName" placeholder="First Name " className={styles.input} required />
                                 <label htmlFor="firstName" className={styles.label}>First Name</label>
                             </div>
                             <div className={styles.inputContainer}>
-                                <input type="text" id="lastName" placeholder="Last Name" className={styles.input} required />
+                                <input type="text" id="lastName" placeholder="Last Name " className={styles.input} required />
                                 <label htmlFor="lastName" className={styles.label}>Last Name</label>
                             </div>
                         </div>
@@ -118,6 +118,7 @@ const Profile = () => {
     return (
         <div className={styles.container}>
             <div className={styles.subcontainer}>
+            <h3 className={styles.Heading}> Profile</h3>    
                 <div className={styles.left_side}>
                     <div className={styles.button_left}>
                         <button

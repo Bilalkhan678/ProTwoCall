@@ -12,10 +12,19 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    // border: 1px solid red;
 }
 
-.heading {
-    margin-bottom: 20px;
+.Heading {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    // align-items: center;     /* Centers vertically */
+    // height: 100vh;           /* Full height to demonstrate vertical centering */
+    // border: 1px solid red;
+    width: 100%;  
+    color: rgb(32, 129, 195);
+    font-size: 24px;
+    letter-spacing: 2px;
 }
 
 .subcontainer {
@@ -23,10 +32,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    width: 90%;
+    width: 100%;
     min-height: 90vh;
     background-color: #ffffff;
     flex-wrap: wrap;
+    // border: 1px solid red;
+    margin-top: 81px !important;
 }
 
 .left_side {
@@ -34,8 +45,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 31px 20px;
+    padding: 0px 24px;
     max-width: 275px;
+    // border: 1px solid red;
+    margin-top: 13px !important;
 }
 
 .button_left {
@@ -48,7 +61,7 @@
     display: flex;
     align-items: center;
     background-color: transparent;
-    color: #0070f3;
+    color: black;
     border: 1px solid gray;
     padding: 8px 13px;
     margin-bottom: 12px;
@@ -60,12 +73,13 @@
 }
 
 .button:hover {
-    background-color: #0070f3;
+    background-color: #005bb5;
     color: white;
 }
 
 .button.active {
-    background-color: #005bb5;
+    // background-color: #005bb5;
+    background-color: rgb(32, 129, 195);
     color: white;
 }
 
@@ -88,7 +102,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    // border: 1px solid red;
 }
+// .changePassword{
+//     border: 1px solid red;
+
+// }
 
 .image img {
     width: 150px;
@@ -106,11 +125,12 @@
     flex-wrap: wrap;
 }
 
+
 .inputContainer {
     position: relative;
     margin-bottom: 20px;
-    flex: 1; 
-    margin-right: 10px; 
+    flex: 1;
+    margin-right: 10px;
 }
 
 .inputContainer:last-child {
@@ -118,12 +138,36 @@
 }
 
 .input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 83%;
+    padding: 23px;
+    border: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+    background-color: lightgray;
+    border-bottom: 1px solid red ;
+    background-clip: padding-box; /* Ensure background is clipped correctly */
+}
+
+.input::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #0070f3;
+    transition: width 0.3s ease, left 0.3s ease;
+    z-index: 2;
+}
+
+.input:focus::before,
+.input:not(:placeholder-shown)::before {
+    width: 100%;
+    left: 0;
 }
 
 .label {
@@ -131,29 +175,77 @@
     top: 50%;
     left: 15px;
     transform: translateY(-50%);
-    background: white;
+    background: lightgray; /* Match the input background */
     padding: 0 5px;
     font-size: 14px;
     color: #999;
     pointer-events: none;
     transition: all 0.2s ease-out;
+    z-index: 0;
 }
 
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
-    top: 0;
-    left: 10px;
+    top: 12px; /* Adjust top to keep the label inside the input field */
+    left: 18px;
     font-size: 12px;
     color: #0070f3;
+    z-index: 1; /* Bring label to front */
+    background: lightgray; /* Keep background matching */
+    padding: 0 5px; /* Maintain padding */
 }
 
+
+
+// .inputContainer {
+//     position: relative;
+//     margin-bottom: 20px;
+//     flex: 1; 
+//     margin-right: 10px; 
+// }
+
+// .inputContainer:last-child {
+//     margin-right: 0;
+// }
+
+// .input {
+//     width: 100%;
+//     padding: 14px;
+//     border: 1px solid #ccc;
+//     border-radius: 5px;
+//     outline: none;
+//     font-size: 16px;
+// }
+
+// .label {
+//     position: absolute;
+//     top: 50%;
+//     left: 15px;
+//     transform: translateY(-50%);
+//     background: white;
+//     padding: 0 5px;
+//     font-size: 14px;
+//     color: #999;
+//     pointer-events: none;
+//     transition: all 0.2s ease-out;
+// }
+
+// .input:focus + .label,
+// .input:not(:placeholder-shown) + .label {
+//     top: 0;
+//     left: 10px;
+//     font-size: 12px;
+//     color: #0070f3;
+// }
+
 .submitButton {
-    background-color: #0070f3;
+    background-color: rgb(32, 129, 195);
+    // background-color: #0070f3;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
     font-size: 14px;
     margin-top: 10px;
