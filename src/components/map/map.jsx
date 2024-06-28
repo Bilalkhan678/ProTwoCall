@@ -1364,9 +1364,9 @@ const handlePaymentSubmit = () => {
   
 
   const serviceImages = [
-    { id: "ServiceA", src: "/images/tow.png", name: "Tow Required" },
-    { id: "ServiceB", src: "/images/tow.png", name: "Trailer Transport" },
-    { id: "ServiceC", src: "/images/tow.png", name: "Vehical Transport" },
+    { id: "ServiceA", src: "/images/TowRequired.png", name: "Tow Required" },
+    { id: "ServiceB", src: "/images/Trailer.png", name: "Trailer Transport" },
+    { id: "ServiceC", src: "/images/Vehical.png", name: "Vehical Transport" },
     // Add more services as needed
   ];
 
