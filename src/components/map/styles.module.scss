@@ -387,9 +387,9 @@ servicedropoffAddress
   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
     top: auto;
     bottom: 0;
-    width: 95% !important ; /* Adjust the width for smaller screens */
+    // width: 95% !important ; /* Adjust the width for smaller screens */
     left: 0% !important;
-    transform: translate(8px, 213px);
+    transform: translate(4px, 213px);
     //  translateX(-50%);
   }
   
@@ -397,11 +397,11 @@ servicedropoffAddress
   .expanded {
     top: 12px;
     bottom: auto !important;
-    width: 95% !important; /* Adjust the width for smaller screens */
+    // width: 95% !important; /* Adjust the width for smaller screens */
     left: 0% !important;
     height: 100vh !important;
     // transform: translateX(-50%);
-    transform: translate(1.5%, 24%);
+    transform: translate(1.2%, 24%);
   }
 
   .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
