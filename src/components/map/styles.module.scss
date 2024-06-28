@@ -1039,7 +1039,7 @@ servicedropoffAddress
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   border-top: 1px solid #ccc;
   margin-top: 20px;
-  width: 55vh;
+  width: 39vh;
 }
 
 .serviceList {
@@ -1132,21 +1132,43 @@ servicedropoffAddress
 }
 
 @media (max-width: 768px) {
-  .priceContainer {
-    margin: 0px 20px;
-    color: red;
-  }
   .locationInfo{
-    margin: 0px 20px;
-    // color: red; 
+    // border: 1px solid red;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  .addressItem{
-    // margin: 0px 20px !important;
-   position: relative;
-   left: 22px;
-   top: 0;
+  .addressLabel{
+    display: inline-block;
+  }
+  .priceContainer{
+    // color: red;
+    // position: relative;
+    // left: 100px;
+    display: inline-block;
+    width: 360px;
+  }
 
-  }
+//   .priceContainer {
+//     margin: 0px 20px;
+//     color: red;
+//   }
+//   .locationInfo{
+//     margin: 0px 20px;
+//     // color: red; 
+//   }
+//   .addressItem{
+//     // margin: 0px 20px !important;
+//    position: relative;
+//    left: 22px;
+//    top: 0;
+
+//   }
+// .locationDetails{
+//   width: 50vh;
+// }
 }
 
 
