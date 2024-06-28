@@ -1131,23 +1131,24 @@ servicedropoffAddress
 
 }
 
-// @media (max-width: 768px) {
-//   .priceContainer {
-//     margin: 0px 20px;
-//   }
-//   .locationInfo{
-//     margin: 0px 20px;
-//     // color: red; 
-//   }
-//   .addressItem{
-//     // margin: 0px 20px !important;
-//    position: relative;
-//    left: 22px;
-//    top: 0;
+@media (max-width: 768px) {
+  .priceContainer {
+    margin: 0px 20px;
+    color: red;
+  }
+  .locationInfo{
+    margin: 0px 20px;
+    // color: red; 
+  }
+  .addressItem{
+    // margin: 0px 20px !important;
+   position: relative;
+   left: 22px;
+   top: 0;
 
-//   }
-// }
-expanded
+  }
+}
+
 
 .addressLabel {
   // display: flex;
@@ -1288,7 +1289,7 @@ expanded
 //   }
 // }
 .vehicleDetails > div {
-  width: 40%; /* Adjust width as needed */
+  // width: 40%; /* Adjust width as needed */
   // color: red;
 }
 
