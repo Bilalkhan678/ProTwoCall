@@ -387,20 +387,21 @@ servicedropoffAddress
   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
     top: auto;
     bottom: 0;
-    width: 95% ; /* Adjust the width for smaller screens */
-    left: 50%;
-    transform: translate(-21px, 216px);
+    width: 95% !important ; /* Adjust the width for smaller screens */
+    left: 0% !important;
+    transform: translate(8px, 213px);
     //  translateX(-50%);
   }
   
  
   .expanded {
-    top: 10px;
-    bottom: auto;
-    width: 95%; /* Adjust the width for smaller screens */
-    left: 50%;
+    top: 12px;
+    bottom: auto !important;
+    width: 95% !important; /* Adjust the width for smaller screens */
+    left: 0% !important;
+    height: 100vh !important;
     // transform: translateX(-50%);
-    transform: translate(-5.5%, 24%);
+    transform: translate(1.5%, 24%);
   }
 
   .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
@@ -1146,6 +1147,7 @@ servicedropoffAddress
 
 //   }
 // }
+expanded
 
 .addressLabel {
   // display: flex;
