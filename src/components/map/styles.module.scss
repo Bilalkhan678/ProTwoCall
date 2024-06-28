@@ -389,7 +389,8 @@ servicedropoffAddress
     bottom: 0;
     // width: 95% !important ; /* Adjust the width for smaller screens */
     left: 0% !important;
-    transform: translate(4px, 213px);
+    width: 58vh !important;
+    transform: translate(2px, 213px);
     //  translateX(-50%);
   }
   
@@ -398,10 +399,11 @@ servicedropoffAddress
     top: 12px;
     bottom: auto !important;
     // width: 95% !important; /* Adjust the width for smaller screens */
-    left: 0% !important;
+    left: 1% !important;
     height: 100vh !important;
+    width: 56vh !important;
     // transform: translateX(-50%);
-    transform: translate(1.2%, 24%);
+    transform: translate(1%, 24%);
   }
 
   .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
