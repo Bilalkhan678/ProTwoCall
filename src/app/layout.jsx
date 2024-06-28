@@ -28,7 +28,9 @@ const RootLayout = ({ children }) => {
 ></script>
       </head>
       <body suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

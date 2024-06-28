@@ -1400,90 +1400,107 @@ const handlePaymentSubmit = () => {
       </GoogleMap>
 
       {state === "pickup" && (
-        <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
-          <div className={styles.searchBoxHeader} onClick={toggleExpand}>
-            {isMobile && (
-              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-            )}
-            <h3>Pick Up Location</h3>
-          </div>
-          <div className={styles.searchBox}>
-            <Autocomplete
-              onLoad={(ref) => (autocompleteRef.current = ref)}
-              onPlaceChanged={handlePlaceChanged}
-              fields={['geometry', 'name']}
-            >
-              <div className={styles.InputBox}>
-                <input
-                  type="text"
-                  placeholder="Search Location"
-                  className={styles.searchBoxInput}
-                  value={pickupInputValue}
-                  onChange={handlePickupInputChange}
-                  onFocus={handleDropdownToggle} // Show dropdown on input focus
-                />
-                <div className={styles.iconContainer}>
-                  <div className={styles.separator}></div>
-                  <FontAwesomeIcon
-                    icon={showDropdown ? faChevronUp : faChevronDown}
-                    className={styles.searchBoxIcon}
-                    onClick={handleDropdownToggle} // Toggle dropdown on icon click
-                  />
-                </div>
-              </div>
-            </Autocomplete>
-            {showDropdown && (
-              <div className={styles.dropdown}>
-                <p>No options available</p> {/* Replace with actual dropdown options */}
-              </div>
-            )}
-            <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
-              <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
-              <div className={styles.currentLocationText}>
-                <p className={styles.locationName}>Location Name</p>
-                <p className={styles.currentLocation}>Current Location</p>
-              </div>
-            </button>
-          </div>
-        </div>
+  <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
+    <div className={styles.searchBoxHeader}>
+      {isMobile && (
+        <FontAwesomeIcon
+          icon={isExpanded ? faChevronDown : faChevronUp}
+          className={styles.expandIcon}
+          onClick={toggleExpand} // Ensure this only handles expand/collapse action
+        />
       )}
-
-      {state === "dropoff" && (
-         <div className={`${styles.dropoffContainer} ${isExpanded ? styles.expanded : ''}`}>
-         <div className={styles.dropoffHeader} onClick={toggleExpand}>
-         {isMobile && (
-             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}
-           <FontAwesomeIcon 
-              icon={faArrowLeft} 
-              className={styles.backIcon} 
-              onClick={handleBackClick} 
+      <h3 onClick={toggleExpand}>Pick Up Location</h3>
+    </div>
+    <div className={styles.searchBox}>
+      <Autocomplete
+        onLoad={(ref) => (autocompleteRef.current = ref)}
+        onPlaceChanged={handlePlaceChanged}
+        fields={['geometry', 'name']}
+      >
+        <div className={styles.InputBox}>
+          <input
+            type="text"
+            placeholder="Search Location"
+            className={styles.searchBoxInput}
+            value={pickupInputValue}
+            onChange={handlePickupInputChange}
+            onFocus={handleDropdownToggle} // Show dropdown on input focus
+          />
+          <div className={styles.iconContainer}>
+            <div className={styles.separator}></div>
+            <FontAwesomeIcon
+              icon={showDropdown ? faChevronUp : faChevronDown}
+              className={styles.searchBoxIcon}
+              onClick={handleDropdownToggle} // Toggle dropdown on icon click
             />
-            <h3>Dropoff Location</h3>
-            </div>
-        <div className={styles.searchBox}>
-          <Autocomplete
-            onLoad={ref => (autocompleteRef.current = ref)}
-            onPlaceChanged={handlePlaceChanged}
-            fields={["geometry", "name"]}
-          >
-              <div className={styles.InputBox}>
-              <input
-                type="text"
-                placeholder="Search location"
-                className={styles.searchBoxInput}
-                value={dropoffInputValue}
-                onChange={handleDropoffInputChange}
-              />
-               <div className={styles.iconContainer}>
-        <div className={styles.separator}></div>
-        <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-      </div>
-            </div>
-          </Autocomplete>
+          </div>
         </div>
+      </Autocomplete>
+      {showDropdown && (
+        <div className={styles.dropdown}>
+          <p>No options available</p> {/* Replace with actual dropdown options */}
         </div>
       )}
+      <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
+        <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
+        <div className={styles.currentLocationText}>
+          <p className={styles.locationName}>Location Name</p>
+          <p className={styles.currentLocation}>Current Location</p>
+        </div>
+      </button>
+    </div>
+  </div>
+)}
+
+{state === "dropoff" && (
+  <div className={`${styles.dropoffContainer} ${isExpanded ? styles.expanded : ''}`}>
+    <div className={styles.dropoffHeader}>
+    {isMobile && (
+        <FontAwesomeIcon
+          icon={isExpanded ? faChevronDown : faChevronUp}
+          className={styles.expandIcon}
+          onClick={toggleExpand} // Ensure this only handles expand/collapse action
+        />
+      )}
+      <h3>Dropoff Location</h3>
+
+      <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click event from bubbling up
+          handleBackClick();
+        }} 
+      />
+
+    </div>
+    <div className={styles.searchBox}>
+      <Autocomplete
+        onLoad={ref => (autocompleteRef.current = ref)}
+        onPlaceChanged={handlePlaceChanged}
+        fields={["geometry", "name"]}
+      >
+        <div className={styles.InputBox}>
+          <input
+            type="text"
+            placeholder="Search location"
+            className={styles.searchBoxInput}
+            value={dropoffInputValue}
+            onChange={handleDropoffInputChange}
+          />
+          <div className={styles.iconContainer}>
+            <div className={styles.separator}></div>
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className={styles.searchBoxIcon}
+              onClick={handleDropdownToggle} // Toggle dropdown on icon click
+            />
+          </div>
+        </div>
+      </Autocomplete>
+    </div>
+  </div>
+)}
 
 {state === "vehicleDetails" && (
 
@@ -1491,13 +1508,17 @@ const handlePaymentSubmit = () => {
          <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
          {isMobile && (
              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}     
-           <FontAwesomeIcon 
-              icon={faArrowLeft} 
-              className={styles.backIcon} 
-              onClick={handleBackClick} 
-            />
+           )}    
+        
           <h3>Vehicle Details</h3>
+          <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click event from bubbling up
+          handleBackClick();
+        }} 
+      />
             </div>
         <div className={styles.vinInputContainer}>
           <div className={styles.floatingLabelContainer}>
@@ -1596,12 +1617,16 @@ const handlePaymentSubmit = () => {
          {isMobile && (
              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
            )}     
-           <FontAwesomeIcon 
-              icon={faArrowLeft} 
-              className={styles.backIcon} 
-              onClick={handleBackClick} 
-            />
+           
       <h3>Select Services</h3>
+      <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click event from bubbling up
+          handleBackClick();
+        }} 
+      />
       </div>
     <div className={styles.servicesContent}>
       <div className={styles.servicesList}>
@@ -1635,12 +1660,20 @@ const handlePaymentSubmit = () => {
          {isMobile && (
              <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
            )}     
-           <FontAwesomeIcon 
+           {/* <FontAwesomeIcon 
               icon={faArrowLeft} 
               className={styles.backIcon} 
               onClick={handleBackClick} 
-            />
+            /> */}
       <h3>Service Preview</h3>
+      <FontAwesomeIcon 
+        icon={faArrowLeft} 
+        className={styles.backIcon} 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent click event from bubbling up
+          handleBackClick();
+        }} 
+      />
       </div>
     <div className={styles.servicesContent}>
       <div className={styles.serviceList}>
