@@ -1088,12 +1088,12 @@ const Map = () => {
     });
   };
 
-  const handleSubmit = () => {
-    dispatch(setPaymentData(formData)); // Dispatch action to update Redux state
-    // Optionally, save to localStorage if needed
-    localStorage.setItem("paymentData", JSON.stringify(formData));
-    // Additional logic for payment processing or API calls can go here
-  };
+  // const handleSubmit = () => {
+  //   dispatch(setPaymentData(formData)); // Dispatch action to update Redux state
+  //   // Optionally, save to localStorage if needed
+  //   localStorage.setItem("paymentData", JSON.stringify(formData));
+  //   // Additional logic for payment processing or API calls can go here
+  // };
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
