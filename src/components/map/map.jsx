@@ -1211,7 +1211,7 @@ const Map = () => {
           // Dispatching the action to update Redux state
 
 
-          // dispatch(setCurrentLocation(newLocation));
+          dispatch(setCurrentLocation(newLocation));
           
            // Save to localStorage
            localStorage.setItem('currentLocation', JSON.stringify(newLocation));
@@ -1230,6 +1230,11 @@ const Map = () => {
       console.error("Geolocation is not supported by this browser.");
     }
   }, [dispatch]);
+
+
+
+
+
 
 
   
@@ -1322,33 +1327,90 @@ const Map = () => {
   //   }
   // }, []);
 
+
+
+
+
+
+
+  const geocoder = new window.google.maps.Geocoder();
+  const [marker, setMarker] = useState(null);
+  const [map, setMap] = useState(null);
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
   const handleCurrentLocationClick = () => {
+    console.log("Current Location button clicked");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const newCenter = {
+            locationName: address,
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-  
-          console.log('Current Location:', newCenter); // Add console log here
 
-          // Dispatch action to set current location in Redux
-          dispatch(setCurrentLocation(newCenter));
-  
-          // Save current location to localStorage
-          localStorage.setItem('currentLocation', JSON.stringify(newCenter));
-  
-          if (state === "pickup") {
-            // Dispatch action to set pickup location in Redux
-            dispatch(setPickupLocation(newCenter));
-  
-            // Save pickup location to localStorage
-            localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
-  
-            setPickupInputValue("Current Location");
-            setState("dropoff");
-          }
+          console.log('Current Location:', newCenter);
+          console.log('Address:', address);
+
+          console.log('Current Location:', newCenter);
+
+          // Use Geocoder object to fetch address
+          geocoder.geocode({ location: newCenter }, (results, status) => {
+            // console.log('Geocoder Results:', results);
+            // console.log('Geocoder Status:', status);
+            if (status === 'OK') {
+              if (results[0]) {
+                const address = results[0].formatted_address || "Unknown Location";
+                console.log('Address:', address);
+                const locationData = {
+                  locationName: results[0].name || "Unknown Location",
+                  lat: newCenter.lat,
+                  lng: newCenter.lng,
+                  address: address,
+                };
+                // Dispatch action to set current location in Redux
+                dispatch(setCurrentLocation({ location: newCenter, address }));
+
+                // Save current location to localStorage
+                localStorage.setItem('currentLocation', JSON.stringify(newCenter));
+                // localStorage.setItem('currentAddress', address);
+
+                if (state === "pickup") {
+                  // Dispatch action to set pickup location in Redux
+                  dispatch(setPickupLocation({ location: newCenter, address }));
+
+                  // Save pickup location to localStorage
+                  localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
+                  // localStorage.setItem('pickupAddress', address);
+
+
+                  setPickupInputValue(address); // Set the address in the input box
+                  setState("dropoff");
+                }
+
+                // Center map on new location (if map is valid)
+                if (map) {
+                  map.panTo(newCenter);
+                }
+              } else {
+                console.error('No results found');
+              }
+            } else {
+              console.error('Geocoder failed due to:', status);
+            }
+          });
         },
         (error) => {
           console.error("Error getting user location:", error);
@@ -1358,6 +1420,60 @@ const Map = () => {
       console.error("Geolocation is not supported by this browser.");
     }
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const handleCurrentLocationClick = () => {
+  //   console.log("Current Location button clicked"); // Logging button click
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const newCenter = {
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         };
+  
+  //         console.log('Current Location:', newCenter); // Add console log here
+
+  //         // Dispatch action to set current location in Redux
+  //         dispatch(setCurrentLocation(newCenter));
+  
+  //         // Save current location to localStorage
+  //         localStorage.setItem('currentLocation', JSON.stringify(newCenter));
+  
+  //         if (state === "pickup") {
+  //           // Dispatch action to set pickup location in Redux
+  //           dispatch(setPickupLocation(newCenter));
+  
+  //           // Save pickup location to localStorage
+  //           localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
+  
+  //           setPickupInputValue("Current Location");
+  //           setState("dropoff");
+  //         }
+  //       },
+  //       (error) => {
+  //         console.error("Error getting user location:", error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //   }
+  // };
   
 
   // const handleCurrentLocationClick = () => {

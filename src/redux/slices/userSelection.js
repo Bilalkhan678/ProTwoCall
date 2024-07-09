@@ -227,7 +227,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   location: {
     pickupLocation: null,
-    // currentLocation: null,
+    currentLocation: null,
     dropoffLocation: null,
   },
   vehicleDetails: {
@@ -247,16 +247,18 @@ const userSelectionSlice = createSlice({
   name: 'userSelection',
   initialState,
   reducers: {
-    // setCurrentLocation(state, action) {
-    //     console.log('setCurrentLocation action:', action);
-    //   state.location.currentLocation = action.payload;
-    //   localStorage.setItem('currentLocation', JSON.stringify(action.payload));
-    //   state.currentState = "currentLocation"; // Update currentState
-    // //   localStorage.setItem('currentState', "currentLocation");
-    // },
+    setCurrentLocation(state, action) {
+        console.log('setCurrentLocation action:', action);
+      state.location.currentLocation = action.payload;
+      state.address = action.payload.address;
+      localStorage.setItem('currentLocation', JSON.stringify(action.payload));
+      state.currentState = "currentLocation"; // Update currentState
+    //   localStorage.setItem('currentState', "currentLocation");
+    },
     setPickupLocation(state, action) {
         console.log('setPickUpLocation action:', action);
       state.location.pickupLocation = action.payload;
+      state.pickupAddress = action.payload.address;
       localStorage.setItem('pickupLocation', JSON.stringify(action.payload));
       state.currentState = "pickupLocation"; // Update currentState
       localStorage.setItem('currentState', "pickupLocation");
