@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 
-
 // // import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 // // import { useMemo } from "react";
 // // import 'leaflet/dist/leaflet.css';
@@ -76,8 +75,6 @@
 
 // // export default Map;
 
-
-
 // // // import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 // // // import L from 'leaflet';
 // // // import 'leaflet/dist/leaflet.css';
@@ -130,7 +127,6 @@
 
 // // // export default Map;
 
-
 // // import React, { useState, useEffect } from 'react';
 
 // // const Map = () => {
@@ -176,7 +172,6 @@
 // // export default Map;
 // // src/components/map/Map.jsx
 
-
 // import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox , Autocomplete  } from "@react-google-maps/api";
 // import { useState, useEffect, useCallback, useRef } from "react";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -212,11 +207,10 @@
 //   const autocompleteRef = useRef(null);
 //   const mapRef = useRef(null);
 
-
 //   const onLoad = useCallback((map) => {
 //     mapRef.current = map;
 //   }, []);
-  
+
 //   useEffect(() => {
 //     if (navigator.geolocation) {
 //       navigator.geolocation.getCurrentPosition(
@@ -241,12 +235,6 @@
 //     setShowDropdown(false); // Hide the dropdown when a map type is selected
 //   }, []);
 
- 
-
- 
-
-
-
 //   const handleCurrentLocationClick = () => {
 //     if (navigator.geolocation) {
 //       navigator.geolocation.getCurrentPosition(
@@ -266,7 +254,6 @@
 //     }
 //   };
 
-
 // const handlePlaceChanged = () => {
 //     if (autocompleteRef.current) {
 //       const place = autocompleteRef.current.getPlace();
@@ -284,11 +271,10 @@
 //       console.error("Autocomplete ref is not set.");
 //     }
 //   };
-  
+
 //   const handleInputChange = (e) => {
 //     setInputValue(e.target.value);
 //   };
-
 
 //   if (loadError) return <div>Error loading maps</div>;
 //   if (!isLoaded) return <div>Loading...</div>;
@@ -317,8 +303,6 @@
 //           />
 //         )}
 //       </GoogleMap>
-
-   
 
 //       <div className={styles.searchBoxContainer}>
 //         <h3>Pickup Location</h3>
@@ -351,10 +335,6 @@
 // };
 
 // export default Map;
-
-
-
-
 
 // import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 // import { useState, useEffect, useCallback, useRef } from "react";
@@ -468,8 +448,6 @@
 //   const handleVinInputChange = (e) => {
 //     setVinInputValue(e.target.value);
 //   };
-  
-
 
 //   const handleBackClick = () => {
 //     if (state === "dropoff") {
@@ -548,10 +526,10 @@
 //       {state === "dropoff" && (
 //         <div className={styles.dropoffContainer}>
 //           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Dropoff Location</h3>
 //           </div>
@@ -577,10 +555,10 @@
 //       {state === "vehicleDetails" && (
 //         <div className={styles.vehicleDetailsContainer}>
 //           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Vehicle Details</h3>
 //           </div>
@@ -608,10 +586,6 @@
 // };
 
 // export default Map;
-
-
-
-
 
 // components/map/map.jsx
 
@@ -816,10 +790,10 @@
 //       {state === "dropoff" && (
 //         <div className={styles.dropoffContainer}>
 //           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Dropoff Location</h3>
 //           </div>
@@ -845,10 +819,10 @@
 //       {state === "vehicleDetails" && (
 //         <div className={styles.vehicleDetailsContainer}>
 //           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Vehicle Details</h3>
 //           </div>
@@ -859,7 +833,7 @@
 //               className={styles.vinInput}
 //               value={vinInputValue}
 //               onChange={handleVinInputChange}
-              
+
 //             />
 
 //             <input
@@ -915,34 +889,61 @@
 
 // export default Map;
 
-
-
-
-
-
-
-
-import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  Autocomplete,
+} from "@react-google-maps/api";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow, faChevronDown,faCrosshairs, faArrowLeft, faCreditCard, faKey,faChevronUp  } from '@fortawesome/free-solid-svg-icons';
-import styles from './styles.module.scss';
-import ReCAPTCHA from 'react-google-recaptcha';
-import style from '../../app/(web-layout)/service.module.scss'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationArrow,
+  faChevronDown,
+  faCrosshairs,
+  faArrowLeft,
+  faCreditCard,
+  faKey,
+  faChevronUp,
+} from "@fortawesome/free-solid-svg-icons";
+import styles from "./styles.module.scss";
+import ReCAPTCHA from "react-google-recaptcha";
+import style from "../../app/(web-layout)/service.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+// import {
+//   setCurrentLocation,
+//   setPickupLocation,
+// } from "@/redux/slices/locationSlice"; // Import your Redux actions
+// import { setDropoffLocation } from "@/redux/slices/dropoffLocationSlice";
+// import { setVehicleDetails } from "@/redux/slices/vehicleDetailsSlice";
+// import { setSelectedServices } from "@/redux/slices/servicesSlice";
+// import { setPaymentData } from "@/redux/slices/paymentSlice";
+// import { Alert } from "reactstrap";
+import {
+  setCurrentLocation,
+  setPickupLocation,
+  setDropoffLocation,
+  setVehicleDetails,
+  setSelectedServices,
+} from '@/redux/slices/userSelection'; // Adjust the path as needed
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
+
 
 
 const mapContainerStyle = {
   width: "100%",
   height: "90vh",
-  position: 'relative'
+  position: "relative",
 };
 
 const defaultCenter = {
   lat: 44.9778,
-  lng: -93.2650,
+  lng: -93.265,
 };
 
-const libraries = ['places'];
+const libraries = ["places"];
 
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
@@ -953,40 +954,146 @@ const Map = () => {
 
   const [center, setCenter] = useState(defaultCenter);
   const [mapType, setMapType] = useState("roadmap");
-  const [currentLocation, setCurrentLocation] = useState(null);
+
+  // const [currentLocation, setCurrentLocation] = useState(null);
+  // const pickupLocation = useSelector(state => state.location.pickupLocation);
+  // const currentLocationFromRedux = useSelector(state => state.location.currentLocation);
+
+ 
+
+  // const pickupLocation = useSelector(state => state.location.pickupLocation);
+  // const currentLocation = useSelector(state => state.location.currentLocation);
   const [pickupInputValue, setPickupInputValue] = useState("");
   const [dropoffInputValue, setDropoffInputValue] = useState("");
   const [vinInputValue, setVinInputValue] = useState("");
   const [state, setState] = useState("pickup");
   const [servicePreview, setServicePreview] = useState(false);
-  const [selectedServices, setSelectedServices] = useState([]);
+  // const [selectedServices, setSelectedServices] = useState([]);
   const [isVerified, setIsVerified] = useState(false);
   const [address, setAddress] = useState(""); // State to store address
   const [pickupAddress, setPickupAddress] = useState(""); // New state variable
   const [dropoffAddress, setDropoffAddress] = useState(""); // New state variable
   const [showSidebar, setShowSidebar] = useState(false);
-  const [atmNumber, setAtmNumber] = useState('');
-  const [currentView, setCurrentView] = useState('servicePreview');
+  const [currentView, setCurrentView] = useState("servicePreview");
   const [blurBackground, setBlurBackground] = useState(false);
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvc, setCvc] = useState('');
-  const [country, setCountry] = useState('');
-  const [errors, setErrors] = useState({});
+
+  const [atmNumber, setAtmNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvc, setCvc] = useState("");
+  const [country, setCountry] = useState("");
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  // const [showSidebar, setShowSidebar] = useState(true); // State for sidebar visibility
+
+  const [errors, setErrors] = useState({});
   const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
   const [isMobile, setIsMobile] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
 
-
-    const [vin, setVin] = useState("");
-const [model, setModel] = useState("");
-const [make, setMake] = useState("");
-const [year, setYear] = useState("");
-const [color, setColor] = useState("");
-const [licensePlate, setLicensePlate] = useState("");
+  const [vin, setVin] = useState("");
+  const [model, setModel] = useState("");
+  const [make, setMake] = useState("");
+  const [year, setYear] = useState("");
+  const [color, setColor] = useState("");
+  const [licensePlate, setLicensePlate] = useState("");
 
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
+
+
+  
+
+  const dispatch = useDispatch();
+
+  // const selectedServices = useSelector(
+  //   (state) => state.services.selectedServices
+  // );
+
+  // const currentLocation = useSelector(
+  //   (state) => state.location.currentLocation
+  // );
+
+  // const selectedServices = useSelector((state) => state.app.selectedServices);
+  const selectedServices = useSelector((state) => state.userSelection.selectedServices || []);
+
+
+  const currentLocation = useSelector((state) => state.userSelection.location.currentLocation);
+
+
+  // const currentLocation = useSelector((state) => state.location.currentLocation);
+  // const pickupLocation = useSelector((state) => state.location.pickupLocation);
+
+  // const pickupLocation = useSelector((state) => state.location.pickupLocation);
+
+
+  // useEffect(() => {
+  //   // Fetch and set location if needed
+  //   dispatch(setPickupLocation('New Location'));
+  // }, [dispatch]);
+
+//  useEffect(() => {
+//     // Check local storage for currentPage on initial load
+//     const storedPage = localStorage.getItem('currentPage');
+//     if (storedPage) {
+//       dispatch(setCurrentPage(storedPage));
+//     }
+//   }, [dispatch]);
+
+//   useEffect(() => {
+//     // Save currentPage to local storage whenever it changes
+//     localStorage.setItem('currentPage', store.getState().location.currentPage);
+//   }, [store]);
+
+
+
+
+// useEffect(() => {
+//   // Check local storage for currentPage on initial load
+//   const storedPage = localStorage.getItem('currentPage');
+//   if (storedPage) {
+//     dispatch(setCurrentPage(storedPage));
+//   }
+// }, [dispatch]);
+
+// useEffect(() => {
+//   // Save currentPage to local storage whenever it changes
+//   localStorage.setItem('currentPage', currentPage);
+// }, [currentPage]);
+
+// // Redirect to initial page if no stored value found
+// useEffect(() => {
+//   if (!currentPage) {
+//     dispatch(setCurrentPage('pickup')); // Set default page here
+//   }
+// }, [currentPage, dispatch]);
+
+
+
+
+  // const selectedServices = useSelector((state) => state.services.selectedServices);
+  // const paymentData = useSelector(state => state.payment);
+
+  const [formData, setFormData] = useState({
+    atmNumber: "",
+    expiryDate: "",
+    cvc: "",
+    country: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = () => {
+    dispatch(setPaymentData(formData)); // Dispatch action to update Redux state
+    // Optionally, save to localStorage if needed
+    localStorage.setItem("paymentData", JSON.stringify(formData));
+    // Additional logic for payment processing or API calls can go here
+  };
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
@@ -996,36 +1103,224 @@ const [licensePlate, setLicensePlate] = useState("");
     setShowSidebar(!showSidebar);
   };
 
-  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize(); // Check screen size on initial render
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleSetPickupLocation = (newCenter) => {
+    dispatch(setPickupLocation(newCenter)); // ensure setPickupLocation is imported correctly
+    // other logic related to setting pickup location
+  };
+
+  
+
+
+
+
+  // const reverseGeocode = async (lat, lng) => {
+  //   try {
+  //     const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`);
+  //     const results = response.data.results;
+  //     if (results.length > 0) {
+  //       return results[0].formatted_address;
+  //     } else {
+  //       console.error("No results found for the provided coordinates.");
+  //       return "Unknown Location";
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching location name", error);
+  //     return "Unknown Location";
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchUserLocation = async () => {
+  //     try {
+  //       if (navigator.geolocation) {
+  //         navigator.geolocation.getCurrentPosition(
+  //           async (position) => {
+  //             const { latitude, longitude } = position.coords;
+  //             const locationName = await reverseGeocode(latitude, longitude);
+
+  //             const newLocation = {
+  //               name: locationName,
+  //               lat: latitude,
+  //               lng: longitude,
+  //             };
+
+  //             dispatch(setCurrentLocation(newLocation));
+  //             localStorage.setItem('currentLocation', JSON.stringify(newLocation));
+  //           },
+  //           (error) => {
+  //             console.error("Error getting user location", error);
+  //           }
+  //         );
+  //       } else {
+  //         console.error("Geolocation is not supported by this browser.");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user location", error);
+  //     }
+  //   };
+
+  //   fetchUserLocation();
+  // }, [dispatch]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const newCenter = {
+          const newLocation = {
+            // locationName: place.name || "Unknown Location",
+            name: "Current Location Name", // Replace with actual location name logic if needed
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          setCenter(newCenter);
-          setCurrentLocation(newCenter);
-          mapRef.current.panTo(newCenter);
+
+          // Dispatching the action to update Redux state
+
+
+          // dispatch(setCurrentLocation(newLocation));
+          
+           // Save to localStorage
+           localStorage.setItem('currentLocation', JSON.stringify(newLocation));
+
+
+
+          // Other logic if needed
+          // setCenter(newLocation);
+          // mapRef.current.panTo(newLocation);
         },
-        () => {
-          console.error("Error getting user location");
+        (error) => {
+          console.error("Error getting user location", error);
         }
       );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
     }
-  }, []);
+  }, [dispatch]);
+
+
+  
+// const handleCurrentLocationClick = () => {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(
+//       (position) => {
+//         const newCenter = {
+//           lat: position.coords.latitude,
+//           lng: position.coords.longitude,
+//         };
+
+//         // Dispatch action to set current location in Redux
+//         dispatch(setCurrentLocation(newCenter));
+
+//         // Save current location to localStorage
+//         localStorage.setItem('currentLocation', JSON.stringify(newCenter));
+
+//         // Handle pickup or dropoff state logic
+//         if (state === "pickup") {
+//           dispatch(setPickupLocation(newCenter));
+//           localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
+//           setPickupInputValue("Current Location");
+//           setState("dropoff");
+//         } else if (state === "dropoff") {
+//           dispatch(setDropoffLocation(newCenter));
+//           localStorage.setItem('dropoffLocation', JSON.stringify(newCenter));
+//           setDropoffInputValue("Current Location");
+//           setState("vehicleDetails");
+//         }
+//       },
+//       (error) => {
+//         console.error("Error getting user location:", error);
+//       }
+//     );
+//   } else {
+//     console.error("Geolocation is not supported by this browser.");
+//   }
+// };
+
+// const handlePlaceChanged = () => {
+//   if (autocompleteRef.current) {
+//     const place = autocompleteRef.current.getPlace();
+//     if (place.geometry) {
+//       const newCenter = {
+//         lat: place.geometry.location.lat(),
+//         lng: place.geometry.location.lng(),
+//       };
+
+//       const locationData = {
+//         locationName: place.name || "Unknown Location",
+//         lat: newCenter.lat,
+//         lng: newCenter.lng,
+//       };
+
+//       // Save to local storage and dispatch to Redux store
+//       if (state === "pickup") {
+//         localStorage.setItem("pickupLocation", JSON.stringify(locationData));
+//         dispatch(setPickupLocation(locationData));
+//         setPickupInputValue(place.name || "");
+//         setState("dropoff");
+//       } else if (state === "dropoff") {
+//         localStorage.setItem("dropoffLocation", JSON.stringify(locationData));
+//         dispatch(setDropoffLocation(locationData));
+//         setDropoffInputValue(place.name || "");
+//         setState("vehicleDetails");
+//       }
+
+//       setCenter(newCenter);
+//       mapRef.current.panTo(newCenter);
+//     } else {
+//       console.error("No geometry data available for the selected place.");
+//     }
+//   } else {
+//     console.error("Autocomplete ref is not set.");
+//   }
+// };
+
+  // useEffect(() => {
+  //   const storedPickupLocation = localStorage.getItem('pickupLocation');
+  //   if (storedPickupLocation) {
+  //     const locationData = JSON.parse(storedPickupLocation);
+  //     setPickupInputValue(locationData.locationName || '');
+  //   }
+
+  //   const storedDropoffLocation = localStorage.getItem('dropoffLocation');
+  //   if (storedDropoffLocation) {
+  //     const locationData = JSON.parse(storedDropoffLocation);
+  //     setDropoffInputValue(locationData.locationName || '');
+  //   }
+  // }, []);
 
   const handleCurrentLocationClick = () => {
     if (navigator.geolocation) {
@@ -1035,31 +1330,69 @@ const [licensePlate, setLicensePlate] = useState("");
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          setCenter(newCenter);
-          setCurrentLocation(newCenter);
-          mapRef.current.panTo(newCenter);
+  
+          console.log('Current Location:', newCenter); // Add console log here
 
+          // Dispatch action to set current location in Redux
+          dispatch(setCurrentLocation(newCenter));
+  
+          // Save current location to localStorage
+          localStorage.setItem('currentLocation', JSON.stringify(newCenter));
+  
           if (state === "pickup") {
+            // Dispatch action to set pickup location in Redux
+            dispatch(setPickupLocation(newCenter));
+  
+            // Save pickup location to localStorage
+            localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
+  
             setPickupInputValue("Current Location");
-            setPickupAddress("Current Location"); // Update pickup address
-            setState("dropoff"); // Move to dropoff after setting pickup location
-          } else if (state === "dropoff") {
-            setDropoffInputValue("Current Location");
-            setDropoffAddress("Current Location"); // Update dropoff address
-            setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+            setState("dropoff");
           }
         },
         (error) => {
-          // Error callback
           console.error("Error getting user location:", error);
-          // Handle error, possibly notify the user
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-      // Handle unsupported geolocation scenario
     }
   };
+  
+
+  // const handleCurrentLocationClick = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const newCenter = {
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         };
+  //         setCenter(newCenter);
+  //         setCurrentLocation(newCenter);
+  //         mapRef.current.panTo(newCenter);
+
+  //         if (state === "pickup") {
+  //           setPickupInputValue("Current Location");
+  //           setPickupAddress("Current Location"); // Update pickup address
+  //           setState("dropoff"); // Move to dropoff after setting pickup location
+  //         } else if (state === "dropoff") {
+  //           setDropoffInputValue("Current Location");
+  //           setDropoffAddress("Current Location"); // Update dropoff address
+  //           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+  //         }
+  //       },
+  //       (error) => {
+  //         // Error callback
+  //         console.error("Error getting user location:", error);
+  //         // Handle error, possibly notify the user
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //     // Handle unsupported geolocation scenario
+  //   }
+  // };
 
   const handlePlaceChanged = () => {
     if (autocompleteRef.current) {
@@ -1069,6 +1402,25 @@ const [licensePlate, setLicensePlate] = useState("");
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
         };
+
+        const locationData = {
+          locationName: place.name || "Unknown Location",
+          lat: newCenter.lat,
+          lng: newCenter.lng,
+        };
+
+        console.log('Selected Place:', place); // Add console log here
+        console.log('New Center:', newCenter); // Add console log here
+
+        // Save to local storage and dispatch to Redux store
+        if (state === "pickup") {
+          localStorage.setItem("pickupLocation", JSON.stringify(locationData));
+          dispatch(setPickupLocation(locationData));
+        } else if (state === "dropoff") {
+          localStorage.setItem("dropoffLocation", JSON.stringify(locationData));
+          dispatch(setDropoffLocation(locationData));
+        }
+
         setCenter(newCenter);
         mapRef.current.panTo(newCenter);
 
@@ -1088,6 +1440,86 @@ const [licensePlate, setLicensePlate] = useState("");
       console.error("Autocomplete ref is not set.");
     }
   };
+
+  // const handlePlaceChanged = () => {
+  //   if (autocompleteRef.current) {
+  //     const place = autocompleteRef.current.getPlace();
+  //     if (place.geometry) {
+  //       const newCenter = {
+  //         lat: place.geometry.location.lat(),
+  //         lng: place.geometry.location.lng(),
+  //       };
+
+  //       const locationData = {
+  //         locationName: place.name || "Unknown Location",
+  //         lat: newCenter.lat,
+  //         lng: newCenter.lng,
+  //       };
+
+  //       // // Save to local storage
+  //       // localStorage.setItem('currentLocation', JSON.stringify(locationData));
+
+  //       // Save to local storage
+  //     if (state === "pickup") {
+  //       localStorage.setItem('pickupLocation', JSON.stringify(locationData));
+  //       // Dispatch action to set pickup location in Redux state
+  //       dispatch(setPickupLocation(locationData));
+  //     } else if (state === "dropoff") {
+  //       localStorage.setItem('dropoffLocation', JSON.stringify(locationData));
+  //       // Dispatch action to set dropoff location in Redux state
+  //       dispatch(setDropoffLocation(locationData));
+  //     }
+
+  //       // Dispatch action to set current location in Redux state
+  //       // dispatch(setCurrentLocation(locationData));
+
+  //       setCenter(newCenter);
+  //       mapRef.current.panTo(newCenter);
+
+  //       if (state === "pickup") {
+  //         setPickupInputValue(place.name || "");
+  //         setPickupAddress(place.name || ""); // Update pickup address
+  //         setState("dropoff"); // Move to dropoff after setting pickup location
+  //       } else if (state === "dropoff") {
+  //         setDropoffInputValue(place.name || "");
+  //         setDropoffAddress(place.name || ""); // Update dropoff address
+  //         setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+  //       }
+  //     } else {
+  //       console.error("No geometry data available for the selected place.");
+  //     }
+  //   } else {
+  //     console.error("Autocomplete ref is not set.");
+  //   }
+  // };
+
+  // const handlePlaceChanged = () => {
+  //   if (autocompleteRef.current) {
+  //     const place = autocompleteRef.current.getPlace();
+  //     if (place.geometry) {
+  //       const newCenter = {
+  //         lat: place.geometry.location.lat(),
+  //         lng: place.geometry.location.lng(),
+  //       };
+  //       setCenter(newCenter);
+  //       mapRef.current.panTo(newCenter);
+
+  //       if (state === "pickup") {
+  //         setPickupInputValue(place.name || "");
+  //         setPickupAddress(place.name || ""); // Update pickup address
+  //         setState("dropoff"); // Move to dropoff after setting pickup location
+  //       } else if (state === "dropoff") {
+  //         setDropoffInputValue(place.name || "");
+  //         setDropoffAddress(place.name || ""); // Update dropoff address
+  //         setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+  //       }
+  //     } else {
+  //       console.error("No geometry data available for the selected place.");
+  //     }
+  //   } else {
+  //     console.error("Autocomplete ref is not set.");
+  //   }
+  // };
 
   const handleDropdownToggle = () => {
     // Toggle dropdown visibility on icon click
@@ -1109,23 +1541,23 @@ const [licensePlate, setLicensePlate] = useState("");
   // const handleVinInputChange = (e) => {
   //   setVin(e.target.value);
   // };
-  
+
   const handleModelInputChange = (e) => {
     setModel(e.target.value);
   };
-  
+
   const handleMakeInputChange = (e) => {
     setMake(e.target.value);
   };
-  
+
   const handleYearInputChange = (e) => {
     setYear(e.target.value);
   };
-  
+
   const handleColorInputChange = (e) => {
     setColor(e.target.value);
   };
-  
+
   const handleLicensePlateInputChange = (e) => {
     setLicensePlate(e.target.value);
   };
@@ -1154,7 +1586,6 @@ const [licensePlate, setLicensePlate] = useState("");
   //   }
   // };
 
-
   // const handleSubmit = () => {
   //   if (isVerified) {
   //     // Handle the submit action
@@ -1165,8 +1596,8 @@ const [licensePlate, setLicensePlate] = useState("");
   // };
 
   const handleBackClick = () => {
-    if (currentView === 'payment') {
-      setCurrentView('servicePreview');
+    if (currentView === "payment") {
+      setCurrentView("servicePreview");
       setShowSidebar(false);
     } else if (servicePreview) {
       setServicePreview(false);
@@ -1183,12 +1614,26 @@ const [licensePlate, setLicensePlate] = useState("");
   };
 
   const handleCheckDetail = () => {
-    if (vinInputValue.trim() !== "") {
-      console.log("Checking details for VIN:", vinInputValue);
-      setState("services"); // Move to services after entering vehicle details
-    }
+    const vehicleData = {
+      vin: vinInputValue,
+      model,
+      make,
+      year,
+      color,
+      licensePlate,
+    };
+    localStorage.setItem("vehicleDetails", JSON.stringify(vehicleData));
+    dispatch(setVehicleDetails(vehicleData));
+    // Move to next state if needed
+    setState("services");
   };
 
+  // const handleCheckDetail = () => {
+  //   if (vinInputValue.trim() !== "") {
+  //     console.log("Checking details for VIN:", vinInputValue);
+  //     setState("services"); // Move to services after entering vehicle details
+  //   }
+  // };
 
   const handleCancelClick = () => {
     setShowSidebar(false);
@@ -1196,72 +1641,161 @@ const [licensePlate, setLicensePlate] = useState("");
 
   const handlePayOrderClick = () => {
     setShowSidebar(true);
-    setCurrentView('payment');
+    setCurrentView("payment");
   };
-
-  
 
   const handleAtmNumberChange = (event) => {
     // Remove non-digit characters and limit to 16 characters
     const formattedValue = event.target.value
-      .replace(/[^\d]/g, '') // Remove any non-digit characters
+      .replace(/[^\d]/g, "") // Remove any non-digit characters
       .slice(0, 16); // Limit to 16 characters
 
     // Insert space after every 4 digits
-    let formattedNumber = formattedValue.replace(/(\d{4})(?=\d)/g, '$1 ');
+    let formattedNumber = formattedValue.replace(/(\d{4})(?=\d)/g, "$1 ");
 
-    setAtmNumber(formattedNumber); 
-  if (errors.atmNumber) {
-    setErrors({ ...errors, atmNumber: '' });
-  }
+    setAtmNumber(formattedNumber);
+    if (errors.atmNumber) {
+      setErrors({ ...errors, atmNumber: "" });
+    }
+  };
+
+  //   const handlePaymentSubmit = () => {
+  //   if (validateForm()) {
+  //     // Simulate payment submission logic
+  //     console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
+
+  //     // Assuming submission is successful, set state accordingly
+  //     setTimeout(() => {
+  //       setPaymentSubmitted(true);
+  //       // Automatically close sidebar after payment submission
+  //       setShowSidebar(false);
+  //     }, 2000); // Simulating a 2 second delay
+  //   }
+  // };
+
+  // const handlePaymentSubmit = () => {
+  //   let newErrors = {};
+
+  //   if (!atmNumber.trim()) {
+  //     newErrors.atmNumber = 'ATM Number is required';
+  //   }
+  //   if (!expiryDate.trim()) {
+  //     newErrors.expiryDate = 'Expiry Date is required';
+  //   }
+  //   if (!cvc.trim()) {
+  //     newErrors.cvc = 'CVC is required';
+  //   }
+  //   if (!country) {
+  //     newErrors.country = 'Country is required';
+  //   }
+
+  //   if (Object.keys(newErrors).length > 0) {
+  //     setErrors(newErrors);
+  //     return;
+  //   }
+
+  //   const paymentData = { atmNumber, expiryDate, cvc, country };
+
+  //   // Dispatch the payment data to Redux
+  //   dispatch(setPaymentData(paymentData));
+
+  //   // Save payment data to local storage
+  //   localStorage.setItem('paymentData', JSON.stringify(paymentData));
+
+  //   // Simulate successful payment submission
+  //   setTimeout(() => {
+  //     setPaymentSubmitted(true);
+  //     // Clear form fields and errors
+  //     setAtmNumber('');
+  //     setExpiryDate('');
+  //     setCvc('');
+  //     setCountry('');
+  //     setErrors({});
+  //   }, 2000); // Simulating a 2-second delay for API response
+  // };
+
+  // const areFieldsComplete = () => {
+  //   return atmNumber !== "" && expiryDate !== "" && cvc !== "" && country !== "";
+  // };
+
+  // const handlePaymentSubmit = () => {
+  //   if (areFieldsComplete()) {
+  //     setAlertVisible(true);
+  //     setPaymentSubmitted(true);
+  //     // Handle payment submission logic here
+  //   } else {
+  //     setErrors({
+  //       atmNumber: !atmNumber && "ATM Number is required",
+  //       expiryDate: !expiryDate && "Expiry Date is required",
+  //       cvc: !cvc && "CVC is required",
+  //       country: !country && "Country is required",
+  //     });
+  //   }
+  // };
+
+ 
+ 
+ 
+ 
+  const resetState = () => {
+    setAtmNumber("");
+    setExpiryDate("");
+    setCvc("");
+    setCountry("");
+    setErrors({});
+    setPaymentSubmitted(false);
+    // setCurrentLocation('');
+    setDropoffAddress("");
+    setMake("");
+    setModel("");
+    setYear("");
+    setVin("");
+    setColor("");
+    setLicensePlate("");
+    setSelectedServices([]);
+    setServicePreview(false);
+    setIsExpanded(false);
+    setShowSidebar(false);
+    setState("pickup"); // Go to pickup location state
+  };
+  
+  const handlePaymentSubmit = () => {
+    if (!atmNumber.trim()) {
+      setErrors({ atmNumber: "ATM Number is required" });
+      return;
+    }
+    if (!expiryDate.trim()) {
+      setErrors({ expiryDate: "Expiry Date is required" });
+      return;
+    }
+    if (!cvc.trim()) {
+      setErrors({ cvc: "CVC is required" });
+      return;
+    }
+    if (!country) {
+      setErrors({ country: "Country is required" });
+      return;
+    }
+
+    // Simulate successful payment submission
+    setTimeout(() => {
+      setPaymentSubmitted(true);
+      toast.success("Payment submitted successfully!", {
+        position: "top-right",
+        autoClose: 4000, // Close the toast after 4 seconds
+        onClose: () => {
+          resetState(); // Reset the state after the toast is closed
+        }
+      });
+    }, 1000); // Simulating a 2-second delay for API response
   };
 
 
-//   const handlePaymentSubmit = () => {
-//   if (validateForm()) {
-//     // Simulate payment submission logic
-//     console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
-    
-//     // Assuming submission is successful, set state accordingly
-//     setTimeout(() => {
-//       setPaymentSubmitted(true);
-//       // Automatically close sidebar after payment submission
-//       setShowSidebar(false);
-//     }, 2000); // Simulating a 2 second delay
-//   }
-// };
 
-const handlePaymentSubmit = () => {
-  // Payment submission logic, validation, etc.
-  // Example validation:
-  if (!atmNumber.trim()) {
-    setErrors({ atmNumber: 'ATM Number is required' });
-    return;
-  }
-  if (!expiryDate.trim()) {
-    setErrors({ expiryDate: 'Expiry Date is required' });
-    return;
-  }
-  if (!cvc.trim()) {
-    setErrors({ cvc: 'CVC is required' });
-    return;
-  }
-  if (!country) {
-    setErrors({ country: 'Country is required' });
-    return;
-  }
 
-  // Simulate successful payment submission
-  setTimeout(() => {
-    setPaymentSubmitted(true);
-    setShowSidebar(false);
-    setAtmNumber('');
-    setExpiryDate('');
-    setCvc('');
-    setCountry('');
-    setErrors({});
-  }, 2000); // Simulating a 2 second delay for API response
-};
+
+
+
 
 
   // const handlePaymentSubmit = () => {
@@ -1273,11 +1807,11 @@ const handlePaymentSubmit = () => {
     setServicePreview(true); // Move to service preview state after confirming service
   };
 
-
   const handleExpiryDateChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
     if (value.length <= 4) {
-      const formattedValue = value.length > 2 ? `${value.slice(0, 2)}/${value.slice(2)}` : value;
+      const formattedValue =
+        value.length > 2 ? `${value.slice(0, 2)}/${value.slice(2)}` : value;
       setExpiryDate(formattedValue);
     }
   };
@@ -1285,10 +1819,10 @@ const handlePaymentSubmit = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!atmNumber) newErrors.atmNumber = 'Required';
-    if (!expiryDate) newErrors.expiryDate = 'Required';
-    if (!cvc) newErrors.cvc = 'Required';
-    if (!country) newErrors.country = 'Required';
+    if (!atmNumber) newErrors.atmNumber = "Required";
+    if (!expiryDate) newErrors.expiryDate = "Required";
+    if (!cvc) newErrors.cvc = "Required";
+    if (!country) newErrors.country = "Required";
 
     setErrors(newErrors);
 
@@ -1299,22 +1833,20 @@ const handlePaymentSubmit = () => {
     setIsExpanded(!isExpanded);
   };
 
-  
   const handleCvcChange = (e) => {
     setCvc(e.target.value);
     if (errors.cvc) {
-      setErrors({ ...errors, cvc: '' });
+      setErrors({ ...errors, cvc: "" });
     }
   };
 
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
     if (errors.country) {
-      setErrors({ ...errors, country: '' });
+      setErrors({ ...errors, country: "" });
     }
   };
 
-  
   // const handleServiceSelect = (service) => {
   //   if (selectedServices.includes(service.id)) {
   //     setSelectedServices(selectedServices.filter(item => item !== service.id));
@@ -1323,45 +1855,327 @@ const handlePaymentSubmit = () => {
   //   }
   // };
 
+  // useEffect(() => {
+  //   // Retrieve from local storage on component mount
+  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+  //   if (storedServices) {
+  //     setSelectedServices(storedServices);
+  //   }
+  // }, []);
+
+  // const handleServiceSelect = (service) => {
+  //   let updatedServices;
+
+  //   if (selectedServices.includes(service.id)) {
+  //     // If the service is already selected, deselect it
+  //     updatedServices = selectedServices.filter((item) => item !== service.id);
+  //   } else {
+  //     // If the service is not selected, select it
+  //     updatedServices = [...selectedServices, service.id];
+
+  //     // Deselect Service A if Service B is selected
+  //     if (service.id === 'ServiceB') {
+  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceA');
+  //     }
+
+  //     // Deselect Service B if any other service is selected
+  //     if (service.id !== 'ServiceB' && selectedServices.includes('ServiceB')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceB');
+  //     }
+
+  //     // Deselect Service C if Service A is selected
+  //     if (service.id === 'ServiceA' && selectedServices.includes('ServiceC')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceC');
+  //     }
+
+  //     // Deselect Service C if Service B is selected
+  //     if (service.id === 'ServiceB' && selectedServices.includes('ServiceC')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceC');
+  //     }
+
+  //     // Deselect Service A if Service C is selected
+  //     if (service.id === 'ServiceC' && selectedServices.includes('ServiceA')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceA');
+  //     }
+  //   }
+
+  //   setSelectedServices(updatedServices);
+  //   // Store updated services in local storage
+  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
+  // };
+
+  // useEffect(() => {
+  //   const storedServices = JSON.parse(localStorage.getItem('updatedServices'));
+  //   if (storedServices) {
+  //     dispatch(setSelectedServices(storedServices));
+  //   }
+  // }, []);
+  
+
+  // useEffect(() => {
+  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+  //   if (storedServices) {
+  //     dispatch(setSelectedServices(storedServices));
+  //   }
+  // }, [dispatch]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // useEffect(() => {
+  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+  //   if (storedServices) {
+  //     dispatch(setSelectedServices(storedServices));
+  //   }
+  // }, []);
+
+
+
+
+
+
+
+  // const handleServiceSelect = (service) => {
+  //   let updatedServices = selectedServices;
+
+  //   if (selectedServices.includes(service.name)) {
+  //     // If the service is already selected, deselect it
+  //     updatedServices = selectedServices.filter((item) => item !== service.name);
+  //   } else {
+  //     // If the service is not selected, select it
+  //     updatedServices = [...selectedServices, service.name];
+
+  //     // Deselect Service A if Service B is selected
+  //     if (service.id === 'ServiceB') {
+  //       updatedServices = updatedServices.filter((item) => item !== 'Tow Required');
+  //     }
+
+  //     // Deselect Service B if any other service is selected
+  //     if (service.id !== 'ServiceB' && selectedServices.includes('Trailer Transport')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'Trailer Transport');
+  //     }
+
+  //     // Deselect Service C if Service A is selected
+  //     if (service.id === 'ServiceA' && selectedServices.includes('Vehicle Transport')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'Vehicle Transport');
+  //     }
+
+  //     // Deselect Service C if Service B is selected
+  //     if (service.id === 'ServiceB' && selectedServices.includes('Vehicle Transport')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'Vehicle Transport');
+  //     }
+
+  //     // Deselect Service A if Service C is selected
+  //     if (service.id === 'ServiceC' && selectedServices.includes('Tow Required')) {
+  //       updatedServices = updatedServices.filter((item) => item !== 'Tow Required');
+  //     }
+  //   }
+  //   dispatch(setSelectedServices(updatedServices));
+  //   // Save updated services to localStorage
+  // localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const handleServiceSelect = (service) => {
+  //   let updatedServices = [...selectedServices];
+  
+  //   if (selectedServices.includes(service.name)) {
+  //     // Deselect service
+  //     updatedServices = updatedServices.filter(item => item !== service.name);
+  //   } else {
+  //     // Select service and apply conditional logic
+  //     updatedServices.push(service.name);
+  
+  //     // Deselect conflicting services based on service id
+  //     if (service.id === 'ServiceB') {
+  //       updatedServices = updatedServices.filter(item => item !== 'Tow Required');
+  //     }
+  //     if (service.id !== 'ServiceB' && selectedServices.includes('Trailer Transport')) {
+  //       updatedServices = updatedServices.filter(item => item !== 'Trailer Transport');
+  //     }
+  //     if (service.id === 'ServiceA' && selectedServices.includes('Vehicle Transport')) {
+  //       updatedServices = updatedServices.filter(item => item !== 'Vehicle Transport');
+  //     }
+  //     if (service.id === 'ServiceB' && selectedServices.includes('Vehicle Transport')) {
+  //       updatedServices = updatedServices.filter(item => item !== 'Vehicle Transport');
+  //     }
+  //     if (service.id === 'ServiceC' && selectedServices.includes('Tow Required')) {
+  //       updatedServices = updatedServices.filter(item => item !== 'Tow Required');
+  //     }
+  //   }
+  
+  //   dispatch(setSelectedServices(updatedServices));
+  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
+  // };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  // useEffect(() => {
+  //   // Fetch stored services from localStorage when component mounts
+  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+  //   if (storedServices) {
+  //     // Update Redux state with stored services
+  //     dispatch(setSelectedServices(storedServices));
+  //   }
+  // }, [dispatch]);
+
+
+  
+
+
+
+
+
+
+  useEffect(() => {
+    
+    // localStorage.removeItem('selectedServices');
+
+    // Fetch stored services from localStorage when component mounts
+    const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+
+    if (Array.isArray(storedServices)) {
+      // Update Redux state with stored services
+      dispatch(setSelectedServices(storedServices));
+    }
+  }, [dispatch]);
+
   const handleServiceSelect = (service) => {
     let updatedServices;
-  
-    if (selectedServices.includes(service.id)) {
-      // If the service is already selected, deselect it
-      updatedServices = selectedServices.filter(item => item !== service.id);
+
+    if (selectedServices.some((selected) => selected.id === service.id)) {
+      updatedServices = selectedServices.filter(
+        (item) => item.id !== service.id
+      );
     } else {
-      // If the service is not selected, select it
-      updatedServices = [...selectedServices, service.id];
-  
-      // Deselect Service A if Service B is selected
+      updatedServices = [...selectedServices, service];
+
       if (service.id === "ServiceB") {
-        updatedServices = updatedServices.filter(item => item !== "ServiceA");
+        updatedServices = updatedServices.filter(
+          (item) => item.id !== "ServiceA"
+        );
       }
-  
-      // Deselect Service B if any other service is selected
-      if (service.id !== "ServiceB" && selectedServices.includes("ServiceB")) {
-        updatedServices = updatedServices.filter(item => item !== "ServiceB");
+
+      if (
+        service.id !== "ServiceB" &&
+        selectedServices.some((selected) => selected.id === "ServiceB")
+      ) {
+        updatedServices = updatedServices.filter(
+          (item) => item.id !== "ServiceB"
+        );
       }
-  
-      // Deselect Service C if Service A is selected
-      if (service.id === "ServiceA" && selectedServices.includes("ServiceC")) {
-        updatedServices = updatedServices.filter(item => item !== "ServiceC");
+
+      if (
+        service.id === "ServiceA" &&
+        selectedServices.some((selected) => selected.id === "ServiceC")
+      ) {
+        updatedServices = updatedServices.filter(
+          (item) => item.id !== "ServiceC"
+        );
       }
-      // Deselect Service C if Service B is selected
-      if (service.id === "ServiceB" && selectedServices.includes("ServiceC")) {
-        updatedServices = updatedServices.filter(item => item !== "ServiceC");
+
+      if (
+        service.id === "ServiceB" &&
+        selectedServices.some((selected) => selected.id === "ServiceC")
+      ) {
+        updatedServices = updatedServices.filter(
+          (item) => item.id !== "ServiceC"
+        );
       }
-  
-      // Deselect Service A if Service C is selected
-      if (service.id === "ServiceC" && selectedServices.includes("ServiceA")) {
-        updatedServices = updatedServices.filter(item => item !== "ServiceA");
+
+      if (
+        service.id === "ServiceC" &&
+        selectedServices.some((selected) => selected.id === "ServiceA")
+      ) {
+        updatedServices = updatedServices.filter(
+          (item) => item.id !== "ServiceA"
+        );
       }
     }
-  
-    setSelectedServices(updatedServices);
+
+    dispatch(setSelectedServices(updatedServices));
+    // localStorage.setItem("selectedServices",JSON.stringify(updatedServices));
   };
-  
-  
+
+//   dispatch(setSelectedServices(updatedServices));
+//   localStorage.setItem("selectedServices", JSON.stringify(updatedServices));
+// } catch (error) {
+//   console.error('Error updating selected services:', error);
+//   // Handle error appropriately, e.g., fallback to previous state or notify user
+// }
+
+
+
+  // const handleServiceSelect = (service) => {
+  //   let updatedServices;
+
+  //   if (selectedServices.includes(service.id)) {
+  //     // If the service is already selected, deselect it
+  //     updatedServices = selectedServices.filter((item) => item !== service.id);
+  //   } else {
+  //     // If the service is not selected, select it
+  //     updatedServices = [...selectedServices, service.id];
+
+  //     // Deselect Service A if Service B is selected
+  //     if (service.id === "ServiceB") {
+  //       updatedServices = updatedServices.filter((item) => item !== "ServiceA");
+  //     }
+
+  //     // Deselect Service B if any other service is selected
+  //     if (service.id !== "ServiceB" && selectedServices.includes("ServiceB")) {
+  //       updatedServices = updatedServices.filter((item) => item !== "ServiceB");
+  //     }
+
+  //     // Deselect Service C if Service A is selected
+  //     if (service.id === "ServiceA" && selectedServices.includes("ServiceC")) {
+  //       updatedServices = updatedServices.filter((item) => item !== "ServiceC");
+  //     }
+  //     // Deselect Service C if Service B is selected
+  //     if (service.id === "ServiceB" && selectedServices.includes("ServiceC")) {
+  //       updatedServices = updatedServices.filter((item) => item !== "ServiceC");
+  //     }
+
+  //     // Deselect Service A if Service C is selected
+  //     if (service.id === "ServiceC" && selectedServices.includes("ServiceA")) {
+  //       updatedServices = updatedServices.filter((item) => item !== "ServiceA");
+  //     }
+  //   }
+  //   dispatch(setSelectedServices(updatedServices));
+  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
+  //   setSelectedServices(updatedServices);
+  // };
 
   const serviceImages = [
     { id: "ServiceA", src: "/images/TowRequired.png", name: "Tow Required" },
@@ -1374,547 +2188,679 @@ const handlePaymentSubmit = () => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
+    
     <div className={styles.mapContainer}>
-    <div className={`mapContainer ${showSidebar ? styles.blur : ""}`}>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        zoom={8}
-        mapTypeId={mapType}
-        onLoad={onLoad}
-        options={{
-          minZoom: 5,
-          maxZoom: 17,
-        }}
-      >
-        <Marker position={center} />
-        {currentLocation && (
-          <Marker
-            position={currentLocation}
-            icon={{
-              url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-              scaledSize: new window.google.maps.Size(40, 40)
-            }}
-          />
-        )}
-      </GoogleMap>
+      <div className={`mapContainer ${showSidebar ? styles.blur : ""}`}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={8}
+          mapTypeId={mapType}
+          onLoad={onLoad}
+          options={{
+            minZoom: 5,
+            maxZoom: 17,
+          }}
+        >
+          <Marker position={center} />
+          {currentLocation && (
+            <Marker
+              position={currentLocation}
+              icon={{
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                scaledSize: new window.google.maps.Size(40, 40),
+              }}
+            />
+          )}
+        </GoogleMap>
 
-      {state === "pickup" && (
-  <div className={`${styles.searchBoxContainer} ${isExpanded ? styles.expanded : ''}`}>
-    <div className={styles.searchBoxHeader}>
-      {isMobile && (
-        <FontAwesomeIcon
-          icon={isExpanded ? faChevronDown : faChevronUp}
-          className={styles.expandIcon}
-          onClick={toggleExpand} // Ensure this only handles expand/collapse action
-        />
-      )}
-      <h3 onClick={toggleExpand}>Pick Up Location</h3>
-    </div>
-    <div className={styles.searchBox}>
-      <Autocomplete
-        onLoad={(ref) => (autocompleteRef.current = ref)}
-        onPlaceChanged={handlePlaceChanged}
-        fields={['geometry', 'name']}
-      >
-        <div className={styles.InputBox}>
-          <input
+        {state === "pickup" && (
+          <div
+            className={`${styles.searchBoxContainer} ${
+              isExpanded ? styles.expanded : ""
+            }`}
+          >
+            <div className={styles.searchBoxHeader}>
+              {isMobile && (
+                <FontAwesomeIcon
+                  icon={isExpanded ? faChevronDown : faChevronUp}
+                  className={styles.expandIcon}
+                  onClick={toggleExpand} // Ensure this only handles expand/collapse action
+                />
+              )}
+              <h3 onClick={toggleExpand}>Pick Up Location</h3>
+            </div>
+            <div className={styles.searchBox}>
+              <Autocomplete
+                onLoad={(ref) => (autocompleteRef.current = ref)}
+                onPlaceChanged={handlePlaceChanged}
+                fields={["geometry", "name"]}
+              >
+                <div className={styles.InputBox}>
+                  <input
+                    type="text"
+                    placeholder="Search Location"
+                    className={styles.searchBoxInput}
+                    value={
+                      state === "pickup" ? pickupInputValue : dropoffInputValue
+                    }
+                    onChange={
+                      state === "pickup"
+                        ? (e) => setPickupInputValue(e.target.value)
+                        : (e) => setDropoffInputValue(e.target.value)
+                    }
+                  />
+                  {/* <input
             type="text"
             placeholder="Search Location"
             className={styles.searchBoxInput}
             value={pickupInputValue}
             onChange={handlePickupInputChange}
             onFocus={handleDropdownToggle} // Show dropdown on input focus
-          />
-          <div className={styles.iconContainer}>
-            <div className={styles.separator}></div>
-            <FontAwesomeIcon
-              icon={showDropdown ? faChevronUp : faChevronDown}
-              className={styles.searchBoxIcon}
-              onClick={handleDropdownToggle} // Toggle dropdown on icon click
-            />
+          /> */}
+                  <div className={styles.iconContainer}>
+                    <div className={styles.separator}></div>
+                    <FontAwesomeIcon
+                      icon={showDropdown ? faChevronUp : faChevronDown}
+                      className={styles.searchBoxIcon}
+                      onClick={handleDropdownToggle} // Toggle dropdown on icon click
+                    />
+                  </div>
+                </div>
+              </Autocomplete>
+              {showDropdown && (
+                <div className={styles.dropdown}>
+                  <p>No options available</p>{" "}
+                  {/* Replace with actual dropdown options */}
+                </div>
+              )}
+              <button
+                className={styles.currentLocationButton}
+                onClick={handleCurrentLocationClick}
+              >
+                <FontAwesomeIcon
+                  icon={faCrosshairs}
+                  className={styles.currentLocationIcon}
+                />
+                <div className={styles.currentLocationText}>
+                  <p className={styles.locationName}>Location Name</p>
+                  <p className={styles.currentLocation}>Current Location</p>
+                </div>
+              </button>
+              {/* <p>Location Name: {currentLocation.name}</p>
+      <p>Latitude: {currentLocation.lat}</p>
+      <p>Longitude: {currentLocation.lng}</p> */}
+            </div>
           </div>
-        </div>
-      </Autocomplete>
-      {showDropdown && (
-        <div className={styles.dropdown}>
-          <p>No options available</p> {/* Replace with actual dropdown options */}
-        </div>
-      )}
-      <button className={styles.currentLocationButton} onClick={handleCurrentLocationClick}>
-        <FontAwesomeIcon icon={faCrosshairs} className={styles.currentLocationIcon} />
-        <div className={styles.currentLocationText}>
-          <p className={styles.locationName}>Location Name</p>
-          <p className={styles.currentLocation}>Current Location</p>
-        </div>
-      </button>
-    </div>
-  </div>
-)}
+        )}
 
-{state === "dropoff" && (
-  <div className={`${styles.dropoffContainer} ${isExpanded ? styles.expanded : ''}`}>
-    <div className={styles.dropoffHeader}>
-    {isMobile && (
-        <FontAwesomeIcon
-          icon={isExpanded ? faChevronDown : faChevronUp}
-          className={styles.expandIcon}
-          onClick={toggleExpand} // Ensure this only handles expand/collapse action
-        />
-      )}
-      <h3>Dropoff Location</h3>
+        {state === "dropoff" && (
+          <div
+            className={`${styles.dropoffContainer} ${
+              isExpanded ? styles.expanded : ""
+            }`}
+          >
+            <div className={styles.dropoffHeader}>
+              {isMobile && (
+                <FontAwesomeIcon
+                  icon={isExpanded ? faChevronDown : faChevronUp}
+                  className={styles.expandIcon}
+                  onClick={toggleExpand} // Ensure this only handles expand/collapse action
+                />
+              )}
+              <h3>Dropoff Location</h3>
 
-      <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent click event from bubbling up
-          handleBackClick();
-        }} 
-      />
-
-    </div>
-    <div className={styles.searchBox}>
-      <Autocomplete
-        onLoad={ref => (autocompleteRef.current = ref)}
-        onPlaceChanged={handlePlaceChanged}
-        fields={["geometry", "name"]}
-      >
-        <div className={styles.InputBox}>
-          <input
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={styles.backIcon}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click event from bubbling up
+                  handleBackClick();
+                }}
+              />
+            </div>
+            <div className={styles.searchBox}>
+              <Autocomplete
+                onLoad={(ref) => (autocompleteRef.current = ref)}
+                onPlaceChanged={handlePlaceChanged}
+                fields={["geometry", "name"]}
+              >
+                <div className={styles.InputBox}>
+                  <input
+                    type="text"
+                    placeholder="Search location"
+                    className={styles.searchBoxInput}
+                    value={dropoffInputValue}
+                    onChange={(e) => setDropoffInputValue(e.target.value)}
+                  />
+                  {/* <input
             type="text"
             placeholder="Search location"
             className={styles.searchBoxInput}
             value={dropoffInputValue}
             onChange={handleDropoffInputChange}
-          />
-          <div className={styles.iconContainer}>
-            <div className={styles.separator}></div>
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              className={styles.searchBoxIcon}
-              onClick={handleDropdownToggle} // Toggle dropdown on icon click
-            />
-          </div>
-        </div>
-      </Autocomplete>
-    </div>
-  </div>
-)}
-
-{state === "vehicleDetails" && (
-
-<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
-         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
-         {isMobile && (
-             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}    
-        
-          <h3>Vehicle Details</h3>
-          <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent click event from bubbling up
-          handleBackClick();
-        }} 
-      />
+          /> */}
+                  <div className={styles.iconContainer}>
+                    <div className={styles.separator}></div>
+                    <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className={styles.searchBoxIcon}
+                      onClick={handleDropdownToggle} // Toggle dropdown on icon click
+                    />
+                  </div>
+                </div>
+              </Autocomplete>
             </div>
-        <div className={styles.vinInputContainer}>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="vin"
-              className={styles.vinInput}
-              value={vinInputValue}
-              onChange={handleVinInputChange}
-              placeholder=" " // Add placeholder with a space
-            />
-            <label htmlFor="vin">Vin Number*</label>
           </div>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="model"
-              className={styles.vinInput}
-              value={model}
-              onChange={handleModelInputChange}
-              placeholder=" "
-            />
-            <label htmlFor="model">Model*</label>
-          </div>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="make"
-              className={styles.vinInput}
-              value={make}
-              onChange={handleMakeInputChange}
-              placeholder=" "
-            />
-            <label htmlFor="make">Make*</label>
-          </div>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="year"
-              className={styles.vinInput}
-              value={year}
-              onChange={handleYearInputChange}
-              placeholder=" "
-            />
-            <label htmlFor="year">Year*</label>
-          </div>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="color"
-              className={styles.vinInput}
-              value={color}
-              onChange={handleColorInputChange}
-              placeholder=" "
-            />
-            <label htmlFor="color">Car Color*</label>
-          </div>
-          <div className={styles.floatingLabelContainer}>
-            <input
-              type="text"
-              id="licensePlate"
-              className={styles.vinInput}
-              value={licensePlate}
-              onChange={handleLicensePlateInputChange}
-              placeholder=" "
-            />
-            <label htmlFor="licensePlate">License Plate Number</label>
-          </div>
-          <button
-            className={styles.checkDetailButton}
-            onClick={handleCheckDetail}
-            disabled={vinInputValue.trim() === ""}
+        )}
+
+        {state === "vehicleDetails" && (
+          <div
+            className={`${styles.vehicleDetailsContainer} ${
+              isExpanded ? styles.expanded : ""
+            }`}
           >
-            Add Detail
-          </button>
-        </div>
-      </div>
-    )}
+            <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+              {isMobile && (
+                <FontAwesomeIcon
+                  icon={isExpanded ? faChevronDown : faChevronUp}
+                  className={styles.expandIcon}
+                />
+              )}
 
-{/* const handleSubmit = (event) => {
-        event.preventDefault();
-        if (!color.trim()) {
-            setError('This field is required');
-        } else {
-            // Handle form submission
-            console.log('Form submitted with color:', color);
-        }
-    }; */}
-     {/* <label htmlFor="color">Car Color</label>
-     {error && <div className={styles.error}>{error}</div>} */}
-
-{state === "services" && (
-
-<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
-         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
-         {isMobile && (
-             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}     
-           
-      <h3>Select Services</h3>
-      <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent click event from bubbling up
-          handleBackClick();
-        }} 
-      />
-      </div>
-    <div className={styles.servicesContent}>
-      <div className={styles.servicesList}>
-        {serviceImages.map(service => (
-          <div key={service.id} className={styles.serviceContainer} onClick={() => handleServiceSelect(service)}>
-            <img
-              src={service.src}
-              alt={service.name}
-              className={`${styles.serviceImage} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
-            />
-            <div className={styles.serviceName}>{service.name}</div>
+              <h3>Vehicle Details</h3>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={styles.backIcon}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click event from bubbling up
+                  handleBackClick();
+                }}
+              />
+            </div>
+            <div className={styles.vinInputContainer}>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="vin"
+                  className={styles.vinInput}
+                  value={vinInputValue}
+                  onChange={handleVinInputChange}
+                  placeholder=" " // Add placeholder with a space
+                />
+                <label htmlFor="vin">Vin Number*</label>
+              </div>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="model"
+                  className={styles.vinInput}
+                  value={model}
+                  onChange={handleModelInputChange}
+                  placeholder=" "
+                />
+                <label htmlFor="model">Model*</label>
+              </div>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="make"
+                  className={styles.vinInput}
+                  value={make}
+                  onChange={handleMakeInputChange}
+                  placeholder=" "
+                />
+                <label htmlFor="make">Make*</label>
+              </div>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="year"
+                  className={styles.vinInput}
+                  value={year}
+                  onChange={handleYearInputChange}
+                  placeholder=" "
+                />
+                <label htmlFor="year">Year*</label>
+              </div>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="color"
+                  className={styles.vinInput}
+                  value={color}
+                  onChange={handleColorInputChange}
+                  placeholder=" "
+                />
+                <label htmlFor="color">Car Color*</label>
+              </div>
+              <div className={styles.floatingLabelContainer}>
+                <input
+                  type="text"
+                  id="licensePlate"
+                  className={styles.vinInput}
+                  value={licensePlate}
+                  onChange={handleLicensePlateInputChange}
+                  placeholder=" "
+                />
+                <label htmlFor="licensePlate">License Plate Number</label>
+              </div>
+              <button
+                className={styles.checkDetailButton}
+                onClick={handleCheckDetail}
+                disabled={vinInputValue.trim() === ""}
+              >
+                Add Detail
+              </button>
+            </div>
           </div>
-        ))}
-      </div>
-      <button
-        className={styles.checkDetailButton}
-        onClick={handleConfirmService} // Use the new handler here
-        disabled={selectedServices.length === 0} // Disable button if no service is selected
-      >
-        Confirm Service
-      </button>
-    </div>
-  </div>
-)}
+        )}
 
 
-{servicePreview && (
 
-<div className={`${styles.vehicleDetailsContainer} ${isExpanded ? styles.expanded : ''}`}>
-         <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
-         {isMobile && (
-             <FontAwesomeIcon icon={isExpanded ? faChevronDown : faChevronUp} className={styles.expandIcon} />
-           )}     
-           {/* <FontAwesomeIcon 
+        {state === "services" && (
+          <div
+            className={`${styles.vehicleDetailsContainer} ${
+              isExpanded ? styles.expanded : ""
+            }`}
+          >
+            <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+              {isMobile && (
+                <FontAwesomeIcon
+                  icon={isExpanded ? faChevronDown : faChevronUp}
+                  className={styles.expandIcon}
+                />
+              )}
+
+              <h3>Select Services</h3>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={styles.backIcon}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click event from bubbling up
+                  handleBackClick();
+                }}
+              />
+            </div>
+            <div className={styles.servicesContent}>
+              <div className={styles.servicesList}>
+                {serviceImages.map((service) => (
+                  <div
+                    key={service.id}
+                    className={styles.serviceContainer}
+                    onClick={() => handleServiceSelect(service)}
+                  >
+                    <img
+                      src={service.src}
+                      alt={service.name}
+                      className={`${styles.serviceImage} ${
+                        selectedServices.includes(service.id)
+                          ? styles.selected
+                          : ""
+                      }`}
+                    />
+                    <div className={styles.serviceName}>{service.name}</div>
+                  </div>
+                ))}
+              </div>
+              <button
+                className={styles.checkDetailButton}
+                onClick={handleConfirmService} // Use the new handler here
+                disabled={selectedServices.length === 0} // Disable button if no service is selected
+              >
+                Confirm Service
+              </button>
+            </div>
+          </div>
+        )}
+
+        {servicePreview && (
+          <div
+            className={`${styles.vehicleDetailsContainer} ${
+              isExpanded ? styles.expanded : ""
+            }`}
+          >
+            <div className={styles.vehicleDetailsHeader} onClick={toggleExpand}>
+              {isMobile && (
+                <FontAwesomeIcon
+                  icon={isExpanded ? faChevronDown : faChevronUp}
+                  className={styles.expandIcon}
+                />
+              )}
+              {/* <FontAwesomeIcon 
               icon={faArrowLeft} 
               className={styles.backIcon} 
               onClick={handleBackClick} 
             /> */}
-      <h3>Service Preview</h3>
-      <FontAwesomeIcon 
-        icon={faArrowLeft} 
-        className={styles.backIcon} 
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent click event from bubbling up
-          handleBackClick();
-        }} 
-      />
-      </div>
-    <div className={styles.servicesContent}>
-      <div className={styles.serviceList}>
-        {selectedServices.map(serviceId => {
-          const service = serviceImages.find(s => s.id === serviceId);
-          return (
-            <div key={serviceId} className={styles.servicePreviewItem}>
-              <img src={service.src} alt={service.name} className={styles.servicePreviewImage} />
-              <div className={styles.Previewservicename}>{service.name}</div>
+              <h3>Service Preview</h3>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className={styles.backIcon}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click event from bubbling up
+                  handleBackClick();
+                }}
+              />
             </div>
-          );
-        })}
-      </div>
-    <div className={styles.locationDetails}>
-    <h5 style={{ fontSize: '13px', marginLeft:'17px', fontWeight:'600' }}>Location:</h5>
-        <div className={styles.locationInfo}>
-          <p className={styles.addressItem}>
-            <span className={styles.addressLabel}> Address:</span>
-            <span className={styles.servicedropoffAddress}>{dropoffAddress}</span>
-          </p>
-          <p className={styles.addressItem}>
-            {/* <span className={styles.addressLabel}>Pickup Address:</span> {pickupAddress} */}
-            <span className={styles.addressLabel}>Lat, Lng</span>
-            <span className={styles.servicedropoffAddress}>    24.9167872, 67.0171136   </span>
-          </p>
-        </div>
-      </div>
-      <div className={styles.vehicleDetails}>
-      <h5 style={{ fontSize: '13px', marginLeft:'17px', fontWeight:'600' }}>Vehicle Details:</h5>
 
-        <div className={styles.detailsContainer}>
-          
-            <p className={styles.detailsItem}>
-            <span className={styles.detailsLabel}>Make:</span>
-            <span className={styles.servicedropoffAddress}>{make}</span>
-            </p>
-            <p className={styles.detailsItem}>
-              <span className={styles.detailsLabel}>Model:</span> 
-              <span className={styles.servicedropoffAddress}>{model}</span>
-            </p>
-            <p className={styles.detailsItem}>
-              <span className={styles.detailsLabel}>Year:</span> 
-              <span className={styles.servicedropoffAddress}>{year}</span>
-              </p>
-            <p className={styles.detailsItem}>
-              <span className={styles.detailsLabel}>VIN:</span> 
-              <span className={styles.servicedropoffAddress}>{vin}</span>
-            </p>
-            <p className={styles.detailsItem}>
-              <span className={styles.detailsLabel}>Color:</span> 
-              <span className={styles.servicedropoffAddress}>{color}</span>
-            </p>
-            <p className={styles.detailsItem}>
-              <span className={styles.detailsLabel}>License Plate Number:</span>
-            <span className={styles.servicedropoffAddress}>{licensePlate}</span>
-              </p>
+            {/* <div className={styles.servicesContent}>
+  <div className={styles.serviceList}>
+    {selectedServices.map((serviceId) => {
+      const service = serviceImages.find((s) => s.id === serviceId);
+      if (!service) {
+        console.warn(`Service with id ${serviceId} not found in serviceImages.`);
+        return null; // or handle this case appropriately
+      }
+
+      return (
+        <div key={serviceId} className={styles.servicePreviewItem}>
+          <img
+            src={service.src}
+            alt={service.name}
+            className={styles.servicePreviewImage}
+          />
+          <div className={styles.Previewservicename}>
+            {service.name}
+          </div>
         </div>
-      </div>
-      <div className={styles.priceDetails}>
-      <h5 style={{ fontSize: '15px', marginLeft:'17px', fontWeight:'600' }}>Price Details:</h5>
-        <div className={styles.priceContainer}>
-            <p className={styles.priceItem}>
-              <span className={styles.PriceLabel}>Service charges: </span>
-              <span className={styles.servicedropoffAddress}>20.00</span>
-             </p>
-            <p className={styles.priceItem}>
-              <span className={styles.PriceLabel}>TAX: </span>
-            <span className={styles.servicedropoffAddress}>20.00</span>
-            </p>
-            <p className={styles.priceItem}>
-              <span className={styles.PriceLabel}>Additional charges: </span>
-            <span className={styles.servicedropoffAddress}>20.00</span>
-            </p>
-            <p className={styles.priceItem}><span className={styles.PriceLabel}>Transaction fees: </span> 
-            <span className={styles.servicedropoffAddress}>20.00</span>
-            </p>
-            <p className={styles.priceItem}>
-              <span className={styles.PriceLabel}>Total: </span> 
-            <span className={styles.servicedropoffAddress}>20.00</span>
-            </p>
-        </div>
-      </div>
-       {/* <ReCAPTCHA
+      );
+    })} */}
+            <div className={styles.servicesContent}>
+              <div className={styles.serviceList}>
+              {selectedServices.map((service) => (
+                <div key={service.id} className={styles.servicePreviewItem}>
+                  <img
+                    src={service.src}
+                    alt={service.name}
+                    className={styles.servicePreviewImage}
+                  />
+                  <div className={styles.Previewservicename}>{service.name}</div>
+                </div>
+              ))}
+                {/* {selectedServices.map((serviceId) => {
+                  const service = serviceImages.find((s) => s.id === serviceId);
+                  return service ? (
+                    <div key={serviceId} className={styles.servicePreviewItem}>
+                      <img
+                        src={service.src}
+                        alt={service.name}
+                        className={styles.servicePreviewImage}
+                      />
+                      <div className={styles.Previewservicename}>
+                        {service.name}
+                      </div>
+                    </div>
+                  ) : null;
+                })} */}
+                {/* <div className={styles.servicesContent}>
+              <div className={styles.serviceList}>
+                {selectedServices.map((serviceId) => {
+                  const service = serviceImages.find((s) => s.id === serviceId);
+                  return (
+                    <div key={serviceId} className={styles.servicePreviewItem}>
+                      <img
+                        src={service.src}
+                        alt={service.name}
+                        className={styles.servicePreviewImage}
+                      />
+                      <div className={styles.Previewservicename}>
+                        {service.name}
+                      </div>
+                    </div>
+                  );
+                })} */}
+              </div>
+              <div className={styles.locationDetails}>
+                <h5
+                  style={{
+                    fontSize: "13px",
+                    marginLeft: "17px",
+                    fontWeight: "600",
+                  }}
+                >
+                  Location:
+                </h5>
+                <div className={styles.locationInfo}>
+                  <p className={styles.addressItem}>
+                    <span className={styles.addressLabel}> Address:</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {dropoffAddress}
+                    </span>
+                  </p>
+                  <p className={styles.addressItem}>
+                    {/* <span className={styles.addressLabel}>Pickup Address:</span> {pickupAddress} */}
+                    <span className={styles.addressLabel}>Lat, Lng</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {" "}
+                      28.9167872, 78.0171136{" "}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div className={styles.vehicleDetails}>
+                <h5
+                  style={{
+                    fontSize: "13px",
+                    marginLeft: "17px",
+                    fontWeight: "600",
+                  }}
+                >
+                  Vehicle Details:
+                </h5>
+
+                <div className={styles.detailsContainer}>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>Make:</span>
+                    <span className={styles.servicedropoffAddress}>{make}</span>
+                  </p>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>Model:</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {model}
+                    </span>
+                  </p>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>Year:</span>
+                    <span className={styles.servicedropoffAddress}>{year}</span>
+                  </p>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>VIN:</span>
+                    <span className={styles.servicedropoffAddress}>{vin}</span>
+                  </p>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>Color:</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {color}
+                    </span>
+                  </p>
+                  <p className={styles.detailsItem}>
+                    <span className={styles.detailsLabel}>
+                      License Plate Number:
+                    </span>
+                    <span className={styles.servicedropoffAddress}>
+                      {licensePlate}
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div className={styles.priceDetails}>
+                <h5
+                  style={{
+                    fontSize: "15px",
+                    marginLeft: "17px",
+                    fontWeight: "600",
+                  }}
+                >
+                  Price Details:
+                </h5>
+                <div className={styles.priceContainer}>
+                  <p className={styles.priceItem}>
+                    <span className={styles.PriceLabel}>Service charges: </span>
+                    <span className={styles.servicedropoffAddress}>20.00</span>
+                  </p>
+                  <p className={styles.priceItem}>
+                    <span className={styles.PriceLabel}>TAX: </span>
+                    <span className={styles.servicedropoffAddress}>20.00</span>
+                  </p>
+                  <p className={styles.priceItem}>
+                    <span className={styles.PriceLabel}>
+                      Additional charges:{" "}
+                    </span>
+                    <span className={styles.servicedropoffAddress}>20.00</span>
+                  </p>
+                  <p className={styles.priceItem}>
+                    <span className={styles.PriceLabel}>
+                      Transaction fees:{" "}
+                    </span>
+                    <span className={styles.servicedropoffAddress}>20.00</span>
+                  </p>
+                  <p className={styles.priceItem}>
+                    <span className={styles.PriceLabel}>Total: </span>
+                    <span className={styles.servicedropoffAddress}>20.00</span>
+                  </p>
+                </div>
+              </div>
+              {/* <ReCAPTCHA
         sitekey="YOUR_SITE_KEY"
         onChange={handleRecaptchaChange}
       /> */}
 
-
-
-       <div className={styles.orderContainer}>
-        <div className={styles.orderDetails}>
-          {/* <h3>Order Details</h3> */}
-          {/* Display order details here */}
-          <button onClick={handlePayOrderClick} className={styles.submitButton}>
-            Pay Order
-          </button>
-        </div>
+              <div className={styles.orderContainer}>
+                <div className={styles.orderDetails}>
+                  {/* <h3>Order Details</h3> */}
+                  {/* Display order details here */}
+                  <button
+                    onClick={handlePayOrderClick}
+                    className={styles.submitButton}
+                  >
+                    Pay Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
-  </div>
-)}
-</div>
 
-{showSidebar && (
-      <div className={`${styles.sidebar} ${showSidebar ? styles.sidebarOpen : ''}`}>
+      {showSidebar && (
+        <div
+          className={`${styles.sidebar} ${
+            showSidebar ? styles.sidebarOpen : ""
+          }`}
+        >
           {/* <div className={styles.backButton} onClick={handleBackClick}>
             <FontAwesomeIcon icon={faArrowLeft} />
           </div> */}
-          {currentView === 'payment' && (
+          {currentView === "payment" && (
             <div className={styles.paymentContainer}>
-            {/* <h3>Payment Details</h3> */}
-            <div className={styles.inputGroup}>
+              {/* <h3>Payment Details</h3> */}
+              <div className={styles.inputGroup}>
                 <label htmlFor="atmNumber">ATM Number</label>
                 <div className={styles.inputWithIcon}>
-                  <input type="text" id="atmNumber" value={atmNumber} onChange={handleAtmNumberChange} placeholder="1234 1234 1234 1234" className={styles.expiryDateInput} />
-                  <FontAwesomeIcon icon={faCreditCard} className={styles.icon} />
-                  {errors.atmNumber && <span className={styles.errorMessage}>{errors.atmNumber}</span>}
+                  <input
+                    type="text"
+                    id="atmNumber"
+                    value={atmNumber}
+                    onChange={handleAtmNumberChange}
+                    placeholder="1234 1234 1234 1234"
+                    className={styles.expiryDateInput}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCreditCard}
+                    className={styles.icon}
+                  />
+                  {errors.atmNumber && (
+                    <span className={styles.errorMessage}>
+                      {errors.atmNumber}
+                    </span>
+                  )}
                 </div>
               </div>
               <div className={styles.yeardate}>
-            <div className={styles.inputGroups}>
-              <label htmlFor="expiryDate">Expiry Date</label>
-              <input type="text" id="expiryDate" value={expiryDate} onChange={handleExpiryDateChange} placeholder="MM/YY" />
-              {errors.expiryDate && <span className={styles.errorMessage}>{errors.expiryDate}</span>}
-            </div>
-            <div className={styles.inputGroups}>
-                <label htmlFor="cvc">CVC</label>
-                <div className={styles.inputWithIcon}>
-                  <input type="text" id="cvc" value={cvc} onChange={handleCvcChange} placeholder="CVC"/>
-                  <FontAwesomeIcon icon={faKey} className={styles.icon} />
-                
+                <div className={styles.inputGroups}>
+                  <label htmlFor="expiryDate">Expiry Date</label>
+                  <input
+                    type="text"
+                    id="expiryDate"
+                    value={expiryDate}
+                    onChange={handleExpiryDateChange}
+                    placeholder="MM/YY"
+                  />
+                  {errors.expiryDate && (
+                    <span className={styles.errorMessage}>
+                      {errors.expiryDate}
+                    </span>
+                  )}
                 </div>
-                {errors.cvc && <span className={styles.errorMessage}>{errors.cvc}</span>}
+                <div className={styles.inputGroups}>
+                  <label htmlFor="cvc">CVC</label>
+                  <div className={styles.inputWithIcon}>
+                    <input
+                      type="text"
+                      id="cvc"
+                      value={cvc}
+                      onChange={handleCvcChange}
+                      placeholder="CVC"
+                    />
+                    <FontAwesomeIcon icon={faKey} className={styles.icon} />
+                  </div>
+                  {errors.cvc && (
+                    <span className={styles.errorMessage}>{errors.cvc}</span>
+                  )}
+                </div>
               </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="country">Country</label>
+                <select
+                  id="country"
+                  value={country}
+                  onChange={handleCountryChange}
+                >
+                  <option value="">Select Country</option>
+                  <option value="us">United States</option>
+                  <option value="ca">Canada</option>
+                  <option value="uk">United Kingdom</option>
+                  {/* Add more country options as needed */}
+                </select>
+                {errors.country && (
+                  <span className={styles.errorMessage}>{errors.country}</span>
+                )}
               </div>
-            <div className={styles.inputGroup}>
-              <label htmlFor="country">Country</label>
-              <select id="country" value={country} onChange={handleCountryChange}>
-                <option value="">Select Country</option>
-                <option value="us">United States</option>
-                <option value="ca">Canada</option>
-                <option value="uk">United Kingdom</option>
-                {/* Add more country options as needed */}
-              </select>
-              {errors.country && <span className={styles.errorMessage}>{errors.country}</span>}
-            </div>
-            <p>By providing your card information, you allow Protowcall Inc. 
-              to charge your card for future payments in accordance with their terms.</p>
+              <p>
+                By providing your card information, you allow Protowcall Inc. to
+                charge your card for future payments in accordance with their
+                terms.
+              </p>
               <div className={styles.buttonGroup}>
-              <button onClick={handleCancelClick} className={styles.cancelButton}>CANCEL</button>
-              <button onClick={handlePaymentSubmit} className={styles.paybutton}>
-                PAY
+                <button
+                  onClick={handleCancelClick}
+                  className={styles.cancelButton}
+                >
+                  CANCEL
+                </button>
+                <button
+                  onClick={handlePaymentSubmit}
+                  className={styles.paybutton}
+                >
+                  PAY
                 </button>
               </div>
-          
-
-          </div>
-        )}
-        {paymentSubmitted && (
-        <div className={styles.successMessage}>
-          <p>Payment submitted successfully!</p>
-          {/* Add additional content or navigation options */}
+            </div>
+          )}
+          {paymentSubmitted && (
+            <div className={styles.successMessage}>
+              <p>Payment submitted successfully!</p>
+              {/* Add additional content or navigation options */}
+            </div>
+          )}
+          <ToastContainer />
         </div>
       )}
-        </div>
-      )}
-       
     </div>
   );
 };
 
 export default Map;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 // import { useState, useEffect, useCallback, useRef } from "react";
@@ -2147,10 +3093,10 @@ export default Map;
 //       {state === "dropoff" && (
 //         <div className={styles.dropoffContainer}>
 //           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Dropoff Location</h3>
 //           </div>
@@ -2176,10 +3122,10 @@ export default Map;
 //       {state === "vehicleDetails" && (
 //         <div className={styles.vehicleDetailsContainer}>
 //           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Vehicle Details</h3>
 //           </div>
@@ -2229,18 +3175,18 @@ export default Map;
 // {state === "services" && (
 //   <div className={styles.vehicleDetailsContainer}>
 //     <div className={styles.vehicleDetailsHeader}>
-//       <FontAwesomeIcon 
-//         icon={faArrowLeft} 
-//         className={styles.backIcon} 
-//         onClick={handleBackClick} 
+//       <FontAwesomeIcon
+//         icon={faArrowLeft}
+//         className={styles.backIcon}
+//         onClick={handleBackClick}
 //       />
 //       <h3>Select Services</h3>
 //     </div>
 //     <div className={styles.servicesList}>
 //       {serviceImages.map(service => (
-//         <div 
-//           key={service.id} 
-//           className={`${styles.serviceContainer} ${selectedServices.includes(service.id) ? styles.selected : ''}`} 
+//         <div
+//           key={service.id}
+//           className={`${styles.serviceContainer} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
 //           onClick={() => handleServiceSelect(service)}
 //         >
 //           <img
@@ -2262,14 +3208,13 @@ export default Map;
 //   </div>
 // )}
 
-
 //       {state === "servicePreview" && (
 //         <div className={styles.vehicleDetailsContainer}>
 //           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Service Preview</h3>
 //           </div>
@@ -2292,10 +3237,6 @@ export default Map;
 // };
 
 // export default Map;
-
-
-
-
 
 // import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
 // import { useState, useEffect, useCallback, useRef } from "react";
@@ -2334,7 +3275,6 @@ export default Map;
 //   const autocompleteRef = useRef(null);
 //   const mapRef = useRef(null);
 //     // const [selectedServices, setSelectedServices] = useState([]);
-
 
 //   const onLoad = useCallback((map) => {
 //     mapRef.current = map;
@@ -2452,8 +3392,6 @@ export default Map;
 //   //   });
 //   // };
 
- 
-  
 //     const handleServiceSelect = (service) => {
 //       if (selectedServices.some(s => s.id === service.id)) {
 //         setSelectedServices(selectedServices.filter(s => s.id !== service.id));
@@ -2461,10 +3399,7 @@ export default Map;
 //         setSelectedServices([...selectedServices, service]);
 //       }
 //     };
-  
 
-
-    
 //   const handleConfirmServices = () => {
 //     setState("servicePreview");
 //   };
@@ -2472,7 +3407,6 @@ export default Map;
 //   useEffect(() => {
 //     console.log('Selected Services (after update):', selectedServices);
 //   }, [selectedServices]);
-
 
 //   if (loadError) return <div>Error loading maps</div>;
 //   if (!isLoaded) return <div>Loading...</div>;
@@ -2549,10 +3483,10 @@ export default Map;
 //       {state === "dropoff" && (
 //         <div className={styles.dropoffContainer}>
 //           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Dropoff Location</h3>
 //           </div>
@@ -2578,10 +3512,10 @@ export default Map;
 //       {state === "vehicleDetails" && (
 //         <div className={styles.vehicleDetailsContainer}>
 //           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon 
-//               icon={faArrowLeft} 
-//               className={styles.backIcon} 
-//               onClick={handleBackClick} 
+//             <FontAwesomeIcon
+//               icon={faArrowLeft}
+//               className={styles.backIcon}
+//               onClick={handleBackClick}
 //             />
 //             <h3>Vehicle Details</h3>
 //           </div>
@@ -2630,7 +3564,7 @@ export default Map;
 //             </div>
 //           </div>
 //         )}
-  
+
 //         {state === "services" && (
 //           <div className={styles.vehicleDetailsContainer}>
 //             <div className={styles.vehicleDetailsHeader}>
@@ -2666,14 +3600,14 @@ export default Map;
 //             </button>
 //           </div>
 //         )}
-        
+
 //         {state === "servicePreview" && (
 //   <div className={styles.vehicleDetailsContainer}>
 //     <div className={styles.vehicleDetailsHeader}>
-//       <FontAwesomeIcon 
-//         icon={faArrowLeft} 
-//         className={styles.backIcon} 
-//         onClick={handleBackClick} 
+//       <FontAwesomeIcon
+//         icon={faArrowLeft}
+//         className={styles.backIcon}
+//         onClick={handleBackClick}
 //       />
 //       <h3>Service Preview</h3>
 //     </div>
@@ -2694,10 +3628,5 @@ export default Map;
 //       </div>
 //     );
 //   };
-  
+
 //   export default Map;
-  
-
-
-
-

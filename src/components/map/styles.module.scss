@@ -388,7 +388,7 @@ servicedropoffAddress
     top: auto;
     bottom: 0;
     // width: 95% !important ; /* Adjust the width for smaller screens */
-    left: 0% !important;
+    left: -1% !important;
     width: 58vh !important;
     transform: translate(2px, 213px);
     //  translateX(-50%);
@@ -399,7 +399,7 @@ servicedropoffAddress
     top: 12px;
     bottom: auto !important;
     // width: 95% !important; /* Adjust the width for smaller screens */
-    left: 1% !important;
+    left: -1% !important;
     height: 100vh !important;
     width: 56vh !important;
     // transform: translateX(-50%);
@@ -521,7 +521,7 @@ servicedropoffAddress
     padding: 5px 0px;
   margin-top: -10px;
   margin-left: -10px;
-  width: 400px;
+  width: 400px !important;
   color: white;
 }
 
@@ -1023,7 +1023,7 @@ servicedropoffAddress
   vertical-align: middle;
   text-decoration: none;
   list-style: none;
-  // border: 1px solid red;
+  border: 1px solid red;
 }
 
 .locationInfo {
@@ -1034,7 +1034,7 @@ servicedropoffAddress
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin-left: 100px;
 }
 
 .locationDetails{
@@ -1043,6 +1043,8 @@ servicedropoffAddress
   margin-top: 20px;
   width: 39vh;
 }
+
+
 
 .serviceList {
   list-style-type: none; /* Remove default list styling */
@@ -1136,7 +1138,7 @@ servicedropoffAddress
 @media (max-width: 768px) {
   .locationInfo{
     // border: 1px solid red;
-    width: 360px;
+    // width: 360px;
     display: flex;
     flex-direction: column;
     justify-content: center;
