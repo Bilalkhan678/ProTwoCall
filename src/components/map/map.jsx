@@ -1,936 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
-
-// // import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-// // import { useMemo } from "react";
-// // import 'leaflet/dist/leaflet.css';
-// // import styles from './styles.module.scss';
-
-// // const mapContainerStyle = {
-// //   width: "100%",
-// //   height: "100vh", // Ensure it takes up full viewport height
-// //   position: 'relative',
-// //   padding: '10px' // Add padding if necessary to ensure controls are not cut off
-
-// // // display: 'flex',
-// // // justifyContent: "center",
-// // // alignItems: "center",
-
-// // };
-
-// // // const center = useMemo(() => ({ lat: 44.9778, lng: -93.2650 }), []);
-
-// // const center = {
-// //   lat: 44.9778,
-// //   lng: -93.2650,
-// // };
-
-// // // const options = useMemo(() => ({
-// // //     fullscreenControl: false,
-// // //     mapTypeControl: false,
-// // //     streetViewControl: false,
-// // //     zoomControl: true,
-// // //     zoomControlOptions: {
-// // //       position: window.google.maps.ControlPosition.RIGHT_CENTER,
-// // //     },
-// // //   }), []);
-
-// // // const options = {
-// // //     fullscreenControl: false,  // Disable the fullscreen control if you don't need it
-// // //     zoomControlOptions: {
-// // //       position: window.google.maps.ControlPosition.CENTER, // Position the zoom control on the right
-// // //     },
-// // //   };
-
-// // // const options = useMemo(() => {
-// // //     if (typeof window !== 'undefined' && window.google) {
-// // //       return {
-// // //         fullscreenControl: false,
-// // //         zoomControlOptions: {
-// // //           position: window.google.maps.ControlPosition.CENTER,
-// // //         },
-// // //       };
-// // //     }
-// // //     return {};
-// // //   }, []);
-
-// // const Map = () => {
-// //   const { isLoaded, loadError } = useLoadScript({
-// //     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-// //   });
-
-// //   if (loadError) return <div>Error loading maps</div>;
-// //   if (!isLoaded) return <div>Loading...</div>;
-
-// //   return (
-// //     <GoogleMap
-// //       mapContainerStyle={mapContainerStyle}
-// //       center={center}
-// //       zoom={8}
-// //     //   options={options}
-// //     >
-// //       <Marker position={center} />
-// //     </GoogleMap>
-// //   );
-// // };
-
-// // export default Map;
-
-// // // import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-// // // import L from 'leaflet';
-// // // import 'leaflet/dist/leaflet.css';
-
-// // // const customIcon = new L.Icon({
-// // //   iconUrl: 'https://leafletjs.com/examples/custom-icons/leaf-red.png',
-// // //   iconSize: [38, 95],
-// // //   iconAnchor: [22, 94],
-// // //   popupAnchor: [-3, -76],
-// // // });
-
-// // // const CustomMarker = ({ position, text }) => (
-// // //   <Marker position={position} icon={customIcon}>
-// // //     <Popup>{text}</Popup>
-// // //   </Marker>
-// // // );
-
-// // // const SatelliteButton = () => {
-// // //   const map = useMap();
-
-// // //   const handleSatelliteClick = () => {
-// // //     map.setView(map.getCenter(), map.getZoom());
-// // //     map.removeLayer(map.getPanes().tilePane);
-// // //     map.addLayer(
-// // //       new L.TileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-// // //         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-// // //       })
-// // //     );
-// // //   };
-
-// // //   return (
-// // //     <button className="satellite-button" onClick={handleSatelliteClick}>
-// // //       Satellite
-// // //     </button>
-// // //   );
-// // // };
-
-// // // const Map = () => {
-// // //   return (
-// // //     <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '100vh', width: '100%' }}>
-// // //       <TileLayer
-// // //         attribution='&copy; OpenStreetMap contributors'
-// // //         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-// // //       />
-// // //       <SatelliteButton />
-// // //       <CustomMarker position={[51.505, -0.09]} text="Custom Marker"/>
-// // //     </MapContainer>
-// // //   );
-// // // };
-
-// // // export default Map;
-
-// // import React, { useState, useEffect } from 'react';
-
-// // const Map = () => {
-// //   const [position, setPosition] = useState({ lat: 0, lng: 0 });
-
-// //   useEffect(() => {
-// //     const getLocation = () => {
-// //       if (navigator.geolocation) {
-// //         navigator.geolocation.watchPosition(
-// //           (position) => {
-// //             setPosition({
-// //               lat: position.coords.latitude,
-// //               lng: position.coords.longitude,
-// //             });
-// //           },
-// //           (error) => {
-// //             console.error('Error getting location:', error);
-// //           }
-// //         );
-// //       } else {
-// //         console.error('Geolocation is not supported by this browser.');
-// //       }
-// //     };
-
-// //     getLocation();
-// //   }, []);
-
-// //   return (
-// //     <div style={{ height: '400px', width: '100%' }}>
-// //       <iframe
-// //         width="100%"
-// //         height="100%"
-// //         frameBorder="0"
-// //         scrolling="no"
-// //         marginHeight="0"
-// //         marginWidth="0"
-// //         src={`https://www.google.com/maps/embed/v1/view?key=YOUR_GOOGLE_MAPS_API_KEY&center=${position.lat},${position.lng}&zoom=15`}
-// //       />
-// //     </div>
-// //   );
-// // };
-
-// // export default Map;
-// // src/components/map/Map.jsx
-
-// import { GoogleMap, useLoadScript, Marker, StandaloneSearchBox , Autocomplete  } from "@react-google-maps/api";
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLocationArrow, faChevronDown  } from '@fortawesome/free-solid-svg-icons';
-// import styles from './styles.module.scss';
-
-// const mapContainerStyle = {
-//   width: "100%",
-//   height: "90vh",
-//   position: 'relative'
-// };
-
-// const defaultCenter = {
-//   lat: 44.9778,
-//   lng: -93.2650,
-// };
-
-// const libraries = ['places'];
-
-// const Map = () => {
-//   const { isLoaded, loadError } = useLoadScript({
-//     id:"320c3cf314c6a3f1",
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [center, setCenter] = useState(defaultCenter);
-//   const [mapType, setMapType] = useState("roadmap");
-//   const [showDropdown, setShowDropdown] = useState(false);
-//   const [labelsEnabled, setLabelsEnabled] = useState(false);
-//   const [currentLocation, setCurrentLocation] = useState(null);
-//   const [inputValue, setInputValue] = useState("");
-//   const autocompleteRef = useRef(null);
-//   const mapRef = useRef(null);
-
-//   const onLoad = useCallback((map) => {
-//     mapRef.current = map;
-//   }, []);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   }, []);
-
-//   const handleMapTypeChange = useCallback((type) => {
-//     setMapType(type);
-//     setShowDropdown(false); // Hide the dropdown when a map type is selected
-//   }, []);
-
-//   const handleCurrentLocationClick = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   };
-
-// const handlePlaceChanged = () => {
-//     if (autocompleteRef.current) {
-//       const place = autocompleteRef.current.getPlace();
-//       if (place.geometry) {
-//         const newCenter = {
-//           lat: place.geometry.location.lat(),
-//           lng: place.geometry.location.lng(),
-//         };
-//         setCenter(newCenter);
-//         mapRef.current.panTo(newCenter);
-//       } else {
-//         console.error("No geometry data available for the selected place.");
-//       }
-//     } else {
-//       console.error("Autocomplete ref is not set.");
-//     }
-//   };
-
-//   const handleInputChange = (e) => {
-//     setInputValue(e.target.value);
-//   };
-
-//   if (loadError) return <div>Error loading maps</div>;
-//   if (!isLoaded) return <div>Loading...</div>;
-
-//  return (
-//     <div className={styles.mapContainer}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={8}
-//         mapTypeId={mapType}
-//         onLoad={onLoad}
-//         options={{
-//           minZoom: 5, // Set the minimum zoom level
-//           maxZoom: 17, // Set the maximum zoom level
-//         }}
-//       >
-//         <Marker position={center} />
-//         {currentLocation && (
-//           <Marker
-//             position={currentLocation}
-//             icon={{
-//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png', // Custom icon for current location
-//               scaledSize: new window.google.maps.Size(40, 40)
-//             }}
-//           />
-//         )}
-//       </GoogleMap>
-
-//       <div className={styles.searchBoxContainer}>
-//         <h3>Pickup Location</h3>
-//         <Autocomplete
-//           onLoad={ref => (autocompleteRef.current = ref)}
-//           onPlaceChanged={handlePlaceChanged }
-//           fields={["geometry", "name"]}
-//         >
-//           <div className={styles.searchBox}>
-//             <input
-//               type="text"
-//               placeholder="Search location"
-//               className={styles.searchBoxInput}
-//               value={inputValue}
-//               onChange={handleInputChange}
-//             />
-//             <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//             <button
-//           className={styles.currentLocationButton}
-//           onClick={handleCurrentLocationClick}
-//         >
-//           <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-//           Current Location
-//         </button>
-//           </div>
-//         </Autocomplete>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Map;
-
-// import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-// // import { useHistory } from 'react-router-dom'; // Import useHistory for navigation
-// import styles from './styles.module.scss';
-
-// const mapContainerStyle = {
-//   width: "100%",
-//   height: "90vh",
-//   position: 'relative'
-// };
-
-// const defaultCenter = {
-//   lat: 44.9778,
-//   lng: -93.2650,
-// };
-
-// const libraries = ['places'];
-
-// const Map = () => {
-//   const { isLoaded, loadError } = useLoadScript({
-//     id: "320c3cf314c6a3f1",
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [center, setCenter] = useState(defaultCenter);
-//   const [mapType, setMapType] = useState("roadmap");
-//   const [currentLocation, setCurrentLocation] = useState(null);
-//   const [pickupInputValue, setPickupInputValue] = useState("");
-//   const [dropoffInputValue, setDropoffInputValue] = useState("");
-//   const [vinInputValue, setVinInputValue] = useState("");
-//   const [state, setState] = useState("pickup");
-//   const autocompleteRef = useRef(null);
-//   const mapRef = useRef(null);
-
-//   const onLoad = useCallback((map) => {
-//     mapRef.current = map;
-//   }, []);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   }, []);
-
-//   const handleCurrentLocationClick = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//           setState("dropoff");
-//           setDropoffInputValue("");
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   };
-
-//   const handlePlaceChanged = () => {
-//     if (autocompleteRef.current) {
-//       const place = autocompleteRef.current.getPlace();
-//       if (place.geometry) {
-//         const newCenter = {
-//           lat: place.geometry.location.lat(),
-//           lng: place.geometry.location.lng(),
-//         };
-//         setCenter(newCenter);
-//         mapRef.current.panTo(newCenter);
-//         setDropoffInputValue(place.name || "");
-//         setState("vehicleDetails"); // Automatically change to vehicle details after dropoff location is selected
-//       } else {
-//         console.error("No geometry data available for the selected place.");
-//       }
-//     } else {
-//       console.error("Autocomplete ref is not set.");
-//     }
-//   };
-
-//   const handlePickupInputChange = (e) => {
-//     setPickupInputValue(e.target.value);
-//   };
-
-//   const handleDropoffInputChange = (e) => {
-//     setDropoffInputValue(e.target.value);
-//   };
-
-//   const handleVinInputChange = (e) => {
-//     setVinInputValue(e.target.value);
-//   };
-
-//   const handleBackClick = () => {
-//     if (state === "dropoff") {
-//       setState("pickup");
-//     } else if (state === "vehicleDetails") {
-//       setState("dropoff");
-//     }
-//   };
-
-//   const handleCheckDetail = () => {
-//     if (vinInputValue.trim() !== "") {
-//       console.log("Checking details for VIN:", vinInputValue);
-//       // Implement your logic here
-//     }
-//   };
-
-//   if (loadError) return <div>Error loading maps</div>;
-//   if (!isLoaded) return <div>Loading...</div>;
-
-//   return (
-//     <div className={styles.mapContainer}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={8}
-//         mapTypeId={mapType}
-//         onLoad={onLoad}
-//         options={{
-//           minZoom: 5,
-//           maxZoom: 17,
-//         }}
-//       >
-//         <Marker
-//           position={center}
-//         />
-//         {currentLocation && (
-//           <Marker
-//             position={currentLocation}
-//             icon={{
-//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-//               scaledSize: new window.google.maps.Size(40, 40)
-//             }}
-//           />
-//         )}
-//       </GoogleMap>
-
-//       {state === "pickup" && (
-//         <div className={styles.searchBoxContainer}>
-//           <h3>Pickup Location</h3>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={pickupInputValue}
-//                 onChange={handlePickupInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//               <button
-//                 className={styles.currentLocationButton}
-//                 onClick={handleCurrentLocationClick}
-//               >
-//                 <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-//                 Current Location
-//               </button>
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "dropoff" && (
-//         <div className={styles.dropoffContainer}>
-//           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Dropoff Location</h3>
-//           </div>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={dropoffInputValue}
-//                 onChange={handleDropoffInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "vehicleDetails" && (
-//         <div className={styles.vehicleDetailsContainer}>
-//           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Vehicle Details</h3>
-//           </div>
-//           <div className={styles.vinInputContainer}>
-//             <input
-//               type="text"
-//               placeholder="Enter VIN number"
-//               className={styles.vinInput}
-//               value={vinInputValue}
-//               onChange={handleVinInputChange}
-//             />
-//             <button
-//               className={styles.checkDetailButton}
-//               onClick={handleCheckDetail}
-//               disabled={vinInputValue.trim() === ""}
-//             >
-//               Check Detail
-//             </button>
-//             <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Map;
-
-// components/map/map.jsx
-
-// import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-// import styles from './styles.module.scss';
-
-// const mapContainerStyle = {
-//   width: "100%",
-//   height: "90vh",
-//   position: 'relative'
-// };
-
-// const defaultCenter = {
-//   lat: 44.9778,
-//   lng: -93.2650,
-// };
-
-// const libraries = ['places'];
-
-// const Map = () => {
-//   const { isLoaded, loadError } = useLoadScript({
-//     id: "320c3cf314c6a3f1",
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [center, setCenter] = useState(defaultCenter);
-//   const [mapType, setMapType] = useState("roadmap");
-//   const [currentLocation, setCurrentLocation] = useState(null);
-//   const [pickupInputValue, setPickupInputValue] = useState("");
-//   const [dropoffInputValue, setDropoffInputValue] = useState("");
-//   const [vinInputValue, setVinInputValue] = useState("");
-//   const [state, setState] = useState("pickup");
-//   const autocompleteRef = useRef(null);
-//   const mapRef = useRef(null);
-
-//   const onLoad = useCallback((map) => {
-//     mapRef.current = map;
-//   }, []);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   }, []);
-
-//   const handleCurrentLocationClick = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-
-//           if (state === "pickup") {
-//             setPickupInputValue("Current Location");
-//             setState("dropoff"); // Move to dropoff after setting pickup location
-//           } else if (state === "dropoff") {
-//             setDropoffInputValue("Current Location");
-//             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//           }
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   };
-
-//   const handlePlaceChanged = () => {
-//     if (autocompleteRef.current) {
-//       const place = autocompleteRef.current.getPlace();
-//       if (place.geometry) {
-//         const newCenter = {
-//           lat: place.geometry.location.lat(),
-//           lng: place.geometry.location.lng(),
-//         };
-//         setCenter(newCenter);
-//         mapRef.current.panTo(newCenter);
-
-//         if (state === "pickup") {
-//           setPickupInputValue(place.name || "");
-//           setState("dropoff"); // Move to dropoff after setting pickup location
-//         } else if (state === "dropoff") {
-//           setDropoffInputValue(place.name || "");
-//           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//         }
-//       } else {
-//         console.error("No geometry data available for the selected place.");
-//       }
-//     } else {
-//       console.error("Autocomplete ref is not set.");
-//   }
-// };
-
-//   const handlePickupInputChange = (e) => {
-//     setPickupInputValue(e.target.value);
-//   };
-
-//   const handleDropoffInputChange = (e) => {
-//     setDropoffInputValue(e.target.value);
-//   };
-
-//   const handleVinInputChange = (e) => {
-//     setVinInputValue(e.target.value);
-//   };
-
-//   const handleBackClick = () => {
-//     if (state === "dropoff") {
-//       setState("pickup");
-//     } else if (state === "vehicleDetails") {
-//       setState("dropoff");
-//     }
-//   };
-
-//   const handleCheckDetail = () => {
-//     if (vinInputValue.trim() !== "") {
-//       console.log("Checking details for VIN:", vinInputValue);
-//       // Implement your logic here
-//     }
-//   };
-
-//   if (loadError) return <div>Error loading maps</div>;
-//   if (!isLoaded) return <div>Loading...</div>;
-
-//   return (
-//     <div className={styles.mapContainer}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={8}
-//         mapTypeId={mapType}
-//         onLoad={onLoad}
-//         options={{
-//           minZoom: 5,
-//           maxZoom: 17,
-//         }}
-//       >
-//         <Marker
-//           position={center}
-//         />
-//         {currentLocation && (
-//           <Marker
-//             position={currentLocation}
-//             icon={{
-//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-//               scaledSize: new window.google.maps.Size(40, 40)
-//             }}
-//           />
-//         )}
-//       </GoogleMap>
-
-//       {state === "pickup" && (
-//         <div className={styles.searchBoxContainer}>
-//           <h3>Pickup Location</h3>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={pickupInputValue}
-//                 onChange={handlePickupInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//               <button
-//                 className={styles.currentLocationButton}
-//                 onClick={handleCurrentLocationClick}
-//               >
-//                 <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-//                 Current Location
-//               </button>
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "dropoff" && (
-//         <div className={styles.dropoffContainer}>
-//           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Dropoff Location</h3>
-//           </div>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={dropoffInputValue}
-//                 onChange={handleDropoffInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "vehicleDetails" && (
-//         <div className={styles.vehicleDetailsContainer}>
-//           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Vehicle Details</h3>
-//           </div>
-//           <div className={styles.vinInputContainer}>
-//             <input
-//               type="text"
-//               placeholder="Enter VIN number"
-//               className={styles.vinInput}
-//               value={vinInputValue}
-//               onChange={handleVinInputChange}
-
-//             />
-
-//             <input
-//               type="text"
-//               placeholder="Model"
-//               className={styles.vinInput}
-//               // value={vinInputValue}
-//               // onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Make"
-//               className={styles.vinInput}
-//               // value={vinInputValue}
-//               // onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Year"
-//               className={styles.vinInput}
-//               // value={vinInputValue}
-//               // onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Car Color"
-//               className={styles.vinInput}
-//               // value={vinInputValue}
-//               // onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="License Plate Number"
-//               className={styles.vinInput}
-//               // value={vinInputValue}
-//               // onChange={handleVinInputChange}
-//             />
-//             <button
-//               className={styles.checkDetailButton}
-//               onClick={handleCheckDetail}
-//               disabled={vinInputValue.trim() === ""}
-//             >
-//               Add Detail
-//             </button>
-//            {/* <p class="text-gray-600">Manually enter details. <span class="text-blue-500 underline cursor-pointer">Click</span></p> */}
-
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Map;
-
 import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  Autocomplete,
-} from "@react-google-maps/api";
-import { useState, useEffect, useCallback, useRef } from "react";
+  faArrowLeft,
+  faChevronDown,
+  faChevronUp,
+  faCreditCard,
+  faCrosshairs,
+  faKey,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faLocationArrow,
-  faChevronDown,
-  faCrosshairs,
-  faArrowLeft,
-  faCreditCard,
-  faKey,
-  faChevronUp,
-} from "@fortawesome/free-solid-svg-icons";
+  Autocomplete,
+  GoogleMap,
+  Marker,
+  useLoadScript,
+} from "@react-google-maps/api";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.scss";
-import ReCAPTCHA from "react-google-recaptcha";
-import style from "../../app/(web-layout)/service.module.scss";
-import { useSelector, useDispatch } from "react-redux";
-// import {
-//   setCurrentLocation,
-//   setPickupLocation,
-// } from "@/redux/slices/locationSlice"; // Import your Redux actions
-// import { setDropoffLocation } from "@/redux/slices/dropoffLocationSlice";
-// import { setVehicleDetails } from "@/redux/slices/vehicleDetailsSlice";
-// import { setSelectedServices } from "@/redux/slices/servicesSlice";
-// import { setPaymentData } from "@/redux/slices/paymentSlice";
-// import { Alert } from "reactstrap";
+
 import {
   setCurrentLocation,
-  setPickupLocation,
   setDropoffLocation,
-  setVehicleDetails,
+  setPickupLocation,
   setSelectedServices,
-} from '@/redux/slices/userSelection'; // Adjust the path as needed
+  setVehicleDetails,
+} from "@/redux/slices/userSelection"; // Adjust the path as needed
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from 'axios';
-
-
 
 const mapContainerStyle = {
   width: "100%",
@@ -955,14 +51,6 @@ const Map = () => {
   const [center, setCenter] = useState(defaultCenter);
   const [mapType, setMapType] = useState("roadmap");
 
-  // const [currentLocation, setCurrentLocation] = useState(null);
-  // const pickupLocation = useSelector(state => state.location.pickupLocation);
-  // const currentLocationFromRedux = useSelector(state => state.location.currentLocation);
-
- 
-
-  // const pickupLocation = useSelector(state => state.location.pickupLocation);
-  // const currentLocation = useSelector(state => state.location.currentLocation);
   const [pickupInputValue, setPickupInputValue] = useState("");
   const [dropoffInputValue, setDropoffInputValue] = useState("");
   const [vinInputValue, setVinInputValue] = useState("");
@@ -1000,78 +88,23 @@ const Map = () => {
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
 
-
-  
-
   const dispatch = useDispatch();
 
-  // const selectedServices = useSelector(
-  //   (state) => state.services.selectedServices
-  // );
-
-  // const currentLocation = useSelector(
-  //   (state) => state.location.currentLocation
-  // );
-
   // const selectedServices = useSelector((state) => state.app.selectedServices);
-  const selectedServices = useSelector((state) => state.userSelection.selectedServices || []);
+  // const selectedServices = useSelector(
+  //   (state) => state.userSelection.selectedServices || []
+  // );
 
+  // console.log(selectedServices, "selectedServices");
 
-  const currentLocation = useSelector((state) => state.userSelection.location.currentLocation);
+  const currentLocation = useSelector(
+    (state) => state.userSelection.location.currentLocation
+  );
 
-
-  // const currentLocation = useSelector((state) => state.location.currentLocation);
-  // const pickupLocation = useSelector((state) => state.location.pickupLocation);
-
-  // const pickupLocation = useSelector((state) => state.location.pickupLocation);
-
-
-  // useEffect(() => {
-  //   // Fetch and set location if needed
-  //   dispatch(setPickupLocation('New Location'));
-  // }, [dispatch]);
-
-//  useEffect(() => {
-//     // Check local storage for currentPage on initial load
-//     const storedPage = localStorage.getItem('currentPage');
-//     if (storedPage) {
-//       dispatch(setCurrentPage(storedPage));
-//     }
-//   }, [dispatch]);
-
-//   useEffect(() => {
-//     // Save currentPage to local storage whenever it changes
-//     localStorage.setItem('currentPage', store.getState().location.currentPage);
-//   }, [store]);
-
-
-
-
-// useEffect(() => {
-//   // Check local storage for currentPage on initial load
-//   const storedPage = localStorage.getItem('currentPage');
-//   if (storedPage) {
-//     dispatch(setCurrentPage(storedPage));
-//   }
-// }, [dispatch]);
-
-// useEffect(() => {
-//   // Save currentPage to local storage whenever it changes
-//   localStorage.setItem('currentPage', currentPage);
-// }, [currentPage]);
-
-// // Redirect to initial page if no stored value found
-// useEffect(() => {
-//   if (!currentPage) {
-//     dispatch(setCurrentPage('pickup')); // Set default page here
-//   }
-// }, [currentPage, dispatch]);
-
-
-
-
-  // const selectedServices = useSelector((state) => state.services.selectedServices);
-  // const paymentData = useSelector(state => state.payment);
+  const { currentState, selectedServices, vehicleDetails } = JSON.parse(
+    localStorage.getItem("userSelection")
+  );
+  console.log(currentState, "currentState");
 
   const [formData, setFormData] = useState({
     atmNumber: "",
@@ -1087,13 +120,6 @@ const Map = () => {
       [name]: value,
     });
   };
-
-  // const handleSubmit = () => {
-  //   dispatch(setPaymentData(formData)); // Dispatch action to update Redux state
-  //   // Optionally, save to localStorage if needed
-  //   localStorage.setItem("paymentData", JSON.stringify(formData));
-  //   // Additional logic for payment processing or API calls can go here
-  // };
 
   const onLoad = useCallback((map) => {
     mapRef.current = map;
@@ -1119,84 +145,6 @@ const Map = () => {
     // other logic related to setting pickup location
   };
 
-  
-
-
-
-
-  // const reverseGeocode = async (lat, lng) => {
-  //   try {
-  //     const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`);
-  //     const results = response.data.results;
-  //     if (results.length > 0) {
-  //       return results[0].formatted_address;
-  //     } else {
-  //       console.error("No results found for the provided coordinates.");
-  //       return "Unknown Location";
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching location name", error);
-  //     return "Unknown Location";
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchUserLocation = async () => {
-  //     try {
-  //       if (navigator.geolocation) {
-  //         navigator.geolocation.getCurrentPosition(
-  //           async (position) => {
-  //             const { latitude, longitude } = position.coords;
-  //             const locationName = await reverseGeocode(latitude, longitude);
-
-  //             const newLocation = {
-  //               name: locationName,
-  //               lat: latitude,
-  //               lng: longitude,
-  //             };
-
-  //             dispatch(setCurrentLocation(newLocation));
-  //             localStorage.setItem('currentLocation', JSON.stringify(newLocation));
-  //           },
-  //           (error) => {
-  //             console.error("Error getting user location", error);
-  //           }
-  //         );
-  //       } else {
-  //         console.error("Geolocation is not supported by this browser.");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user location", error);
-  //     }
-  //   };
-
-  //   fetchUserLocation();
-  // }, [dispatch]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -1210,13 +158,10 @@ const Map = () => {
 
           // Dispatching the action to update Redux state
 
-
           // dispatch(setCurrentLocation(newLocation));
-          
-           // Save to localStorage
-           localStorage.setItem('currentLocation', JSON.stringify(newLocation));
 
-
+          // Save to localStorage
+          localStorage.setItem("currentLocation", JSON.stringify(newLocation));
 
           // Other logic if needed
           // setCenter(newLocation);
@@ -1231,124 +176,9 @@ const Map = () => {
     }
   }, [dispatch]);
 
-
-
-
-
-
-
-  
-// const handleCurrentLocationClick = () => {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(
-//       (position) => {
-//         const newCenter = {
-//           lat: position.coords.latitude,
-//           lng: position.coords.longitude,
-//         };
-
-//         // Dispatch action to set current location in Redux
-//         dispatch(setCurrentLocation(newCenter));
-
-//         // Save current location to localStorage
-//         localStorage.setItem('currentLocation', JSON.stringify(newCenter));
-
-//         // Handle pickup or dropoff state logic
-//         if (state === "pickup") {
-//           dispatch(setPickupLocation(newCenter));
-//           localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
-//           setPickupInputValue("Current Location");
-//           setState("dropoff");
-//         } else if (state === "dropoff") {
-//           dispatch(setDropoffLocation(newCenter));
-//           localStorage.setItem('dropoffLocation', JSON.stringify(newCenter));
-//           setDropoffInputValue("Current Location");
-//           setState("vehicleDetails");
-//         }
-//       },
-//       (error) => {
-//         console.error("Error getting user location:", error);
-//       }
-//     );
-//   } else {
-//     console.error("Geolocation is not supported by this browser.");
-//   }
-// };
-
-// const handlePlaceChanged = () => {
-//   if (autocompleteRef.current) {
-//     const place = autocompleteRef.current.getPlace();
-//     if (place.geometry) {
-//       const newCenter = {
-//         lat: place.geometry.location.lat(),
-//         lng: place.geometry.location.lng(),
-//       };
-
-//       const locationData = {
-//         locationName: place.name || "Unknown Location",
-//         lat: newCenter.lat,
-//         lng: newCenter.lng,
-//       };
-
-//       // Save to local storage and dispatch to Redux store
-//       if (state === "pickup") {
-//         localStorage.setItem("pickupLocation", JSON.stringify(locationData));
-//         dispatch(setPickupLocation(locationData));
-//         setPickupInputValue(place.name || "");
-//         setState("dropoff");
-//       } else if (state === "dropoff") {
-//         localStorage.setItem("dropoffLocation", JSON.stringify(locationData));
-//         dispatch(setDropoffLocation(locationData));
-//         setDropoffInputValue(place.name || "");
-//         setState("vehicleDetails");
-//       }
-
-//       setCenter(newCenter);
-//       mapRef.current.panTo(newCenter);
-//     } else {
-//       console.error("No geometry data available for the selected place.");
-//     }
-//   } else {
-//     console.error("Autocomplete ref is not set.");
-//   }
-// };
-
-  // useEffect(() => {
-  //   const storedPickupLocation = localStorage.getItem('pickupLocation');
-  //   if (storedPickupLocation) {
-  //     const locationData = JSON.parse(storedPickupLocation);
-  //     setPickupInputValue(locationData.locationName || '');
-  //   }
-
-  //   const storedDropoffLocation = localStorage.getItem('dropoffLocation');
-  //   if (storedDropoffLocation) {
-  //     const locationData = JSON.parse(storedDropoffLocation);
-  //     setDropoffInputValue(locationData.locationName || '');
-  //   }
-  // }, []);
-
-
-
-
-
-
-
   const geocoder = new window.google.maps.Geocoder();
   const [marker, setMarker] = useState(null);
   const [map, setMap] = useState(null);
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
   const handleCurrentLocationClick = () => {
     console.log("Current Location button clicked");
@@ -1361,19 +191,20 @@ const Map = () => {
             lng: position.coords.longitude,
           };
 
-          console.log('Current Location:', newCenter);
-          console.log('Address:', address);
+          console.log("Current Location:", newCenter);
+          console.log("Address:", address);
 
-          console.log('Current Location:', newCenter);
+          console.log("Current Location:", newCenter);
 
           // Use Geocoder object to fetch address
           geocoder.geocode({ location: newCenter }, (results, status) => {
             // console.log('Geocoder Results:', results);
             // console.log('Geocoder Status:', status);
-            if (status === 'OK') {
+            if (status === "OK") {
               if (results[0]) {
-                const address = results[0].formatted_address || "Unknown Location";
-                console.log('Address:', address);
+                const address =
+                  results[0].formatted_address || "Unknown Location";
+                console.log("Address:", address);
                 const locationData = {
                   locationName: results[0].name || "Unknown Location",
                   lat: newCenter.lat,
@@ -1381,10 +212,13 @@ const Map = () => {
                   address: address,
                 };
                 // Dispatch action to set current location in Redux
-                dispatch(setCurrentLocation({ location: newCenter, address }));
+                dispatch(setPickupLocation(locationData));
 
                 // Save current location to localStorage
-                localStorage.setItem('currentLocation', JSON.stringify(newCenter));
+                localStorage.setItem(
+                  "currentLocation",
+                  JSON.stringify(newCenter)
+                );
                 // localStorage.setItem('currentAddress', address);
 
                 if (state === "pickup") {
@@ -1392,9 +226,11 @@ const Map = () => {
                   dispatch(setPickupLocation({ location: newCenter, address }));
 
                   // Save pickup location to localStorage
-                  localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
+                  localStorage.setItem(
+                    "pickupLocation",
+                    JSON.stringify(newCenter)
+                  );
                   // localStorage.setItem('pickupAddress', address);
-
 
                   setPickupInputValue(address); // Set the address in the input box
                   setState("dropoff");
@@ -1405,10 +241,10 @@ const Map = () => {
                   map.panTo(newCenter);
                 }
               } else {
-                console.error('No results found');
+                console.error("No results found");
               }
             } else {
-              console.error('Geocoder failed due to:', status);
+              console.error("Geocoder failed due to:", status);
             }
           });
         },
@@ -1420,95 +256,6 @@ const Map = () => {
       console.error("Geolocation is not supported by this browser.");
     }
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // const handleCurrentLocationClick = () => {
-  //   console.log("Current Location button clicked"); // Logging button click
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         const newCenter = {
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude,
-  //         };
-  
-  //         console.log('Current Location:', newCenter); // Add console log here
-
-  //         // Dispatch action to set current location in Redux
-  //         dispatch(setCurrentLocation(newCenter));
-  
-  //         // Save current location to localStorage
-  //         localStorage.setItem('currentLocation', JSON.stringify(newCenter));
-  
-  //         if (state === "pickup") {
-  //           // Dispatch action to set pickup location in Redux
-  //           dispatch(setPickupLocation(newCenter));
-  
-  //           // Save pickup location to localStorage
-  //           localStorage.setItem('pickupLocation', JSON.stringify(newCenter));
-  
-  //           setPickupInputValue("Current Location");
-  //           setState("dropoff");
-  //         }
-  //       },
-  //       (error) => {
-  //         console.error("Error getting user location:", error);
-  //       }
-  //     );
-  //   } else {
-  //     console.error("Geolocation is not supported by this browser.");
-  //   }
-  // };
-  
-
-  // const handleCurrentLocationClick = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         const newCenter = {
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude,
-  //         };
-  //         setCenter(newCenter);
-  //         setCurrentLocation(newCenter);
-  //         mapRef.current.panTo(newCenter);
-
-  //         if (state === "pickup") {
-  //           setPickupInputValue("Current Location");
-  //           setPickupAddress("Current Location"); // Update pickup address
-  //           setState("dropoff"); // Move to dropoff after setting pickup location
-  //         } else if (state === "dropoff") {
-  //           setDropoffInputValue("Current Location");
-  //           setDropoffAddress("Current Location"); // Update dropoff address
-  //           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-  //         }
-  //       },
-  //       (error) => {
-  //         // Error callback
-  //         console.error("Error getting user location:", error);
-  //         // Handle error, possibly notify the user
-  //       }
-  //     );
-  //   } else {
-  //     console.error("Geolocation is not supported by this browser.");
-  //     // Handle unsupported geolocation scenario
-  //   }
-  // };
 
   const handlePlaceChanged = () => {
     if (autocompleteRef.current) {
@@ -1525,15 +272,15 @@ const Map = () => {
           lng: newCenter.lng,
         };
 
-        console.log('Selected Place:', place); // Add console log here
-        console.log('New Center:', newCenter); // Add console log here
+        console.log("Selected Place:", place); // Add console log here
+        console.log("New Center:", newCenter); // Add console log here
 
         // Save to local storage and dispatch to Redux store
-        if (state === "pickup") {
-          localStorage.setItem("pickupLocation", JSON.stringify(locationData));
+        if (currentState === "initial") {
+          // localStorage.setItem("pickupLocation", JSON.stringify(locationData));
           dispatch(setPickupLocation(locationData));
-        } else if (state === "dropoff") {
-          localStorage.setItem("dropoffLocation", JSON.stringify(locationData));
+        } else if (currentState === "drop-off-location") {
+          // localStorage.setItem("dropoffLocation", JSON.stringify(locationData));
           dispatch(setDropoffLocation(locationData));
         }
 
@@ -1556,86 +303,6 @@ const Map = () => {
       console.error("Autocomplete ref is not set.");
     }
   };
-
-  // const handlePlaceChanged = () => {
-  //   if (autocompleteRef.current) {
-  //     const place = autocompleteRef.current.getPlace();
-  //     if (place.geometry) {
-  //       const newCenter = {
-  //         lat: place.geometry.location.lat(),
-  //         lng: place.geometry.location.lng(),
-  //       };
-
-  //       const locationData = {
-  //         locationName: place.name || "Unknown Location",
-  //         lat: newCenter.lat,
-  //         lng: newCenter.lng,
-  //       };
-
-  //       // // Save to local storage
-  //       // localStorage.setItem('currentLocation', JSON.stringify(locationData));
-
-  //       // Save to local storage
-  //     if (state === "pickup") {
-  //       localStorage.setItem('pickupLocation', JSON.stringify(locationData));
-  //       // Dispatch action to set pickup location in Redux state
-  //       dispatch(setPickupLocation(locationData));
-  //     } else if (state === "dropoff") {
-  //       localStorage.setItem('dropoffLocation', JSON.stringify(locationData));
-  //       // Dispatch action to set dropoff location in Redux state
-  //       dispatch(setDropoffLocation(locationData));
-  //     }
-
-  //       // Dispatch action to set current location in Redux state
-  //       // dispatch(setCurrentLocation(locationData));
-
-  //       setCenter(newCenter);
-  //       mapRef.current.panTo(newCenter);
-
-  //       if (state === "pickup") {
-  //         setPickupInputValue(place.name || "");
-  //         setPickupAddress(place.name || ""); // Update pickup address
-  //         setState("dropoff"); // Move to dropoff after setting pickup location
-  //       } else if (state === "dropoff") {
-  //         setDropoffInputValue(place.name || "");
-  //         setDropoffAddress(place.name || ""); // Update dropoff address
-  //         setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-  //       }
-  //     } else {
-  //       console.error("No geometry data available for the selected place.");
-  //     }
-  //   } else {
-  //     console.error("Autocomplete ref is not set.");
-  //   }
-  // };
-
-  // const handlePlaceChanged = () => {
-  //   if (autocompleteRef.current) {
-  //     const place = autocompleteRef.current.getPlace();
-  //     if (place.geometry) {
-  //       const newCenter = {
-  //         lat: place.geometry.location.lat(),
-  //         lng: place.geometry.location.lng(),
-  //       };
-  //       setCenter(newCenter);
-  //       mapRef.current.panTo(newCenter);
-
-  //       if (state === "pickup") {
-  //         setPickupInputValue(place.name || "");
-  //         setPickupAddress(place.name || ""); // Update pickup address
-  //         setState("dropoff"); // Move to dropoff after setting pickup location
-  //       } else if (state === "dropoff") {
-  //         setDropoffInputValue(place.name || "");
-  //         setDropoffAddress(place.name || ""); // Update dropoff address
-  //         setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-  //       }
-  //     } else {
-  //       console.error("No geometry data available for the selected place.");
-  //     }
-  //   } else {
-  //     console.error("Autocomplete ref is not set.");
-  //   }
-  // };
 
   const handleDropdownToggle = () => {
     // Toggle dropdown visibility on icon click
@@ -1678,39 +345,6 @@ const Map = () => {
     setLicensePlate(e.target.value);
   };
 
-  // const handleRecaptchaChange = async (value) => {
-  //   try {
-  //     const response = await fetch('/verify-recaptcha', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ token: value }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (data.success) {
-  //       setIsVerified(true);
-  //     } else {
-  //       setIsVerified(false);
-  //       alert('reCAPTCHA verification failed. Please try again.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error verifying reCAPTCHA:', error);
-  //     setIsVerified(false);
-  //   }
-  // };
-
-  // const handleSubmit = () => {
-  //   if (isVerified) {
-  //     // Handle the submit action
-  //     console.log('Form submitted');
-  //   } else {
-  //     alert('Please verify you are not a robot.');
-  //   }
-  // };
-
   const handleBackClick = () => {
     if (currentView === "payment") {
       setCurrentView("servicePreview");
@@ -1738,18 +372,11 @@ const Map = () => {
       color,
       licensePlate,
     };
-    localStorage.setItem("vehicleDetails", JSON.stringify(vehicleData));
+    // localStorage.setItem("vehicleDetails", JSON.stringify(vehicleData));
     dispatch(setVehicleDetails(vehicleData));
     // Move to next state if needed
     setState("services");
   };
-
-  // const handleCheckDetail = () => {
-  //   if (vinInputValue.trim() !== "") {
-  //     console.log("Checking details for VIN:", vinInputValue);
-  //     setState("services"); // Move to services after entering vehicle details
-  //   }
-  // };
 
   const handleCancelClick = () => {
     setShowSidebar(false);
@@ -1775,84 +402,6 @@ const Map = () => {
     }
   };
 
-  //   const handlePaymentSubmit = () => {
-  //   if (validateForm()) {
-  //     // Simulate payment submission logic
-  //     console.log("Payment details submitted:", { atmNumber, expiryDate, cvc, country });
-
-  //     // Assuming submission is successful, set state accordingly
-  //     setTimeout(() => {
-  //       setPaymentSubmitted(true);
-  //       // Automatically close sidebar after payment submission
-  //       setShowSidebar(false);
-  //     }, 2000); // Simulating a 2 second delay
-  //   }
-  // };
-
-  // const handlePaymentSubmit = () => {
-  //   let newErrors = {};
-
-  //   if (!atmNumber.trim()) {
-  //     newErrors.atmNumber = 'ATM Number is required';
-  //   }
-  //   if (!expiryDate.trim()) {
-  //     newErrors.expiryDate = 'Expiry Date is required';
-  //   }
-  //   if (!cvc.trim()) {
-  //     newErrors.cvc = 'CVC is required';
-  //   }
-  //   if (!country) {
-  //     newErrors.country = 'Country is required';
-  //   }
-
-  //   if (Object.keys(newErrors).length > 0) {
-  //     setErrors(newErrors);
-  //     return;
-  //   }
-
-  //   const paymentData = { atmNumber, expiryDate, cvc, country };
-
-  //   // Dispatch the payment data to Redux
-  //   dispatch(setPaymentData(paymentData));
-
-  //   // Save payment data to local storage
-  //   localStorage.setItem('paymentData', JSON.stringify(paymentData));
-
-  //   // Simulate successful payment submission
-  //   setTimeout(() => {
-  //     setPaymentSubmitted(true);
-  //     // Clear form fields and errors
-  //     setAtmNumber('');
-  //     setExpiryDate('');
-  //     setCvc('');
-  //     setCountry('');
-  //     setErrors({});
-  //   }, 2000); // Simulating a 2-second delay for API response
-  // };
-
-  // const areFieldsComplete = () => {
-  //   return atmNumber !== "" && expiryDate !== "" && cvc !== "" && country !== "";
-  // };
-
-  // const handlePaymentSubmit = () => {
-  //   if (areFieldsComplete()) {
-  //     setAlertVisible(true);
-  //     setPaymentSubmitted(true);
-  //     // Handle payment submission logic here
-  //   } else {
-  //     setErrors({
-  //       atmNumber: !atmNumber && "ATM Number is required",
-  //       expiryDate: !expiryDate && "Expiry Date is required",
-  //       cvc: !cvc && "CVC is required",
-  //       country: !country && "Country is required",
-  //     });
-  //   }
-  // };
-
- 
- 
- 
- 
   const resetState = () => {
     setAtmNumber("");
     setExpiryDate("");
@@ -1874,7 +423,7 @@ const Map = () => {
     setShowSidebar(false);
     setState("pickup"); // Go to pickup location state
   };
-  
+
   const handlePaymentSubmit = () => {
     if (!atmNumber.trim()) {
       setErrors({ atmNumber: "ATM Number is required" });
@@ -1901,23 +450,10 @@ const Map = () => {
         autoClose: 4000, // Close the toast after 4 seconds
         onClose: () => {
           resetState(); // Reset the state after the toast is closed
-        }
+        },
       });
     }, 1000); // Simulating a 2-second delay for API response
   };
-
-
-
-
-
-
-
-
-
-  // const handlePaymentSubmit = () => {
-  //   // Handle payment submission logic here
-  //   alert(`ATM Number entered: ${atmNumber}`);
-  // };
 
   const handleConfirmService = () => {
     setServicePreview(true); // Move to service preview state after confirming service
@@ -1963,224 +499,11 @@ const Map = () => {
     }
   };
 
-  // const handleServiceSelect = (service) => {
-  //   if (selectedServices.includes(service.id)) {
-  //     setSelectedServices(selectedServices.filter(item => item !== service.id));
-  //   } else {
-  //     setSelectedServices([...selectedServices, service.id]);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // Retrieve from local storage on component mount
-  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
-  //   if (storedServices) {
-  //     setSelectedServices(storedServices);
-  //   }
-  // }, []);
-
-  // const handleServiceSelect = (service) => {
-  //   let updatedServices;
-
-  //   if (selectedServices.includes(service.id)) {
-  //     // If the service is already selected, deselect it
-  //     updatedServices = selectedServices.filter((item) => item !== service.id);
-  //   } else {
-  //     // If the service is not selected, select it
-  //     updatedServices = [...selectedServices, service.id];
-
-  //     // Deselect Service A if Service B is selected
-  //     if (service.id === 'ServiceB') {
-  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceA');
-  //     }
-
-  //     // Deselect Service B if any other service is selected
-  //     if (service.id !== 'ServiceB' && selectedServices.includes('ServiceB')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceB');
-  //     }
-
-  //     // Deselect Service C if Service A is selected
-  //     if (service.id === 'ServiceA' && selectedServices.includes('ServiceC')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceC');
-  //     }
-
-  //     // Deselect Service C if Service B is selected
-  //     if (service.id === 'ServiceB' && selectedServices.includes('ServiceC')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceC');
-  //     }
-
-  //     // Deselect Service A if Service C is selected
-  //     if (service.id === 'ServiceC' && selectedServices.includes('ServiceA')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'ServiceA');
-  //     }
-  //   }
-
-  //   setSelectedServices(updatedServices);
-  //   // Store updated services in local storage
-  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
-  // };
-
-  // useEffect(() => {
-  //   const storedServices = JSON.parse(localStorage.getItem('updatedServices'));
-  //   if (storedServices) {
-  //     dispatch(setSelectedServices(storedServices));
-  //   }
-  // }, []);
-  
-
-  // useEffect(() => {
-  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
-  //   if (storedServices) {
-  //     dispatch(setSelectedServices(storedServices));
-  //   }
-  // }, [dispatch]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
-  //   if (storedServices) {
-  //     dispatch(setSelectedServices(storedServices));
-  //   }
-  // }, []);
-
-
-
-
-
-
-
-  // const handleServiceSelect = (service) => {
-  //   let updatedServices = selectedServices;
-
-  //   if (selectedServices.includes(service.name)) {
-  //     // If the service is already selected, deselect it
-  //     updatedServices = selectedServices.filter((item) => item !== service.name);
-  //   } else {
-  //     // If the service is not selected, select it
-  //     updatedServices = [...selectedServices, service.name];
-
-  //     // Deselect Service A if Service B is selected
-  //     if (service.id === 'ServiceB') {
-  //       updatedServices = updatedServices.filter((item) => item !== 'Tow Required');
-  //     }
-
-  //     // Deselect Service B if any other service is selected
-  //     if (service.id !== 'ServiceB' && selectedServices.includes('Trailer Transport')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'Trailer Transport');
-  //     }
-
-  //     // Deselect Service C if Service A is selected
-  //     if (service.id === 'ServiceA' && selectedServices.includes('Vehicle Transport')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'Vehicle Transport');
-  //     }
-
-  //     // Deselect Service C if Service B is selected
-  //     if (service.id === 'ServiceB' && selectedServices.includes('Vehicle Transport')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'Vehicle Transport');
-  //     }
-
-  //     // Deselect Service A if Service C is selected
-  //     if (service.id === 'ServiceC' && selectedServices.includes('Tow Required')) {
-  //       updatedServices = updatedServices.filter((item) => item !== 'Tow Required');
-  //     }
-  //   }
-  //   dispatch(setSelectedServices(updatedServices));
-  //   // Save updated services to localStorage
-  // localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
-  // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // const handleServiceSelect = (service) => {
-  //   let updatedServices = [...selectedServices];
-  
-  //   if (selectedServices.includes(service.name)) {
-  //     // Deselect service
-  //     updatedServices = updatedServices.filter(item => item !== service.name);
-  //   } else {
-  //     // Select service and apply conditional logic
-  //     updatedServices.push(service.name);
-  
-  //     // Deselect conflicting services based on service id
-  //     if (service.id === 'ServiceB') {
-  //       updatedServices = updatedServices.filter(item => item !== 'Tow Required');
-  //     }
-  //     if (service.id !== 'ServiceB' && selectedServices.includes('Trailer Transport')) {
-  //       updatedServices = updatedServices.filter(item => item !== 'Trailer Transport');
-  //     }
-  //     if (service.id === 'ServiceA' && selectedServices.includes('Vehicle Transport')) {
-  //       updatedServices = updatedServices.filter(item => item !== 'Vehicle Transport');
-  //     }
-  //     if (service.id === 'ServiceB' && selectedServices.includes('Vehicle Transport')) {
-  //       updatedServices = updatedServices.filter(item => item !== 'Vehicle Transport');
-  //     }
-  //     if (service.id === 'ServiceC' && selectedServices.includes('Tow Required')) {
-  //       updatedServices = updatedServices.filter(item => item !== 'Tow Required');
-  //     }
-  //   }
-  
-  //   dispatch(setSelectedServices(updatedServices));
-  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
-  // };
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  // useEffect(() => {
-  //   // Fetch stored services from localStorage when component mounts
-  //   const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
-  //   if (storedServices) {
-  //     // Update Redux state with stored services
-  //     dispatch(setSelectedServices(storedServices));
-  //   }
-  // }, [dispatch]);
-
-
-  
-
-
-
-
-
-
   useEffect(() => {
-    
     // localStorage.removeItem('selectedServices');
 
     // Fetch stored services from localStorage when component mounts
-    const storedServices = JSON.parse(localStorage.getItem('selectedServices'));
+    const storedServices = JSON.parse(localStorage.getItem("selectedServices"));
 
     if (Array.isArray(storedServices)) {
       // Update Redux state with stored services
@@ -2245,54 +568,6 @@ const Map = () => {
     // localStorage.setItem("selectedServices",JSON.stringify(updatedServices));
   };
 
-//   dispatch(setSelectedServices(updatedServices));
-//   localStorage.setItem("selectedServices", JSON.stringify(updatedServices));
-// } catch (error) {
-//   console.error('Error updating selected services:', error);
-//   // Handle error appropriately, e.g., fallback to previous state or notify user
-// }
-
-
-
-  // const handleServiceSelect = (service) => {
-  //   let updatedServices;
-
-  //   if (selectedServices.includes(service.id)) {
-  //     // If the service is already selected, deselect it
-  //     updatedServices = selectedServices.filter((item) => item !== service.id);
-  //   } else {
-  //     // If the service is not selected, select it
-  //     updatedServices = [...selectedServices, service.id];
-
-  //     // Deselect Service A if Service B is selected
-  //     if (service.id === "ServiceB") {
-  //       updatedServices = updatedServices.filter((item) => item !== "ServiceA");
-  //     }
-
-  //     // Deselect Service B if any other service is selected
-  //     if (service.id !== "ServiceB" && selectedServices.includes("ServiceB")) {
-  //       updatedServices = updatedServices.filter((item) => item !== "ServiceB");
-  //     }
-
-  //     // Deselect Service C if Service A is selected
-  //     if (service.id === "ServiceA" && selectedServices.includes("ServiceC")) {
-  //       updatedServices = updatedServices.filter((item) => item !== "ServiceC");
-  //     }
-  //     // Deselect Service C if Service B is selected
-  //     if (service.id === "ServiceB" && selectedServices.includes("ServiceC")) {
-  //       updatedServices = updatedServices.filter((item) => item !== "ServiceC");
-  //     }
-
-  //     // Deselect Service A if Service C is selected
-  //     if (service.id === "ServiceC" && selectedServices.includes("ServiceA")) {
-  //       updatedServices = updatedServices.filter((item) => item !== "ServiceA");
-  //     }
-  //   }
-  //   dispatch(setSelectedServices(updatedServices));
-  //   localStorage.setItem('selectedServices', JSON.stringify(updatedServices));
-  //   setSelectedServices(updatedServices);
-  // };
-
   const serviceImages = [
     { id: "ServiceA", src: "/images/TowRequired.png", name: "Tow Required" },
     { id: "ServiceB", src: "/images/Trailer.png", name: "Trailer Transport" },
@@ -2304,7 +579,6 @@ const Map = () => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    
     <div className={styles.mapContainer}>
       <div className={`mapContainer ${showSidebar ? styles.blur : ""}`}>
         <GoogleMap
@@ -2330,7 +604,7 @@ const Map = () => {
           )}
         </GoogleMap>
 
-        {state === "pickup" && (
+        {currentState === "initial" && (
           <div
             className={`${styles.searchBoxContainer} ${
               isExpanded ? styles.expanded : ""
@@ -2366,14 +640,7 @@ const Map = () => {
                         : (e) => setDropoffInputValue(e.target.value)
                     }
                   />
-                  {/* <input
-            type="text"
-            placeholder="Search Location"
-            className={styles.searchBoxInput}
-            value={pickupInputValue}
-            onChange={handlePickupInputChange}
-            onFocus={handleDropdownToggle} // Show dropdown on input focus
-          /> */}
+
                   <div className={styles.iconContainer}>
                     <div className={styles.separator}></div>
                     <FontAwesomeIcon
@@ -2410,7 +677,7 @@ const Map = () => {
           </div>
         )}
 
-        {state === "dropoff" && (
+        {currentState === "drop-off-location" && (
           <div
             className={`${styles.dropoffContainer} ${
               isExpanded ? styles.expanded : ""
@@ -2470,7 +737,7 @@ const Map = () => {
           </div>
         )}
 
-        {state === "vehicleDetails" && (
+        {currentState === "add-vehicle-details" && (
           <div
             className={`${styles.vehicleDetailsContainer} ${
               isExpanded ? styles.expanded : ""
@@ -2572,9 +839,7 @@ const Map = () => {
           </div>
         )}
 
-
-
-        {state === "services" && (
+        {currentState === "choose-service" && (
           <div
             className={`${styles.vehicleDetailsContainer} ${
               isExpanded ? styles.expanded : ""
@@ -2630,7 +895,7 @@ const Map = () => {
           </div>
         )}
 
-        {servicePreview && (
+        {currentState === "service-preview" && (
           <div
             className={`${styles.vehicleDetailsContainer} ${
               isExpanded ? styles.expanded : ""
@@ -2659,72 +924,20 @@ const Map = () => {
               />
             </div>
 
-            {/* <div className={styles.servicesContent}>
-  <div className={styles.serviceList}>
-    {selectedServices.map((serviceId) => {
-      const service = serviceImages.find((s) => s.id === serviceId);
-      if (!service) {
-        console.warn(`Service with id ${serviceId} not found in serviceImages.`);
-        return null; // or handle this case appropriately
-      }
-
-      return (
-        <div key={serviceId} className={styles.servicePreviewItem}>
-          <img
-            src={service.src}
-            alt={service.name}
-            className={styles.servicePreviewImage}
-          />
-          <div className={styles.Previewservicename}>
-            {service.name}
-          </div>
-        </div>
-      );
-    })} */}
             <div className={styles.servicesContent}>
               <div className={styles.serviceList}>
-              {selectedServices.map((service) => (
-                <div key={service.id} className={styles.servicePreviewItem}>
-                  <img
-                    src={service.src}
-                    alt={service.name}
-                    className={styles.servicePreviewImage}
-                  />
-                  <div className={styles.Previewservicename}>{service.name}</div>
-                </div>
-              ))}
-                {/* {selectedServices.map((serviceId) => {
-                  const service = serviceImages.find((s) => s.id === serviceId);
-                  return service ? (
-                    <div key={serviceId} className={styles.servicePreviewItem}>
-                      <img
-                        src={service.src}
-                        alt={service.name}
-                        className={styles.servicePreviewImage}
-                      />
-                      <div className={styles.Previewservicename}>
-                        {service.name}
-                      </div>
+                {selectedServices.map((service) => (
+                  <div key={service.id} className={styles.servicePreviewItem}>
+                    <img
+                      src={service.src}
+                      alt={service.name}
+                      className={styles.servicePreviewImage}
+                    />
+                    <div className={styles.Previewservicename}>
+                      {service.name}
                     </div>
-                  ) : null;
-                })} */}
-                {/* <div className={styles.servicesContent}>
-              <div className={styles.serviceList}>
-                {selectedServices.map((serviceId) => {
-                  const service = serviceImages.find((s) => s.id === serviceId);
-                  return (
-                    <div key={serviceId} className={styles.servicePreviewItem}>
-                      <img
-                        src={service.src}
-                        alt={service.name}
-                        className={styles.servicePreviewImage}
-                      />
-                      <div className={styles.Previewservicename}>
-                        {service.name}
-                      </div>
-                    </div>
-                  );
-                })} */}
+                  </div>
+                ))}
               </div>
               <div className={styles.locationDetails}>
                 <h5
@@ -2767,26 +980,32 @@ const Map = () => {
                 <div className={styles.detailsContainer}>
                   <p className={styles.detailsItem}>
                     <span className={styles.detailsLabel}>Make:</span>
-                    <span className={styles.servicedropoffAddress}>{make}</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {vehicleDetails?.make}
+                    </span>
                   </p>
                   <p className={styles.detailsItem}>
                     <span className={styles.detailsLabel}>Model:</span>
                     <span className={styles.servicedropoffAddress}>
-                      {model}
+                      {vehicleDetails?.model}
                     </span>
                   </p>
                   <p className={styles.detailsItem}>
                     <span className={styles.detailsLabel}>Year:</span>
-                    <span className={styles.servicedropoffAddress}>{year}</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {vehicleDetails?.year}
+                    </span>
                   </p>
                   <p className={styles.detailsItem}>
                     <span className={styles.detailsLabel}>VIN:</span>
-                    <span className={styles.servicedropoffAddress}>{vin}</span>
+                    <span className={styles.servicedropoffAddress}>
+                      {vehicleDetails?.vin}
+                    </span>
                   </p>
                   <p className={styles.detailsItem}>
                     <span className={styles.detailsLabel}>Color:</span>
                     <span className={styles.servicedropoffAddress}>
-                      {color}
+                      {vehicleDetails?.color}
                     </span>
                   </p>
                   <p className={styles.detailsItem}>
@@ -2794,7 +1013,7 @@ const Map = () => {
                       License Plate Number:
                     </span>
                     <span className={styles.servicedropoffAddress}>
-                      {licensePlate}
+                      {vehicleDetails?.licensePlate}
                     </span>
                   </p>
                 </div>
@@ -2864,12 +1083,8 @@ const Map = () => {
             showSidebar ? styles.sidebarOpen : ""
           }`}
         >
-          {/* <div className={styles.backButton} onClick={handleBackClick}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </div> */}
           {currentView === "payment" && (
             <div className={styles.paymentContainer}>
-              {/* <h3>Payment Details</h3> */}
               <div className={styles.inputGroup}>
                 <label htmlFor="atmNumber">ATM Number</label>
                 <div className={styles.inputWithIcon}>
@@ -2977,772 +1192,3 @@ const Map = () => {
 };
 
 export default Map;
-
-// import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-// import styles from './styles.module.scss';
-
-// const mapContainerStyle = {
-//   width: "100%",
-//   height: "90vh",
-//   position: 'relative'
-// };
-
-// const defaultCenter = {
-//   lat: 44.9778,
-//   lng: -93.2650,
-// };
-
-// const libraries = ['places'];
-
-// const Map = () => {
-//   const { isLoaded, loadError } = useLoadScript({
-//     id: "320c3cf314c6a3f1",
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [center, setCenter] = useState(defaultCenter);
-//   const [mapType, setMapType] = useState("roadmap");
-//   const [currentLocation, setCurrentLocation] = useState(null);
-//   const [pickupInputValue, setPickupInputValue] = useState("");
-//   const [dropoffInputValue, setDropoffInputValue] = useState("");
-//   const [vinInputValue, setVinInputValue] = useState("");
-//   const [state, setState] = useState("pickup");
-//   const [selectedServices, setSelectedServices] = useState([]);
-//   const autocompleteRef = useRef(null);
-//   const mapRef = useRef(null);
-
-//   const onLoad = useCallback((map) => {
-//     mapRef.current = map;
-//   }, []);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   }, []);
-
-//   const handleCurrentLocationClick = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-
-//           if (state === "pickup") {
-//             setPickupInputValue("Current Location");
-//             setState("dropoff"); // Move to dropoff after setting pickup location
-//           } else if (state === "dropoff") {
-//             setDropoffInputValue("Current Location");
-//             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//           }
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   };
-
-//   const handlePlaceChanged = () => {
-//     if (autocompleteRef.current) {
-//       const place = autocompleteRef.current.getPlace();
-//       if (place.geometry) {
-//         const newCenter = {
-//           lat: place.geometry.location.lat(),
-//           lng: place.geometry.location.lng(),
-//         };
-//         setCenter(newCenter);
-//         mapRef.current.panTo(newCenter);
-
-//         if (state === "pickup") {
-//           setPickupInputValue(place.name || "");
-//           setState("dropoff"); // Move to dropoff after setting pickup location
-//         } else if (state === "dropoff") {
-//           setDropoffInputValue(place.name || "");
-//           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//         }
-//       } else {
-//         console.error("No geometry data available for the selected place.");
-//       }
-//     } else {
-//       console.error("Autocomplete ref is not set.");
-//     }
-//   };
-
-//   const handlePickupInputChange = (e) => {
-//     setPickupInputValue(e.target.value);
-//   };
-
-//   const handleDropoffInputChange = (e) => {
-//     setDropoffInputValue(e.target.value);
-//   };
-
-//   const handleVinInputChange = (e) => {
-//     setVinInputValue(e.target.value);
-//   };
-
-//   const handleBackClick = () => {
-//     if (state === "dropoff") {
-//       setState("pickup");
-//     } else if (state === "vehicleDetails") {
-//       setState("dropoff");
-//     } else if (state === "services") {
-//       setState("vehicleDetails");
-//     } else if (state === "servicePreview") {
-//       setState("services");
-//     }
-//   };
-
-//   const handleCheckDetail = () => {
-//     if (vinInputValue.trim() !== "") {
-//       setState("services"); // Move to services after entering vehicle details
-//     }
-//   };
-
-//   // const handleServiceSelect = (service) => {
-//   //   if (selectedServices.includes(service.id)) {
-//   //     setSelectedServices(selectedServices.filter(item => item !== service.id));
-//   //   } else {
-//   //     setSelectedServices([...selectedServices, service.id]);
-//   //   }
-//   // };
-
-//   const handleServiceSelect = (service) => {
-//   if (selectedServices.includes(service.id)) {
-//     setSelectedServices(selectedServices.filter(item => item !== service.id));
-//   } else {
-//     setSelectedServices([...selectedServices, service.id]);
-//   }
-// };
-
-//   const handleConfirmServices = () => {
-//     setState("servicePreview");
-//   };
-
-//   if (loadError) return <div>Error loading maps</div>;
-//   if (!isLoaded) return <div>Loading...</div>;
-
-//   const serviceImages = [
-//     { id: 'serviceA', name: 'Service A', src: '/images/logo.png' },
-//     { id: 'serviceB', name: 'Service B', src: '/images/logo.png' },
-//     // Add more services as needed
-//   ];
-
-//   return (
-//     <div className={styles.mapContainer}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={8}
-//         mapTypeId={mapType}
-//         onLoad={onLoad}
-//         options={{
-//           minZoom: 5,
-//           maxZoom: 17,
-//         }}
-//       >
-//         <Marker
-//           position={center}
-//         />
-//         {currentLocation && (
-//           <Marker
-//             position={currentLocation}
-//             icon={{
-//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-//               scaledSize: new window.google.maps.Size(40, 40)
-//             }}
-//           />
-//         )}
-//       </GoogleMap>
-
-//       {state === "pickup" && (
-//         <div className={styles.searchBoxContainer}>
-//           <h3>Pickup Location</h3>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={pickupInputValue}
-//                 onChange={handlePickupInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//               <button
-//                 className={styles.currentLocationButton}
-//                 onClick={handleCurrentLocationClick}
-//               >
-//                 <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-//                 Current Location
-//               </button>
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "dropoff" && (
-//         <div className={styles.dropoffContainer}>
-//           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Dropoff Location</h3>
-//           </div>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={dropoffInputValue}
-//                 onChange={handleDropoffInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "vehicleDetails" && (
-//         <div className={styles.vehicleDetailsContainer}>
-//           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Vehicle Details</h3>
-//           </div>
-//           <div className={styles.vinInputContainer}>
-//             <input
-//               type="text"
-//               placeholder="Enter VIN number"
-//               className={styles.vinInput}
-//               value={vinInputValue}
-//               onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Model"
-//               className={styles.vinInput}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Make"
-//               className={styles.vinInput}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Year"
-//               className={styles.vinInput}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Car Color"
-//               className={styles.vinInput}
-//             />
-//             <input
-//               type="text"
-//               placeholder="License Plate Number"
-//               className={styles.vinInput}
-//             />
-//             <button
-//               className={styles.checkDetailButton}
-//               onClick={handleCheckDetail}
-//               disabled={vinInputValue.trim() === ""}
-//             >
-//               Add Detail
-//             </button>
-//           </div>
-//         </div>
-//       )}
-// {state === "services" && (
-//   <div className={styles.vehicleDetailsContainer}>
-//     <div className={styles.vehicleDetailsHeader}>
-//       <FontAwesomeIcon
-//         icon={faArrowLeft}
-//         className={styles.backIcon}
-//         onClick={handleBackClick}
-//       />
-//       <h3>Select Services</h3>
-//     </div>
-//     <div className={styles.servicesList}>
-//       {serviceImages.map(service => (
-//         <div
-//           key={service.id}
-//           className={`${styles.serviceContainer} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
-//           onClick={() => handleServiceSelect(service)}
-//         >
-//           <img
-//             src={service.src}
-//             alt={service.name}
-//             className={styles.serviceImage}
-//           />
-//           <div className={styles.serviceName}>{service.name}</div>
-//         </div>
-//       ))}
-//     </div>
-//     <button
-//       className={styles.checkDetailButton}
-//       onClick={handleCheckDetail}
-//       disabled={vinInputValue.trim() === ""}
-//     >
-//       Confirm Service
-//     </button>
-//   </div>
-// )}
-
-//       {state === "servicePreview" && (
-//         <div className={styles.vehicleDetailsContainer}>
-//           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Service Preview</h3>
-//           </div>
-//           <div className={styles.servicesList}>
-//             {serviceImages.filter(service => selectedServices.includes(service.id)).map(service => (
-//               <div key={service.id} className={styles.serviceContainer}>
-//                 <img
-//                   src={service.src}
-//                   alt={service.name}
-//                   className={styles.serviceImage}
-//                 />
-//                 <div className={styles.serviceName}>{service.name}</div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Map;
-
-// import { GoogleMap, useLoadScript, Marker, Autocomplete } from "@react-google-maps/api";
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLocationArrow, faChevronDown, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-// import styles from './styles.module.scss';
-
-// const mapContainerStyle = {
-//   width: "100%",
-//   height: "90vh",
-//   position: 'relative'
-// };
-
-// const defaultCenter = {
-//   lat: 44.9778,
-//   lng: -93.2650,
-// };
-
-// const libraries = ['places'];
-
-// const Map = () => {
-//   const { isLoaded, loadError } = useLoadScript({
-//     id: "320c3cf314c6a3f1",
-//     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-//     libraries,
-//   });
-
-//   const [center, setCenter] = useState(defaultCenter);
-//   const [mapType, setMapType] = useState("roadmap");
-//   const [currentLocation, setCurrentLocation] = useState(null);
-//   const [pickupInputValue, setPickupInputValue] = useState("");
-//   const [dropoffInputValue, setDropoffInputValue] = useState("");
-//   const [vinInputValue, setVinInputValue] = useState("");
-//   const [state, setState] = useState("pickup");
-//   const [selectedServices, setSelectedServices] = useState([]);
-//   const autocompleteRef = useRef(null);
-//   const mapRef = useRef(null);
-//     // const [selectedServices, setSelectedServices] = useState([]);
-
-//   const onLoad = useCallback((map) => {
-//     mapRef.current = map;
-//   }, []);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   }, []);
-
-//   const handleCurrentLocationClick = () => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(
-//         (position) => {
-//           const newCenter = {
-//             lat: position.coords.latitude,
-//             lng: position.coords.longitude,
-//           };
-//           setCenter(newCenter);
-//           setCurrentLocation(newCenter);
-//           mapRef.current.panTo(newCenter);
-
-//           if (state === "pickup") {
-//             setPickupInputValue("Current Location");
-//             setState("dropoff"); // Move to dropoff after setting pickup location
-//           } else if (state === "dropoff") {
-//             setDropoffInputValue("Current Location");
-//             setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//           }
-//         },
-//         () => {
-//           console.error("Error getting user location");
-//         }
-//       );
-//     }
-//   };
-
-//   const handlePlaceChanged = () => {
-//     if (autocompleteRef.current) {
-//       const place = autocompleteRef.current.getPlace();
-//       if (place.geometry) {
-//         const newCenter = {
-//           lat: place.geometry.location.lat(),
-//           lng: place.geometry.location.lng(),
-//         };
-//         setCenter(newCenter);
-//         mapRef.current.panTo(newCenter);
-
-//         if (state === "pickup") {
-//           setPickupInputValue(place.name || "");
-//           setState("dropoff"); // Move to dropoff after setting pickup location
-//         } else if (state === "dropoff") {
-//           setDropoffInputValue(place.name || "");
-//           setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
-//         }
-//       } else {
-//         console.error("No geometry data available for the selected place.");
-//       }
-//     } else {
-//       console.error("Autocomplete ref is not set.");
-//     }
-//   };
-
-//   const handlePickupInputChange = (e) => {
-//     setPickupInputValue(e.target.value);
-//   };
-
-//   const handleDropoffInputChange = (e) => {
-//     setDropoffInputValue(e.target.value);
-//   };
-
-//   const handleVinInputChange = (e) => {
-//     setVinInputValue(e.target.value);
-//   };
-
-//   const handleBackClick = () => {
-//     if (state === "dropoff") {
-//       setState("pickup");
-//     } else if (state === "vehicleDetails") {
-//       setState("dropoff");
-//     } else if (state === "services" || state === "servicePreview") {
-//       setState("services");
-//     }
-//   };
-
-//   const handleCheckDetail = () => {
-//     if (vinInputValue.trim() !== "") {
-//       setState("services"); // Move to services after entering vehicle details
-//     }
-//   };
-
-//   // const handleServiceSelect = (service) => {
-//   //   setSelectedServices(prevSelectedServices => {
-//   //     if (prevSelectedServices.includes(service.id)) {
-//   //       // Remove the service if it is already selected
-//   //       return prevSelectedServices.filter(item => item !== service.id);
-//   //     } else {
-//   //       // Add the service if it is not selected
-//   //       return [...prevSelectedServices, service.id];
-//   //     }
-//   //   });
-//   // };
-
-//     const handleServiceSelect = (service) => {
-//       if (selectedServices.some(s => s.id === service.id)) {
-//         setSelectedServices(selectedServices.filter(s => s.id !== service.id));
-//       } else {
-//         setSelectedServices([...selectedServices, service]);
-//       }
-//     };
-
-//   const handleConfirmServices = () => {
-//     setState("servicePreview");
-//   };
-
-//   useEffect(() => {
-//     console.log('Selected Services (after update):', selectedServices);
-//   }, [selectedServices]);
-
-//   if (loadError) return <div>Error loading maps</div>;
-//   if (!isLoaded) return <div>Loading...</div>;
-
-//   // const serviceImages = [
-//     // { id: 'serviceA', name: 'Service A', src: '/images/logo.jpg' },
-//     // { id: 'serviceB', name: 'Service B', src: '/images/logo.jpg' },
-//     // { id: 'serviceC', name: 'Service C', src: '/images/logo.jpg' },
-//     // { id: 'serviceD', name: 'Service D', src: '/images/logo.jpg' },
-//     // Add more services as needed
-//     const serviceImages = [
-//       { id: 'serviceA', name: 'Service A', src: '/images/logo.jpg' },
-//       { id: 'serviceB', name: 'Service B', src: '/images/logo.jpg' },
-//       // Add more services as needed
-//     ];
-//   // ];
-
-//   return (
-//     <div className={styles.mapContainer}>
-//       <GoogleMap
-//         mapContainerStyle={mapContainerStyle}
-//         center={center}
-//         zoom={8}
-//         mapTypeId={mapType}
-//         onLoad={onLoad}
-//         options={{
-//           minZoom: 5,
-//           maxZoom: 17,
-//         }}
-//       >
-//         <Marker
-//           position={center}
-//         />
-//         {currentLocation && (
-//           <Marker
-//             position={currentLocation}
-//             icon={{
-//               url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-//               scaledSize: new window.google.maps.Size(40, 40)
-//             }}
-//           />
-//         )}
-//       </GoogleMap>
-
-//       {state === "pickup" && (
-//         <div className={styles.searchBoxContainer}>
-//           <h3>Pickup Location</h3>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={pickupInputValue}
-//                 onChange={handlePickupInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//               <button
-//                 className={styles.currentLocationButton}
-//                 onClick={handleCurrentLocationClick}
-//               >
-//                 <FontAwesomeIcon icon={faLocationArrow} className={styles.currentLocationIcon} />
-//                 Current Location
-//               </button>
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "dropoff" && (
-//         <div className={styles.dropoffContainer}>
-//           <div className={styles.dropoffHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Dropoff Location</h3>
-//           </div>
-//           <Autocomplete
-//             onLoad={ref => (autocompleteRef.current = ref)}
-//             onPlaceChanged={handlePlaceChanged}
-//             fields={["geometry", "name"]}
-//           >
-//             <div className={styles.searchBox}>
-//               <input
-//                 type="text"
-//                 placeholder="Search location"
-//                 className={styles.searchBoxInput}
-//                 value={dropoffInputValue}
-//                 onChange={handleDropoffInputChange}
-//               />
-//               <FontAwesomeIcon icon={faChevronDown} className={styles.searchBoxIcon} />
-//             </div>
-//           </Autocomplete>
-//         </div>
-//       )}
-
-//       {state === "vehicleDetails" && (
-//         <div className={styles.vehicleDetailsContainer}>
-//           <div className={styles.vehicleDetailsHeader}>
-//             <FontAwesomeIcon
-//               icon={faArrowLeft}
-//               className={styles.backIcon}
-//               onClick={handleBackClick}
-//             />
-//             <h3>Vehicle Details</h3>
-//           </div>
-//           <div className={styles.vinInputContainer}>
-//             <input
-//               type="text"
-//               placeholder="Enter VIN number"
-//               className={styles.vinInput}
-//               value={vinInputValue}
-//               onChange={handleVinInputChange}
-//             />
-//             <input
-//               type="text"
-//               placeholder="Model"
-//               className={styles.vinInput}
-//               value={vinInputValue}
-//               onChange={handleVinInputChange}
-//             />
-//               <input
-//                 type="text"
-//                 placeholder="Make"
-//                 className={styles.vinInput}
-//               />
-//               <input
-//                 type="text"
-//                 placeholder="Year"
-//                 className={styles.vinInput}
-//               />
-//               <input
-//                 type="text"
-//                 placeholder="Car Color"
-//                 className={styles.vinInput}
-//               />
-//               <input
-//                 type="text"
-//                 placeholder="License Plate Number"
-//                 className={styles.vinInput}
-//               />
-//               <button
-//                 className={styles.checkDetailButton}
-//                 onClick={handleCheckDetail}
-//                 disabled={vinInputValue.trim() === ""}
-//               >
-//                 Add Detail
-//               </button>
-//             </div>
-//           </div>
-//         )}
-
-//         {state === "services" && (
-//           <div className={styles.vehicleDetailsContainer}>
-//             <div className={styles.vehicleDetailsHeader}>
-//               <FontAwesomeIcon
-//                 icon={faArrowLeft}
-//                 className={styles.backIcon}
-//                 onClick={handleBackClick}
-//               />
-//               <h3>Select Services</h3>
-//             </div>
-//             <div className={styles.servicesList}>
-//               {serviceImages.map(service => (
-//                 <div
-//                   key={service.id}
-//                   className={`${styles.serviceContainer} ${selectedServices.includes(service.id) ? styles.selected : ''}`}
-//                   onClick={() => handleServiceSelect(service)}
-//                 >
-//                   <img
-//                     src={service.src}
-//                     alt={service.name}
-//                     className={styles.serviceImage}
-//                   />
-//                   <div className={styles.serviceName}>{service.name}</div>
-//                 </div>
-//               ))}
-//             </div>
-//             <button
-//               className={styles.confirmButton}
-//               onClick={handleConfirmServices}
-//               disabled={selectedServices.length === 0}
-//             >
-//               Confirm Service
-//             </button>
-//           </div>
-//         )}
-
-//         {state === "servicePreview" && (
-//   <div className={styles.vehicleDetailsContainer}>
-//     <div className={styles.vehicleDetailsHeader}>
-//       <FontAwesomeIcon
-//         icon={faArrowLeft}
-//         className={styles.backIcon}
-//         onClick={handleBackClick}
-//       />
-//       <h3>Service Preview</h3>
-//     </div>
-//     <div className={styles.servicesList}>
-//       {selectedServices.map(service => (
-//         <div key={service.id} className={styles.serviceContainer}>
-//           <img
-//             src={service.src}
-//             alt={service.name}
-//             className={styles.serviceImage}
-//           />
-//           <div className={styles.serviceName}>{service.name}</div>
-//         </div>
-//       ))}
-//     </div>
-//   </div>
-// )}
-//       </div>
-//     );
-//   };
-
-//   export default Map;

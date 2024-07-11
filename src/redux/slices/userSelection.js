@@ -44,7 +44,7 @@
 //       state.location.dropoffLocation = null;
 //       localStorage.removeItem("dropoffLocation");
 //     },
-    
+
 //     // Vehicle details reducers
 //     setVehicleDetails(state, action) {
 //       const { vin, model, make, year, color, licensePlate } = action.payload;
@@ -75,7 +75,7 @@
 //       const dropoffLocation = JSON.parse(localStorage.getItem('dropoffLocation'));
 //       const vehicleDetails = JSON.parse(localStorage.getItem('vehicleDetails'));
 //       const selectedServices = JSON.parse(localStorage.getItem('selectedServices'));
-      
+
 //       if (pickupLocation) state.location.pickupLocation = pickupLocation;
 //       if (dropoffLocation) state.location.dropoffLocation = dropoffLocation;
 //       if (vehicleDetails) state.vehicleDetails = vehicleDetails;
@@ -108,8 +108,6 @@
 
 // export default appSlice.reducer;
 
-
-
 // // redux/slices/userSelection.js
 
 // import { createSlice } from "@reduxjs/toolkit";
@@ -141,7 +139,7 @@
 //       state.location.currentLocation = action.payload;
 //       localStorage.setItem('currentLocation', JSON.stringify(action.payload));
 //       localStorage.setItem('currentState', "currentLocation");
-      
+
 //     },
 //     setPickupLocation(state, action) {
 //       state.location.pickupLocation = action.payload;
@@ -214,13 +212,6 @@
 // } = userSelectionSlice.actions;
 
 // export default userSelectionSlice.reducer;
-
-
-
-
-
-
-
 
 // import { createSlice } from "@reduxjs/toolkit";
 
@@ -303,9 +294,7 @@
 //         // const currentState = localStorage.getItem('currentState');
 //         console.log('Loaded currentState from localStorage:', currentState);
 
-
 //       // Load other state values from localStorage
-
 
 //       const pickupLocation = JSON.parse(localStorage.getItem('pickupLocation'));
 //       const dropoffLocation = JSON.parse(localStorage.getItem('dropoffLocation'));
@@ -314,7 +303,6 @@
 //       // const paymentData = JSON.parse(localStorage.getItem('paymentData'));
 //     //   const currentState = localStorage.getItem('currentState');
 
-
 //       // Dispatch actions with the retrieved data if needed
 
 //     console.log('Loaded pickupLocation from localStorage:', pickupLocation);
@@ -322,8 +310,6 @@
 //     console.log('Loaded vehicleDetails from localStorage:', vehicleDetails);
 //     console.log('Loaded selectedServices from localStorage:', selectedServices);
 //     // console.log('Loaded paymentData from localStorage:', paymentData);
-
-
 
 //     // Update state with loaded values from localStorage
 
@@ -363,27 +349,22 @@
 
 // export default userSelectionSlice.reducer;
 
-
-
-
 import { createSlice } from "@reduxjs/toolkit";
 
-
-
 export const updateUserSelectionInLocalStorage = (data) => {
-  console.log('Saving data to localStorage:', data);
+  console.log("Saving data to localStorage:", data);
   localStorage.setItem("userSelection", JSON.stringify(data));
 };
-
 
 const USER_DRAWER_OPTIONS = {
   0: "service-location",
   1: "drop-off-location",
   2: "add-vehicle-details",
   3: "choose-service",
-  4: "choose-company",
-  5: "choose-zone",
-  6: "service-preview",
+  4: "service-preview",
+  // 4: "choose-company",
+  // 5: "choose-zone",
+  // 6: "service-preview",
 };
 
 const initialState = {
@@ -406,7 +387,7 @@ const initialState = {
 };
 
 export const userSelectionSlice = createSlice({
-  name: 'userSelection',
+  name: "userSelection",
   initialState,
   reducers: {
     // setCurrentLocation(state, action) {
@@ -450,23 +431,28 @@ export const userSelectionSlice = createSlice({
     completeStateUpdate(state) {
       state.isStateUpdating = false;
       updateUserSelectionInLocalStorage(state); // Update localStorage after state change
-
     },
     loadStateFromLocalStorage(state) {
       const savedState = JSON.parse(localStorage.getItem("userSelection"));
-      console.log('Loaded data from localStorage:', savedState);
+      console.log("Loaded data from localStorage:", savedState);
       if (savedState) {
-        Object.keys(savedState).forEach(key => {
+        Object.keys(savedState).forEach((key) => {
           state[key] = savedState[key];
         });
-      }
-      else {
+      } else {
         console.log('No data found in localStorage for key "userSelection"');
       }
     },
     clearState(state) {
       state.location = { pickupLocation: null, dropoffLocation: null };
-      state.vehicleDetails = { vin: "", model: "", make: "", year: "", color: "", licensePlate: "" };
+      state.vehicleDetails = {
+        vin: "",
+        model: "",
+        make: "",
+        year: "",
+        color: "",
+        licensePlate: "",
+      };
       state.selectedServices = [];
       state.currentState = "initial";
       state.isStateUpdating = false; // Reset state update flag
@@ -488,48 +474,6 @@ export const {
 } = userSelectionSlice.actions;
 
 export default userSelectionSlice.reducer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { createSlice } from "@reduxjs/toolkit";
 
@@ -582,7 +526,7 @@ export default userSelectionSlice.reducer;
 //       console.log("Attempting to load state from localStorage...");
 //       const savedState = JSON.parse(localStorage.getItem("userSelection"));
 //       console.log("Loaded data from localStorage:", savedState);
-    
+
 //       if (savedState) {
 //         console.log("Updating state with loaded data...");
 //         state.location.pickupLocation = savedState.location.pickupLocation;
@@ -631,10 +575,3 @@ export default userSelectionSlice.reducer;
 // export const selectUserSelection = (state) => state.userSelection;
 
 // export default userSelectionSlice.reducer;
-
-
-
-
-
-
-

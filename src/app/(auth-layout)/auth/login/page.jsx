@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
-import Image from 'next/image'; // Import the Next.js Image component
+import Image from "next/image"; // Import the Next.js Image component
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Email Required"),
@@ -47,6 +47,10 @@ const Login = () => {
           id: toastID,
         });
         dispatch(setAuthUser(reduxState));
+        localStorage.setItem(
+          "userSelection",
+          JSON.stringify({ currentState: "initial" })
+        );
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         router.push("/");
       } else {
@@ -60,22 +64,32 @@ const Login = () => {
   return (
     <div>
       <Grid container className={`${styles[`login-page`]} ${styles[theme]}`}>
-      <Grid container justifyContent="center" alignItems="center" className={styles['logo-container']}>
-        <Grid item>
-          <Image src="/images/logo.jpg" alt="Logo" width={200} height={100} className={styles['logo']} />
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          className={styles["logo-container"]}
+        >
+          <Grid item>
+            <Image
+              src="/images/logo.jpg"
+              alt="Logo"
+              width={200}
+              height={100}
+              className={styles["logo"]}
+            />
+          </Grid>
         </Grid>
-      </Grid>
         <Grid
           item
           xs={12}
-          style={{ height: 'calc(100vh - 120px)' }} // Adjust height to account for logo height
+          style={{ height: "calc(100vh - 120px)" }} // Adjust height to account for logo height
           // style={{ height: "100vh" }}
           display="flex"
           justifyContent="center"
           alignItems="center"
           margin-top="100px"
         >
-
           <Box
             sx={{
               width: {
