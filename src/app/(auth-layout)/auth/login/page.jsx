@@ -49,7 +49,7 @@ const Login = () => {
         dispatch(setAuthUser(reduxState));
         localStorage.setItem(
           "userSelection",
-          JSON.stringify({ currentState: "initial" })
+          JSON.stringify({ currentState: "service-location" })
         );
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         router.push("/");

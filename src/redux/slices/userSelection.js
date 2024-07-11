@@ -382,7 +382,7 @@ const initialState = {
     licensePlate: "",
   },
   selectedServices: [],
-  currentState: "initial", // Initial state indicator
+  currentState: "service-location", // Initial state indicator
   isStateUpdating: false, // Flag to indicate state update process
 };
 
@@ -390,13 +390,14 @@ export const userSelectionSlice = createSlice({
   name: "userSelection",
   initialState,
   reducers: {
-    // setCurrentLocation(state, action) {
-    //   state.location.currentLocation = action.payload;
-    //   if (!state.isStateUpdating) {
-    //     state.currentState = USER_DRAWER_OPTIONS[0];
-    //     updateUserSelectionInLocalStorage(state);
-    //   }
-    // },
+    updateUserServicesFromLocalStorage: (state, action) => {
+      console.log(state, action, "======----------------------------");
+      const newState = {
+        ...state,
+        ...action.payload,
+      };
+      return newState;
+    },
     setPickupLocation(state, action) {
       state.location.pickupLocation = action.payload;
       if (!state.isStateUpdating) {
@@ -443,6 +444,80 @@ export const userSelectionSlice = createSlice({
         console.log('No data found in localStorage for key "userSelection"');
       }
     },
+    setPreviousSelectionComponent: (state) => {
+      console.log(state, "state");
+      switch (state.currentState) {
+        case USER_DRAWER_OPTIONS[0]: {
+          state.currentState = USER_DRAWER_OPTIONS[0];
+          break;
+        }
+        case USER_DRAWER_OPTIONS[1]: {
+          state.currentState = USER_DRAWER_OPTIONS[0];
+          break;
+        }
+        case USER_DRAWER_OPTIONS[2]: {
+          state.currentState = USER_DRAWER_OPTIONS[1];
+          break;
+        }
+        case USER_DRAWER_OPTIONS[3]: {
+          state.currentState = USER_DRAWER_OPTIONS[2];
+          break;
+        }
+        case USER_DRAWER_OPTIONS[4]: {
+          state.currentState = USER_DRAWER_OPTIONS[3];
+          break;
+        }
+        // case USER_DRAWER_OPTIONS[2]: {
+        //   let previousComponent = 1;
+        //   const userData = JSON.parse(localStorage.getItem("userData"));
+        //   if (userData?.type === "opp_operator") {
+        //     previousComponent = 0;
+        //   }
+
+        //   state.currentState = USER_DRAWER_OPTIONS[previousComponent];
+        //   break;
+        // }
+        // case USER_DRAWER_OPTIONS[3]: {
+        //   state.currentState = USER_DRAWER_OPTIONS[2];
+        //   break;
+        // }
+        // case USER_DRAWER_OPTIONS[4]: {
+        //   state.currentState = USER_DRAWER_OPTIONS[3];
+        //   break;
+        // }
+        // case USER_DRAWER_OPTIONS[5]: {
+        //   let previousComponent = 4;
+        //   const userData = JSON.parse(localStorage.getItem("userData"));
+
+        //   if (!userData?.organization?.showInsuranceCompany) {
+        //     previousComponent = 3;
+        //   }
+
+        //   state.currentState = USER_DRAWER_OPTIONS[previousComponent];
+        //   break;
+        // }
+        // case USER_DRAWER_OPTIONS[6]: {
+        //   let previousComponent = 5;
+        //   const userData = JSON.parse(localStorage.getItem("userData"));
+        //   console.log(userData);
+        //   if (
+        //     userData?.type !== "opp_operator" &&
+        //     userData?.organization?.showInsuranceCompany
+        //   ) {
+        //     previousComponent = 4;
+        //   } else if (
+        //     userData?.type !== "opp_operator" &&
+        //     !userData?.organization?.showInsuranceCompany
+        //   ) {
+        //     previousComponent = 3;
+        //   }
+
+        //   state.currentState = USER_DRAWER_OPTIONS[previousComponent];
+        //   break;
+        // }
+      }
+      updateUserSelectionInLocalStorage({ ...state });
+    },
     clearState(state) {
       state.location = { pickupLocation: null, dropoffLocation: null };
       state.vehicleDetails = {
@@ -471,6 +546,8 @@ export const {
   completeStateUpdate,
   loadStateFromLocalStorage,
   clearState,
+  setPreviousSelectionComponent,
+  updateUserServicesFromLocalStorage,
 } = userSelectionSlice.actions;
 
 export default userSelectionSlice.reducer;

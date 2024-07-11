@@ -22,6 +22,7 @@ import {
   setCurrentLocation,
   setDropoffLocation,
   setPickupLocation,
+  setPreviousSelectionComponent,
   setSelectedServices,
   setVehicleDetails,
 } from "@/redux/slices/userSelection"; // Adjust the path as needed
@@ -91,9 +92,9 @@ const Map = () => {
   const dispatch = useDispatch();
 
   // const selectedServices = useSelector((state) => state.app.selectedServices);
-  // const selectedServices = useSelector(
-  //   (state) => state.userSelection.selectedServices || []
-  // );
+  const selectedServices = useSelector(
+    (state) => state.userSelection.selectedServices || []
+  );
 
   // console.log(selectedServices, "selectedServices");
 
@@ -101,9 +102,10 @@ const Map = () => {
     (state) => state.userSelection.location.currentLocation
   );
 
-  const { currentState, selectedServices, vehicleDetails } = JSON.parse(
-    localStorage.getItem("userSelection")
-  );
+  const { vehicleDetails } = JSON.parse(localStorage.getItem("userSelection"));
+
+  const currentState = useSelector((state) => state.userSelection.currentState);
+
   console.log(currentState, "currentState");
 
   const [formData, setFormData] = useState({
@@ -346,21 +348,23 @@ const Map = () => {
   };
 
   const handleBackClick = () => {
-    if (currentView === "payment") {
-      setCurrentView("servicePreview");
-      setShowSidebar(false);
-    } else if (servicePreview) {
-      setServicePreview(false);
-      setState("services");
-    } else if (state === "services") {
-      setState("vehicleDetails");
-    } else if (state === "vehicleDetails") {
-      setState("dropoff");
-    } else if (state === "dropoff") {
-      setState("pickup");
-    } else {
-      setShowSidebar(false);
-    }
+    // Move back to previous state
+    dispatch(setPreviousSelectionComponent());
+    // if (currentView === "payment") {
+    //   setCurrentView("servicePreview");
+    //   setShowSidebar(false);
+    // } else if (servicePreview) {
+    //   setServicePreview(false);
+    //   setState("services");
+    // } else if (state === "services") {
+    //   setState("vehicleDetails");
+    // } else if (state === "vehicleDetails") {
+    //   setState("dropoff");
+    // } else if (state === "dropoff") {
+    //   setState("pickup");
+    // } else {
+    //   setShowSidebar(false);
+    // }
   };
 
   const handleCheckDetail = () => {
@@ -604,7 +608,7 @@ const Map = () => {
           )}
         </GoogleMap>
 
-        {currentState === "initial" && (
+        {currentState === "service-location" && (
           <div
             className={`${styles.searchBoxContainer} ${
               isExpanded ? styles.expanded : ""
@@ -716,13 +720,7 @@ const Map = () => {
                     value={dropoffInputValue}
                     onChange={(e) => setDropoffInputValue(e.target.value)}
                   />
-                  {/* <input
-            type="text"
-            placeholder="Search location"
-            className={styles.searchBoxInput}
-            value={dropoffInputValue}
-            onChange={handleDropoffInputChange}
-          /> */}
+
                   <div className={styles.iconContainer}>
                     <div className={styles.separator}></div>
                     <FontAwesomeIcon

@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import Cookies from "js-cookie";
@@ -37,7 +36,6 @@
 //     key: 'paymentData',
 //     reducer: (data) => setPaymentData(data),
 //   },
-  
 
 // ];
 
@@ -68,8 +66,7 @@
 //               data.token = token;
 //             }
 //           }
-          
-           
+
 //           else {
 //             data = localData;
 //           }
@@ -87,9 +84,6 @@
 
 // export default RootLayoutWrapper;
 
-
-
-
 // "use client";
 
 // import Cookies from "js-cookie";
@@ -97,7 +91,7 @@
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setAuthUser } from "@/redux/slices/authUser";
-// import { 
+// import {
 //   setCurrentLocation,
 //   setDropoffLocation,
 //   setVehicleDetails,
@@ -178,29 +172,24 @@
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
 import ErrorFallback from "components/ErrorFallback/ErrorFallback";
 import { useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch } from "react-redux";
 import { setAuthUser } from "@/redux/slices/authUser";
-import { updateUserSelectionInLocalStorage } from "@/redux/slices/userSelection";
+import { updateUserServicesFromLocalStorage } from "@/redux/slices/userSelection";
 // Import other necessary actions for rehydration
 
 const REHYDRATE_KEYS = [
   {
     key: "userData",
-    dispatcher: (data) => (dispatch) => dispatch(setAuthUser(data)),
+    // dispatcher: (data) => (dispatch) => dispatch(setAuthUser(data)),
   },
   {
     key: "userSelection",
-    dispatcher: (data) => (dispatch) => dispatch(updateUserSelectionInLocalStorage(data)),
+    // dispatcher: (data) => (dispatch) =>
+    //   dispatch(updateUserServicesFromLocalStorage(data)),
   },
-  // Add other keys and their corresponding dispatchers here
 ];
 
 const RootLayoutWrapper = ({ children }) => {
@@ -213,16 +202,28 @@ const RootLayoutWrapper = ({ children }) => {
   }, []);
 
   const rehydrateRedux = () => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    let userSelection = JSON.parse(localStorage.getItem("userSelection"));
+
+    const token = "some-dummy-token";
+    const reduxState = {
+      userData: userData,
+      token,
+    };
+    // console.log(userData,userSelection);
     try {
       REHYDRATE_KEYS.forEach((item) => {
-        let data = localStorage.getItem(item.key);
-        if (data) {
-          data = JSON.parse(data);
-          dispatch(item.dispatcher(data));
+        if (item?.key === "userData") {
+          dispatch(setAuthUser(reduxState));
+        } else if (item?.key === "userSelection") {
+          dispatch(updateUserServicesFromLocalStorage(userSelection));
         }
       });
     } catch (error) {
-      console.log(error);
+      console.log(
+        error,
+        "error///////////////////////////////////////////////////////"
+      );
     }
   };
 
@@ -238,26 +239,6 @@ const RootLayoutWrapper = ({ children }) => {
 
 export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 
 // import Cookies from "js-cookie";
@@ -265,15 +246,15 @@ export default RootLayoutWrapper;
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { setAuthUser } from "@/redux/slices/authUser";
-// import { 
-//   setCurrentLocation, 
+// import {
+//   setCurrentLocation,
 //   setPickupLocation,
-//   setDropoffLocation, 
-//   setVehicleDetails, 
-//   setSelectedServices, 
-//   // setPaymentData, 
+//   setDropoffLocation,
+//   setVehicleDetails,
+//   setSelectedServices,
+//   // setPaymentData,
 //   loadStateFromLocalStorage,
-// } from "@/redux/slices/userSelection"; 
+// } from "@/redux/slices/userSelection";
 
 // const LOCAL_STORAGE = [
 //   {
@@ -390,31 +371,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const rehydrateRedux = () => {
 //   try {
 //     Object.keys(LOCAL_STORAGE_KEYS).forEach((key) => {
@@ -454,13 +410,6 @@ export default RootLayoutWrapper;
 //     console.error('Error rehydrating Redux state:', error);
 //   }
 // };
-
-
-
-
-
-
-
 
 // import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -541,25 +490,6 @@ export default RootLayoutWrapper;
 // };
 
 // export default RootLayoutWrapper;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
@@ -650,25 +580,7 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client"
-
-
 
 // import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -778,7 +690,6 @@ export default RootLayoutWrapper;
 //   //   localStorage.setItem('currentPage', currentPage);
 //   // }, [userData, currentLocation, pickupLocation, dropoffLocation, vehicleDetails, selectedServices, currentPage]);
 
-
 //   // Save state to localStorage whenever it changes
 //   // useEffect(() => {
 //   //   localStorage.setItem('userData', JSON.stringify(userData));
@@ -813,26 +724,8 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // RootLayoutWrapper.js
 // src/components/LayoutWrappers/Root/LayoutWrapper.jsx
-
-
 
 // import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -931,8 +824,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
 // import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 // import { setAuthUser } from "@/redux/slices/authUser";
@@ -996,18 +887,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 
 // import Cookies from "js-cookie";
@@ -1015,8 +894,8 @@ export default RootLayoutWrapper;
 // import { useEffect } from "react";
 // import { useDispatch } from "react-redux";
 // import { setAuthUser } from "@/redux/slices/authUser";
-// import { setCurrentLocation } from '@/redux/slices/locationSlice'; 
-// import { setDropoffLocation } from '@/redux/slices/dropoffLocationSlice'; 
+// import { setCurrentLocation } from '@/redux/slices/locationSlice';
+// import { setDropoffLocation } from '@/redux/slices/dropoffLocationSlice';
 // import { setVehicleDetails } from '@/redux/slices/vehicleDetailsSlice';
 // import { setSelectedServices } from "@/redux/slices/servicesSlice";
 // import { setPaymentData } from "@/redux/slices/paymentSlice";
@@ -1105,19 +984,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import Cookies from "js-cookie";
 // import { usePathname } from "next/navigation";
 // import { useEffect } from "react";
@@ -1196,25 +1062,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import Cookies from "js-cookie";
 // import { usePathname } from "next/navigation";
 // import { useEffect } from "react";
@@ -1254,7 +1101,7 @@ export default RootLayoutWrapper;
 //           try {
 //             parsedData = JSON.parse(localData);
 //             console.log(`Parsed ${key} data:`, parsedData);
-            
+
 //             // Dispatch based on key
 //             switch (key) {
 //               case "userData":
@@ -1299,8 +1146,6 @@ export default RootLayoutWrapper;
 
 // export default RootLayoutWrapper;
 
-
-
 // import Cookies from "js-cookie";
 // import { usePathname } from "next/navigation";
 // import { useEffect } from "react";
@@ -1342,7 +1187,7 @@ export default RootLayoutWrapper;
 //               userData.token = token;
 //             }
 //             dispatch(setAuthUser(userData));
-            
+
 //           } else if (key === "currentLocation") {
 //             const currentLocation = JSON.parse(localData);
 //             dispatch(setCurrentLocation(currentLocation));
@@ -1370,23 +1215,6 @@ export default RootLayoutWrapper;
 // };
 
 // export default RootLayoutWrapper;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import Cookies from "js-cookie";
 // import { usePathname } from "next/navigation";
@@ -1421,13 +1249,13 @@ export default RootLayoutWrapper;
 //       LOCAL_STORAGE_KEYS.forEach(key => {
 //         const localData = localStorage.getItem(key);
 //         console.log(`Retrieved ${key} from localStorage:`, localData);
-  
+
 //         if (localData) { // Check if localData is truthy (not null or undefined)
 //           let parsedData;
 //           try {
 //             parsedData = JSON.parse(localData);
 //             console.log(`Parsed ${key} data:`, parsedData);
-            
+
 //             // Example dispatching
 //             switch (key) {
 //               case "userData":
@@ -1465,15 +1293,11 @@ export default RootLayoutWrapper;
 //       // Handle general rehydration error (e.g., show a user-friendly message)
 //     }
 //   };
-  
 
 //   return children;
 // };
 
 // export default RootLayoutWrapper;
-
-
-
 
 // // components/RootLayoutWrapper.js
 // import Cookies from 'js-cookie';
@@ -1488,7 +1312,6 @@ export default RootLayoutWrapper;
 // import { setVehicleDetails } from '@/redux/slices/vehicleDetailsSlice'; // Import the vehicle details slice actions
 // import { setSelectedServices } from "@/redux/slices/servicesSlice";
 // import { setPaymentData } from "@/redux/slices/paymentSlice";
-
 
 // const LOCAL_STORAGE_KEYS = [
 //   'userData',
@@ -1561,7 +1384,6 @@ export default RootLayoutWrapper;
 // };
 
 // export default RootLayoutWrapper;
-
 
 // "use client"
 
