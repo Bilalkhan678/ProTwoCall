@@ -222,12 +222,174 @@
 
 
 
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   location: {
+//     pickupLocation: null,
+//     currentLocation: null,
+//     dropoffLocation: null,
+//   },
+//   vehicleDetails: {
+//     vin: "",
+//     model: "",
+//     make: "",
+//     year: "",
+//     color: "",
+//     licensePlate: "",
+//   },
+//   selectedServices: [],
+//   // paymentData: null,
+//   currentState: "initial", // Initial state indicator
+// };
+
+// const userSelectionSlice = createSlice({
+//   name: 'userSelection',
+//   initialState,
+//   reducers: {
+//     setCurrentLocation(state, action) {
+//         console.log('setCurrentLocation action:', action);
+//       state.location.currentLocation = action.payload;
+//       state.address = action.payload.address;
+//       localStorage.setItem('currentLocation', JSON.stringify(action.payload));
+//       state.currentState = "currentLocation"; // Update currentState
+//       localStorage.setItem('currentState', "currentLocation");
+//     },
+//     setPickupLocation(state, action) {
+//         console.log('setPickUpLocation action:', action);
+//       state.location.pickupLocation = action.payload;
+//       state.pickupAddress = action.payload.address;
+//       localStorage.setItem('pickupLocation', JSON.stringify(action.payload));
+//       state.currentState = "pickupLocation"; // Update currentState
+//       localStorage.setItem('currentState', "dropoffLocation");
+//     },
+//     setDropoffLocation(state, action) {
+//         console.log('dropoffLocation action:', action);
+//       state.location.dropoffLocation = action.payload;
+//       state.currentState = "dropoff"; // Update currentState
+//       localStorage.setItem('dropoffLocation', JSON.stringify(action.payload));
+//       localStorage.setItem('currentState', "vehicleDetails");
+//     },
+//     setVehicleDetails(state, action) {
+//         console.log('setVehicalDetails action:', action);
+//       state.vehicleDetails = action.payload;
+//       state.currentState = "vehicleDetails"; // Update currentState
+//       localStorage.setItem('vehicleDetails', JSON.stringify(action.payload));
+//       localStorage.setItem('currentState', "selectedServices");
+//     },
+//     setSelectedServices(state, action) {
+
+//         console.log('setSelectServices action:', action);
+//       state.selectedServices = action.payload;
+//       localStorage.setItem('selectedServices', JSON.stringify(action.payload));
+//       state.currentState = "selectedServices"; // Update currentState
+//       localStorage.setItem('currentState', "ReviewselectedServices");
+//     },
+//     // setPaymentData(state, action) {
+//     //     console.log('setPickUpLocation action:', action);
+//     //   state.paymentData = action.payload;
+//     //   state.currentState = "payment"; // Update currentState
+//     //   localStorage.setItem('paymentData', JSON.stringify(action.payload));
+//     //   localStorage.setItem('currentState', "payment");
+//     // },
+//     loadStateFromLocalStorage(state) {
+//         console.log('Loading state from localStorage');
+//         const currentState = localStorage.getItem('currentState');
+//         console.log('Loaded currentState from localStorage:', currentState);
+//         if (currentState) {
+//           state.currentState = currentState;
+//         }
+//         console.log('Loading state from localStorage');
+//         // const currentState = localStorage.getItem('currentState');
+//         console.log('Loaded currentState from localStorage:', currentState);
+
+
+//       // Load other state values from localStorage
+
+
+//       const pickupLocation = JSON.parse(localStorage.getItem('pickupLocation'));
+//       const dropoffLocation = JSON.parse(localStorage.getItem('dropoffLocation'));
+//       const vehicleDetails = JSON.parse(localStorage.getItem('vehicleDetails'));
+//       const selectedServices = JSON.parse(localStorage.getItem('selectedServices'));
+//       // const paymentData = JSON.parse(localStorage.getItem('paymentData'));
+//     //   const currentState = localStorage.getItem('currentState');
+
+
+//       // Dispatch actions with the retrieved data if needed
+
+//     console.log('Loaded pickupLocation from localStorage:', pickupLocation);
+//     console.log('Loaded dropoffLocation from localStorage:', dropoffLocation);
+//     console.log('Loaded vehicleDetails from localStorage:', vehicleDetails);
+//     console.log('Loaded selectedServices from localStorage:', selectedServices);
+//     // console.log('Loaded paymentData from localStorage:', paymentData);
+
+
+
+//     // Update state with loaded values from localStorage
+
+//       if (pickupLocation) state.location.pickupLocation = pickupLocation;
+//       if (dropoffLocation) state.location.dropoffLocation = dropoffLocation;
+//       if (vehicleDetails) state.vehicleDetails = vehicleDetails;
+//       if (selectedServices) state.selectedServices = selectedServices;
+//       // if (paymentData) state.paymentData = paymentData;
+//       if (currentState) state.currentState = currentState;
+//     },
+//     clearState(state) {
+//       state.location = { pickupLocation: null, dropoffLocation: null };
+//       state.vehicleDetails = { vin: "", model: "", make: "", year: "", color: "", licensePlate: "" };
+//       state.selectedServices = [];
+//       state.paymentData = null;
+//       state.currentState = "initial";
+//       localStorage.removeItem('pickupLocation');
+//       localStorage.removeItem('dropoffLocation');
+//       localStorage.removeItem('vehicleDetails');
+//       localStorage.removeItem('selectedServices');
+//       // localStorage.removeItem('paymentData');
+//       localStorage.removeItem('currentState');
+//     }
+//   },
+// });
+
+// export const {
+//   setPickupLocation,
+//   setDropoffLocation,
+//   setCurrentLocation,
+//   setVehicleDetails,
+//   setSelectedServices,
+//   // setPaymentData,
+//   loadStateFromLocalStorage,
+//   clearState,
+// } = userSelectionSlice.actions;
+
+// export default userSelectionSlice.reducer;
+
+
+
+
 import { createSlice } from "@reduxjs/toolkit";
+
+
+
+export const updateUserSelectionInLocalStorage = (data) => {
+  console.log('Saving data to localStorage:', data);
+  localStorage.setItem("userSelection", JSON.stringify(data));
+};
+
+
+const USER_DRAWER_OPTIONS = {
+  0: "service-location",
+  1: "drop-off-location",
+  2: "add-vehicle-details",
+  3: "choose-service",
+  4: "choose-company",
+  5: "choose-zone",
+  6: "service-preview",
+};
 
 const initialState = {
   location: {
     pickupLocation: null,
-    currentLocation: null,
+    // currentLocation: null,
     dropoffLocation: null,
   },
   vehicleDetails: {
@@ -239,129 +401,239 @@ const initialState = {
     licensePlate: "",
   },
   selectedServices: [],
-  paymentData: null,
   currentState: "initial", // Initial state indicator
+  isStateUpdating: false, // Flag to indicate state update process
 };
 
-const userSelectionSlice = createSlice({
+export const userSelectionSlice = createSlice({
   name: 'userSelection',
   initialState,
   reducers: {
-    setCurrentLocation(state, action) {
-        console.log('setCurrentLocation action:', action);
-      state.location.currentLocation = action.payload;
-      state.address = action.payload.address;
-      localStorage.setItem('currentLocation', JSON.stringify(action.payload));
-      state.currentState = "currentLocation"; // Update currentState
-    //   localStorage.setItem('currentState', "currentLocation");
-    },
+    // setCurrentLocation(state, action) {
+    //   state.location.currentLocation = action.payload;
+    //   if (!state.isStateUpdating) {
+    //     state.currentState = USER_DRAWER_OPTIONS[0];
+    //     updateUserSelectionInLocalStorage(state);
+    //   }
+    // },
     setPickupLocation(state, action) {
-        console.log('setPickUpLocation action:', action);
       state.location.pickupLocation = action.payload;
-      state.pickupAddress = action.payload.address;
-      localStorage.setItem('pickupLocation', JSON.stringify(action.payload));
-      state.currentState = "pickupLocation"; // Update currentState
-      localStorage.setItem('currentState', "pickupLocation");
+      if (!state.isStateUpdating) {
+        state.currentState = USER_DRAWER_OPTIONS[1];
+        updateUserSelectionInLocalStorage(state);
+      }
     },
     setDropoffLocation(state, action) {
-        console.log('dropoffLocation action:', action);
       state.location.dropoffLocation = action.payload;
-      state.currentState = "dropoff"; // Update currentState
-      localStorage.setItem('dropoffLocation', JSON.stringify(action.payload));
-      localStorage.setItem('currentState', "dropoffLocation");
+      if (!state.isStateUpdating) {
+        state.currentState = USER_DRAWER_OPTIONS[2];
+        updateUserSelectionInLocalStorage(state);
+      }
     },
     setVehicleDetails(state, action) {
-        console.log('setVehicalDetails action:', action);
       state.vehicleDetails = action.payload;
-      state.currentState = "vehicleDetails"; // Update currentState
-      localStorage.setItem('vehicleDetails', JSON.stringify(action.payload));
-      localStorage.setItem('currentState', "vehicleDetails");
+      if (!state.isStateUpdating) {
+        state.currentState = USER_DRAWER_OPTIONS[3];
+        updateUserSelectionInLocalStorage(state);
+      }
     },
     setSelectedServices(state, action) {
-
-        console.log('setSelectServices action:', action);
       state.selectedServices = action.payload;
-      localStorage.setItem('selectedServices', JSON.stringify(action.payload));
-      state.currentState = "selectedServices"; // Update currentState
-      localStorage.setItem('currentState', "selectedServices");
+      if (!state.isStateUpdating) {
+        state.currentState = USER_DRAWER_OPTIONS[4];
+        updateUserSelectionInLocalStorage(state);
+      }
     },
-    // setPaymentData(state, action) {
-    //     console.log('setPickUpLocation action:', action);
-    //   state.paymentData = action.payload;
-    //   state.currentState = "payment"; // Update currentState
-    //   localStorage.setItem('paymentData', JSON.stringify(action.payload));
-    //   localStorage.setItem('currentState', "payment");
-    // },
+    startStateUpdate(state) {
+      state.isStateUpdating = true;
+    },
+    completeStateUpdate(state) {
+      state.isStateUpdating = false;
+      updateUserSelectionInLocalStorage(state); // Update localStorage after state change
+
+    },
     loadStateFromLocalStorage(state) {
-        // console.log('Loading state from localStorage');
-        // const currentState = localStorage.getItem('currentState');
-        // console.log('Loaded currentState from localStorage:', currentState);
-        // if (currentState) {
-        //   state.currentState = currentState;
-        // }
-        console.log('Loading state from localStorage');
-        const currentState = localStorage.getItem('currentState');
-        console.log('Loaded currentState from localStorage:', currentState);
-
-
-      // Load other state values from localStorage
-
-
-      const pickupLocation = JSON.parse(localStorage.getItem('pickupLocation'));
-      const dropoffLocation = JSON.parse(localStorage.getItem('dropoffLocation'));
-      const vehicleDetails = JSON.parse(localStorage.getItem('vehicleDetails'));
-      const selectedServices = JSON.parse(localStorage.getItem('selectedServices'));
-      const paymentData = JSON.parse(localStorage.getItem('paymentData'));
-    //   const currentState = localStorage.getItem('currentState');
-
-
-      // Dispatch actions with the retrieved data if needed
-
-    console.log('Loaded pickupLocation from localStorage:', pickupLocation);
-    console.log('Loaded dropoffLocation from localStorage:', dropoffLocation);
-    console.log('Loaded vehicleDetails from localStorage:', vehicleDetails);
-    console.log('Loaded selectedServices from localStorage:', selectedServices);
-    console.log('Loaded paymentData from localStorage:', paymentData);
-
-
-
-    // Update state with loaded values from localStorage
-
-      if (pickupLocation) state.location.pickupLocation = pickupLocation;
-      if (dropoffLocation) state.location.dropoffLocation = dropoffLocation;
-      if (vehicleDetails) state.vehicleDetails = vehicleDetails;
-      if (selectedServices) state.selectedServices = selectedServices;
-      if (paymentData) state.paymentData = paymentData;
-      if (currentState) state.currentState = currentState;
+      const savedState = JSON.parse(localStorage.getItem("userSelection"));
+      console.log('Loaded data from localStorage:', savedState);
+      if (savedState) {
+        Object.keys(savedState).forEach(key => {
+          state[key] = savedState[key];
+        });
+      }
+      else {
+        console.log('No data found in localStorage for key "userSelection"');
+      }
     },
     clearState(state) {
       state.location = { pickupLocation: null, dropoffLocation: null };
       state.vehicleDetails = { vin: "", model: "", make: "", year: "", color: "", licensePlate: "" };
       state.selectedServices = [];
-      state.paymentData = null;
       state.currentState = "initial";
-      localStorage.removeItem('pickupLocation');
-      localStorage.removeItem('dropoffLocation');
-      localStorage.removeItem('vehicleDetails');
-      localStorage.removeItem('selectedServices');
-      localStorage.removeItem('paymentData');
-      localStorage.removeItem('currentState');
-    }
+      state.isStateUpdating = false; // Reset state update flag
+      localStorage.removeItem("userSelection");
+    },
   },
 });
 
 export const {
+  setCurrentLocation,
   setPickupLocation,
   setDropoffLocation,
-  setCurrentLocation,
   setVehicleDetails,
   setSelectedServices,
-  setPaymentData,
+  startStateUpdate,
+  completeStateUpdate,
   loadStateFromLocalStorage,
   clearState,
 } = userSelectionSlice.actions;
 
 export default userSelectionSlice.reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const updateUserSelectionInLocalStorage = (data) => {
+//   localStorage.setItem("userSelection", JSON.stringify(data));
+// };
+
+// const initialState = {
+//   location: {
+//     pickupLocation: null,
+//     dropoffLocation: null,
+//   },
+//   vehicleDetails: {
+//     vin: "",
+//     model: "",
+//     make: "",
+//     year: "",
+//     color: "",
+//     licensePlate: "",
+//   },
+//   selectedServices: [],
+//   currentState: "initial",
+// };
+
+// export const userSelectionSlice = createSlice({
+//   name: 'userSelection',
+//   initialState,
+//   reducers: {
+//     setPickupLocation(state, action) {
+//       state.location.pickupLocation = action.payload;
+//       state.currentState = "pickup";
+//       updateUserSelectionInLocalStorage(state);
+//     },
+//     setDropoffLocation(state, action) {
+//       state.location.dropoffLocation = action.payload;
+//       state.currentState = "dropoff";
+//       updateUserSelectionInLocalStorage(state);
+//     },
+//     setVehicleDetails(state, action) {
+//       state.vehicleDetails = action.payload;
+//       state.currentState = "vehicleDetails";
+//       updateUserSelectionInLocalStorage(state);
+//     },
+//     setSelectedServices(state, action) {
+//       state.selectedServices = action.payload;
+//       state.currentState = "selectedServices";
+//       updateUserSelectionInLocalStorage(state);
+//     },
+//     loadStateFromLocalStorage(state) {
+//       console.log("Attempting to load state from localStorage...");
+//       const savedState = JSON.parse(localStorage.getItem("userSelection"));
+//       console.log("Loaded data from localStorage:", savedState);
+    
+//       if (savedState) {
+//         console.log("Updating state with loaded data...");
+//         state.location.pickupLocation = savedState.location.pickupLocation;
+//         state.location.dropoffLocation = savedState.location.dropoffLocation;
+//         state.vehicleDetails = savedState.vehicleDetails;
+//         state.selectedServices = savedState.selectedServices;
+//         state.currentState = savedState.currentState;
+//       } else {
+//         console.log('No data found in localStorage for key "userSelection"');
+//       }
+//     },
+//     clearState(state) {
+//       state.location.pickupLocation = null;
+//       state.location.dropoffLocation = null;
+//       state.vehicleDetails = {
+//         vin: "",
+//         model: "",
+//         make: "",
+//         year: "",
+//         color: "",
+//         licensePlate: "",
+//       };
+//       state.selectedServices = [];
+//       state.currentState = "initial";
+//       localStorage.removeItem("userSelection");
+//     },
+//   },
+// });
+
+// export const {
+//   setPickupLocation,
+//   setDropoffLocation,
+//   setVehicleDetails,
+//   setSelectedServices,
+//   loadStateFromLocalStorage,
+//   clearState,
+// } = userSelectionSlice.actions;
+
+// export const updateUserSelection = (data) => (dispatch) => {
+//   dispatch(setPickupLocation(data.pickupLocation));
+//   dispatch(setDropoffLocation(data.dropoffLocation));
+//   dispatch(setVehicleDetails(data.vehicleDetails));
+//   dispatch(setSelectedServices(data.selectedServices));
+// };
+
+// export const selectUserSelection = (state) => state.userSelection;
+
+// export default userSelectionSlice.reducer;
+
+
+
 
 
 

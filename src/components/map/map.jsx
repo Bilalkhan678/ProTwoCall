@@ -1211,7 +1211,7 @@ const Map = () => {
           // Dispatching the action to update Redux state
 
 
-          dispatch(setCurrentLocation(newLocation));
+          // dispatch(setCurrentLocation(newLocation));
           
            // Save to localStorage
            localStorage.setItem('currentLocation', JSON.stringify(newLocation));

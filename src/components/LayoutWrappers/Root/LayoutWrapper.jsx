@@ -183,154 +183,212 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"use client";
-
-import Cookies from "js-cookie";
-import { usePathname } from "next/navigation";
+import ErrorFallback from "components/ErrorFallback/ErrorFallback";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ErrorBoundary } from "react-error-boundary";
+import { useDispatch } from "react-redux";
 import { setAuthUser } from "@/redux/slices/authUser";
-import { 
-  // setCurrentLocation, 
-  setPickupLocation,
-  setDropoffLocation, 
-  setVehicleDetails, 
-  setSelectedServices, 
-  // setPaymentData, 
-  loadStateFromLocalStorage,
-} from "@/redux/slices/userSelection"; 
+import { updateUserSelectionInLocalStorage } from "@/redux/slices/userSelection";
+// Import other necessary actions for rehydration
 
-const LOCAL_STORAGE = [
+const REHYDRATE_KEYS = [
   {
     key: "userData",
-    reducer: (data) => setAuthUser(data),
+    dispatcher: (data) => (dispatch) => dispatch(setAuthUser(data)),
   },
   {
-    key: "pickuplocation",
-    reducer: (data) => setPickupLocation(data),
+    key: "userSelection",
+    dispatcher: (data) => (dispatch) => dispatch(updateUserSelectionInLocalStorage(data)),
   },
-  // {
-  //   key: "currentLocation",
-  //   reducer: (data) => setCurrentLocation(data),
-  // },
-  {
-    key: "dropoffLocation",
-    reducer: (data) => setDropoffLocation(data),
-  },
-  {
-    key: "vehicleDetails",
-    reducer: (data) => setVehicleDetails(data),
-  },
-  {
-    key: "selectedServices",
-    reducer: (data) => setSelectedServices(data),
-  },
-  // {
-  //   key: "paymentData",
-  //   reducer: (data) => setPaymentData(data),
-  // },
+  // Add other keys and their corresponding dispatchers here
 ];
 
 const RootLayoutWrapper = ({ children }) => {
-  const pathname = usePathname();
   const dispatch = useDispatch();
-  const currentState = useSelector((state) => state.userSelection.currentState);
 
   useEffect(() => {
-    console.log('Dispatching loadStateFromLocalStorage');
-    loadStateFromLocalStorage(dispatch);// Call the action creator to load state
-  }, [pathname, dispatch]);
-
-  const loadStateFromLocalStorage = (dispatch) => {
-    LOCAL_STORAGE.forEach((item) => {
-      const { key, reducer } = item;
-      const localData = localStorage.getItem(key);
-      if (localData) {
-        let parsedData = {};
-        try {
-          parsedData = JSON.parse(localData);
-        } catch (error) {
-          console.error(`Error parsing localStorage key "${key}":`, error);
-          return;
-        }
-
-        let data = {};
-        if (key === "userData") {
-          data.userData = parsedData;
-          const token = Cookies.get("token");
-          if (token) {
-            data.token = token;
-          }
-        } else {
-          data = parsedData;
-        }
-        dispatch(reducer(data));
-      }
-    });
-
-    const currentState = localStorage.getItem("currentState");
-    if (currentState) {
-      console.log('Dispatching loadStateFromLocalStorage');
-        // Ensure currentState is set correctly after reloading
-      dispatch({ type: "userSelection/loadStateFromLocalStorage" });
+    if (typeof window !== "undefined") {
+      rehydrateRedux();
     }
-  };
+  }, []);
 
-  // const renderContentBasedOnState = () => {
-  //   switch (currentState) {
-  //     case "pickuplocation":
-  //       return <DropoffComponent />;
-  //     case "dropofflocation":
-  //       return <VehicleDetailsComponent />;
-  //     case "vehicalDetails":
-  //       return <PaymentComponent />;
-  //     default:
-  //       return <DefaultComponent />;
-  //   }
-  // };
-
-  const renderContentBasedOnState = () => {
-    console.log('Current state:', currentState);
-    switch (currentState) {
-      case "pickup":
-        // return <div>Pickup Location Component</div>;
-      case "dropoffLocation":
-        // return <div>Dropoff Location Component</div>;
-      case "vehicleDetails":
-        // return <div>Vehicle Details Component</div>;
-      case "selectedServices":
-        // return <div>Selected Services Component</div>;
-      default:
-        // return <div>Default Component</div>;
+  const rehydrateRedux = () => {
+    try {
+      REHYDRATE_KEYS.forEach((item) => {
+        let data = localStorage.getItem(item.key);
+        if (data) {
+          data = JSON.parse(data);
+          dispatch(item.dispatcher(data));
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <>
-      {renderContentBasedOnState()}
-      {children}
+      {/* Body */}
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <main>{children}</main>
+      </ErrorBoundary>
     </>
   );
 };
 
 export default RootLayoutWrapper;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+
+// import Cookies from "js-cookie";
+// import { usePathname } from "next/navigation";
+// import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setAuthUser } from "@/redux/slices/authUser";
+// import { 
+//   setCurrentLocation, 
+//   setPickupLocation,
+//   setDropoffLocation, 
+//   setVehicleDetails, 
+//   setSelectedServices, 
+//   // setPaymentData, 
+//   loadStateFromLocalStorage,
+// } from "@/redux/slices/userSelection"; 
+
+// const LOCAL_STORAGE = [
+//   {
+//     key: "userData",
+//     reducer: (data) => setAuthUser(data),
+//   },
+//   {
+//     key: "pickuplocation",
+//     reducer: (data) => setPickupLocation(data),
+//   },
+//   {
+//     key: "currentLocation",
+//     reducer: (data) => setCurrentLocation(data),
+//   },
+//   {
+//     key: "dropoffLocation",
+//     reducer: (data) => setDropoffLocation(data),
+//   },
+//   {
+//     key: "vehicleDetails",
+//     reducer: (data) => setVehicleDetails(data),
+//   },
+//   {
+//     key: "selectedServices",
+//     reducer: (data) => setSelectedServices(data),
+//   },
+//   // {
+//   //   key: "paymentData",
+//   //   reducer: (data) => setPaymentData(data),
+//   // },
+// ];
+
+// const RootLayoutWrapper = ({ children }) => {
+//   const pathname = usePathname();
+//   const dispatch = useDispatch();
+//   const currentState = useSelector((state) => state.userSelection.currentState);
+
+//   useEffect(() => {
+//     console.log('Dispatching loadStateFromLocalStorage');
+//     loadStateFromLocalStorage(dispatch);// Call the action creator to load state
+//   }, [pathname, dispatch]);
+
+//   const loadStateFromLocalStorage = (dispatch) => {
+//     LOCAL_STORAGE.forEach((item) => {
+//       const { key, reducer } = item;
+//       const localData = localStorage.getItem(key);
+//       if (localData) {
+//         let parsedData = {};
+//         try {
+//           parsedData = JSON.parse(localData);
+//         } catch (error) {
+//           console.error(`Error parsing localStorage key "${key}":`, error);
+//           return;
+//         }
+
+//         let data = {};
+//         if (key === "userData") {
+//           data.userData = parsedData;
+//           const token = Cookies.get("token");
+//           if (token) {
+//             data.token = token;
+//           }
+//         } else {
+//           data = parsedData;
+//         }
+//         dispatch(reducer(data));
+//       }
+//     });
+
+//     const currentState = localStorage.getItem("currentState");
+//     if (currentState) {
+//       console.log('Dispatching loadStateFromLocalStorage');
+//         // Ensure currentState is set correctly after reloading
+//       dispatch({ type: "userSelection/loadStateFromLocalStorage" });
+//     }
+//   };
+
+//   // const renderContentBasedOnState = () => {
+//   //   switch (currentState) {
+//   //     case "pickuplocation":
+//   //       return <DropoffComponent />;
+//   //     case "dropofflocation":
+//   //       return <VehicleDetailsComponent />;
+//   //     case "vehicalDetails":
+//   //       return <PaymentComponent />;
+//   //     default:
+//   //       return <DefaultComponent />;
+//   //   }
+//   // };
+
+//   const renderContentBasedOnState = () => {
+//     console.log('Current state:', currentState);
+//     switch (currentState) {
+//       case "pickup":
+//         // return <div>Pickup Location Component</div>;
+//       case "dropoffLocation":
+//         // return <div>Dropoff Location Component</div>;
+//       case "vehicleDetails":
+//         // return <div>Vehicle Details Component</div>;
+//       case "selectedServices":
+//         // return <div>Selected Services Component</div>;
+//       default:
+//         // return <div>Default Component</div>;
+//     }
+//   };
+
+//   return (
+//     <>
+//       {renderContentBasedOnState()}
+//       {children}
+//     </>
+//   );
+// };
+
+// export default RootLayoutWrapper;
 
 
 
