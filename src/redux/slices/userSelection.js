@@ -520,6 +520,8 @@ export const userSelectionSlice = createSlice({
     },
     clearState(state) {
       state.location = { pickupLocation: null, dropoffLocation: null };
+      // state.location = {};
+
       state.vehicleDetails = {
         vin: "",
         model: "",
@@ -529,10 +531,11 @@ export const userSelectionSlice = createSlice({
         licensePlate: "",
       };
       state.selectedServices = [];
-      state.currentState = "initial";
+      state.currentState = "service-location";
       state.isStateUpdating = false; // Reset state update flag
       localStorage.removeItem("userSelection");
     },
+
   },
 });
 
@@ -551,6 +554,24 @@ export const {
 } = userSelectionSlice.actions;
 
 export default userSelectionSlice.reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { createSlice } from "@reduxjs/toolkit";
 
