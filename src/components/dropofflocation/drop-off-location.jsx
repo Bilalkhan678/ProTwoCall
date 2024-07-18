@@ -5,7 +5,7 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import { Autocomplete } from "@react-google-maps/api";
-  import { useRef, useState } from "react";
+  import { useRef, useState, useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import styles from "@/components/map/styles.module.scss";
   
@@ -43,6 +43,19 @@ const DropoffLocation=()=>{
     const currentState = useSelector((state) => state.userSelection.currentState);
     console.log(currentState, "currentState");
 
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900); // Updated to 900 pixels
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handlePlaceChanged = () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
@@ -62,7 +75,7 @@ const DropoffLocation=()=>{
         console.log("New Center:", newCenter); // Add console log here
 
         // Save to local storage and dispatch to Redux store
-        if (currentState === "initial") {
+        if (currentState === "service-location") {
           // localStorage.setItem("pickupLocation", JSON.stringify(locationData));
           dispatch(setPickupLocation(locationData));
         } else if (currentState === "drop-off-location") {
@@ -70,17 +83,17 @@ const DropoffLocation=()=>{
           dispatch(setDropoffLocation(locationData));
         }
 
-        setCenter(newCenter);
-        mapRef.current.panTo(newCenter);
+       setCenter(newCenter); // Update map center
+      mapRef.current.panTo(newCenter); // Pan map to new center
 
-        if (state === "pickup") {
+        if (currentState === "service-location") {
           setPickupInputValue(place.name || "");
           setPickupAddress(place.name || ""); // Update pickup address
-          setState("dropoff"); // Move to dropoff after setting pickup location
-        } else if (state === "dropoff") {
+          setState("drop-off-location"); // Move to dropoff after setting pickup location
+        } else if (currentState === "drop-off-location") {
           setDropoffInputValue(place.name || "");
           setDropoffAddress(place.name || ""); // Update dropoff address
-          setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+          setState("add-vehicle-details"); // Move to vehicle details after setting dropoff location
         }
       } else {
         console.error("No geometry data available for the selected place.");
@@ -119,7 +132,9 @@ const DropoffLocation=()=>{
                   onClick={toggleExpand} // Ensure this only handles expand/collapse action
                 />
               )}
-              <h3>Dropoff Location</h3>
+              {/* <h3>Dropoff Location</h3> */}
+              <h3 onClick={toggleExpand}>Dropoff Location</h3>
+
 
               <FontAwesomeIcon
                 icon={faArrowLeft}

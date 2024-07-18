@@ -85,9 +85,9 @@ const Map = () => {
   const dispatch = useDispatch();
 
   // const selectedServices = useSelector((state) => state.app.selectedServices);
-  const selectedServices = useSelector(
-    (state) => state.userSelection.selectedServices || []
-  );
+  // const selectedServices = useSelector(
+  //   (state) => state.userSelection.selectedServices || []
+  // );
 
   // console.log(selectedServices, "selectedServices");
 

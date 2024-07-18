@@ -19,10 +19,6 @@ import {
   import styles from "@/components/map/styles.module.scss";
   
   import {
-    clearState,
-    setCurrentLocation,
-    setDropoffLocation,
-    setPickupLocation,
     setPreviousSelectionComponent,
     setSelectedServices,
     setVehicleDetails,
@@ -44,6 +40,19 @@ const ChooseServices =()=>{
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
 
       const dispatch = useDispatch();

@@ -285,24 +285,26 @@
   
 // }
 
-.expandIcon {
-  color: white; /* Icon color */
-  transition: transform 0.3s ease; /* Smooth transition for rotation */
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  border: 1px solid #ffffff; /* Increase border size */
-  position: relative;
-  bottom: 35px;
-  left: 85px;
-  background-color: rgb(32, 129, 195);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem !important; /* Set icon size to default */
-}
 
-servicedropoffAddress
+
+// .expandIcon {
+//   position: absolute;
+//   bottom: 20px; /* Adjust position as needed */
+//   left: 20px; /* Adjust position as needed */
+//   background-color: rgb(32, 129, 195);
+//   color: white;
+//   width: 35px;
+//   height: 35px;
+//   border-radius: 50%;
+//   border: 1px solid #ffffff;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 1.5rem; /* Adjust icon size */
+//   cursor: pointer; /* Ensure cursor changes on hover */
+//   transition: transform 0.3s ease; /* Smooth transition for rotation */
+// }
+
 
 // .expandIcon:hover {
 //   transform: translate3d(0, 10px, 0);
@@ -339,7 +341,7 @@ servicedropoffAddress
   }
 
   .searchBoxInput {
-    width: 107%;
+    width: 100%;
     padding: 12px;
     font-size: 1rem;
   }
@@ -369,6 +371,7 @@ servicedropoffAddress
 
   .currentLocationText {
     align-items: center;
+    width: 100% !important;
   }
 
   .locationName, .currentLocation {
@@ -383,56 +386,213 @@ servicedropoffAddress
 }
 
 
-@media (max-width: 768px) {
+
+// @media (min-width:900px) {
+//   .expandIcon {
+//     display: none;
+//      /* Hide the arrow icon on desktop */
+//   }
+// }
+
+
+
+.expandIcon {
+  border: 1px solid red;
+  color: white; /* Icon color */
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 1px solid #ffffff; /* Increase border size */
+  position: relative;
+  bottom: 35px;
+  left: 85px;
+  background-color: rgb(32, 129, 195);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem !important; /* Set icon size to default */
+  transition: transform 0.3s ease; /* Smooth transition for rotation */
+
+}
+
+
+
+
+
+/* Large devices (desktops, 1200px and up) */
+@media (max-width: 1200px) {
   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
+  // border: 2px solid red;
+  
+
+  }
+  .expandIcon {
+    // display: block; /* Show the arrow icon on mobile */
+    display: flex;
+  }
+}
+
+/* Medium devices (tablets, 1024px and up) */
+@media (max-width: 900px) {
+  .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
+    // border: 2px solid green;
+    // width: 90%;
     top: auto;
     bottom: 0;
     // width: 95% !important ; /* Adjust the width for smaller screens */
-    left: -1% !important;
-    width: 58vh !important;
-    transform: translate(2px, 213px);
-    //  translateX(-50%);
+    left: -6px !important;
+    width: 100% !important;
+    transform: translate(6px, 213px);
   }
-  
- 
+
+
+   
   .expanded {
-    top: 12px;
+    top: 20px;
     bottom: auto !important;
     // width: 95% !important; /* Adjust the width for smaller screens */
     left: -1% !important;
     height: 100vh !important;
-    width: 56vh !important;
+    width: 100% !important;
     // transform: translateX(-50%);
     transform: translate(1%, 24%);
   }
 
-  .searchBoxHeader, .searchBoxHeader,.vehicleDetailsHeader {
-    // justify-content: center;
-    // width: 10px !important;
+  .servicesContent{
+    width: 100%;
   }
+
+  
+  
+
   .expandIcon {
     display: block; /* Show the arrow icon on mobile */
+    // display: flex;
   }
-// .expandIcon {
-//   background-color: #007bff;
-//   color: white;
-//   height: 29px;
-//   border-radius: 50%;
-//   border: 1px solid #ffffff;
-//   position: relative;
-//   bottom: 35px;
-//   left: 85px;
-//   font-size: 24px;
+
+
+}
+
+// /* Small devices (landscape phones, 768px and up) */
+// @media (max-width: 768px) {
+//   .container {
+//     width: 90%;
+//     background-color: lightgoldenrodyellow;
+//   }
 // }
 
-}
 
 
-@media (min-width: 769px) {
-  .expandIcon {
-    display: none; /* Hide the arrow icon on desktop */
-  }
-}
+
+
+
+/* Extra small devices (portrait phones, 480px and up) */
+
+
+
+// @media (max-width: 480px) {
+//   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
+//   // border: 2px solid blue;
+//   // width: 100%;
+    
+//   }
+//   .expandIcon {
+//     display: block; /* Show the arrow icon on mobile */
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @media (max-width: 768px) {
+//   .searchBoxContainer, .dropoffContainer,.vehicleDetailsContainer {
+//     top: auto;
+//     bottom: 0;
+//     // width: 95% !important ; /* Adjust the width for smaller screens */
+//     // left: -1% !important;
+//     width: 100% !important;
+//     transform: translate(7px, 233px);
+//     //  translateX(-50%);
+//   }
+  
+ 
+//   .expanded {
+//     top: 20px;
+//     bottom: auto !important;
+//     // width: 95% !important; /* Adjust the width for smaller screens */
+//     left: -1% !important;
+//     height: 100vh !important;
+//     width: 100% !important;
+//     // transform: translateX(-50%);
+//     transform: translate(1%, 24%);
+//   }
+
+ 
+//   .expandIcon {
+//     // display: block; /* Show the arrow icon on mobile */
+//     display: flex;
+//   }
+
+// // .expandIcon {
+// //   background-color: #007bff;
+// //   color: white;
+// //   height: 29px;
+// //   border-radius: 50%;
+// //   border: 1px solid #ffffff;
+// //   position: relative;
+// //   bottom: 35px;
+// //   left: 85px;
+// //   font-size: 24px;
+// // }
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .testicon {
+//   font-size: 24px;
+//   color: black;
+//   border: 1px solid red;
+//   background-color: yellow;
+//   display: block;
+// }
+
+
 
 
 
@@ -493,8 +653,8 @@ servicedropoffAddress
   bottom: 10%;
   z-index: 1000;
   background-color: white;
-  padding: 10px;
-  border-radius: 8px;
+  // padding: 10px;
+  border-radius:11px;
   width: 400px;
   height: 70vh;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -519,9 +679,9 @@ servicedropoffAddress
     border-top-left-radius: 8px;
   border-top-right-radius: 8px;
     padding: 5px 0px;
-  margin-top: -10px;
-  margin-left: -10px;
-  width: 400px !important;
+  // margin-top: -10px;
+  // margin-left: -10px;
+  // width: 400px !important;
   color: white;
 }
 
@@ -751,6 +911,7 @@ servicedropoffAddress
 }
 .searchBox {
   margin-top: 20px;
+  padding: 10px;
 }
 .nextButton {
   margin-top: 20px;
@@ -835,13 +996,14 @@ servicedropoffAddress
 
 
 .vinInputContainer {
-  width: 102%;
+  width: 97%;
   flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 21px;
+  margin-left: 12px !important;
 }
 
 .vinInput {
@@ -856,7 +1018,8 @@ servicedropoffAddress
 
 .floatingLabelContainer {
   position: relative;
-  margin-bottom: 18px;
+  // margin-bottom: 18px;
+  margin: 13px 5px;
 }
 
 .vinInput {
@@ -999,6 +1162,7 @@ servicedropoffAddress
 .servicesContent {
   flex: 1; /* Ensures this section takes up available space */
   overflow-y: auto; /* Makes this section scrollable */
+  overflow-x: hidden;
 }
 
 .servicesList {
@@ -1023,7 +1187,7 @@ servicedropoffAddress
   vertical-align: middle;
   text-decoration: none;
   list-style: none;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 .locationInfo {
@@ -1034,14 +1198,15 @@ servicedropoffAddress
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 100px;
+  // margin-left: 100px;
 }
 
 .locationDetails{
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   border-top: 1px solid #ccc;
   margin-top: 20px;
-  width: 39vh;
+  // width: 39vh;
+  width: 100%;
 }
 
 
@@ -1125,7 +1290,7 @@ servicedropoffAddress
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   // border-top: 1px solid #ccc;
   margin-top: 10px;
-  width: 57vh;
+  width: 100%;
   // border: 1px solid red;
   display: flex;
   justify-content: center;
@@ -1152,7 +1317,7 @@ servicedropoffAddress
     // position: relative;
     // left: 100px;
     display: inline-block;
-    width: 360px;
+    width: 100%;
   }
 
 //   .priceContainer {
@@ -1232,10 +1397,11 @@ servicedropoffAddress
   // margin-bottom: 8px; /* Adjust margin as needed */
   border-bottom: 1px solid #ccc; /* Solid border at the bottom */
   // padding-bottom: 8px; /* Padding at the bottom of the address item */
-  width:340px;
+  width:100%;
   height: 35px;
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
   // vertical-align: middle;
   justify-content: space-evenly;
   // display: inline-block;

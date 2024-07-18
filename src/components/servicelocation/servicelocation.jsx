@@ -5,21 +5,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    Autocomplete,
-    GoogleMap,
-    Marker,
-    useLoadScript,
-  } from "@react-google-maps/api";
-// import { Autocomplete } from "@react-google-maps/api";
-import { useEffect, useRef, useState } from "react";
+  Autocomplete,
+  GoogleMap,
+  Marker,
+  useLoadScript,
+} from "@react-google-maps/api";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "@/components/map/styles.module.scss";
 import {
   setDropoffLocation,
   setPickupLocation,
-} from "@/redux/slices/userSelection"; // Adjust the path as needed
-//   import { toast, ToastContainer } from "react-toastify";
-//   import "react-toastify/dist/ReactToastify.css";
+} from "@/redux/slices/userSelection";
 
 const defaultCenter = {
   lat: 44.9778,
@@ -28,33 +25,44 @@ const defaultCenter = {
 
 const libraries = ["places"];
 
-
-
 const Servicelocation = () => {
+  const { isLoaded, loadError } = useLoadScript({
+    id: "320c3cf314c6a3f1",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
 
 
 
-    const { isLoaded, loadError } = useLoadScript({
-        id: "320c3cf314c6a3f1",
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-        libraries,
-      });
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
 
   const [pickupInputValue, setPickupInputValue] = useState("");
   const [dropoffInputValue, setDropoffInputValue] = useState("");
   const [state, setState] = useState("pickup");
-  const [address, setAddress] = useState(""); // State to store address
-  const [pickupAddress, setPickupAddress] = useState(""); // New state variable
-  const [dropoffAddress, setDropoffAddress] = useState(""); // New state variable
+  const [address, setAddress] = useState("");
+  const [pickupAddress, setPickupAddress] = useState("");
+  const [dropoffAddress, setDropoffAddress] = useState("");
   const [errors, setErrors] = useState({});
-  const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
+  const [showDropdown, setShowDropdown] = useState(false);
   const [center, setCenter] = useState(defaultCenter);
 
   const autocompleteRef = useRef(null);
   const mapRef = useRef(null);
+  const onLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -63,8 +71,7 @@ const Servicelocation = () => {
   );
 
   const handleSetPickupLocation = (newCenter) => {
-    dispatch(setPickupLocation(newCenter)); // ensure setPickupLocation is imported correctly
-    // other logic related to setting pickup location
+    dispatch(setPickupLocation(newCenter));
   };
 
   const currentState = useSelector((state) => state.userSelection.currentState);
@@ -77,22 +84,12 @@ const Servicelocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const newLocation = {
-            // locationName: place.name || "Unknown Location",
-            name: "Current Location Name", // Replace with actual location name logic if needed
+            name: "Current Location Name",
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
 
-          // Dispatching the action to update Redux state
-
-          // dispatch(setCurrentLocation(newLocation));
-
-          // Save to localStorage
           localStorage.setItem("currentLocation", JSON.stringify(newLocation));
-
-          // Other logic if needed
-          // setCenter(newLocation);
-          // mapRef.current.panTo(newLocation);
         },
         (error) => {
           console.error("Error getting user location", error);
@@ -117,7 +114,6 @@ const Servicelocation = () => {
           console.log("Current Location:", newCenter);
           console.log("Address:", address);
 
-          // Use Geocoder object to fetch address
           geocoder.geocode({ location: newCenter }, (results, status) => {
             if (status === "OK") {
               if (results[0]) {
@@ -130,32 +126,23 @@ const Servicelocation = () => {
                   lng: newCenter.lng,
                   address: address,
                 };
-                // Dispatch action to set current location in Redux
                 dispatch(setPickupLocation(locationData));
-
-                // Save current location to localStorage
                 localStorage.setItem(
                   "currentLocation",
                   JSON.stringify(newCenter)
                 );
 
                 if (currentState === "service-location") {
-                  // Dispatch action to set pickup location in Redux
                   dispatch(setPickupLocation({ location: newCenter, address }));
-
-                  // Save pickup location to localStorage
                   localStorage.setItem(
                     "pickupLocation",
                     JSON.stringify(newCenter)
                   );
-
-                  setPickupInputValue(address); // Set the address in the input box
+                  setPickupInputValue(address);
                   setState("drop-off-location");
                 }
 
-                // Center map on new location (if map is valid)
                 if (mapRef.current) {
-                  // Ensure mapRef.current is not null
                   mapRef.current.panTo(newCenter);
                 } else {
                   console.error("Map reference is not set.");
@@ -177,6 +164,8 @@ const Servicelocation = () => {
     }
   };
 
+  if (!isLoaded) return <div>Loading....</div>;
+
   const handlePlaceChanged = () => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
@@ -191,23 +180,19 @@ const Servicelocation = () => {
           lat: newCenter.lat,
           lng: newCenter.lng,
         };
+        console.log("locationdata", locationData);
+        console.log("Selected Place:", place);
+        console.log("New Center:", newCenter);
 
-        console.log("Selected Place:", place); // Add console log here
-        console.log("New Center:", newCenter); // Add console log here
-
-        // Save to local storage and dispatch to Redux store
-        if (currentState === "initial") {
+        if (currentState === "service-location") {
           dispatch(setPickupLocation(locationData));
         } else if (currentState === "drop-off-location") {
           dispatch(setDropoffLocation(locationData));
         }
 
-        
-
         setCenter(newCenter);
 
         if (mapRef.current) {
-          // Ensure mapRef.current is not null
           mapRef.current.panTo(newCenter);
         } else {
           console.error("Map reference is not set.");
@@ -215,12 +200,12 @@ const Servicelocation = () => {
 
         if (currentState === "service-location") {
           setPickupInputValue(place.name || "");
-          setPickupAddress(place.name || ""); // Update pickup address
-          setState("drop-off-location"); // Move to dropoff after setting pickup location
+          setPickupAddress(place.name || "");
+          setState("drop-off-location");
         } else if (currentState === "drop-off-location") {
           setDropoffInputValue(place.name || "");
-          setDropoffAddress(place.name || ""); // Update dropoff address
-          setState("vehicleDetails"); // Move to vehicle details after setting dropoff location
+          setDropoffAddress(place.name || "");
+          setState("vehicleDetails");
         }
       } else {
         console.error("No geometry data available for the selected place.");
@@ -231,15 +216,16 @@ const Servicelocation = () => {
   };
 
   const toggleExpand = () => {
+    console.log("Toggle Expand Clicked");
     setIsExpanded(!isExpanded);
   };
 
   const handleDropdownToggle = () => {
+    console.log("Dropdown Toggle Clicked");
     setShowDropdown(!showDropdown);
   };
 
   return (
-    
     <div
       className={`${styles.searchBoxContainer} ${
         isExpanded ? styles.expanded : ""
@@ -250,7 +236,7 @@ const Servicelocation = () => {
           <FontAwesomeIcon
             icon={isExpanded ? faChevronDown : faChevronUp}
             className={styles.expandIcon}
-            onClick={toggleExpand} // Ensure this only handles expand/collapse action
+            onClick={toggleExpand}
           />
         )}
         <h3 onClick={toggleExpand}>Pick Up Location</h3>
@@ -267,12 +253,12 @@ const Servicelocation = () => {
               placeholder="Search Location"
               className={styles.searchBoxInput}
               value={
-                state === "service-location"
+                currentState === "service-location"
                   ? pickupInputValue
                   : dropoffInputValue
               }
               onChange={
-                state === "service-location"
+                currentState === "service-location"
                   ? (e) => setPickupInputValue(e.target.value)
                   : (e) => setDropoffInputValue(e.target.value)
               }
@@ -283,15 +269,14 @@ const Servicelocation = () => {
               <FontAwesomeIcon
                 icon={showDropdown ? faChevronUp : faChevronDown}
                 className={styles.searchBoxIcon}
-                onClick={handleDropdownToggle} // Toggle dropdown on icon click
+                onClick={handleDropdownToggle}
               />
             </div>
           </div>
         </Autocomplete>
         {showDropdown && (
           <div className={styles.dropdown}>
-            <p>No options available</p>{" "}
-            {/* Replace with actual dropdown options */}
+            <p>No options available</p>
           </div>
         )}
         <button
@@ -308,7 +293,6 @@ const Servicelocation = () => {
           </div>
         </button>
       </div>
-      {/* <ToastContainer /> */}
     </div>
   );
 };

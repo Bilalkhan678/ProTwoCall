@@ -5,7 +5,7 @@ import {
     faChevronUp,
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-  import { useState } from "react";
+  import { useState,useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import styles from "@/components/map/styles.module.scss";
 
@@ -33,6 +33,20 @@ const VehicalDetail =()=>{
     const userSelection = JSON.parse(localStorage.getItem("userSelection")) || {};
     const { vehicleDetails } = userSelection;
   
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
       };
