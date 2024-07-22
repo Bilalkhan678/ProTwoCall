@@ -213,7 +213,7 @@ const RootLayoutWrapper = ({ children }) => {
     // console.log(userData,userSelection);
     try {
       REHYDRATE_KEYS.forEach((item) => {
-        if (item?.key === "userData") {
+        if (item?.key === "userData" && userData !== null) {
           dispatch(setAuthUser(reduxState));
         } else if (item?.key === "userSelection") {
           dispatch(updateUserServicesFromLocalStorage(userSelection));

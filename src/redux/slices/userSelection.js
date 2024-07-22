@@ -391,7 +391,6 @@ export const userSelectionSlice = createSlice({
   initialState,
   reducers: {
     updateUserServicesFromLocalStorage: (state, action) => {
-      console.log(state, action, "======----------------------------");
       const newState = {
         ...state,
         ...action.payload,
@@ -442,7 +441,6 @@ export const userSelectionSlice = createSlice({
       return newState;
     },
 
-    
     loadStateFromLocalStorage(state) {
       const savedState = JSON.parse(localStorage.getItem("userSelection"));
       console.log("Loaded data from localStorage:", savedState);
@@ -477,7 +475,7 @@ export const userSelectionSlice = createSlice({
           state.currentState = USER_DRAWER_OPTIONS[3];
           break;
         }
-        
+
         // case USER_DRAWER_OPTIONS[2]: {
         //   let previousComponent = 1;
         //   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -546,7 +544,6 @@ export const userSelectionSlice = createSlice({
       state.isStateUpdating = false; // Reset state update flag
       localStorage.removeItem("userSelection");
     },
-
   },
 });
 
@@ -566,24 +563,6 @@ export const {
 } = userSelectionSlice.actions;
 
 export default userSelectionSlice.reducer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { createSlice } from "@reduxjs/toolkit";
 

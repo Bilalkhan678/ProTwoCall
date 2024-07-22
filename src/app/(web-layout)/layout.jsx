@@ -8,13 +8,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/ErrorFallback/ErrorFallback";
 import { DRAWER_WIDTH } from "../../theme/drawer";
 
-
 const WebLayout = ({ children }) => {
   // state
   const [drawerWidth] = useState(DRAWER_WIDTH);
 
   return (
-    <div className="main-container" >
+    <div className="main-container">
       <UserHeader drawerWidth={drawerWidth} />
       <Container className="content-container" maxWidth={false} disableGutters>
         <ErrorBoundary FallbackComponent={ErrorFallback}>

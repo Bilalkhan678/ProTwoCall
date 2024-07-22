@@ -103,7 +103,7 @@ const SideBar = ({
       </Box>
       {renderActions && (
         <div className="drawer-footer-actions">
-          <UserSidebarActions drawerWidth={drawerWidth} />
+          {/* <UserSidebarActions drawerWidth={drawerWidth} /> */}
           {renderToggleButton && (
             <Box className="drawer-toggle-btn">
               <Button
