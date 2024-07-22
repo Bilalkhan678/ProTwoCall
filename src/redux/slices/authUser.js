@@ -21,6 +21,10 @@ export const authUserSlice = createSlice({
       };
       return newState;
     },
+    // removeAuthUser: (state) => {
+    //   localStorage.clear();
+    //   state.user = null;
+    // },
     removeAuthUser: () => {
       Cookies.remove("token");
       localStorage.clear();

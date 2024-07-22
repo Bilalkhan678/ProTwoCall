@@ -433,6 +433,16 @@ export const userSelectionSlice = createSlice({
       state.isStateUpdating = false;
       updateUserSelectionInLocalStorage(state); // Update localStorage after state change
     },
+
+    setStateEmpty: () => {
+      const newState = {
+        ...initialState,
+      };
+      updateUserSelectionInLocalStorage(newState);
+      return newState;
+    },
+
+    
     loadStateFromLocalStorage(state) {
       const savedState = JSON.parse(localStorage.getItem("userSelection"));
       console.log("Loaded data from localStorage:", savedState);
@@ -467,6 +477,7 @@ export const userSelectionSlice = createSlice({
           state.currentState = USER_DRAWER_OPTIONS[3];
           break;
         }
+        
         // case USER_DRAWER_OPTIONS[2]: {
         //   let previousComponent = 1;
         //   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -546,6 +557,7 @@ export const {
   setVehicleDetails,
   setSelectedServices,
   startStateUpdate,
+  setStateEmpty,
   completeStateUpdate,
   loadStateFromLocalStorage,
   clearState,

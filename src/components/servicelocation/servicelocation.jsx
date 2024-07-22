@@ -79,26 +79,26 @@ const Servicelocation = () => {
 
   const geocoder = new window.google.maps.Geocoder();
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const newLocation = {
-            name: "Current Location Name",
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const newLocation = {
+  //           name: "Current Location Name",
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         };
 
-          localStorage.setItem("currentLocation", JSON.stringify(newLocation));
-        },
-        (error) => {
-          console.error("Error getting user location", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  }, [dispatch]);
+  //         localStorage.setItem("currentLocation", JSON.stringify(newLocation));
+  //       },
+  //       (error) => {
+  //         console.error("Error getting user location", error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //   }
+  // }, [dispatch]);
 
   const handleCurrentLocationClick = () => {
     console.log("Current Location button clicked");
