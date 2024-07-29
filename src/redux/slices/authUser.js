@@ -13,6 +13,10 @@ export const authUserSlice = createSlice({
     setAuthUser: (state, action) => {
       const { userData, token } = action.payload;
       localStorage.setItem("userData", JSON.stringify(userData));
+
+      console.log("Token in setAuthUser:", token);
+      localStorage.setItem('token', token); // Ensure token is stored here
+
       Cookies.set("token", token);
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const newState = {

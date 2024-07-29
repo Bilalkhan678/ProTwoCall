@@ -242,24 +242,121 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client"
+// import React, { useState, useEffect } from 'react';
+// import dynamic from 'next/dynamic';
+// import {Box} from '@mui/material';
+
+
+// const Map = dynamic(() => import('../../components/map/map'), { ssr: false });
+// const OngoingService = dynamic(() => import('../../components/ongingService/ongoingservice'), { ssr: false });
+
+// const Home = () => {
+//   return (
+//     <Box className="relative w-full h-full overflow-hidden">
+//       <Map/>
+//       <OngoingService/>
+//     </Box>
+//   );
+// };
+
+// export default Home;
+
+
+
 "use client"
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import {Box} from '@mui/material';
-
+import { Box } from '@mui/material';
+import axios from 'axios';
 
 const Map = dynamic(() => import('../../components/map/map'), { ssr: false });
 const OngoingService = dynamic(() => import('../../components/ongingService/ongoingservice'), { ssr: false });
 
 const Home = () => {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const token = localStorage.getItem("token");
+      console.log("Token ongoing service:", token); // Log the token
+
+      console.log('Fetching orders...');
+
+      try {
+        const response = await axios.get('https://api.dev.protowcall.ca/api/v1/orders/customer/ongoing?page=1&limit=100', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Add your token here
+          }
+        });
+
+        console.log("Response ongoing service:", response); // Log the entire response
+        if (response.status === 200) {
+          console.log("Orders data Ongoing:", response.data.data); // Log the orders data
+          setOrders(response.data.data); // Assuming orders are under response.data.data
+        } else {
+          console.error('Unexpected response status:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+        if (error.response) {
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+          console.error('Response headers:', error.response.headers);
+        } else if (error.request) {
+          console.error('Request data:', error.request);
+        } else {
+          console.error('Error message:', error.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
   return (
     <Box className="relative w-full h-full overflow-hidden">
-      <Map/>
-      <OngoingService/>
+      <Map />
+      <OngoingService orders={orders} loading={loading} />
     </Box>
   );
 };
 
 export default Home;
-
-

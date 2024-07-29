@@ -178,6 +178,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useDispatch } from "react-redux";
 import { setAuthUser } from "@/redux/slices/authUser";
 import { updateUserServicesFromLocalStorage } from "@/redux/slices/userSelection";
+import Cookies from "js-cookie";
 // Import other necessary actions for rehydration
 
 const REHYDRATE_KEYS = [
@@ -205,11 +206,23 @@ const RootLayoutWrapper = ({ children }) => {
     let userData = JSON.parse(localStorage.getItem("userData"));
     let userSelection = JSON.parse(localStorage.getItem("userSelection"));
 
-    const token = "some-dummy-token";
+    const token = Cookies.get("token");
+    console.log("Rehydrated token:", token); // Debugging line
+
+    if (!token) {
+      console.error("Token not found during rehydration");
+      return;
+    }
+
     const reduxState = {
-      userData: userData,
+      userData,
       token,
     };
+    // const token = "some-dummy-token";
+    // const reduxState = {
+    //   userData: userData,
+    //   token,
+    // };
     // console.log(userData,userSelection);
     try {
       REHYDRATE_KEYS.forEach((item) => {

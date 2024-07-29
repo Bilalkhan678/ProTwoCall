@@ -486,6 +486,8 @@
 }
 
 .serviceBoxTitle{
+  display: flex;
+  justify-content: space-evenly;
   font-size: 19px;
   font-size: 500;
 }

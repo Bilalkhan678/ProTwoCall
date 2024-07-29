@@ -70,7 +70,7 @@ const DropoffLocation=()=>{
           lat: newCenter.lat,
           lng: newCenter.lng,
         };
-
+        console.log("location data",locationData);
         console.log("Selected Place:", place); // Add console log here
         console.log("New Center:", newCenter); // Add console log here
 

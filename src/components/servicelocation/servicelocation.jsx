@@ -32,8 +32,6 @@ const Servicelocation = () => {
     libraries,
   });
 
-
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -44,7 +42,6 @@ const Servicelocation = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
 
   const [pickupInputValue, setPickupInputValue] = useState("");
   const [dropoffInputValue, setDropoffInputValue] = useState("");
@@ -106,37 +103,75 @@ const Servicelocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const newCenter = {
-            locationName: address,
+            locationName: position.name|| "Unknown Location",
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
 
           console.log("Current Location:", newCenter);
-          console.log("Address:", address);
+          // console.log("Address:", address);
 
           geocoder.geocode({ location: newCenter }, (results, status) => {
             if (status === "OK") {
               if (results[0]) {
-                const address =
-                  results[0].formatted_address || "Unknown Location";
+                const addressComponents = results[0].address_components;
+                let city = "";
+                let address = results[0].formatted_address || "Unknown Location";
+  
+                for (let component of addressComponents) {
+                  if (component.types.includes("locality")) {
+                    city = component.long_name;
+                    break;
+                  }
+                }
+  
+                if (!city) {
+                  for (let component of addressComponents) {
+                    if (component.types.includes("administrative_area_level_1")) {
+                      city = component.long_name;
+                      break;
+                    }
+                  }
+                }
+
+
+                console.log("City:", city);
                 console.log("Address:", address);
+
+
+  
                 const locationData = {
-                  locationName: results[0].name || "Unknown Location",
+                  City: city || "Unknown City",
                   lat: newCenter.lat,
                   lng: newCenter.lng,
                   address: address,
                 };
+  
+
+
+          // geocoder.geocode({ location: newCenter }, (results, status) => {
+          //   if (status === "OK") {
+          //     if (results[0]) {
+          //       const address =
+          //         results[0].formatted_address || "Unknown Location";
+          //       console.log("Geocoded Address:", address);
+
+          //       const locationData = {
+          //         locationName:
+          //           results[0].formatted_address || "Unknown Location",
+          //         lat: newCenter.lat,
+          //         lng: newCenter.lng,
+          //         address: address,
+          //       };
+                console.log("locationData",locationData);
                 dispatch(setPickupLocation(locationData));
-                localStorage.setItem(
-                  "currentLocation",
-                  JSON.stringify(newCenter)
+                localStorage.setItem("currentLocation",JSON.stringify(locationData)
                 );
 
                 if (currentState === "service-location") {
-                  dispatch(setPickupLocation({ location: newCenter, address }));
-                  localStorage.setItem(
-                    "pickupLocation",
-                    JSON.stringify(newCenter)
+                  dispatch(setPickupLocation(locationData));
+                  // dispatch(setPickupLocation({ location: newCenter, address }));
+                  localStorage.setItem("pickupLocation",JSON.stringify(newCenter)
                   );
                   setPickupInputValue(address);
                   setState("drop-off-location");
@@ -167,6 +202,7 @@ const Servicelocation = () => {
   if (!isLoaded) return <div>Loading....</div>;
 
   const handlePlaceChanged = () => {
+    
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
       if (place.geometry) {
@@ -180,6 +216,9 @@ const Servicelocation = () => {
           lat: newCenter.lat,
           lng: newCenter.lng,
         };
+
+
+        
         console.log("locationdata", locationData);
         console.log("Selected Place:", place);
         console.log("New Center:", newCenter);
@@ -189,6 +228,7 @@ const Servicelocation = () => {
         } else if (currentState === "drop-off-location") {
           dispatch(setDropoffLocation(locationData));
         }
+
 
         setCenter(newCenter);
 

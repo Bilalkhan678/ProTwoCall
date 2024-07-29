@@ -27,11 +27,31 @@ const Login = () => {
 
   const handleLogin = async (values, { setSubmitting }) => {
     try {
-      const { token } = await loginFunction(values);
-      const reduxState = {
-        userData: values.username,
-        token,
-      };
+
+
+      const data = await loginFunction(values);
+      console.log("Token from loginFunction:", data); // Debugging line
+      
+      // localStorage.setItem('token', data.token);
+      // console.log("Token stored in localStorage:", localStorage.getItem('token')); // Debugging line
+
+
+        const reduxState = {
+          userData: values.username,
+          token: data?.data?.token,
+        };
+
+
+
+      // const { token } = await loginFunction(values);
+      
+      // localStorage.setItem('token', token);
+      // console.log("Token stored in localStorage:", localStorage.getItem('token')); // Debugging line
+
+      // const reduxState = {
+      //   userData: values.username,
+      //   token,
+      // };
       dispatch(setAuthUser(reduxState));
       setSubmitting(false);
       toast.success("Login successful");

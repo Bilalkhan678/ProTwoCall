@@ -381,7 +381,7 @@ const initialState = {
     color: "",
     licensePlate: "",
   },
-  selectedServices: [],
+  selectedService: "",
   currentState: "service-location", // Initial state indicator
   isStateUpdating: false, // Flag to indicate state update process
 };
@@ -391,12 +391,14 @@ export const userSelectionSlice = createSlice({
   initialState,
   reducers: {
     updateUserServicesFromLocalStorage: (state, action) => {
+      console.log(state, action, "======----------------------------");
       const newState = {
         ...state,
         ...action.payload,
       };
       return newState;
     },
+
     setPickupLocation(state, action) {
       state.location.pickupLocation = action.payload;
       if (!state.isStateUpdating) {
@@ -411,6 +413,7 @@ export const userSelectionSlice = createSlice({
         updateUserSelectionInLocalStorage(state);
       }
     },
+
     setVehicleDetails(state, action) {
       state.vehicleDetails = action.payload;
       if (!state.isStateUpdating) {
@@ -418,13 +421,26 @@ export const userSelectionSlice = createSlice({
         updateUserSelectionInLocalStorage(state);
       }
     },
+
     setSelectedServices(state, action) {
-      state.selectedServices = action.payload;
+      // state.selectedService = action.payload;
+
+      console.log('Payload type:', typeof action.payload);
+      console.log('Payload value:', action.payload);
+
+      if (Array.isArray(action.payload)) {
+        state.selectedService = JSON.stringify(action.payload);
+      } else if (typeof action.payload === 'object') {
+        state.selectedService = JSON.stringify([action.payload]);
+      } else {
+        state.selectedService = JSON.stringify([{ id: action.payload }]);
+      }
       if (!state.isStateUpdating) {
         state.currentState = USER_DRAWER_OPTIONS[4];
         updateUserSelectionInLocalStorage(state);
       }
     },
+
     startStateUpdate(state) {
       state.isStateUpdating = true;
     },
@@ -440,6 +456,7 @@ export const userSelectionSlice = createSlice({
       updateUserSelectionInLocalStorage(newState);
       return newState;
     },
+
 
     loadStateFromLocalStorage(state) {
       const savedState = JSON.parse(localStorage.getItem("userSelection"));
@@ -475,7 +492,7 @@ export const userSelectionSlice = createSlice({
           state.currentState = USER_DRAWER_OPTIONS[3];
           break;
         }
-
+        
         // case USER_DRAWER_OPTIONS[2]: {
         //   let previousComponent = 1;
         //   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -544,6 +561,7 @@ export const userSelectionSlice = createSlice({
       state.isStateUpdating = false; // Reset state update flag
       localStorage.removeItem("userSelection");
     },
+
   },
 });
 
@@ -564,103 +582,8 @@ export const {
 
 export default userSelectionSlice.reducer;
 
-// import { createSlice } from "@reduxjs/toolkit";
 
-// const updateUserSelectionInLocalStorage = (data) => {
-//   localStorage.setItem("userSelection", JSON.stringify(data));
-// };
 
-// const initialState = {
-//   location: {
-//     pickupLocation: null,
-//     dropoffLocation: null,
-//   },
-//   vehicleDetails: {
-//     vin: "",
-//     model: "",
-//     make: "",
-//     year: "",
-//     color: "",
-//     licensePlate: "",
-//   },
-//   selectedServices: [],
-//   currentState: "initial",
-// };
 
-// export const userSelectionSlice = createSlice({
-//   name: 'userSelection',
-//   initialState,
-//   reducers: {
-//     setPickupLocation(state, action) {
-//       state.location.pickupLocation = action.payload;
-//       state.currentState = "pickup";
-//       updateUserSelectionInLocalStorage(state);
-//     },
-//     setDropoffLocation(state, action) {
-//       state.location.dropoffLocation = action.payload;
-//       state.currentState = "dropoff";
-//       updateUserSelectionInLocalStorage(state);
-//     },
-//     setVehicleDetails(state, action) {
-//       state.vehicleDetails = action.payload;
-//       state.currentState = "vehicleDetails";
-//       updateUserSelectionInLocalStorage(state);
-//     },
-//     setSelectedServices(state, action) {
-//       state.selectedServices = action.payload;
-//       state.currentState = "selectedServices";
-//       updateUserSelectionInLocalStorage(state);
-//     },
-//     loadStateFromLocalStorage(state) {
-//       console.log("Attempting to load state from localStorage...");
-//       const savedState = JSON.parse(localStorage.getItem("userSelection"));
-//       console.log("Loaded data from localStorage:", savedState);
 
-//       if (savedState) {
-//         console.log("Updating state with loaded data...");
-//         state.location.pickupLocation = savedState.location.pickupLocation;
-//         state.location.dropoffLocation = savedState.location.dropoffLocation;
-//         state.vehicleDetails = savedState.vehicleDetails;
-//         state.selectedServices = savedState.selectedServices;
-//         state.currentState = savedState.currentState;
-//       } else {
-//         console.log('No data found in localStorage for key "userSelection"');
-//       }
-//     },
-//     clearState(state) {
-//       state.location.pickupLocation = null;
-//       state.location.dropoffLocation = null;
-//       state.vehicleDetails = {
-//         vin: "",
-//         model: "",
-//         make: "",
-//         year: "",
-//         color: "",
-//         licensePlate: "",
-//       };
-//       state.selectedServices = [];
-//       state.currentState = "initial";
-//       localStorage.removeItem("userSelection");
-//     },
-//   },
-// });
 
-// export const {
-//   setPickupLocation,
-//   setDropoffLocation,
-//   setVehicleDetails,
-//   setSelectedServices,
-//   loadStateFromLocalStorage,
-//   clearState,
-// } = userSelectionSlice.actions;
-
-// export const updateUserSelection = (data) => (dispatch) => {
-//   dispatch(setPickupLocation(data.pickupLocation));
-//   dispatch(setDropoffLocation(data.dropoffLocation));
-//   dispatch(setVehicleDetails(data.vehicleDetails));
-//   dispatch(setSelectedServices(data.selectedServices));
-// };
-
-// export const selectUserSelection = (state) => state.userSelection;
-
-// export default userSelectionSlice.reducer;

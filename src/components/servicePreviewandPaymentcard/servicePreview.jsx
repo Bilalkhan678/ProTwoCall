@@ -1,3 +1,5 @@
+
+
 import {
   faArrowLeft,
   faChevronDown,
@@ -9,67 +11,88 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState , useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "@/components/map/styles.module.scss";
-
-
+import axios from 'axios';
 import {
+  setPickupLocation,
   setPreviousSelectionComponent,
   clearState,
 } from "@/redux/slices/userSelection"; // Adjust the path as needed
 // import PaymentCard from "../showSideBarPaymentCard/sideBarPaymentCard";
   import { toast, ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
+// import VehicalDetail from "../vehicaldetail/vehicaldetail";
+// import DropoffLocation from "../dropofflocation/drop-off-location";
+// import ChooseServices from "../serviceSelector/serviceSelector";
+// import {useSelector} from "react-redux";
+
+const baseImgURL = "https://dewnj7prds854.cloudfront.net/";
+
 
 const ServicePreviewAndPaymendCard = () => {
-  const dispatch = useDispatch();
+
+
   const [vinInputValue, setVinInputValue] = useState("");
   const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
   const [isMobile, setIsMobile] = useState(false);
   const [dropoffAddress, setDropoffAddress] = useState(""); // New state variable
   const [showSidebar, setShowSidebar] = useState(false);
   const [currentView, setCurrentView] = useState("servicePreview");
-  const selectedServices = useSelector(
-    (state) => state.userSelection.selectedServices || []
+
+
+  const dispatch = useDispatch();
+
+  // const selectedServices = useSelector(
+  //   (state) => state.userSelection.selectedServices || []
+  // );
+
+
+  const selectedServicesString = useSelector(
+    (state) => state.userSelection.selectedService
   );
+
+
+ 
+  // Convert the string to an array
+  let selectedServices = [];
+  if (typeof selectedServicesString === 'string') {
+    try {
+      selectedServices = JSON.parse(selectedServicesString);
+      if (!Array.isArray(selectedServices)) {
+        selectedServices = [];
+      }
+    } catch (error) {
+      console.error('Failed to parse selectedServices:', error);
+    }
+  } else if (Array.isArray(selectedServicesString)) {
+    selectedServices = selectedServicesString;
+  } else {
+    console.error('selectedServices is not a string or array:', selectedServicesString);
+  }
+  console.log('Parsed selectedServices:', selectedServices);
+
+  console.log('Type of selectedServices:', typeof selectedServices);
+  // const servicesArray = Array.isArray(selectedServices) ? selectedServices : [];
+
+
+
   const userSelection = JSON.parse(localStorage.getItem("userSelection")) || {};
   const { vehicleDetails } = userSelection;
 
   const currentState = useSelector((state) => state.userSelection.currentState);
   console.log(currentState, "currentState");
 
+  // const location = useSelector((state) => state.location.pickupLocation); // Redux se location fetch karna
 
 
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Check screen size on initial render
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+//   const dropoffLocation = useSelector(state => state.userSelection.dropoffLocation);
+//   console.log('Drop-off Location:', dropoffLocation);
 
+//   // Check if dropoffLocation is defined before accessing its properties
+// const dropoffAddress = dropoffLocation ? dropoffLocation.locationName : "";
+// const dropoffLatitude = dropoffLocation ? dropoffLocation.lat : "";
+// const dropoffLongitude = dropoffLocation ? dropoffLocation.lng : "";
 
-  
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const handleBackClick = () => {
-    dispatch(setPreviousSelectionComponent());
-  };
-
-
-  const handlePayOrderClick = () => {
-    setShowSidebar(true);
-    setCurrentView("payment");
-  };
-
-//   const toggleSidebar = () => {
-//     setShowSidebar(!showSidebar);
-//   };
 
 
   const [atmNumber, setAtmNumber] = useState("");
@@ -80,6 +103,12 @@ const ServicePreviewAndPaymendCard = () => {
   const [errors, setErrors] = useState({});
 //   const [isExpanded, setIsExpanded] = useState(false); // State for expanding/collapsing the search box
   const [state, setState] = useState("pickup");
+
+  
+
+
+
+
 
   const resetState = () => {
     setAtmNumber("");
@@ -103,6 +132,288 @@ const ServicePreviewAndPaymendCard = () => {
     setShowSidebar(false);
   };
 
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on initial render
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+  
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  useEffect(() => {
+    console.log("Current state in useEffect:", currentState);
+    // Handle any logic based on currentState here
+  }, [currentState]); // This ensures the effect runs whenever currentState changes
+
+
+
+  const handleBackClick = () => {
+    console.log("button cliked");
+    dispatch(setPreviousSelectionComponent());
+  };
+
+  // useEffect(() => {
+  //   console.log(currentState, "currentState after update");
+  //   // Handle any navigation or state-dependent logic here
+  // }, [currentState]);
+
+  // const handlePayOrderClick = () => {
+  //   setShowSidebar(true);
+  //   setCurrentView("payment");
+  // };
+
+  // useEffect(() => {
+  //   const storedDropoffAddress = localStorage.getItem("dropoffAddress");
+  //   if (storedDropoffAddress) {
+  //     setDropoffAddress(storedDropoffAddress);
+  //   }
+  // }, []);
+
+
+
+
+  const handlePayOrderClick = async () => {
+    try {
+
+      const token = localStorage.getItem("token");
+      console.log("Preview Token", token);
+      if (!token) {
+        throw new Error("Token not found");
+      }
+
+      const storedServices = JSON.parse(localStorage.getItem("selectedService"));
+      console.log("Stored Services from localStorage:", storedServices);
+
+       // Local storage se userSelection object fetch karna
+      const userSelection = JSON.parse(localStorage.getItem("userSelection"));
+  
+
+
+
+  // Pickup location se lat aur lng nikalna
+  const pickupLocation = userSelection?.location?.pickupLocation || { lat: null, lng: null };
+  console.log("Pickup Location:", pickupLocation);
+
+
+  //pickuplocation address
+  const pickupLocationaddress = userSelection?.location?.pickupLocation || { address:"" };
+  console.log("Pickupaddress Location:", pickupLocationaddress);
+    
+  //pictuplocation city
+  const pickupCity = userSelection?.location?.pickupLocation || { City:"" };
+  console.log("PickupCity:", pickupCity);
+  
+  
+
+    // dropoffCoordinates location se lat aur lng nikalna
+    const dropoffCoordinates = userSelection?.location?.dropoffLocation || { lat: null, lng: null };
+    console.log("dropoffCoordinates:", dropoffCoordinates);
+
+
+      //dropoff address
+  const dropoffLocationaddress = userSelection?.location?.dropoffLocation || { locationName:"" };
+  console.log("dropodaddress Location:", dropoffLocationaddress);
+
+  
+
+  // const customerAddress : pickupLocationaddress.LocationName;
+
+//  // Pickup location se lat aur lng extract karna
+//  const pickupLocation = userSelection.location.pickupLocation;
+//  const lat = pickupLocation.lat;
+//  const lng = pickupLocation.lng;
+
+
+const serviceIDs = selectedServices.map(service => service._id);
+console.log("serviceId ",serviceIDs);
+
+
+      const orderData = {
+
+        // services: selectedServices.map(service => ({
+        //   id: service._id,
+        //   // name: service.title,     
+        //   // img: service.image       
+        // })),
+        service:serviceIDs, 
+        customerCoordinates: [
+          pickupLocation.lat,
+          pickupLocation.lng,
+        ],
+        "customerAddress": pickupLocationaddress.address,
+        "customercity": pickupCity.City,                
+        dropOffCoordinates: [
+           dropoffCoordinates.lat,
+           dropoffCoordinates.lng,
+        ],
+        dropoffAddress:dropoffLocationaddress.locationName,
+        dropoffCity:dropoffLocationaddress.locationName,
+        
+        vehicle: {
+          make: vehicleDetails.make,
+          model: vehicleDetails.model,
+          year: vehicleDetails.year,
+          vin: vehicleDetails.vin,
+          color: vehicleDetails.color,
+          licensePlate: vehicleDetails.licensePlate,
+        },
+        // address: dropoffAddress,
+       
+      };
+
+      // JSON string with double quotes around keys
+        // Check the payload in JSON format
+    const jsonString = JSON.stringify(orderData, null, 2);
+    console.log('JSON Payload:', jsonString);
+
+      const dropoffAddressFromLocalStorage = localStorage.getItem("dropoffAddress");
+      console.log("Drop-off Address from Local Storage:", dropoffAddressFromLocalStorage);
+
+      console.log("Drop-off Address:", dropoffAddress);
+  
+      console.log('Order Data:', orderData); // Log order data for debugging
+  
+      const response = await axios.post('https://api.dev.protowcall.ca/api/v1/orders/place', orderData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+  
+      if (response.status === 200) {
+        console.log('Order placed successfully:', response.data);
+        toast.success('Order placed successfully!', {
+          position: 'top-right',
+          autoClose: 2000,
+        });
+        setShowSidebar(true);
+        setCurrentView('payment');
+      } else {
+        console.error('Failed to place order', response.statusText);
+        toast.error('Failed to place order. Please try again.', {
+          position: 'top-right',
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      toast.error(`Error placing order: ${error.message}`, {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    }
+  };
+  
+
+
+
+
+
+
+  // const handlePayOrderClick = async () => {
+  //   // API request data, adjust the payload as per your API requirements
+
+
+  // //   const vehicleDetails = useSelector(state => state.vehicleDetails);
+  // // const selectedServices = useSelector(state => state.selectedServices); // Assuming you have this state
+  // // const dropoffAddress = useSelector(state => state.dropoffLocation); // Assuming you have this state
+
+  // const orderData = {
+  //   services: selectedServices.map(service => ({
+  //     id: service.id,
+  //     name: service.name,
+  //     // Add other necessary service details here
+  //   })),
+  //   vehicle: {
+  //     make: vehicleDetails.make,
+  //     model: vehicleDetails.model,
+  //     year: vehicleDetails.year,
+  //     vin: vehicleDetails.vin,
+  //     color: vehicleDetails.color,
+  //     licensePlate: vehicleDetails.licensePlate,
+  //   },
+  //   address: dropoffAddress,
+  //   additionalInfo: {
+  //     // Add any other necessary information here
+  //   },
+  // };
+
+  // console.log('Order Data:', orderData); // Log order data for debugging
+
+  
+  //   try {
+
+  //     const token = localStorage.getItem("token");
+  //     console.log("Token", token); // Debug token
+
+  //     const response = await axios.post('https://api.dev.protowcall.ca/api/v1/orders/place', orderData, {
+
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`, // if your API requires authentication
+  //       }
+  //     });
+  
+  //     if (response.status === 200) {
+  //       console.log('Order placed successfully:', response.data);
+  //       // Show success message or handle success scenario
+  //       toast.success('Order placed successfully!', {
+  //         position: 'top-right',
+  //         autoClose: 2000,
+  //       });
+  //       setShowSidebar(true);
+  //       setCurrentView('payment');
+  //     } else {
+  //       console.error('Failed to place order', response.statusText);
+  //       toast.error('Failed to place order. Please try again.', {
+  //         position: 'top-right',
+  //         autoClose: 2000,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error placing order:', error);
+  //     toast.error('Error placing order. Please try again.', {
+  //       position: 'top-right',
+  //       autoClose: 2000,
+  //     });
+  //   }
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+//   const toggleSidebar = () => {
+//     setShowSidebar(!showSidebar);
+//   };
+
+
+ 
+
   const handleAtmNumberChange = (event) => {
     const formattedValue = event.target.value.replace(/[^\d]/g, "").slice(0, 16);
     let formattedNumber = formattedValue.replace(/(\d{4})(?=\d)/g, "$1 ");
@@ -111,6 +422,8 @@ const ServicePreviewAndPaymendCard = () => {
       setErrors({ ...errors, atmNumber: "" });
     }
   };
+
+  
 
   const handlePaymentSubmit = () => {
     if (!atmNumber.trim()) {
@@ -163,6 +476,8 @@ const ServicePreviewAndPaymendCard = () => {
     }
   };
 
+ 
+
   return (
     <div
       className={`${styles.vehicleDetailsContainer} ${
@@ -197,11 +512,11 @@ const ServicePreviewAndPaymendCard = () => {
           {selectedServices.map((service) => (
             <div key={service.id} className={styles.servicePreviewItem}>
               <img
-                src={service.src}
+                src={baseImgURL+service.image}
                 alt={service.name}
                 className={styles.servicePreviewImage}
               />
-              <div className={styles.Previewservicename}>{service.name}</div>
+              <div className={styles.Previewservicename}>{service.title}</div>
             </div>
           ))}
         </div>
@@ -215,11 +530,12 @@ const ServicePreviewAndPaymendCard = () => {
           >
             Location:
           </h5>
+          
           <div className={styles.locationInfo}>
             <p className={styles.addressItem}>
               <span className={styles.addressLabel}> Address:</span>
               <span className={styles.servicedropoffAddress}>
-                {dropoffAddress}
+                {setDropoffAddress?.dropoffAddress}
               </span>
             </p>
             <p className={styles.addressItem}>
