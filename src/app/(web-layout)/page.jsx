@@ -313,7 +313,7 @@ const Home = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
-      console.log("Token ongoing service:", token); // Log the token
+      // console.log("Token ongoing service:", token); // Log the token
 
       console.log('Fetching orders...');
 
